@@ -2,7 +2,8 @@ const express = require('express');
 let app = express();
 const bodyParser = require('body-parser')
 const getReposByUsername = require('../helpers/github.js').getReposByUsername;
-const {saved} = require('../database/index.js');
+const {saved, getInfo} = require('../database/index.js');
+const JSON = require('circular-json');
 // if you need CORS headers, add them
 
 app.use(express.static(__dirname + '/../client/dist'));
@@ -11,21 +12,14 @@ app.use(bodyParser.json());
 
 
 app.post('/repos', function (req, res) {
-  // TODO - your code here!
-  // This route should take the github username provided
-  // and get the repo information from the github API, then
-  // save the repo information in the database
-  // console.log(`AWWWW: ${JSON.stringify(req.body.name)}`)
   let { name } = req.body;
   getReposByUsername(name, (err, results) => {
     if (err) {
       console.error(`err in getReposByUsername: ${err}`);
       res.send('ERROR')
     } else {
-      // console.log(`githubObj: ${JSON.stringify(results)}`);
       saved(results);
       res.send(results)
-    
     }
   })
 
@@ -34,7 +28,15 @@ app.post('/repos', function (req, res) {
 app.get('/repos', function (req, res) {
   // TODO - your code here!
   // This route should send back the top 25 repos
-
+  console.log(`GETTT req: ${JSON.stringify(req)}`)
+  getInfo((err, data) => {
+    if(err) {
+      res.send(err)
+    } else {
+      res.send(data);
+    }
+    
+  })
 });
 
 let port = 1128;
