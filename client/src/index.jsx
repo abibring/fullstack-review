@@ -21,7 +21,7 @@ class App extends React.Component {
   loadData() {
     axios.get('/repos')
       .then(({data}) => {
-        console.log(`componentDidMount: ${JSON.stringify(data)}`)
+        // console.log(`componentDidMount: ${JSON.stringify(data)}`)
         this.setState({ repos: data })
       })
       .catch(err => console.error(`err in componentDidMount: ${err}`));

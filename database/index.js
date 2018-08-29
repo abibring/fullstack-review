@@ -21,7 +21,7 @@ let saved = (repos) => {
       stargazers: repo.stargazers_count, 
       size: repo.size,
       description: repo.description,
-      url: repo.url  
+      url: repo.html_url  
     }], err => {
       if (err) {
         console.error(`EEEEEEEEE: ${err}`)
@@ -36,7 +36,7 @@ let saved = (repos) => {
 let getInfo = (cb) => {
   Repo.find()
   .limit(25)
-  .sort({ stargazers: 1})
+  .sort({ stargazers: -1})
   .exec(((err, docs) => {
     if (err, null) {
       console.error(`err in findById: ${err}`)
