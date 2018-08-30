@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://alon:alon11@ds237932.mlab.com:37932/fullstack-review', { useMongoClient: true }); // connect to mlab for deployment
 
-let repoSchema = mongoose.Schema({
+const repoSchema = mongoose.Schema({
   repoid: { 
     type: Number, unique: true 
   },
@@ -12,9 +12,9 @@ let repoSchema = mongoose.Schema({
   url: String
 });
 
-let Repo = mongoose.model('Repo', repoSchema);
+const Repo = mongoose.model('Repo', repoSchema);
 
-let saved = (repos) => {
+const saved = (repos) => {
   repos.body = JSON.parse(repos.body);
   repos.body.map(repo => {
     console.log(repo.id)
@@ -34,24 +34,7 @@ let saved = (repos) => {
   }) 
 }
 
-// Joes Way 
-// let joeSave = (repos) => {
-//   return Promise.all(repos.map(repo => {
-//     return Repo.findOneAndUpdate(
-//       { url: repo.url },
-//       {
-//         url: repo.html_url,
-//         user: repo.owner.login,
-//         stars: repo.stargazers_count,
-//         name: repo.name
-//       },
-//       {upsert: true} //upsert is keyword in mongoose which means update or inert
-//     ).exec()
-//   }))
-// }
-
-
-let getInfo = (cb) => {
+const getInfo = (cb) => {
   Repo.find()
   .sort({ stargazers: -1})
   .limit(25)

@@ -2,7 +2,6 @@ const request = require('request');
 const config = require('../config.js');
 
 const getReposByUsername = (user, cb) => {
-  // console.log(`username: ${user}`)
   let options = {
     url: `https://api.github.com/users/${user}/repos`,
     headers: {

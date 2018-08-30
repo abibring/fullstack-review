@@ -10,7 +10,8 @@ app.use(express.static(__dirname + '/client/dist'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.post('/repos', (req, res) => {
+
+app.post('/repos', function (req, res) {
   let { name } = req.body;
   getReposByUsername(name, (err, results) => {
     if (err) {
@@ -21,9 +22,10 @@ app.post('/repos', (req, res) => {
       res.send(results);
     }
   })
+
 });
 
-app.get('/repos', (req, res) => {
+app.get('/repos', function (req, res) {
   // console.log(`GET req on server: ${JSON.stringify(req)}`)
   getInfo((err, data) => {
     if(err) {
