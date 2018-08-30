@@ -8,7 +8,7 @@ import axios from 'axios';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { 
+    this.state = {
       repos: []
     }
     this.loadData = this.loadData.bind(this);
@@ -20,8 +20,7 @@ class App extends React.Component {
 
   loadData() {
     axios.get('/repos')
-      .then(({data}) => {
-        // console.log(`componentDidMount: ${JSON.stringify(data)}`)
+      .then(({data}) => { // console.log(`componentDidMount: ${JSON.stringify(data)}`)
         this.setState({ repos: data })
       })
       .catch(err => console.error(`err in componentDidMount: ${err}`));

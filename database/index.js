@@ -2,7 +2,9 @@ const mongoose = require('mongoose');
 mongoose.connect('mongodb://alon:alon11@ds237932.mlab.com:37932/fullstack-review'); // connect to mlab for deployment
 
 let repoSchema = mongoose.Schema({
-  repoid: { type: Number, unique: true },
+  repoid: { 
+    type: Number, unique: true 
+  },
   user:  String,
   stargazers: Number,
   size: Number,
@@ -26,7 +28,7 @@ let saved = (repos) => {
       url: repo.html_url  
     }], err => {
       if (err) {
-        console.error(`EEEEEEEEE: ${err}`)
+        console.error(`error in saved: ${err}`)
       }
     });
   })
