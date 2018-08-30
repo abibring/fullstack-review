@@ -1,8 +1,8 @@
 const express = require('express');
 let app = express();
 const bodyParser = require('body-parser')
-const getReposByUsername = require('../helpers/github.js').getReposByUsername;
-const {saved, getInfo} = require('../database/index.js');
+const getReposByUsername = require('./helpers/github.js').getReposByUsername;
+const {saved, getInfo} = require('./database/index.js');
 const JSON = require('circular-json');
 // if you need CORS headers, add them
 
