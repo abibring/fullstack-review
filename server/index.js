@@ -1,8 +1,8 @@
 const express = require('express');
 let app = express();
 const bodyParser = require('body-parser')
-const getReposByUsername = require('./helpers/github.js').getReposByUsername;
-const {saved, getInfo} = require('./database/index.js');
+const getReposByUsername = require('../helpers/github.js').getReposByUsername;
+const {saved, getInfo} = require('../database/index.js');
 const JSON = require('circular-json');
 // if you need CORS headers, add them
 
@@ -26,17 +26,14 @@ app.post('/repos', function (req, res) {
 });
 
 app.get('/repos', function (req, res) {
-  // TODO - your code here!
-  // This route should send back the top 25 repos
-  console.log(`GET req on server: ${JSON.stringify(req)}`)
+  // console.log(`GET req on server: ${JSON.stringify(req)}`)
   getInfo((err, data) => {
     if(err) {
       res.send(err);
     } else {
       res.send(data);
     }
-    
-  })
+  });
 });
 
 let port = process.env.PORT || 3000;
