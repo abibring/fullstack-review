@@ -6,7 +6,7 @@ const {saved, getInfo} = require('./database/index.js');
 const JSON = require('circular-json');
 // if you need CORS headers, add them
 
-app.use(express.static(__dirname + '/../client/dist'));
+app.use(express.static(__dirname + '/client/dist'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
