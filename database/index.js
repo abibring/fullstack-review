@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 mongoose.connect('mongodb://alon:alon11@ds237932.mlab.com:37932/fullstack-review'); // connect to mlab for deployment
 
 let repoSchema = mongoose.Schema({
+  repoid: { type: Number, unique: true },
   user:  String,
   stargazers: Number,
   size: Number,
@@ -14,7 +15,9 @@ let Repo = mongoose.model('Repo', repoSchema);
 let saved = (repos) => {
   repos.body = JSON.parse(repos.body);
   repos.body.map(repo => {
+    console.log(repo.id)
     Repo.insertMany([{
+      repoid: repo.id,
       user: repo.owner.login, 
       name: repo.name, 
       stargazers: repo.stargazers_count, 
