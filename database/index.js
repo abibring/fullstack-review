@@ -1,8 +1,7 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/fetcher'); // connect to mlab for deployment
+mongoose.connect('mongodb://alon:alon11@ds237932.mlab.com:37932/fullstack-review'); // connect to mlab for deployment
 
 let repoSchema = mongoose.Schema({
-  // TODO: your schema here!
   user:  String,
   stargazers: Number,
   size: Number,

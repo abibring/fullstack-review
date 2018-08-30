@@ -19,7 +19,7 @@ app.post('/repos', function (req, res) {
       res.send('ERROR')
     } else {
       saved(results);
-      res.send(results)
+      res.send(results);
     }
   })
 
@@ -28,10 +28,10 @@ app.post('/repos', function (req, res) {
 app.get('/repos', function (req, res) {
   // TODO - your code here!
   // This route should send back the top 25 repos
-  console.log(`GETTT req: ${JSON.stringify(req)}`)
+  console.log(`GET req on server: ${JSON.stringify(req)}`)
   getInfo((err, data) => {
     if(err) {
-      res.send(err)
+      res.send(err);
     } else {
       res.send(data);
     }
@@ -41,7 +41,7 @@ app.get('/repos', function (req, res) {
 
 let port = 1128;
 
-app.listen(port, function() {
+app.listen(port, () => {
   console.log(`listening on port ${port}`);
 });
 
