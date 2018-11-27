@@ -1,8 +1,8 @@
 const express = require('express');
 let app = express();
 const bodyParser = require('body-parser')
-const getReposByUsername = require('./helpers/github.js').getReposByUsername;
-const {saved, getInfo} = require('./database/index.js');
+const { getReposByUsername } = require('../helpers/github.js');
+const {saved, getInfo} = require('../database/index.js');
 const JSON = require('circular-json');
 // if you need CORS headers, add them
 
@@ -10,8 +10,7 @@ app.use(express.static(__dirname + '/client/dist'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-
-app.post('/repos', function (req, res) {
+app.post('/repos', (req, res) => {
   let { name } = req.body;
   getReposByUsername(name, (err, results) => {
     if (err) {
@@ -22,10 +21,9 @@ app.post('/repos', function (req, res) {
       res.send(results);
     }
   })
-
 });
 
-app.get('/repos', function (req, res) {
+app.get('/repos', (req, res) => {
   // console.log(`GET req on server: ${JSON.stringify(req)}`)
   getInfo((err, data) => {
     if(err) {

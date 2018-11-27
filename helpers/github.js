@@ -1,23 +1,40 @@
-const request = require('request');
-const config = require('../config.js');
+const axios = require('axios');
+const { GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET } = require('../config.js');
 
-const getReposByUsername = (user, cb) => {
-  let options = {
-    url: `https://api.github.com/users/${user}/repos`,
-    headers: {
-      'User-Agent': 'request',
-      'Authorization': `token ${config.TOKEN}`
-    }
-  }
-  request.get(options, (err, githubObj) => {
-    if (err) {
-      console.log(`err in request npm: ${JSON.stringify(err)}`);
-      cb(err, null)
-    } else {
-      // console.log(`res in request npm: ${JSON.stringify(githubObj)}`)
-      cb(null, githubObj)
-    }
-  });
+const getIssuesFromGithub = (token) => {
+  return axios.get(`https://api.github.com/issues?access_token=${token}&filter=all&state=all&direction=desc`);
+};
+
+const getWatchingFromGithub = (token) => {
+  return axios.get(`https://api.github.com/user/subscriptions?access_token=${token}&direction=desc`);
+};
+
+const authenticateUser = access_token => {
+  return axios.get(`https://api.github.com/user?${access_token}`);
+};
+
+const getTokenForUser = code => {
+  return axios.post(`https://github.com/login/oauth/access_token?client_id=${GITHUB_CLIENT_ID}&client_secret=${GITHUB_CLIENT_SECRET}&code=${code}`);
+};
+
+const getUserNotifications = token => {
+  return axios.get(`https://api.github.com/notifications?access_token=${token}&all=true`);
 }
 
-module.exports.getReposByUsername = getReposByUsername;
+const getStarredRepos = token => {
+  return axios.get(`https://api.github.com/user/starred?access_token=${token}&sort=updated&direction=desc`);
+}
+
+const getRepoEvents = (token, username) => {
+  return axios.get(`https://api.github.com/users/${username}/received_events?access_token=${token}`);
+}
+
+module.exports = {
+  getIssuesFromGithub,
+  getWatchingFromGithub,
+  authenticateUser,
+  getTokenForUser,
+  getUserNotifications,
+  getStarredRepos, 
+  getRepoEvents
+};

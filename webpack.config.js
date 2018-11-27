@@ -15,9 +15,17 @@ module.exports = {
         include : SRC_DIR,
         loader : 'babel-loader',      
         query: {
-          presets: ['react', 'es2015']
+          presets: ['react', 'es2015', 'stage-3']
         }
-      }
+      }, 
+      {
+        test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+        loader: 'url-loader?limit=100000'
+      },
+      { 
+        test: /\.css$/, 
+        loader: "style!css" 
+      },
     ]
   }
 };
