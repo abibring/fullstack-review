@@ -33,5 +33,5 @@ Application runs on port 3000 on your localhost
 
 ## Contributing
 
-See [https://github.com/abibring/better-github-news-feed/blob/master/CONTRIBUTING.md]:[CONTRIBUTING.md]  for contribution guidelines.
-See [https://github.com/abibring/better-github-news-feed/blob/master/STYLE-GUIDE.md]:[STYLE-GUIDE.md] for style guidelines.
+See [CONTRIBUTING.md](https://github.com/abibring/better-github-news-feed/blob/master/CONTRIBUTING.md) for contribution guidelines.
+See [STYLE-GUIDE.md](https://github.com/abibring/better-github-news-feed/blob/master/STYLE-GUIDE.md) for style guidelines.
