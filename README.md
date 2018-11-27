@@ -9,9 +9,11 @@ Welcome to The Better Github News Feed!  This is a web app where you can view th
 
 - React
 - Express
+- Axios
 - Node.js
 - Mongoose
-- React-router
+- React-Router
+- React-Bootstrap
 
 ## Development
 
@@ -22,6 +24,10 @@ From within the root directory:
 > npm install
 
 ### To Run Locally
+
+You must set up an oAuth app with Github in order to retrieve a Client ID and a Client Secret, as well as, establish the callback URL to allow users to sign in with Github authentication.  Add your private configuration information into the config.example.js file and rename it to config.js.  Be sure to not push any sensitive information to Github and .gitignore all appropriate files.
+
+In server/database/index.js, you need to enter in the URL to connect mongoose to mLab.  
 
 From within the root directory:
 
@@ -34,4 +40,5 @@ Application runs on port 3000 on your localhost
 ## Contributing
 
 See [CONTRIBUTING.md](https://github.com/abibring/better-github-news-feed/blob/master/CONTRIBUTING.md) for contribution guidelines.
+
 See [STYLE-GUIDE.md](https://github.com/abibring/better-github-news-feed/blob/master/STYLE-GUIDE.md) for style guidelines.

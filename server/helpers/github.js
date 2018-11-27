@@ -1,5 +1,5 @@
 const axios = require('axios');
-const { GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET } = require('../config.js');
+const { GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET } = require('../../config.js');
 
 const getIssuesFromGithub = (token) => {
   return axios.get(`https://api.github.com/issues`, { params: { access_token: token, filter: 'all', state: 'all', direction: 'desc'}});

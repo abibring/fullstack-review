@@ -1,32 +1,4 @@
-const mongoose = require('mongoose');
-mongoose.connect(require('../config.js').MONGO_URL, { useNewUrlParser: true }); // connect to mlab for deployment
-
-const repoSchema = mongoose.Schema({
-  repoid: { type: Number, unique: true },
-  user:  String,
-  description: String,
-  html_url: String,
-  image: String,
-  date: Date
-});
-
-const termSchema = mongoose.Schema({
-  term: { type: String, unique: true },
-});
-
-const userSchema = mongoose.Schema({
-  // email: { type: String, unique: true },
-  token: String,
-  github_id: String,
-  email: { type: String, unique: true },
-  name: String,
-  username: String,
-  access_token: String,
-});
-
-const User = mongoose.model('User', userSchema);
-const Term = mongoose.model('Term', termSchema);
-const Repo = mongoose.model('Repo', repoSchema);
+const { User, Repo, Term } = require('../database');
 
 const saveUser = (user, token, cb) => {
   let newUser = new User({ token, github_id: user.id, email: user.email, name: user.name, username: user.login  });
@@ -38,7 +10,6 @@ const saveUser = (user, token, cb) => {
 };
 
 const getUser = (email, cb) => {
-  // console.log('Email in getUser:', email)
   User.find({ email }, (err, results) => {
     if (err) {
       console.error('err in getUser:', err);
@@ -49,6 +20,7 @@ const getUser = (email, cb) => {
     }
   });
 }
+
 const saved = (term, repos) => {
   repos.body = JSON.parse(repos.body);
   repos.body = [repos.body];
