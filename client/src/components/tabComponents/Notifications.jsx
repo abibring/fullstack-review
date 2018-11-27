@@ -4,7 +4,7 @@ import { ListGroupItem, ListGroup } from 'react-bootstrap';
 const Notifications = ({ notifications }) => (
   <div>
     <h3>Notifications for repos you are following or watching</h3>
-    {console.log('notifications', notifications)}
+    {/* {console.log('notifications', notifications)} */}
     <ListGroup>
       {notifications.map(notification => (
         <ListGroupItem>

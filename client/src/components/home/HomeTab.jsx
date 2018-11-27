@@ -7,7 +7,7 @@ import Following from '../tabComponents/Following.jsx';
 import Starred from '../tabComponents/Starred.jsx';
 import Releases from '../tabComponents/Releases.jsx';
 import PullRequests from '../tabComponents/PullRequests.jsx';
-import Events from '../tabComponents/Events.jsx';
+import Events from '../events/Events.jsx';
 
 
 export default class HomeTab extends Component {

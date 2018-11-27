@@ -2,11 +2,11 @@ const axios = require('axios');
 const { GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET } = require('../config.js');
 
 const getIssuesFromGithub = (token) => {
-  return axios.get(`https://api.github.com/issues?access_token=${token}&filter=all&state=all&direction=desc`);
+  return axios.get(`https://api.github.com/issues`, { params: { access_token: token, filter: 'all', state: 'all', direction: 'desc'}});
 };
 
 const getWatchingFromGithub = (token) => {
-  return axios.get(`https://api.github.com/user/subscriptions?access_token=${token}&direction=desc`);
+  return axios.get(`https://api.github.com/user/subscriptions`, { params: { access_token: token, direction: 'desc'}});
 };
 
 const authenticateUser = access_token => {
@@ -26,7 +26,7 @@ const getStarredRepos = token => {
 }
 
 const getRepoEvents = (token, username) => {
-  return axios.get(`https://api.github.com/users/${username}/received_events?access_token=${token}`);
+  return axios.get(`https://api.github.com/users/${username}/received_events`, { params: { access_token: token }});
 }
 
 module.exports = {

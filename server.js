@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser')
-const router = require('./routes');
+const router = require('./routes/index.js');
 const cookieSession = require('cookie-session');
 const path = require('path');
 

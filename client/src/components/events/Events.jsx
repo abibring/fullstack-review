@@ -1,11 +1,11 @@
 import React from 'react';
 import moment from 'moment';
 import { ListGroup } from 'react-bootstrap';
-import IssueCommentEvent from '../events/IssueCommentEvent.jsx';
-import IssuesEvent from '../events/IssuesEvent.jsx';
-import PullRequestEvent from '../events/PullRequestEvent.jsx';
-import PullRequestReviewCommentEvent from '../events/PullRequestReviewCommentEvent.jsx';
-import PushEvent from '../events/PushEvent.jsx';
+import IssueCommentEvent from './IssueCommentEvent.jsx';
+import IssuesEvent from './IssuesEvent.jsx';
+import PullRequestEvent from './PullRequestEvent.jsx';
+import PullRequestReviewCommentEvent from './PullRequestReviewCommentEvent.jsx';
+import PushEvent from './PushEvent.jsx';
 
 const Events = ({ events }) => (
   <div>
@@ -15,30 +15,29 @@ const Events = ({ events }) => (
       {events.map(event => (
         event.type === 'IssuesEvent' 
         ? 
-        <IssuesEvent event={event} /> 
+        <IssuesEvent event={event} key={event.id} /> 
         :
         event.type === 'IssueCommentEvent'
         ?
-        <IssueCommentEvent event={event} />
+        <IssueCommentEvent event={event} key={event.id} />
         :
         event.type === 'PullRequestEvent'
         ?
-        <PullRequestEvent event={event} />
+        <PullRequestEvent event={event} key={event.id} />
         :
         event.type === 'PullRequestReviewCommentEvent'
         ?
-        <PullRequestReviewCommentEvent event={event} />
+        <PullRequestReviewCommentEvent event={event} key={event.id} />
         :
         event.type === 'PushEvent'
         ?
-        <PushEvent event={event} />
+        <PushEvent event={event} key={event.id} />
         :
         event.type === 'RepositoryEvent'
         ?
-        <RepoEvent event={event} />
+        <RepoEvent event={event} key={event.id} />
         :
-        <div>N/A</div>
-
+        ''
         // ADD OPEN ISSUES AND CLOSED ISSUES EVENTS
       ))}
     </ListGroup>

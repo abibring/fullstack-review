@@ -5,7 +5,7 @@ import { ListGroup, ListGroupItem } from 'react-bootstrap';
 const Releases = ({ releases }) => (
   <div>
     <h3>Releases for any repos you are watching (I think releases are "tags")</h3>
-    {console.log('releases', releases)}
+    {/* {console.log('releases', releases)} */}
     <ListGroup>
       {releases.map(release => (
         <ListGroupItem key={release.id}>
