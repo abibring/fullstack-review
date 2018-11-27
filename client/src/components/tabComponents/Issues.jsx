@@ -5,7 +5,7 @@ import { ListGroup, ListGroupItem } from 'react-bootstrap';
 const Issues = ({ issues }) => (
   <div>
     <h3>Any new issues in repos you have starred or watching</h3>
-    {console.log('issues', issues)}
+    {/* {console.log('issues', issues)} */}
     <ListGroup>
       {issues.map(issue => (
         issue.pull_request 
