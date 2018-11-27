@@ -26,6 +26,7 @@ From within the root directory:
 From within the root directory:
 
 > npm start
+
 > npm run react-dev
 
 Application runs on port 3000 on your localhost
