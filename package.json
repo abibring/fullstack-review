@@ -1,5 +1,5 @@
 {
-  "name": "github-issues",
+  "name": "better-github-news-feed",
   "version": "1.0.0",
   "description": "Get all the latest news about repos or users you follow, watch, or contribute to!",
   "main": "server.js",
