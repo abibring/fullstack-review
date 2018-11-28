@@ -7,15 +7,13 @@ const PullRequest = ({ pull }) => (
     {!pull.pull_request 
       ? 
       <ListGroupItem key={pull.id} className="events">
-        <div>
-          <img 
-            src={pull.user.avatar_url} 
-            alt='avatar of pull creator'
-            style={{ height: 60, width: 45 }}
-          />{' '}
-          Updated {moment(pull.updated_at).startOf('day').fromNow()}
-        </div>
         <div><b>Repo Issue</b></div>
+        <img 
+          src={pull.user.avatar_url} 
+          alt='avatar of pull creator'
+          style={{ height: 85, width: 70, float: 'right' }}
+        />
+        <div>Updated {moment(pull.updated_at).startOf('day').fromNow()}</div>
         <div>Repo Name: {pull.repository.name}</div>
         <div>Repo Owner: {pull.user.login}</div>
         <div>Title: {pull.title}</div>
@@ -26,15 +24,13 @@ const PullRequest = ({ pull }) => (
       </ListGroupItem>
       :
     <ListGroupItem key={pull.id} className="events">
-      <div>
-        <img 
-          src={pull.user.avatar_url} 
-          alt='avatar of pull creator'
-          style={{ height: 60, width: 45 }}
-        />{' '}
-        Updated {moment(pull.updated_at).startOf('day').fromNow()}
-      </div>
       <div><b>Pull Request</b></div>
+      <img 
+        src={pull.user.avatar_url} 
+        alt='avatar of pull creator'
+        style={{ height: 85, width: 70, float: 'right' }}
+      />
+      <div>Updated {moment(pull.updated_at).startOf('day').fromNow()}</div>
       <div>Repo Name: {pull.repository.name}</div>
       <div>Repo Owner: {pull.user.login}</div>
       <div>Title: {pull.title}</div>

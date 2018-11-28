@@ -10,7 +10,7 @@ const RepoEvent = ({ event }) => (
         alt='avatar'
         style={{ height: 60, width: 45 }}
       />
-      <div style={{ fontWeight: 'bold' }}>Event Type: {event.type}</div>
+      <div style={{ fontWeight: 'bold' }}>Repository Event</div>
       <div>Published At: {moment(event.published_at).startOf('day').fromNow()}</div>
       <div>Event Creator: {event.author.login}</div>
       <div>Author Association: {event.payload.issue.author_association}</div>

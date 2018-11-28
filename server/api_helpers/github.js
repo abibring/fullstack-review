@@ -1,12 +1,11 @@
 const axios = require('axios');
-const { GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET } = require('../../config.js');
-const { CRYPTR_SECRET } = require('../../config.js');
+const { GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET, CRYPTR_SECRET } = require('../../config.js');
 const Cryptr = require('cryptr');
 const cryptr = new Cryptr(CRYPTR_SECRET);
 
 const getIssuesFromGithub = access_token => {
   access_token = cryptr.decrypt(access_token);
-  return axios.get(`https://api.github.com/issues`, { params: { access_token, filter: 'all', sort: 'updated', state: 'all', direction: 'desc' }});
+  return axios.get(`https://api.github.com/issues`, { params: { access_token, filter: 'all', sort: 'updated', direction: 'desc' }});
 };
 
 const getWatchingFromGithub = access_token => {
@@ -35,7 +34,7 @@ const getStarredRepos = access_token => {
 
 const getRepoEvents = (access_token, username) => {
   access_token = cryptr.decrypt(access_token);
-  return axios.get(`https://api.github.com/users/${username}/received_events`, { params: { access_token, page: 2 }});
+  return axios.get(`https://api.github.com/users/${username}/received_events`, { params: { access_token, page: 5,  }});
 }
 
 module.exports = {

@@ -73,7 +73,11 @@ module.exports = {
     get: function (req, res) {
       const { userToken, username } = req.query;
       getRepoEvents(userToken, username)
-        .then(({ data }) => res.send(data))
+        .then((data) => {
+          console.log('DATA FROM REPO EVENTS', data.headers.link);
+          res.setHeader('link', data.headers.link)
+          res.send(data.data)
+        })
         .catch(err => res.send(err));
     }
   },

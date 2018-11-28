@@ -46,14 +46,20 @@ export default class Home extends Component {
     const userToken = window.localStorage.getItem('userToken');
     const username = window.localStorage.getItem('username');
     axios.get('/user/events', { params: { userToken, username }})
-      .then(({ data }) => this.setState({ events: data }))
+      .then(( data ) => {
+        console.log('data EVENTS', data);
+        this.setState({ events: data.data })
+      })
       .catch(err => console.error('err in get notifications', err));
   }
 
   getNotifications() {
     const userToken = window.localStorage.getItem('userToken');
     axios.get('/user/notifications', { params: { userToken }})
-      .then(({ data }) => this.setState({ notifications: data })) 
+      .then(( data ) => {
+        console.log('DATA NOTIFICATIONS', data)
+        this.setState({ notifications: data.data })
+      }) 
       .catch(err => console.error('err in get notifications', err));
   }
 

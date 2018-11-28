@@ -11,7 +11,7 @@ const IssuesEvent = ({ event }) => (
         alt='avatar'
         style={{ height: 60, width: 45 }}
       />
-      <div style={{ fontWeight: 'bold' }}>Event Type: {event.type}</div>
+      <div style={{ fontWeight: 'bold' }}>Issue Event</div>
       <div>Updated At: {moment(event.payload.issue.updated_at).startOf('day').fromNow()}</div>
       <div>Event Creator: {event.actor.login}</div>
       <div>Author Association: {event.payload.issue.author_association}</div>
