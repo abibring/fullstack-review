@@ -21,6 +21,7 @@ export default class HomeTab extends Component {
     const { issues, watching, starred, events, notifications } = this.props;
     return (
       <div>
+        {console.log('ISSUES', issues)}
         <Tabs activeKey={key} onSelect={(key) => this.setState({ key })} id="controlled-tab-example">
           <Tab eventKey={1} title="Repo Events"> 
             <Events events={events} />

@@ -1,6 +1,8 @@
 const { getInfo, saveUser, getUser } = require('../models/index.js');
 const { getIssuesFromGithub, getWatchingFromGithub, authenticateUser, getTokenForUser, getUserNotifications, getStarredRepos, getRepoEvents } = require('../api_helpers/github.js');
-
+const { CRYPTR_SECRET } = require('../../config.js');
+const Cryptr = require('cryptr');
+const cryptr = new Cryptr(CRYPTR_SECRET);
 module.exports = {
   login: {
     get: function(req, res) {
@@ -13,13 +15,9 @@ module.exports = {
         .then(({ data }) => {
           const access_token = data.split('&')[0];
           const token = access_token.slice(13);
+          const encryptedToken = cryptr.encrypt(token);
           authenticateUser(access_token)
             .then(({ data }) => {
-              req.session.userId = data.id;
-              // bcrypt.hash(token, saltRounds, (err, hash) => {
-              //   if (err) {
-              //     console.error('err in hashing token', err);
-              //   } else {
               saveUser(data, token, (err) => {
                 if (err) {
                   getUser(data.email, (err, results) => {
@@ -39,7 +37,7 @@ module.exports = {
                         <html>
                             <body>
                               <script>
-                                  window.localStorage.setItem('userToken', '${token}');
+                                  window.localStorage.setItem('userToken', '${encryptedToken}');
                                   window.localStorage.setItem('username', '${results[0].username}');
                                   window.location.pathname = '/home';
                               </script>
@@ -52,7 +50,7 @@ module.exports = {
                     <html>
                         <body>
                           <script>
-                              window.localStorage.setItem('userToken', '${token}');
+                              window.localStorage.setItem('userToken', '${encryptedToken}');
                               window.localStorage.setItem('username', '${data.username}');
                               window.location.pathname = '/home';
                           </script>
@@ -61,15 +59,10 @@ module.exports = {
                   `);
                 }
               });
-              // }
-          //     bcrypt.compare(token, hash)
-          //       .then(res => console.log('bcrypt.compare res', res))
-          //       .catch(err => console.error('bcrypt.compare err', err));
-          // })
-        }).catch(err => console.error('err in getTokenForUser', err));
-      }).catch(err => console.error('err in getTokenForUser Outside', err));
-    }
-  },
+            }).catch(err => console.error('err in getTokenForUser', err));
+          }).catch(err => console.error('err in getTokenForUser Outside', err));
+        }
+    },
   logout: {
     get: function(req, res) {
       req.session = null;

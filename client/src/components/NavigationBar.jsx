@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Navbar, NavItem, Nav } from 'react-bootstrap';
+import logo from '../../dist/logo.png';
 
 export default class NavigationBar extends Component {
   constructor(props) {
@@ -11,7 +12,7 @@ export default class NavigationBar extends Component {
       <Navbar>
         <Navbar.Header>
           <Navbar.Brand>
-            <a href="#">The Better Github Feed</a>
+            {<a href="#">The Better Github News Feed</a>}
           </Navbar.Brand>
         </Navbar.Header>
         <Nav pullRight>
