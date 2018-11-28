@@ -9,10 +9,11 @@ const app = express();
 app.use(cookieSession({
   name: 'session',
   secret: 'splurgesauce',
+  saveUninitialized: true,
   maxAge: 24 * 60 * 60 * 1000 // 24 hours
 }));
 
-app.use(express.static(path.join(__dirname, '/client/dist')));
+app.use(express.static(path.join(__dirname, '/client/dist'), { redirect: false }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 

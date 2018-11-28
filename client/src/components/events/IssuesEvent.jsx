@@ -4,7 +4,8 @@ import { ListGroupItem } from 'react-bootstrap';
 
 const IssuesEvent = ({ event }) => (
   <div>
-    <ListGroupItem key={event.id}>
+    {console.log('IssuesEvent', event)}
+    <ListGroupItem key={event.id} className="events">
       <img 
         src={event.actor.avatar_url} 
         alt='avatar'

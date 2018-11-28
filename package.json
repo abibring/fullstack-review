@@ -2,13 +2,19 @@
   "name": "better-github-news-feed",
   "version": "1.0.0",
   "description": "Get all the latest news about repos or users you follow, watch, or contribute to!",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "react-dev": "webpack -d --watch",
-    "start": "nodemon server.js"
+    "server-dev": "nodemon index.js",
+    "heroku-postbuild": "webpack -p"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abibring/better-github-news-feed.git"
   },
   "author": "Alon Bibring",
-  "license": "",
+  "license": "ISC",
   "devDependencies": {
     "babel-core": "^6.23.1",
     "babel-loader": "^6.3.2",

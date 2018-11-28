@@ -1,5 +1,5 @@
-const { saved, getInfo, saveUser, getUser } = require('../models/index.js');
-const { getIssuesFromGithub, getWatchingFromGithub, authenticateUser, getTokenForUser, getUserNotifications, getStarredRepos, getRepoEvents } = require('../helpers/github.js');
+const { getInfo, saveUser, getUser } = require('../models/index.js');
+const { getIssuesFromGithub, getWatchingFromGithub, authenticateUser, getTokenForUser, getUserNotifications, getStarredRepos, getRepoEvents } = require('../api_helpers/github.js');
 
 module.exports = {
   login: {
