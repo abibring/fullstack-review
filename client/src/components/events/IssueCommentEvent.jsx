@@ -8,17 +8,17 @@ const IssueCommentEvent = ({ event }) => (
       <img 
         src={event.actor.avatar_url} 
         alt='avatar'
-        style={{ height: 60, width: 45 }}
+        className="feedImage"
       />
-      <div style={{ fontWeight: 'bold' }}>Event Type: {event.type}</div>
-      <div>Updated At: {moment(event.payload.issue.updated_at).startOf('day').fromNow()}</div>
-      <div>Repo Name: {event.repo.name}</div>
-      <div>Event Creator: {event.actor.login}</div>
-      <div>Author Association: {event.payload.issue.author_association}</div>
-      {event.org ? <div>Organization: {event.org && event.org.login}</div> : '' }
-      <div>Issue Comment Title: {event.payload.issue.title}</div>
-      <div>Issue Comment Message: {event.payload.issue.body}</div>
-      <div>Issue Comment URL: <a href={event.payload.issue.html_url}>Visit Issue on Github</a></div>
+      <div className="reason">Issue Comment Event</div>
+      <div><b>Updated At: </b>{moment(event.payload.issue.updated_at).startOf('day').fromNow()}</div>
+      <div><b>Repo Name: </b>{event.repo.name}</div>
+      <div><b>Event Creator: </b>{event.actor.login}</div>
+      <div><b>Author Association: </b>{event.payload.issue.author_association}</div>
+      {event.org ? <div><b>Organization: </b>{event.org && event.org.login}</div> : '' }
+      <div><b>Issue Comment Title: </b>{event.payload.issue.title}</div>
+      <div><b>Issue Comment Message: </b>{event.payload.issue.body}</div>
+      <div><b>Issue Comment URL: </b><a href={event.payload.issue.html_url}>Visit Issue on Github</a></div>
     </ListGroupItem>
   </div>
 );

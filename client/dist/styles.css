@@ -11,4 +11,15 @@
   .events {
     margin: 10px;
   }
+
+  .feedImage {
+    height: 85px;
+    width: 70px;
+    float: right;
+  }
+
+  .reason {
+    font-weight: bold;
+    padding-left: 35%;
+  }
   

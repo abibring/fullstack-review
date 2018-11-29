@@ -6,20 +6,16 @@ const IssuesEvent = ({ event }) => (
   <div>
     {/* {console.log('IssuesEvent', event)} */}
     <ListGroupItem key={event.id} className="events">
-      <img 
-        src={event.actor.avatar_url} 
-        alt='avatar'
-        style={{ height: 60, width: 45 }}
-      />
-      <div style={{ fontWeight: 'bold' }}>Issue Event</div>
-      <div>Updated At: {moment(event.payload.issue.updated_at).startOf('day').fromNow()}</div>
-      <div>Event Creator: {event.actor.login}</div>
-      <div>Author Association: {event.payload.issue.author_association}</div>
-      {event.org ? <div>Organization: {event.org && event.org.login}</div> : '' }
-      <div>Repo Name: {event.repo.name}</div>
-      <div>Issue Title: {event.payload.issue.title}</div>
-      <div>Issue Message: {event.payload.issue.body}</div>
-      <div>Issue URL: <a href={event.payload.issue.html_url}>Visit Issue on Github</a></div>
+      <img src={event.actor.avatar_url} alt='avatar' className="feedImage" />
+      <div className="reason">Issue Event</div>
+      <div><b>Updated At:</b> {moment(event.payload.issue.updated_at).startOf('day').fromNow()}</div>
+      <div><b>Event Creator:</b> {event.actor.login}</div>
+      <div><b>Author Association:</b> {event.payload.issue.author_association}</div>
+      {event.org ? <div><b>Organization:</b> {event.org && event.org.login}</div> : '' }
+      <div><b>Repo Name:</b> {event.repo.name}</div>
+      <div><b>Issue Title:</b> {event.payload.issue.title}</div>
+      <div><b>Issue Message:</b> {event.payload.issue.body}</div>
+      <div><b>Issue URL:</b> <a href={event.payload.issue.html_url}>Visit Issue on Github</a></div>
     </ListGroupItem>
   </div>
 );

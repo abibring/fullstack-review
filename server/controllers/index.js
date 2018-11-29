@@ -18,7 +18,7 @@ module.exports = {
           const encryptedToken = cryptr.encrypt(token);
           authenticateUser(access_token)
             .then(({ data }) => {
-              saveUser(data, token, (err) => {
+              saveUser(data, (err) => {
                 if (err) {
                   getUser(data.email, (err, results) => {
                     if (err) {

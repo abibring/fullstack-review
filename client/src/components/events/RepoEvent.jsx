@@ -8,15 +8,15 @@ const RepoEvent = ({ event }) => (
       <img 
         src={event.actor.avatar_url} 
         alt='avatar'
-        style={{ height: 60, width: 45 }}
+        className="feedImage"
       />
-      <div style={{ fontWeight: 'bold' }}>Repository Event</div>
-      <div>Published At: {moment(event.published_at).startOf('day').fromNow()}</div>
-      <div>Event Creator: {event.author.login}</div>
-      <div>Author Association: {event.payload.issue.author_association}</div>
-      {event.org ? <div>Organization: {event.org && event.org.login}</div> : '' }
-      <div>Repo Name: {event.repo.name}</div>
-      <div>Release Info: {event.release.tag_name}</div>
+      <div className="reason">Repository Event</div>
+      <div><b>Published At:</b>{moment(event.published_at).startOf('day').fromNow()}</div>
+      <div><b>Event Creator:</b>{event.author.login}</div>
+      <div><b>Author Association: </b>{event.payload.issue.author_association}</div>
+      {event.org ? <div><b>Organization: </b>{event.org && event.org.login}</div> : '' }
+      <div><b>Repo Name: </b>{event.repo.name}</div>
+      <div><b>Release Info: </b>{event.release.tag_name}</div>
     </ListGroupItem>
   </div>
 );

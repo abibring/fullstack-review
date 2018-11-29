@@ -24,7 +24,7 @@ const getTokenForUser = code => {
 
 const getUserNotifications = access_token => {
   access_token = cryptr.decrypt(access_token);
-  return axios.get(`https://api.github.com/notifications`, { params: { access_token, all: true}});
+  return axios.get(`https://api.github.com/notifications`, { params: { access_token }});
 }
 
 const getStarredRepos = access_token => {
@@ -34,7 +34,7 @@ const getStarredRepos = access_token => {
 
 const getRepoEvents = (access_token, username) => {
   access_token = cryptr.decrypt(access_token);
-  return axios.get(`https://api.github.com/users/${username}/received_events`, { params: { access_token, page: 5,  }});
+  return axios.get(`https://api.github.com/users/${username}/received_events`, { params: { access_token  }});
 }
 
 module.exports = {

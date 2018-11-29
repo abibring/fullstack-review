@@ -20,7 +20,6 @@ const userSchema = mongoose.Schema({
   email: { type: String, unique: true },
   name: String,
   username: String,
-  access_token: String,
 });
 
 const User = mongoose.model('User', userSchema);

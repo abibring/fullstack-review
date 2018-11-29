@@ -1,7 +1,7 @@
 const { User, Repo, Term } = require('../database');
 
-const saveUser = (user, token, cb) => {
-  let newUser = new User({ token, github_id: user.id, email: user.email, name: user.name, username: user.login  });
+const saveUser = (user, cb) => {
+  let newUser = new User({ github_id: user.id, email: user.email, name: user.name, username: user.login  });
   newUser.save((err) => {
     if (err) {
       cb(err);

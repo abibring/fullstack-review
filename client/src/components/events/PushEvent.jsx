@@ -8,15 +8,15 @@ const PushEvent = ({ event }) => (
       <img 
         src={event.actor.avatar_url} 
         alt='avatar'
-        style={{ height: 60, width: 45 }}
+        className="feedImage"
       />
-      <div style={{ fontWeight: 'bold' }}>Push Event</div>
-      <div>Updated: {moment(event.created_at).startOf('day').fromNow()}</div>
-      <div>Event Creator: {event.actor.login}</div>
-      {event.org ? <div>Organization: {event.org && event.org.login}</div> : '' }
-      <div>Repo Name: {event.repo.name}</div>
-      <div>Author: {event.payload.commits[0].author.name}</div>
-      <div>Message: {event.payload.commits[0].message}</div>
+      <div className="reason">Push Event</div>
+      <div><b>Updated: </b>{moment(event.created_at).startOf('day').fromNow()}</div>
+      <div><b>Event Creator: </b>{event.actor.login}</div>
+      {event.org ? <div><b>Organization: </b>{event.org && event.org.login}</div> : '' }
+      <div><b>Repo Name: </b>{event.repo.name}</div>
+      <div><b>Author: </b>{event.payload.commits[0].author.name}</div>
+      <div><b>Message: </b>{event.payload.commits[0].message}</div>
     </ListGroupItem>
   </div>
 );

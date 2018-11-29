@@ -7,15 +7,15 @@ const Notification = ({ notification }) => (
     {/* <h3>Notifications for repos you are following or watching</h3> */}
     {/* {console.log('notifications', notifications)} */}
     <ListGroupItem key={notification.id} className="events">
-      <div style={{ fontWeight: 'bold' }}>Notification Reason: {notification.reason.charAt(0).toUpperCase() + notification.reason.replace('_', ' ').slice(1)}</div>
-      <div>Last Updated: {moment(notification.updated_at).startOf('day').fromNow()}</div>
-      <div>Repo Name: {notification.repository.name}</div>
-      <div>Repo Owner: {notification.repository.owner.login}</div>
-      <div>Notification Viewed: <b>{notification.unread.toString()}</b></div>
-      <div>Notification Title: {notification.subject.title}</div>
-      <div>Notification Type: {notification.subject.type}</div>
-      <div>Repo: {notification.repository.name}</div>
-      <div>Notification Type: {notification.subject.type}</div>
+      <div className="reason">Notification: {notification.reason.charAt(0).toUpperCase() + notification.reason.replace('_', ' ').slice(1)}</div>
+      <div><b>Last Updated: </b>{moment(notification.updated_at).startOf('day').fromNow()}</div>
+      <div><b>Repo Name: </b>{notification.repository.name}</div>
+      <div><b>Repo Owner: </b>{notification.repository.owner.login}</div>
+      <div><b></b>Notification Viewed: <b>{notification.unread.toString()}</b></div>
+      <div><b>Notification Title: </b>{notification.subject.title}</div>
+      <div><b>Notification Type: </b>{notification.subject.type}</div>
+      <div><b>Repo: </b>{notification.repository.name}</div>
+      <div><b>Notification Type: </b>{notification.subject.type}</div>
       <div><a href={notification.repository.html_url}>Click To Visit Repo</a></div>
     </ListGroupItem>
   </div>

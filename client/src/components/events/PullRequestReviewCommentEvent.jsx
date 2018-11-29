@@ -8,16 +8,16 @@ const PullRequestReviewCommentEvent = ({ event }) => (
       <img 
         src={event.actor.avatar_url} 
         alt='avatar'
-        style={{ height: 60, width: 45 }}
+        className="feedImage"
       />
-      <div style={{ fontWeight: 'bold' }}>Pull Request Comment</div>
-      <div>Updated: {moment(event.created_at).startOf('day').fromNow()}</div>
-      <div>Event Creator: {event.actor.login}</div>
-      <div>Author Association: {event.payload.pull_request.author_association}</div>
-      {event.org ? <div>Organization: {event.org && event.org.login}</div> : '' }
-      <div>Repo Name: {event.repo.name}</div>
-      <div>PR Title: {event.payload.pull_request.title}</div>
-      <div>PR Message: {event.payload.pull_request.body}</div>
+      <div className="reason">Pull Request Comment</div>
+      <div><b>Updated: </b>{moment(event.created_at).startOf('day').fromNow()}</div>
+      <div><b>Event Creator: </b>{event.actor.login}</div>
+      <div><b>Author Association: </b>{event.payload.pull_request.author_association}</div>
+      {event.org ? <div><b>Organization: </b>{event.org && event.org.login}</div> : '' }
+      <div><b>Repo Name: </b>{event.repo.name}</div>
+      <div><b>PR Title: </b>{event.payload.pull_request.title}</div>
+      <div><b>PR Message: </b>{event.payload.pull_request.body}</div>
     </ListGroupItem>
   </div>
 );
