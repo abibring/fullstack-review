@@ -3,6 +3,7 @@ const { getIssuesFromGithub, getWatchingFromGithub, authenticateUser, getTokenFo
 const { CRYPTR_SECRET } = require('../../config.js');
 const Cryptr = require('cryptr');
 const cryptr = new Cryptr(CRYPTR_SECRET);
+
 module.exports = {
   login: {
     get: function(req, res) {
@@ -63,6 +64,7 @@ module.exports = {
           }).catch(err => console.error('err in getTokenForUser Outside', err));
         }
     },
+
   logout: {
     get: function(req, res) {
       req.session = null;
@@ -85,7 +87,10 @@ module.exports = {
     get: function(req, res) {
       const { userToken } = req.query;
       getWatchingFromGithub(userToken)
-        .then(({ data }) => res.send(data))
+        .then((data) => {
+          res.setHeader('link', data.headers.link)
+          res.send(data.data)
+        })
         .catch(err => res.send(err));
     }
   },
@@ -93,7 +98,10 @@ module.exports = {
     get: function(req, res) {
       const { userToken } = req.query;
       getStarredRepos(userToken)
-        .then(({ data }) => res.send(data))
+        .then((data) => {
+          res.setHeader('link', data.headers.link)
+          res.send(data.data)
+        })
         .catch(err => res.send(err));
     }
   },
@@ -101,7 +109,10 @@ module.exports = {
     get: function(req, res) {
       const { userToken } = req.query;
       getUserNotifications(userToken)
-        .then(({ data }) => res.send(data))
+        .then((data) => {
+          res.setHeader('link', data.headers.link)
+          res.send(data.data);
+        })
         .catch(err => res.send(err));
     }
   },
@@ -109,7 +120,10 @@ module.exports = {
     get: function(req, res) {
       const { userToken } = req.query;
       getIssuesFromGithub(userToken)
-        .then(({ data }) => res.send(data))
+        .then((data) => {
+          res.setHeader('link', data.headers.link)
+          res.send(data.data)
+        })
         .catch(err => res.send(err));
     }
   },
@@ -119,6 +133,7 @@ module.exports = {
         if (err) {
           res.send(err);
         } else {
+          res.setHeader('link', data.headers.link)
           res.send(data);
         }
       });
