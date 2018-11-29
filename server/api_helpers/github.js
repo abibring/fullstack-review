@@ -10,7 +10,7 @@ const getIssuesFromGithub = access_token => {
 
 const getWatchingFromGithub = access_token => {
   access_token = cryptr.decrypt(access_token);
-  return axios.get(`https://api.github.com/user/subscriptions`, { params: { access_token, direction: 'desc'}});
+  return axios.get(`https://api.github.com/user/subscriptions`, { params: { access_token, direction: 'desc' }});
 };
 
 const authenticateUser = token => {

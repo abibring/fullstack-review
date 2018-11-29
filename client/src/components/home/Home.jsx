@@ -97,7 +97,7 @@ export default class Home extends Component {
       <div>
         {/* {console.log('COOKIES', cookies.getAll())} */}
         <NavigationBar history={history} signOut={this.signOut} />
-        <HomeTab issues={issues} watching={watching} starred={starred} events={events} notifications={notifications}/>
+        <HomeTab issues={issues} watching={watching} starred={starred} events={events} notifications={notifications} />
       </div>
     );
   }
