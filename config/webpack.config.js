@@ -1,13 +1,16 @@
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-var SRC_DIR = path.join(__dirname, '../client/src');
-var DIST_DIR = path.join(__dirname, '/client/dist');
+const SRC_DIR = path.join(__dirname, '../client/src');
+const DIST_DIR = path.join(__dirname, '../client/dist');
+
+
 module.exports = {
+  mode: "production",
   entry: {
     main: `${SRC_DIR}/index.jsx`,
   },
   output: {
-    path: SRC_DIR,
+    path: DIST_DIR,
     filename: '[name].[hash].bundle.js',
     publicPath: '/',
   },

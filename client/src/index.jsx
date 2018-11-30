@@ -6,10 +6,10 @@ import App from './components/App.jsx';
 import history from './components/history.js';
 
 ReactDOM.render(
-  <CookiesProvider>
-    <Router history={history}>
-      <App history={history} />
-    </Router>
-  </CookiesProvider>,
+    <CookiesProvider>
+      <Router history={history}>
+        <App history={history} />
+      </Router>
+    </CookiesProvider>,
   document.getElementById('app')
 );
