@@ -1,6 +1,6 @@
 import React from 'react';
 import moment from 'moment';
-import { ListGroupItem } from 'react-bootstrap';
+import { ListGroupItem, Panel } from 'react-bootstrap';
 
 const RepoEvent = ({ event }) => (
     <ListGroupItem key={event.id} className="events">

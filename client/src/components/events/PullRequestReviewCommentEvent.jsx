@@ -1,6 +1,6 @@
 import React from 'react';
 import moment from 'moment';
-import { ListGroupItem } from 'react-bootstrap';
+import { ListGroupItem, Panel } from 'react-bootstrap';
 
 const PullRequestReviewCommentEvent = ({ event }) => (
   <ListGroupItem key={event.id} className="events">
@@ -17,7 +17,13 @@ const PullRequestReviewCommentEvent = ({ event }) => (
       {event.org ? <div><b>Organization: </b>{event.org && event.org.login}</div> : '' }
       <div><b>Repo Name: </b>{event.repo.name}</div>
       <div><b>PR Title: </b>{event.payload.pull_request.title}</div>
-      <div><b>PR Message: </b>{event.payload.pull_request.body}</div>
+      {/* <div><b>PR Message: </b>{event.payload.pull_request.body}</div> */}
+      <Panel eventKey="1">
+        <Panel.Title toggle>View Issue Message</Panel.Title>
+        <Panel.Body collapsible>
+          {event.payload.pull_request.body}
+        </Panel.Body>
+      </Panel>
     </span>
   </ListGroupItem>
 );

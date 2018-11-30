@@ -4,16 +4,20 @@ import { ListGroupItem } from 'react-bootstrap';
 
 const Notification = ({ notification }) => (
   <ListGroupItem key={notification.id} className="events">
-    <div className="reason">Notification: {notification.reason.charAt(0).toUpperCase() + notification.reason.replace('_', ' ').slice(1)}</div>
-    <div><b>Last Updated: </b>{moment(notification.updated_at).startOf('day').fromNow()}</div>
-    <div><b>Repo Name: </b>{notification.repository.name}</div>
-    <div><b>Repo Owner: </b>{notification.repository.owner.login}</div>
-    <div><b></b>Notification Viewed: <b>{notification.unread.toString()}</b></div>
-    <div><b>Notification Title: </b>{notification.subject.title}</div>
-    <div><b>Notification Type: </b>{notification.subject.type}</div>
-    <div><b>Repo: </b>{notification.repository.name}</div>
-    <div><b>Notification Type: </b>{notification.subject.type}</div>
-    <div><a href={notification.repository.html_url}>Click To Visit Repo</a></div>
+    <b className="content-user">@{notification.repository.owner.login}</b>
+    <span className="content-break">|</span>
+    <i className="content-updated">{moment(notification.updated_at).startOf('day').fromNow()}</i>
+    <span className="content-break">|</span>
+    {notification.reason.charAt(0).toUpperCase() + notification.reason.replace('_', ' ').slice(1)}
+    <div style={{ paddingTop: 10 }}>
+      <div><b>Repo Name: </b>{notification.repository.name}</div>
+      <div><b></b>Notification Viewed: <b>{notification.unread.toString()}</b></div>
+      <div><b>Notification Title: </b>{notification.subject.title}</div>
+      <div><b>Notification Type: </b>{notification.subject.type}</div>
+      <div><b>Repo: </b>{notification.repository.name}</div>
+      <div><b>Notification Type: </b>{notification.subject.type}</div>
+      <div><a href={notification.repository.html_url}>Click To Visit Repo</a></div>
+    </div>
   </ListGroupItem>
 );
 
