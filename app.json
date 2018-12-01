@@ -1,0 +1,44 @@
+{
+  "name": "Better Github NewsFeed",
+  "description": "This app does one little thing, and does it well.",
+  "keywords": [
+    "github",
+    "newsfeed",
+    "repo"
+  ],
+  "repository": "https://github.com/abibring/better-github-news-feed",
+  "env": {
+    "GITHUB_CLIENT_ID": {
+      "description": "Client ID provided by Github",
+      "VALUE": "fd744291ef509a6a54cc"
+    },
+    "GITHUB_CLIENT_SECRET": {
+      "description": "Client Secret provided by Github",
+      "value": "ad8ff2c72a4ffcbfc9d2c98e441fb4d192eba8be"
+    },
+    "GITHUB_CALLBACK_URL": {
+      "description": "Callback URL we provide to Github for oauth",
+      "VALUE": "http://localhost:3000/user/signin/callback"
+    },
+    "MONGO_URL": {
+      "description": "URL to connect to mLab",
+      "value": "mongodb://alon:alon11@ds237932.mlab.com:37932/fullstack-review"
+    },
+    "CRYPTR_SECRET": {
+      "description": "Secret for Cryptr module to encrypt and decrypt user access_token",
+      "value": "inefu9h4820qj09q3m19dm09m"
+    }
+  },
+  "buildpacks": [
+    {
+      "url": "https://github.com/abibring/better-github-news-feed"
+    }
+  ],
+  "environments": {
+    "test": {
+      "scripts": {
+        "test": "bundle exec rake test"
+      }
+    }
+  }
+}
