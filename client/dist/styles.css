@@ -1,3 +1,6 @@
+body {
+  background-color:  #2D3835;
+}
 .footer {
   position: relative;
   width: 100%;
@@ -10,6 +13,14 @@
 .events {
   margin: 10px;
   padding-top: 10px;
+  background-color: #36b0ac;
+  border-style: solid;
+  border-width: 5px;
+  border-color: lightgray;
+}
+
+.message-ext {
+  background-color: #36b0ac;
 }
 
 .feed-img {
@@ -45,6 +56,7 @@
 
 .content-user {
   font-size: 20px;
+  color: #9068be;
 }
 
 .content-break {

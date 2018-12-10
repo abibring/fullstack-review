@@ -19,7 +19,7 @@ const IssueCommentEvent = ({ event }) => (
       <div><b>Issue Comment Title: </b>{event.payload.issue.title}</div>
       <div><b>Issue Comment URL: </b><a href={event.payload.issue.html_url}>Visit Issue on Github</a></div>
       {/* <div><b>Issue Message:</b> {event.payload.issue.body}</div> */}
-      <Panel eventKey="1">
+      <Panel eventKey="1" className="message-ext">
         <Panel.Title toggle>View Issue Message</Panel.Title>
         <Panel.Body collapsible>
           {event.payload.issue.body}

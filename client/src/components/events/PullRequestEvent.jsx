@@ -18,7 +18,7 @@ const PullRequestEvent = ({ event }) => (
       <div><b>Repo Name: </b>{event.repo.name}</div>
       <div><b>PR Title: </b>{event.payload.pull_request.title}</div>
       {/* <div><b>PR Message: </b>{event.payload.pull_request.body}</div> */}
-      <Panel eventKey="1">
+      <Panel eventKey="1" className="message-ext">
         <Panel.Title toggle>View Issue Message</Panel.Title>
         <Panel.Body collapsible>
           {event.payload.pull_request.body}

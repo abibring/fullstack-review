@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Navbar, NavItem, Nav } from 'react-bootstrap';
-import logo from '../../dist/logo.png';
+import { Navbar, NavItem, Nav, Image } from 'react-bootstrap';
+import logo from '../../img/logo.png';
 
 export default class NavigationBar extends Component {
   constructor(props) {
@@ -9,10 +9,10 @@ export default class NavigationBar extends Component {
   render() {
     const { signOut } = this.props;
     return (
-      <Navbar>
+      <Navbar inverse>
         <Navbar.Header>
           <Navbar.Brand>
-            {<a href="#">The Better Github News Feed</a>}
+            <img src={logo} style={{ width: 260, height: 80 }} alt="logo"/>
           </Navbar.Brand>
         </Navbar.Header>
         <Nav pullRight>
