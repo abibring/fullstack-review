@@ -7,11 +7,11 @@
     "start": "node index.js",
     "react-dev": "webpack -d --watch",
     "server-dev": "nodemon index.js",
-    "heroku-prebuild": "npm install --production=false"
+    "heroku-prebuild": "npm install --production=true"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/abibring/better-github-news-feed.git"
+    "url": "https://github.com/abibring/better-github-news-feed.git"
   },
   "author": "Alon Bibring",
   "license": "ISC",
