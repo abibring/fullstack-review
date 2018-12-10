@@ -18,6 +18,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use('/', router);
+app.use('/*', (req, res) => {
+  res.sendFile(path.join(__dirname + '/client/dist/index.html'))
+})
 
 let port = process.env.PORT || 3000;
 
