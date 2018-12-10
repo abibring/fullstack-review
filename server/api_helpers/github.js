@@ -1,4 +1,5 @@
 const axios = require('axios');
+require('dotenv').config();
 // const { GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET, CRYPTR_SECRET } = require('../../config.js');
 const Cryptr = require('cryptr');
 const cryptr = new Cryptr(process.env.CRYPTR_SECRET);

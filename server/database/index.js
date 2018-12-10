@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+require('dotenv').config();
+console.log('XXXX,', process.env.MONGO_URL)
 mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true }); // connect to mlab for deployment
 
 const repoSchema = mongoose.Schema({
