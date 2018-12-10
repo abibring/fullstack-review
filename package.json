@@ -7,8 +7,7 @@
     "start": "node index.js",
     "react-dev": "webpack -d --watch",
     "server-dev": "nodemon index.js",
-    "heroku-prebuild": "npm install --production=false",
-    "heroku-postbuild": "webpack -p"
+    "heroku-prebuild": "npm install --production=false"
   },
   "repository": {
     "type": "git",
