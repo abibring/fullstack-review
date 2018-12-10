@@ -1,6 +1,6 @@
 const axios = require('axios');
-require('dotenv').config();
 const Cryptr = require('cryptr');
+require('dotenv').config();
 const cryptr = new Cryptr(process.env.CRYPTR_SECRET);
 
 const getIssuesFromGithub = access_token => {

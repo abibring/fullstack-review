@@ -11,7 +11,6 @@ const {
 require('dotenv').config();
 
 const Cryptr = require('cryptr');
-
 const cryptr = new Cryptr(process.env.CRYPTR_SECRET);
 
 module.exports = {
