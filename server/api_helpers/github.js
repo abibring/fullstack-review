@@ -1,7 +1,7 @@
 const axios = require('axios');
-const { GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET, CRYPTR_SECRET } = require('../../config.js');
+// const { GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET, CRYPTR_SECRET } = require('../../config.js');
 const Cryptr = require('cryptr');
-const cryptr = new Cryptr(CRYPTR_SECRET);
+const cryptr = new Cryptr(process.env.CRYPTR_SECRET);
 
 const getIssuesFromGithub = access_token => {
   access_token = cryptr.decrypt(access_token);
@@ -19,7 +19,7 @@ const authenticateUser = token => {
 };
 
 const getTokenForUser = code => {
-  return axios.post(`https://github.com/login/oauth/access_token`, { client_id: GITHUB_CLIENT_ID, client_secret: GITHUB_CLIENT_SECRET, code });
+  return axios.post(`https://github.com/login/oauth/access_token`, { client_id: process.env.GITHUB_CLIENT_ID, client_secret: process.env.GITHUB_CLIENT_SECRET, code });
 };
 
 const getUserNotifications = access_token => {

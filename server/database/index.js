@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-mongoose.connect(require('../../config.js').MONGO_URL, { useNewUrlParser: true }); // connect to mlab for deployment
+mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true }); // connect to mlab for deployment
 
 const repoSchema = mongoose.Schema({
   repoid: { type: Number, unique: true },

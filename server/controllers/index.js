@@ -8,10 +8,11 @@ const {
   getStarredRepos, 
   getRepoEvents 
 } = require('../api_helpers/github.js');
-const { CRYPTR_SECRET } = require('../../config.js');
+// const { CRYPTR_SECRET } = require('../../config.js');
+
 const Cryptr = require('cryptr');
 
-const cryptr = new Cryptr(CRYPTR_SECRET);
+const cryptr = new Cryptr(process.env.CRYPTR_SECRET);
 
 module.exports = {
 
