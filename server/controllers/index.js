@@ -9,7 +9,6 @@ const {
   getRepoEvents 
 } = require('../api_helpers/github.js');
 require('dotenv').config();
-// const { CRYPTR_SECRET } = require('../../config.js');
 
 const Cryptr = require('cryptr');
 

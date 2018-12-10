@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button } from 'react-bootstrap';
-// import { GITHUB_CLIENT_ID } from '../../../config.js';
+import 'dotenv/config';
 
 export default class Login extends Component {
   constructor(props) {
