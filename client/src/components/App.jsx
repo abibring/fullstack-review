@@ -23,7 +23,6 @@ class App extends Component {
     return (
       <div>
         <Switch>
-        {console.log(process.env.REACT_APP_GITHUB_CLIENT_ID)}
           <Route path="/" exact component={LandingPage} />
           <Route path="/home" render={(props) => <Home {...props} cookies={cookies} />} />
         </Switch>
