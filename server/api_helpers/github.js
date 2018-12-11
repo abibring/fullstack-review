@@ -18,8 +18,8 @@ const authenticateUser = token => {
   return axios.get(`https://api.github.com/user`, { params: { access_token }});
 };
 
-const assignedToIssue = token => {
-  let access_token = token.slice(13);
+const associatedToIssue = token => {
+  let access_token = cryptr.decrypt(token);
   return axios.get(`https://api.github.com/user`, { params: { access_token, participating: true }});
 }
 
@@ -50,5 +50,5 @@ module.exports = {
   getUserNotifications,
   getStarredRepos, 
   getRepoEvents,
-  assignedToIssue
+  associatedToIssue
 };

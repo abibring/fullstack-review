@@ -7,7 +7,7 @@ const {
   getUserNotifications, 
   getStarredRepos, 
   getRepoEvents,
-  assignedToIssue 
+  associatedToIssue 
 } = require('../api_helpers/github.js');
 require('dotenv').config();
 
@@ -23,7 +23,6 @@ module.exports = {
       if (!code) {
         return res.send({ success: false, message: 'Error: invalid code' });
       }
-      console.log('XX')
       getTokenForUser(code)
         .then(({ data }) => {
           const access_token = data.split('&')[0];
@@ -138,7 +137,7 @@ module.exports = {
   associated: {
     get: function(req, res) {
       const { userToken } = req.query;
-      assignedToIssue(userToken)
+      associatedToIssue(userToken)
         .then(({data}) => res.send(data))
         .catch(err => res.send(err));
     }
