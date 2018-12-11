@@ -12,7 +12,7 @@ app.use(cookieSession({
   saveUninitialized: true,
   maxAge: 24 * 60 * 60 * 1000 // 24 hours
 }));
-
+console.log('X', path.join(__dirname, '/client/dist'))
 app.use(express.static(path.join(__dirname, '/client/dist'), { redirect: false }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
