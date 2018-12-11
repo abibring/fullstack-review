@@ -3,6 +3,11 @@ const Cryptr = require('cryptr');
 require('dotenv').config();
 const cryptr = new Cryptr(process.env.CRYPTR_SECRET);
 
+const getFeedForUser = token => {
+  let access_token = cryptr.decrypt(token);
+  return axios.get(`https://api.github.com/feeds`, { params: { access_token }});
+};
+
 const getIssuesFromGithub = access_token => {
   access_token = cryptr.decrypt(access_token);
   return axios.get(`https://api.github.com/issues`, { params: { access_token, filter: 'all', sort: 'updated', direction: 'desc' }});
@@ -50,5 +55,6 @@ module.exports = {
   getUserNotifications,
   getStarredRepos, 
   getRepoEvents,
-  associatedToIssue
+  associatedToIssue,
+  getFeedForUser
 };

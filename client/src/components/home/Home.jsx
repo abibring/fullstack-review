@@ -14,6 +14,7 @@ export default class Home extends Component {
     this.getEvents = this.getEvents.bind(this);
     this.signOut = this.signOut.bind(this);
     this.getAssociated = this.getAssociated.bind(this);
+    this.getFeed = this.getFeed.bind(this);
   }
 
   componentDidMount() {
@@ -29,6 +30,7 @@ export default class Home extends Component {
       this.getNotifications();
       this.getEvents();
       this.getAssociated();
+      this.getFeed();
     }
   }
 
@@ -43,6 +45,12 @@ export default class Home extends Component {
       .catch(() => history.push('/'));
   }
 
+  getFeed() {
+    const userToken = window.localStorage.getItem('userToken');
+    axios.get('/user/feed', { params: { userToken } })
+      .then(({ data }) => console.log(data))
+      .catch(err => console.error('err in associated data', err));
+  }
   getAssociated() {
     const userToken = window.localStorage.getItem('userToken');
     axios.get('/user/associated', { params: { userToken } })
@@ -97,7 +105,6 @@ export default class Home extends Component {
     const { history, cookies } = this.props;
     return (
       <div>
-        {/* {console.log('COOKIES', cookies.getAll())} */}
         <NavigationBar history={history} signOut={this.signOut} />
         <HomeTab issues={issues} watching={watching} starred={starred} events={events} notifications={notifications} associated={associated}/>
       </div>

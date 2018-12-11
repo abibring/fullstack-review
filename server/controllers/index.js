@@ -180,7 +180,14 @@ module.exports = {
         .catch(err => res.send(err));
     }
   },
-
+  feed: {
+    get: function(req, res) {
+      const { userToken } = req.query;
+      getFeedForUser(userToken)
+        .then(({data}) => res.send(data))
+        .catch(err => res.send(err));
+    }
+  },
   repos: {
     get: function(req, res) {
       getInfo((err, data) => {
