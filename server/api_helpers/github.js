@@ -20,7 +20,7 @@ const authenticateUser = token => {
 
 const associatedToIssue = token => {
   let access_token = cryptr.decrypt(token);
-  return axios.get(`https://api.github.com/user`, { params: { access_token, participating: true }});
+  return axios.get(`https://api.github.com/notifications`, { params: { access_token, participating: true }});
 }
 
 const getTokenForUser = code => {
