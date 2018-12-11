@@ -7,12 +7,11 @@ import PullRequestReviewCommentEvent from './PullRequestReviewCommentEvent.jsx';
 import PushEvent from './PushEvent.jsx';
 import Notification from './Notification.jsx';
 import PullRequest from './PullRequest.jsx';
+import AssociatedEvent from './AssociatedEvent.jsx';
 
-const Events = ({ events, notifications, pulls }) => {
+const Events = ({ events, notifications, pulls, associated }) => {
   let combined = events.concat(notifications).concat(pulls);
-  console.log('unsorted combined', combined);
   combined = combined.sort((a, b) => new Date(b.created_at || b.updated_at) - new Date(a.created_at || a.updated_at));
-  console.log('SORTED', combined);
   return (
     <div>
       <h3 style={{ paddingLeft: '40%' }}>Check Out The Latest Info:</h3>
@@ -37,8 +36,12 @@ const Events = ({ events, notifications, pulls }) => {
                   <Notification notification={event} key={event.id} />
                 ) : event.author_association ? (
                   <PullRequest pull={event} key={event.id} />
-                ) : (
-                  ''
+                ) : 
+                  event.type === 'Issue' ? (
+                    <AssociatedEvent event={associated} key={event.id} />
+                  ) : (
+                    ''
+                  )
                 )
                 // ADD OPEN ISSUES AND CLOSED ISSUES EVENTS
               )}

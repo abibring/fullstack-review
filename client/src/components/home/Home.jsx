@@ -6,7 +6,7 @@ import NavigationBar from '../NavigationBar.jsx';
 export default class Home extends Component {
   constructor(props) {
     super(props);
-    this.state = { starred: [], watching: [], issues: [], events: [], notifications: [], isAuthenticated: false };
+    this.state = { starred: [], watching: [], associated: [], issues: [], events: [], notifications: [], isAuthenticated: false };
     this.getIssues = this.getIssues.bind(this);
     this.getWatching = this.getWatching.bind(this);
     this.getNotifications = this.getNotifications.bind(this);
@@ -46,7 +46,7 @@ export default class Home extends Component {
   getAssociated() {
     const userToken = window.localStorage.getItem('userToken');
     axios.get('/user/associated', { params: { userToken } })
-      .then(({data}) => console.log('ASSOCIATED DATA', data))
+      .then(({ data }) => this.setState({ associated: data }))
       .catch(err => console.error('err in associated data', err));
   }
 
@@ -92,20 +92,14 @@ export default class Home extends Component {
       .catch(err => console.error(`err in componentDidMount: ${err}`));
   }
 
-  // search(term) {
-  //   axios.post('/repos', { name: term })
-  //     .then(() => this.loadData())
-  //     .catch(err => console.error(`err in Homendex.jsx: search: ${err}`));
-  // }
-
   render() {
-    const { issues, watching, starred, events, notifications } = this.state;
+    const { issues, watching, starred, events, notifications, associated } = this.state;
     const { history, cookies } = this.props;
     return (
       <div>
         {/* {console.log('COOKIES', cookies.getAll())} */}
         <NavigationBar history={history} signOut={this.signOut} />
-        <HomeTab issues={issues} watching={watching} starred={starred} events={events} notifications={notifications} />
+        <HomeTab issues={issues} watching={watching} starred={starred} events={events} notifications={notifications} associated={associated}/>
       </div>
     );
   }
