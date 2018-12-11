@@ -45,7 +45,7 @@ export default class Home extends Component {
 
   getAssociated() {
     const userToken = window.localStorage.getItem('userToken');
-    axios.get('/user/associated', { params: userToken })
+    axios.get('/user/associated', { params: { userToken } })
       .then(({data}) => console.log('ASSOCIATED DATA', data))
       .catch(err => console.error('err in associated data', err));
   }
