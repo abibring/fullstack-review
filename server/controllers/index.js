@@ -7,7 +7,8 @@ const {
   getUserNotifications, 
   getStarredRepos, 
   getRepoEvents,
-  associatedToIssue 
+  associatedToIssue,
+  getFeedForUser 
 } = require('../api_helpers/github.js');
 require('dotenv').config();
 
@@ -184,7 +185,7 @@ module.exports = {
     get: function(req, res) {
       const { userToken } = req.query;
       getFeedForUser(userToken)
-        .then(({data}) => res.send(data))
+        .then(({ data }) => res.send(data))
         .catch(err => res.send(err));
     }
   },
