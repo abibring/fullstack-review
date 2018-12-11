@@ -11,7 +11,11 @@ import AssociatedEvent from './AssociatedEvent.jsx';
 
 const Events = ({ events, notifications, pulls, associated }) => {
   let combined = events.concat(notifications).concat(pulls);
-  combined = combined.sort((a, b) => new Date(b.created_at || b.updated_at) - new Date(a.created_at || a.updated_at));
+  combined = combined.sort(
+    (a, b) =>
+      new Date(b.created_at || b.updated_at) -
+      new Date(a.created_at || a.updated_at)
+  );
   return (
     <div>
       <h3 style={{ paddingLeft: '40%' }}>Check Out The Latest Info:</h3>
@@ -19,30 +23,32 @@ const Events = ({ events, notifications, pulls, associated }) => {
         <Row>
           <Col xs={12} md={8} xsOffset={2}>
             <ListGroup>
-              {combined.map(event =>
-                event.type === 'IssuesEvent' ? (
-                  <IssuesEvent event={event} key={event.id} />
-                ) : event.type === 'IssueCommentEvent' ? (
-                  <IssueCommentEvent event={event} key={event.id} />
-                ) : event.type === 'PullRequestEvent' ? (
-                  <PullRequestEvent event={event} key={event.id} />
-                ) : event.type === 'PullRequestReviewCommentEvent' ? (
-                  <PullRequestReviewCommentEvent event={event} key={event.id} />
-                ) : event.type === 'PushEvent' ? (
-                  <PushEvent event={event} key={event.id} />
-                ) : event.type === 'RepositoryEvent' ? (
-                  <RepoEvent event={event} key={event.id} />
-                ) : event.subject ? (
-                  <Notification notification={event} key={event.id} />
-                ) : event.author_association ? (
-                  <PullRequest pull={event} key={event.id} />
-                ) : 
-                  event.type === 'Issue' ? (
+              {combined.map(
+                event =>
+                  event.type === 'IssuesEvent' ? (
+                    <IssuesEvent event={event} key={event.id} />
+                  ) : event.type === 'IssueCommentEvent' ? (
+                    <IssueCommentEvent event={event} key={event.id} />
+                  ) : event.type === 'PullRequestEvent' ? (
+                    <PullRequestEvent event={event} key={event.id} />
+                  ) : event.type === 'PullRequestReviewCommentEvent' ? (
+                    <PullRequestReviewCommentEvent
+                      event={event}
+                      key={event.id}
+                    />
+                  ) : event.type === 'PushEvent' ? (
+                    <PushEvent event={event} key={event.id} />
+                  ) : event.type === 'RepositoryEvent' ? (
+                    <RepoEvent event={event} key={event.id} />
+                  ) : event.subject ? (
+                    <Notification notification={event} key={event.id} />
+                  ) : event.author_association ? (
+                    <PullRequest pull={event} key={event.id} />
+                  ) : event.type === 'Issue' ? (
                     <AssociatedEvent event={associated} key={event.id} />
                   ) : (
                     ''
                   )
-                )
                 // ADD OPEN ISSUES AND CLOSED ISSUES EVENTS
               )}
             </ListGroup>
