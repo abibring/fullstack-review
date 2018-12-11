@@ -29,6 +29,13 @@ module.exports = {
       }
     ]
   },
+  plugins:[
+    new webpack.DefinePlugin({
+      'process.env':{
+        'GITHUB_CLIENT_ID': JSON.stringify('fd744291ef509a6a54cc')
+      }
+    })
+  ],
   node: {
     fs: 'empty'
   }

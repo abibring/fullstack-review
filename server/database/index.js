@@ -21,6 +21,7 @@ const userSchema = mongoose.Schema({
   email: { type: String, unique: true },
   name: String,
   username: String,
+  updated_at: { type: Date, required: true, default: Date.now }
 });
 
 const User = mongoose.model('User', userSchema);

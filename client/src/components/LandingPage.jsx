@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Jumbotron } from 'react-bootstrap';
 import Login from './Login.jsx';
+import Signup from './Signup.jsx';
 
 export default class LandingPage extends Component {
   constructor(props) {
@@ -17,6 +18,7 @@ export default class LandingPage extends Component {
         </p> <br />
         <p style={{ paddingLeft: 10 }}>
           <Login />
+          <Signup />
         </p>
       </Jumbotron>
     );
