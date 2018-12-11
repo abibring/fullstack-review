@@ -18,6 +18,11 @@ const authenticateUser = token => {
   return axios.get(`https://api.github.com/user`, { params: { access_token }});
 };
 
+const assignedToIssue = token => {
+  let access_token = token.slice(13);
+  return axios.get(`https://api.github.com/user`, { params: { access_token, participating: true }});
+}
+
 const getTokenForUser = code => {
   return axios.post(`https://github.com/login/oauth/access_token`, { client_id: process.env.GITHUB_CLIENT_ID, client_secret: process.env.GITHUB_CLIENT_SECRET, code });
 };
@@ -44,5 +49,6 @@ module.exports = {
   getTokenForUser,
   getUserNotifications,
   getStarredRepos, 
-  getRepoEvents
+  getRepoEvents,
+  assignedToIssue
 };

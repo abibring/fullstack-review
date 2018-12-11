@@ -6,7 +6,8 @@ const {
   getTokenForUser, 
   getUserNotifications, 
   getStarredRepos, 
-  getRepoEvents 
+  getRepoEvents,
+  assignedToIssue 
 } = require('../api_helpers/github.js');
 require('dotenv').config();
 
@@ -134,7 +135,14 @@ module.exports = {
         .catch(err => res.send(err));
     }
   },
-
+  associated: {
+    get: function(req, res) {
+      const { userToken } = req.query;
+      assignedToIssue(userToken)
+        .then(({data}) => res.send(data))
+        .catch(err => res.send(err));
+    }
+  },
   issues: {
     get: function(req, res) {
       const { userToken } = req.query;

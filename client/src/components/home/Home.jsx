@@ -13,7 +13,7 @@ export default class Home extends Component {
     this.getStarred = this.getStarred.bind(this);
     this.getEvents = this.getEvents.bind(this);
     this.signOut = this.signOut.bind(this);
-    // this.search = this.search.bind(this);
+    this.getAssociated = this.getAssociated.bind(this);
   }
 
   componentDidMount() {
@@ -28,6 +28,7 @@ export default class Home extends Component {
       this.getStarred();
       this.getNotifications();
       this.getEvents();
+      this.getAssociated();
     }
   }
 
@@ -40,6 +41,13 @@ export default class Home extends Component {
         history.push('/');
       })
       .catch(() => history.push('/'));
+  }
+
+  getAssociated() {
+    const userToken = window.localStorage.getItem('userToken');
+    axios.get('/user/associated', { params: userToken })
+      .then(({data}) => console.log('ASSOCIATED DATA', data))
+      .catch(err => console.error('err in associated data', err));
   }
 
   getEvents() {
