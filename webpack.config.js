@@ -31,7 +31,12 @@ module.exports = {
     ]
   },
   plugins: [
-    new Dotenv()
+    new Dotenv({
+      path: './.env',
+      safe: true,
+      systemvars: true,
+      silent: true
+    })
   ],
   node: {
     fs: 'empty'
