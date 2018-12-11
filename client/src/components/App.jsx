@@ -4,7 +4,7 @@ import { withCookies } from 'react-cookie';
 import Home from './home/Home.jsx';
 import LandingPage from './LandingPage.jsx';
 import Footer from './Footer.jsx';
-import 'dotenv/config';
+require('dotenv').config();
 
 class App extends Component {
   constructor(props) {
