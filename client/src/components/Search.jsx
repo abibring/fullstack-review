@@ -22,7 +22,7 @@ export default class Search extends Component {
     const { term } = this.state;
     return (
       <div>
-        Search for a github user: <input value={term} onChange={this.onChange}/>       
+        Search for a Github User: <input value={term} onChange={this.onChange}/>       
         <button onClick={this.search}>Add Repos</button>
       </div>
     ); 
