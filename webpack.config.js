@@ -1,4 +1,5 @@
 const path = require('path');
+const Dotenv = require('dotenv-webpack');
 const SRC_DIR = path.join(__dirname, '/client/src');
 const DIST_DIR = path.join(__dirname, '/client/dist');
 
@@ -29,12 +30,8 @@ module.exports = {
       }
     ]
   },
-  plugins:[
-    new webpack.DefinePlugin({
-      'process.env':{
-        'GITHUB_CLIENT_ID': JSON.stringify('fd744291ef509a6a54cc')
-      }
-    })
+  plugins: [
+    new Dotenv()
   ],
   node: {
     fs: 'empty'
