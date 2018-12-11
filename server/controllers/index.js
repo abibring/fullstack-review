@@ -22,6 +22,7 @@ module.exports = {
       if (!code) {
         return res.send({ success: false, message: 'Error: invalid code' });
       }
+      console.log('XX')
       getTokenForUser(code)
         .then(({ data }) => {
           const access_token = data.split('&')[0];

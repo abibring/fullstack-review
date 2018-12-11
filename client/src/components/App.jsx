@@ -4,6 +4,7 @@ import { withCookies } from 'react-cookie';
 import Home from './home/Home.jsx';
 import LandingPage from './LandingPage.jsx';
 import Footer from './Footer.jsx';
+import 'dotenv/config';
 
 class App extends Component {
   constructor(props) {
@@ -22,6 +23,7 @@ class App extends Component {
     return (
       <div>
         <Switch>
+        {console.log(process.env.GITHUB_CLIENT_ID)}
           <Route path="/" exact component={LandingPage} />
           <Route path="/home" render={(props) => <Home {...props} cookies={cookies} />} />
         </Switch>
