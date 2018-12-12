@@ -51,7 +51,7 @@ module.exports = {
                             <body>
                               <script>
                                   window.localStorage.setItem('userToken', '${encryptedToken}');
-                                  window.localStorage.setItem('username', '${resultsTwo}');
+                                  window.localStorage.setItem('username', '${data.username}');
                                   window.location.pathname = '/home';
                               </script>
                             </body>
@@ -64,7 +64,7 @@ module.exports = {
                         <body>
                           <script>
                               window.localStorage.setItem('userToken', '${encryptedToken}');
-                              window.localStorage.setItem('username', '${resultsOne}');
+                              window.localStorage.setItem('username', '${data.username}');
                               window.location.pathname = '/home';
                           </script>
                         </body>
