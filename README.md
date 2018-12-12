@@ -1,6 +1,8 @@
 # The Better Github News Feed
 Welcome to The Better Github News Feed!  This is a web app where you can view the latest news relevant to you on Github.  You can see latest updates regarding repos you watch or follow or users that you follow.  Get the latest information on new releases, pull requests, issues, and more!
 
+Check out the app at www.githubfeed.com
+
 ## Usage
 
 > Sign up using your Github credentials to gain access to your personalized feed. 
@@ -32,7 +34,7 @@ In server/database/index.js, you need to enter in the URL to connect mongoose to
 From within the root directory:
 
 > npm start
-g
+
 > npm run react-dev
 
 Application runs on port 3000 on your localhost
