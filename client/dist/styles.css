@@ -1,5 +1,5 @@
 body {
-  background-image: linear-gradient(#8860D0, #84CEEB);
+  background-image: linear-gradient(to right, #8860D0, #84CEEB);
 }
 .footer {
   position: relative;
