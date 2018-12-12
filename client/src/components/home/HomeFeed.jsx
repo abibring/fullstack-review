@@ -20,7 +20,7 @@ export default class HomeFeed extends Component {
       <div>
         {/* <Tabs activeKey={key} onSelect={(key) => this.setState({ key })} id="controlled-tab-example" > */}
           {/* <Tab eventKey={1} title="Events/Notifications/Pull Requests">  */}
-            <Events events={events} notifications={notifications} pulls={issues} watching={watching}/>
+            <Events events={events} notifications={notifications} pulls={issues} watching={watching} starred={starred}/>
           {/* </Tab> */}
           {/* <Tab eventKey={2} title="Starred Repos">
             <Starred starred={starred} />

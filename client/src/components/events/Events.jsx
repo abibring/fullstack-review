@@ -9,7 +9,7 @@ import Notification from './Notification.jsx';
 import PullRequest from './PullRequest.jsx';
 import AssociatedEvent from './AssociatedEvent.jsx';
 
-const Events = ({ events, notifications, pulls, associated, watching }) => {
+const Events = ({ events, notifications, pulls, associated, watching, starred }) => {
   let combined = events.concat(notifications).concat(pulls);
   combined = combined.sort(
     (a, b) =>
@@ -19,7 +19,7 @@ const Events = ({ events, notifications, pulls, associated, watching }) => {
   return (
     <div>
       <h3 style={{ paddingLeft: '40%' }}>Check Out The Latest Info:</h3>
-      {console.log('WATCHING', watching)}
+      {console.log('starred', starred)}
       <Grid>
         <Row>
           <Col xs={12} md={8} xsOffset={2}>
