@@ -9,14 +9,14 @@ export default class NavigationBar extends Component {
   render() {
     const { signOut } = this.props;
     return (
-      <Navbar inverse>
+      <Navbar inverse bsStyle="pills">
         <Navbar.Header>
           <Navbar.Brand>
             <img src={logo} style={{ width: 260, height: 80 }} alt="logo"/>
           </Navbar.Brand>
         </Navbar.Header>
         <Nav pullRight>
-          <NavItem eventKey={1} href="#" onClick={signOut} bsStyle="pills">
+          <NavItem eventKey={1} href="#" onClick={signOut} >
             Sign Out
           </NavItem>
         </Nav>
