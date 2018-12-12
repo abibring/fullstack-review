@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import HomeTab from './HomeTab.jsx';
+import HomeFeed from './HomeFeed.jsx';
 import NavigationBar from '../NavigationBar.jsx';
 
 export default class Home extends Component {
@@ -100,7 +100,7 @@ export default class Home extends Component {
     return (
       <div>
         <NavigationBar history={history} signOut={this.signOut} />
-        <HomeTab issues={issues} watching={watching} starred={starred} events={events} notifications={notifications} associated={associated}/>
+        <HomeFeed issues={issues} watching={watching} starred={starred} events={events} notifications={notifications} associated={associated}/>
       </div>
     );
   }

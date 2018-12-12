@@ -7,7 +7,7 @@ import Releases from '../tabComponents/Releases.jsx';
 import Events from '../events/Events.jsx';
 
 
-export default class HomeTab extends Component {
+export default class HomeFeed extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = { key: 1 };
@@ -18,11 +18,11 @@ export default class HomeTab extends Component {
     const { issues, watching, starred, events, notifications } = this.props;
     return (
       <div>
-        <Tabs activeKey={key} onSelect={(key) => this.setState({ key })} id="controlled-tab-example" >
-          <Tab eventKey={1} title="Events/Notifications/Pull Requests"> 
+        {/* <Tabs activeKey={key} onSelect={(key) => this.setState({ key })} id="controlled-tab-example" > */}
+          {/* <Tab eventKey={1} title="Events/Notifications/Pull Requests">  */}
             <Events events={events} notifications={notifications} pulls={issues} />
-          </Tab>
-          <Tab eventKey={2} title="Starred Repos">
+          {/* </Tab> */}
+          {/* <Tab eventKey={2} title="Starred Repos">
             <Starred starred={starred} />
           </Tab>
           <Tab eventKey={3} title="Releases">
@@ -33,8 +33,8 @@ export default class HomeTab extends Component {
           </Tab>
           <Tab eventKey={5} title="Watching">
             <Watching watching={watching} />
-          </Tab>
-        </Tabs>
+          </Tab> */}
+        {/* </Tabs> */}
       </div>
     );
   }
