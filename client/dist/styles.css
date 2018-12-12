@@ -1,5 +1,5 @@
 body {
-  background-color: #8860D0;
+  background-color: rgb(78, 8, 207);
 }
 .footer {
   position: relative;
@@ -13,14 +13,14 @@ body {
 .events {
   margin: 10px;
   padding-top: 10px;
-  background-color: #A4B3B6;
+  background-color: #C1C8E4;
   border-style: solid;
   border-width: 5px;
   border-color: white;
 }
 
 .message-ext {
-  background-color: #8E8D8A;
+  background-color: #C1C8E4;
 }
 
 .feed-img {
