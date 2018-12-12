@@ -5,6 +5,8 @@ const saveUser = (user, cb) => {
   newUser.save((err) => {
     if (err) {
       cb(err);
+    } else {
+      cb();
     }
   });
 };

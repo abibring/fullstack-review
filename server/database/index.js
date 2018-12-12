@@ -20,7 +20,7 @@ const userSchema = mongoose.Schema({
   github_id: String,
   email: { type: String, unique: true },
   name: String,
-  username: String,
+  username: String
 });
 
 const User = mongoose.model('User', userSchema);
