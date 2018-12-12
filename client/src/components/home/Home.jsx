@@ -30,7 +30,7 @@ export default class Home extends Component {
       this.getNotifications();
       this.getEvents();
       this.getAssociated();
-      this.getFeed();
+      // this.getFeed();
     }
   }
 
@@ -62,20 +62,14 @@ export default class Home extends Component {
     const userToken = window.localStorage.getItem('userToken');
     const username = window.localStorage.getItem('username');
     axios.get('/user/events', { params: { userToken, username }})
-      .then(( data ) => {
-        console.log('data EVENTS', data);
-        this.setState({ events: data.data })
-      })
+      .then(({ data }) => this.setState({ events: data }))
       .catch(err => console.error('err in get notifications', err));
   }
 
   getNotifications() {
     const userToken = window.localStorage.getItem('userToken');
     axios.get('/user/notifications', { params: { userToken }})
-      .then(( data ) => {
-        console.log('DATA NOTIFICATIONS', data)
-        this.setState({ notifications: data.data })
-      }) 
+      .then(({ data }) => this.setState({ notifications: data })) 
       .catch(err => console.error('err in get notifications', err));
   }
 

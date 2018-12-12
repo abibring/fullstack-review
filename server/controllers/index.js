@@ -118,7 +118,7 @@ module.exports = {
         .then((data) => {
           // console.log('DATA FROM REPO EVENTS', data.data);
           let headersSplitOnToken = data.headers.link.split('?');
-          console.log('headersSplitOnToken', headersSplitOnToken);
+          // console.log('headersSplitOnToken', headersSplitOnToken);
           res.setHeader('link', data.headers.link)
           res.send(data.data)
         })

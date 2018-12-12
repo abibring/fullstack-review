@@ -13,7 +13,7 @@ class App extends Component {
   componentDidMount() {
     const { history } = this.props;
     let token = window.localStorage.getItem('userToken') ? window.localStorage.getItem('userToken') : 'invalid';
-    console.log('token in App:', token);
+    // console.log('token in App:', token);
     if (token && token !== 'invalid') {
       history.push('/home');
     }
