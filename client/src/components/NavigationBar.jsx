@@ -12,7 +12,7 @@ export default class NavigationBar extends Component {
       <Navbar inverse>
         <Navbar.Header>
           <Navbar.Brand>
-            <img src={logo} style={{ width: 260, height: 80 }} alt="logo"/>
+            <img src={logo} style={{ width: 260, height: 80, border: '10%' }} alt="logo"/>
           </Navbar.Brand>
         </Navbar.Header>
         <Nav pullRight>
