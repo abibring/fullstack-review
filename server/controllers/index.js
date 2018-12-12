@@ -71,8 +71,8 @@ module.exports = {
                     </html>`);
                   }
                 });
-            }).catch(err => console.error('err in getTokenForUser', err));
-          }).catch(err => console.error('err in getTokenForUser Outside', err));
+            }).catch(err => res.send(err));
+          }).catch(err => res.send(err));
         }
     },
 
