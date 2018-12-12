@@ -16,7 +16,7 @@ export default class NavigationBar extends Component {
           </Navbar.Brand>
         </Navbar.Header>
         <Nav pullRight>
-          <NavItem eventKey={1} href="#" onClick={signOut}>
+          <NavItem eventKey={1} href="#" onClick={signOut} bsStyle="pills">
             Sign Out
           </NavItem>
         </Nav>
