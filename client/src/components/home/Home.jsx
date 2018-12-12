@@ -20,6 +20,9 @@ export default class Home extends Component {
   componentDidMount() {
     const { history } = this.props;
     const userToken = window.localStorage.getItem('userToken');
+    const username = window.localStorage.getItem('username');
+    console.log('USERTOKEN', userToken);
+    console.log('USERNAME', username);
     if (!userToken || userToken === 'invalid') {
       history.push('/');
     } else {
