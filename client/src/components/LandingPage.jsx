@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Jumbotron } from 'react-bootstrap';
 import Login from './Login.jsx';
 import Signup from './Signup.jsx';
-import landingPagePhoto from '../../dist/img/landing_page_photo.jpg';
 
 export default class LandingPage extends Component {
   constructor(props) {
@@ -10,7 +9,7 @@ export default class LandingPage extends Component {
   }
   render() {
     return (
-      <Jumbotron style={{ background: landingPagePhoto, height: 630 }}>
+      <Jumbotron style={{ background: "url('../../dist/img/landing_page_photo.jpg')" }}>
         <h1 style={{ paddingLeft: 12 }}>The Better Github News Feed</h1>
         <p style={{ paddingLeft: 15, paddingRight: 15, paddingTop: 5, fontSize: 25 }}>
           This is a better version of the Github feed, which allows you to track the latest information
