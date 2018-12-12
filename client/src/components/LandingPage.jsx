@@ -9,7 +9,7 @@ export default class LandingPage extends Component {
   }
   render() {
     return (
-      <Jumbotron style={{ backgroundImage: "url('../../dist/img/landing_page_photo.jpg')", height: '100%' }}>
+      <Jumbotron style={{ backgroundImage: "url('https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjNo6eA55rfAhVHhuAKHTR2A8UQjRx6BAgBEAU&url=https%3A%2F%2Fwww.pinterest.com%2Fpin%2F550635491916707639%2F&psig=AOvVaw2sH0veCc04jDVLnqxQM5aY&ust=1544721724750902')", height: '100%' }}>
         <h1 style={{ paddingLeft: 12 }}>The Better Github News Feed</h1>
         <p style={{ paddingLeft: 15, paddingRight: 15, paddingTop: 5, fontSize: 25 }}>
           This is a better version of the Github feed, which allows you to track the latest information
@@ -18,7 +18,7 @@ export default class LandingPage extends Component {
         </p> <br />
         <p style={{ paddingLeft: 10 }}>
           <Login />
-          <Signup />
+          {/* <Signup /> */}
         </p>
       </Jumbotron>
     );
