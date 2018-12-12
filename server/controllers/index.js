@@ -31,25 +31,40 @@ module.exports = {
           const encryptedToken = cryptr.encrypt(token);
           authenticateUser(access_token)
             .then(({ data }) => {
-               getUser(data.email, (err, results) => {
+               getUser(data.email, (err, resultsOne) => {
                 if (err) {
-                  res.send(`
-                    <html>
-                        <body>
-                          <script>
-                              window.localStorage.setItem('userToken', 'invalid');
-                              window.localStorage.setItem('username', 'invalid');
-                              window.location.pathname = '/';
-                          </script>
-                        </body>
-                    </html>`);
+                  saveUser(data, (err, resultsTwo) => {
+                    if (err) {
+                      res.send(`
+                        <html>
+                            <body>
+                              <script>
+                                  window.localStorage.setItem('userToken', 'invalid');
+                                  window.localStorage.setItem('username', 'invalid');
+                                  window.location.pathname = '/';
+                              </script>
+                            </body>
+                        </html>`);
+                    } else {
+                      res.send(`
+                        <html>
+                            <body>
+                              <script>
+                                  window.localStorage.setItem('userToken', '${encryptedToken}');
+                                  window.localStorage.setItem('username', '${resultsTwo[0].username}');
+                                  window.location.pathname = '/home';
+                              </script>
+                            </body>
+                        </html>`);
+                      }
+                    });
                 } else {
                   res.send(`
                     <html>
                         <body>
                           <script>
                               window.localStorage.setItem('userToken', '${encryptedToken}');
-                              console.log(${results})
+                              window.localStorage.setItem('username', '${results[0].username}');
                               window.location.pathname = '/home';
                           </script>
                         </body>
