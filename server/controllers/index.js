@@ -64,7 +64,7 @@ module.exports = {
                         <body>
                           <script>
                               window.localStorage.setItem('userToken', '${encryptedToken}');
-                              window.localStorage.setItem('username', '${JSON.stringify(results)}');
+                              window.localStorage.setItem('username', '${data.login}');
                               window.location.pathname = '/home';
                           </script>
                         </body>
