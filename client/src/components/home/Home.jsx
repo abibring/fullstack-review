@@ -98,7 +98,7 @@ export default class Home extends Component {
     const { issues, watching, starred, events, notifications, associated } = this.state;
     const { history, cookies } = this.props;
     return (
-      <div>
+      <div className="main">
         <NavigationBar history={history} signOut={this.signOut} />
         <HomeFeed issues={issues} watching={watching} starred={starred} events={events} notifications={notifications} associated={associated}/>
       </div>
