@@ -1,5 +1,5 @@
 body {
-  background-color: #EAE7DC;
+  background-color: #2A1B3D;
 }
 .footer {
   position: relative;
@@ -13,10 +13,10 @@ body {
 .events {
   margin: 10px;
   padding-top: 10px;
-  background-color: #8E8D8A;
+  background-color: #A4B3B6;
   border-style: solid;
   border-width: 5px;
-  border-color: black;
+  border-color: white;
 }
 
 .message-ext {
