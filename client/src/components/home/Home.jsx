@@ -48,7 +48,7 @@ export default class Home extends Component {
   getFeed() {
     const userToken = window.localStorage.getItem('userToken');
     axios.get('/user/feed', { params: { userToken } })
-      .then(({ data }) => console.log(data))
+      .then(({ data }) => console.log('FEED DATA', data))
       .catch(err => console.error('err in associated data', err));
   }
   getAssociated() {
