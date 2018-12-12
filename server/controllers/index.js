@@ -130,12 +130,12 @@ module.exports = {
     get: function (req, res) {
       const { userToken, username } = req.query;
       getRepoEvents(userToken, username)
-        .then((data) => {
+        .then(({ data }) => {
           // console.log('DATA FROM REPO EVENTS', data.data);
-          let headersSplitOnToken = data.headers.link.split('?');
+          // let headersSplitOnToken = data.headers.link.split('?');
           // console.log('headersSplitOnToken', headersSplitOnToken);
-          res.setHeader('link', data.headers.link)
-          res.send(data.data)
+          // res.setHeader('link', data.headers.link)
+          res.send(data)
         })
         .catch(err => res.send(err));
     }
@@ -145,7 +145,7 @@ module.exports = {
     get: function(req, res) {
       const { userToken } = req.query;
       getWatchingFromGithub(userToken)
-        .then(({data}) => {
+        .then(({ data }) => {
           // res.setHeader('link', data.headers.link)
           // console.log('WATCHING', data.data)
           res.send(data)
@@ -153,12 +153,15 @@ module.exports = {
         .catch(err => res.send(err));
     }
   },
-
+  // AFTER YOU GET STARRED REPOS, NEED TO CALL 
+  // => /repos/:owner/:repo/issues 
+  // => /repos/:owner/:repo/notifications 
+  // => /repos/:owner/:repo/releases
   starred: {
     get: function(req, res) {
       const { userToken } = req.query;
       getStarredRepos(userToken)
-        .then(({data}) => {
+        .then(({ data }) => {
           // res.setHeader('link', data.headers.link)
           res.send(data)
         })
@@ -170,7 +173,7 @@ module.exports = {
     get: function(req, res) {
       const { userToken } = req.query;
       getUserNotifications(userToken)
-        .then(({data}) => {
+        .then(({ data }) => {
           // res.setHeader('link', data.headers.link)
           res.send(data);
         })
@@ -181,7 +184,7 @@ module.exports = {
     get: function(req, res) {
       const { userToken } = req.query;
       associatedToIssue(userToken)
-        .then(({data}) => res.send(data))
+        .then(({ data }) => res.send(data))
         .catch(err => res.send(err));
     }
   },
@@ -189,7 +192,7 @@ module.exports = {
     get: function(req, res) {
       const { userToken } = req.query;
       getIssuesFromGithub(userToken)
-        .then(({data}) => {
+        .then(({ data }) => {
           // res.setHeader('link', data.headers.link)
           res.send(data)
         })
