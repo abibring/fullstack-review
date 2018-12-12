@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Navbar, NavItem, Nav, Button } from 'react-bootstrap';
-import logo from '../../dist/img/logo.png';
+import logo from '../../dist/img/new_logo.png';
 
 export default class NavigationBar extends Component {
   constructor(props) {
@@ -17,7 +17,7 @@ export default class NavigationBar extends Component {
         </Navbar.Header>
         <Nav pullRight>
           <NavItem eventKey={1} href="#" onClick={signOut} >
-            <Button style={{ backgroundColor: '#C1C8E4' }}>Sign Out</Button>
+            <Button style={{ backgroundColor: '#8860D0' }}>Sign Out</Button>
           </NavItem>
         </Nav>
       </Navbar>
