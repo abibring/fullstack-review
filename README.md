@@ -34,7 +34,7 @@ In server/database/index.js, you need to enter in the URL to connect mongoose to
 From within the root directory:
 
 > npm start
-g
+
 > npm run react-dev
 
 Application runs on port 3000 on your localhost
