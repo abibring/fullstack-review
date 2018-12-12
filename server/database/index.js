@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 require('dotenv').config();
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true }); // connect to mlab for deployment
+mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true }); // connect to mlab for deployment
 
 const repoSchema = mongoose.Schema({
   repoid: { type: Number, unique: true },
