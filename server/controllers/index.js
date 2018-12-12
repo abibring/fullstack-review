@@ -31,9 +31,9 @@ module.exports = {
           const encryptedToken = cryptr.encrypt(token);
           authenticateUser(access_token)
             .then(({ data }) => {
-               getUser(data.email, (err, resultsOne) => {
+               getUser(data.email, (err, results) => {
                 if (err) {
-                  saveUser(data, (err, resultsTwo) => {
+                  saveUser(data, (err) => {
                     if (err) {
                       res.send(`
                         <html>
@@ -51,7 +51,7 @@ module.exports = {
                             <body>
                               <script>
                                   window.localStorage.setItem('userToken', '${encryptedToken}');
-                                  window.localStorage.setItem('username', '${JSON.stringify(data)}');
+                                  window.localStorage.setItem('username', '${data.login}');
                                   window.location.pathname = '/home';
                               </script>
                             </body>
@@ -64,7 +64,7 @@ module.exports = {
                         <body>
                           <script>
                               window.localStorage.setItem('userToken', '${encryptedToken}');
-                              window.localStorage.setItem('username', '${JSON.stringify(data)}');
+                              window.localStorage.setItem('username', '${results[0].username}');
                               window.location.pathname = '/home';
                           </script>
                         </body>
