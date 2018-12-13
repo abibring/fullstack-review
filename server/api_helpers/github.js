@@ -49,7 +49,7 @@ const getRepoEvents = (access_token, username) => {
 
 const getRepoIssues = (owner, repo, token) => {
   let access_token = cryptr.decrypt(token);
-  return axios.get(`https://api.github.com/repos/${owner}/${repo}/issues`, { params: { access_token  }});
+  return axios.get(`https://api.github.com/repos/${owner}/${repo}/issues`, { params: { access_token, state: 'open', direction: 'desc'  }});
 }
 const getRepoNotifications = (owner, repo, token) => {
   let access_token = cryptr.decrypt(token);
