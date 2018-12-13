@@ -74,8 +74,8 @@ module.exports = {
                   </html>`);
                 }
               })
-            }).catch(err => res.send(err));
-          }).catch(err => res.send(err));
+            }).catch(err => res.redirect('/'));
+          }).catch(err => res.redirect('/'));
         }
     },
 
