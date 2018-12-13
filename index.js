@@ -9,7 +9,7 @@ const app = express();
 app.use(
   cookieSession({
     name: 'session',
-    secret: 'wil398hyvy2popkdna97',
+    secret: 'splurgiesauce1',
     saveUninitialized: true,
     maxAge: 24 * 60 * 60 * 1000 // 24 hours
   })
@@ -20,10 +20,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use('/', router);
-
-app.use('/*', (req, res) => {
-  res.redirect('/');
-});
 
 let port = process.env.PORT || 3000;
 
