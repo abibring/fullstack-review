@@ -16,9 +16,12 @@ const PullRequest = ({ pull }) => (
       {/* <div><b>Repo Name: </b>{pull.repository.name}</div> */}
       <div><b>Repo Owner: {pull.html_url.slice(19, '/')}</b></div>
       <div><b>Title: </b>{pull.title}</div>
-      <Panel.Body collapsible>
+      <Panel eventKey="1" className="message-ext">
+        <Panel.Title toggle>View Issue Message</Panel.Title>
+        <Panel.Body collapsible>
           {pull.body}
         </Panel.Body>
+      </Panel>
       {pull.pull_request 
       ? 
       <div><b>Pull Request Link: </b><a href={pull.pull_request.html_url}>{pull.pull_request.html_url}</a></div>
