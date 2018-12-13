@@ -31,7 +31,7 @@ const Events = ({ events, notifications, pulls, associated, watching, starred })
                   :
                   repo.draft 
                   ?
-                  <Releases releases={repo} key={repo.id} />
+                  <Releases release={repo} key={repo.id} />
                   :
                   ''
                 ))

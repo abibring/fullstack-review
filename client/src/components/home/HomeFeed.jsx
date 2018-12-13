@@ -14,7 +14,13 @@ export default class HomeFeed extends Component {
     const { issues, watching, starred, events, notifications } = this.props;
     return (
       <div>
-        <Events events={events} notifications={notifications} pulls={issues} watching={watching} starred={starred}/>
+        <Events 
+          events={events} 
+          notifications={notifications} 
+          pulls={issues} 
+          watching={watching} 
+          starred={starred} 
+        />
         {/* <Starred starred={starred} />  
         <Releases releases={watching} />
         <Following following={watching} />
