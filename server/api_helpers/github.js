@@ -47,6 +47,20 @@ const getRepoEvents = (access_token, username) => {
   return axios.get(`https://api.github.com/users/${username}/received_events`, { params: { access_token  }});
 }
 
+const getRepoIssues = (owner, repo, token) => {
+  let access_token = cryptr.decrypt(token);
+  return axios.get(`https://api.github.com/repos/${owner}/${repo}/issues`, { params: { access_token  }});
+}
+const getRepoNotifications = (owner, repo, token) => {
+  let access_token = cryptr.decrypt(token);
+  return axios.get(`https://api.github.com/repos/${owner}/${repo}/notifications`, { params: { access_token  }});
+}
+
+const getRepoReleases = (owner, repo, token) => {
+  let access_token = cryptr.decrypt(token);
+  return axios.get(`https://api.github.com/repos/${owner}/${repo}/releases`, { params: { access_token  }});
+}
+
 module.exports = {
   getIssuesFromGithub,
   getWatchingFromGithub,
@@ -56,5 +70,8 @@ module.exports = {
   getStarredRepos, 
   getRepoEvents,
   associatedToIssue,
-  getFeedForUser
+  getFeedForUser,
+  getRepoIssues,
+  getRepoNotifications,
+  getRepoReleases
 };

@@ -8,7 +8,10 @@ const {
   getStarredRepos, 
   getRepoEvents,
   associatedToIssue,
-  getFeedForUser 
+  getFeedForUser,
+  getRepoIssues,
+  getRepoNotifications,
+  getRepoReleases
 } = require('../api_helpers/github.js');
 require('dotenv').config();
 
@@ -163,6 +166,7 @@ module.exports = {
       getStarredRepos(userToken)
         .then(({ data }) => {
           // res.setHeader('link', data.headers.link)
+          console.log('STARRED DATA', data);
           res.send(data)
         })
         .catch(err => res.send(err));
