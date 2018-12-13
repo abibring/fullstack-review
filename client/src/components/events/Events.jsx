@@ -1,14 +1,14 @@
 import React from 'react';
 import { ListGroup, Col, Row, Grid } from 'react-bootstrap';
-import IssueCommentEvent from './IssueCommentEvent.jsx';
-import IssuesEvent from './IssuesEvent.jsx';
-import PullRequestEvent from './PullRequestEvent.jsx';
-import PullRequestReviewCommentEvent from './PullRequestReviewCommentEvent.jsx';
-import PushEvent from './PushEvent.jsx';
-import Notification from './Notification.jsx';
 import PullRequest from './PullRequest.jsx';
-import AssociatedEvent from './AssociatedEvent.jsx';
-import Releases from '../tabComponents/Releases.jsx';
+import IssuesEvent from './IssuesEvent.jsx';
+import Releases from './Releases.jsx';
+// import IssueCommentEvent from './IssueCommentEvent.jsx';
+// import PullRequestEvent from './PullRequestEvent.jsx';
+// import PullRequestReviewCommentEvent from './PullRequestReviewCommentEvent.jsx';
+// import PushEvent from './PushEvent.jsx';
+// import Notification from './Notification.jsx';
+// import AssociatedEvent from './AssociatedEvent.jsx';
 
 const Events = ({ events, notifications, pulls, associated, watching, starred }) => (
   <div>

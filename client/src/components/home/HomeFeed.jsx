@@ -3,7 +3,7 @@ import { Tab, Tabs } from 'react-bootstrap';
 import Watching from '../tabComponents/Watching.jsx';
 import Following from '../tabComponents/Following.jsx';
 import Starred from '../tabComponents/Starred.jsx';
-import Releases from '../tabComponents/Releases.jsx';
+import Releases from '../events/Releases.jsx';
 import Events from '../events/Events.jsx';
 
 
