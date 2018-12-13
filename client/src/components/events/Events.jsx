@@ -8,6 +8,7 @@ import PushEvent from './PushEvent.jsx';
 import Notification from './Notification.jsx';
 import PullRequest from './PullRequest.jsx';
 import AssociatedEvent from './AssociatedEvent.jsx';
+import Releases from '../tabComponents/Releases.jsx';
 
 const Events = ({ events, notifications, pulls, associated, watching, starred }) => {
   let combined = events.concat(notifications).concat(pulls);
@@ -24,34 +25,26 @@ const Events = ({ events, notifications, pulls, associated, watching, starred })
         <Row>
           <Col xs={12} md={8} xsOffset={2}>
             <ListGroup>
-              {combined.map(
-                event =>
-                  event.type === 'IssuesEvent' ? (
-                    <IssuesEvent event={event} key={event.id} />
-                  ) : event.type === 'IssueCommentEvent' ? (
-                    <IssueCommentEvent event={event} key={event.id} />
-                  ) : event.type === 'PullRequestEvent' ? (
-                    <PullRequestEvent event={event} key={event.id} />
-                  ) : event.type === 'PullRequestReviewCommentEvent' ? (
-                    <PullRequestReviewCommentEvent
-                      event={event}
-                      key={event.id}
-                    />
-                  ) : event.type === 'PushEvent' ? (
-                    <PushEvent event={event} key={event.id} />
-                  ) : event.type === 'RepositoryEvent' ? (
-                    <RepoEvent event={event} key={event.id} />
-                  ) : event.subject ? (
-                    <Notification notification={event} key={event.id} />
-                  ) : event.author_association ? (
-                    <PullRequest pull={event} key={event.id} />
-                  ) : event.type === 'Issue' ? (
-                    <AssociatedEvent event={associated} key={event.id} />
-                  ) : (
+              {starred.length > 0 && starred.map(repoArr => {
+                // console.log('XXXX', repoArr)
+                return (
+                  repoArr.map(repo => (
+                    repo.pull_request 
+                    ? 
+                    <PullRequest pull={repo} key={repo.id} />
+                    :
+                    repo.state
+                    ?
+                    <IssuesEvent event={repo} key={repo.id} />
+                    :
+                    repo.draft 
+                    ?
+                    <Releases releases={repo} key={repo.id} />
+                    :
                     ''
-                  )
-                // ADD OPEN ISSUES AND CLOSED ISSUES EVENTS
-              )}
+                  ))
+                ) 
+              })}
             </ListGroup>
           </Col>
         </Row>

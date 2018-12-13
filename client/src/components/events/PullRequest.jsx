@@ -13,7 +13,7 @@ const PullRequest = ({ pull }) => (
       <i className="content-updated">{moment(pull.updated_at).startOf('day').fromNow()}</i>
       <span className="content-break">|</span>
       {pull.pull_request ? 'Pull Request' : 'Issue Event'}
-      <div><b>Repo Name: </b>{pull.repository.name}</div>
+      {/* <div><b>Repo Name: </b>{pull.repository.name}</div> */}
       <div><b>Repo Owner: </b></div>
       <div><b>Title: </b>{pull.title}</div>
       {pull.body ? <div><b>Body: </b>{pull.body}</div> : ''}

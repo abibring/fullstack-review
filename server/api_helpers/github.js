@@ -3,8 +3,8 @@ const Cryptr = require('cryptr');
 require('dotenv').config();
 const cryptr = new Cryptr(process.env.CRYPTR_SECRET);
 
-const getFeedForUser = token => {
-  let access_token = cryptr.decrypt(token);
+const getFeedForUser = access_token => {
+  access_token = cryptr.decrypt(access_token);
   return axios.get(`https://api.github.com/feeds`, { params: { access_token }});
 };
 
@@ -18,13 +18,13 @@ const getWatchingFromGithub = access_token => {
   return axios.get(`https://api.github.com/user/subscriptions`, { params: { access_token, direction: 'desc' }});
 };
 
-const authenticateUser = token => {
-  let access_token = token.slice(13);
+const authenticateUser = access_token => {
+  access_token = access_token.token.slice(13);
   return axios.get(`https://api.github.com/user`, { params: { access_token }});
 };
 
-const associatedToIssue = token => {
-  let access_token = cryptr.decrypt(token);
+const associatedToIssue = access_token => {
+  access_token = cryptr.decrypt(access_token);
   return axios.get(`https://api.github.com/notifications`, { params: { access_token, participating: true }});
 }
 
@@ -47,17 +47,17 @@ const getRepoEvents = (access_token, username) => {
   return axios.get(`https://api.github.com/users/${username}/received_events`, { params: { access_token  }});
 }
 
-const getRepoIssues = (owner, repo, token) => {
-  let access_token = cryptr.decrypt(token);
+const getRepoIssues = (owner, repo, access_token) => {
+  access_token = cryptr.decrypt(access_token);
   return axios.get(`https://api.github.com/repos/${owner}/${repo}/issues`, { params: { access_token, state: 'open', direction: 'desc'  }});
 }
-const getRepoNotifications = (owner, repo, token) => {
-  let access_token = cryptr.decrypt(token);
+const getRepoNotifications = (owner, repo, access_token) => {
+  access_token = cryptr.decrypt(access_token);
   return axios.get(`https://api.github.com/repos/${owner}/${repo}/notifications`, { params: { access_token  }});
 }
 
-const getRepoReleases = (owner, repo, token) => {
-  let access_token = cryptr.decrypt(token);
+const getRepoReleases = (owner, repo, access_token) => {
+  access_token = cryptr.decrypt(access_token);
   return axios.get(`https://api.github.com/repos/${owner}/${repo}/releases`, { params: { access_token  }});
 }
 

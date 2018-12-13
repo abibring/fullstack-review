@@ -165,27 +165,53 @@ module.exports = {
       const { userToken } = req.query;
       getStarredRepos(userToken)
         .then(({ data }) => {
-          // res.setHeader('link', data.headers.link)
           const reposStarred = [];
+          // iterate over data & push repo name and owner into reposStarred array
           for (var i = 0; i < data.length; i++) {
             let repo = data[i];
             reposStarred.push({repo: repo.name, owner: repo.owner.login})
           }
-          Promise.all(reposStarred.map(repo => {
-            const issuePromise = new Promise((resolve, reject) => {
-              resolve(getRepoIssues(repo.owner, repo.repo, userToken))
-            }).catch(e => console.error('err in issuePromise', e));
-            const notificationPromise = new Promise((resolve, reject) => {
-              resolve(getRepoNotifications(repo.owner, repo.repo, userToken))
-            }).catch(e => console.error('err in notificationPromise', e));
-            const releasePromise = new Promise((resolve, reject) => {
-              resolve(getRepoReleases(repo.owner, repo.repo, userToken))
-            }).catch(e => console.error('err in releasePromise', e));
-          }))
+          // iterate over reposStarred & call issue endpoint for each repo. Store result.
+          const issuePromise = Promise.all(reposStarred.map(repo => {
+            return getRepoIssues(repo.owner, repo.repo, userToken)
+          }));
+          // iterate over reposStarred & call notification endpoint for each repo. Store result.
+          const notificationPromise = Promise.all(reposStarred.map(repo => {
+            return getRepoNotifications(repo.owner, repo.repo, userToken)
+          }));
+          // iterate over reposStarred & call release endpoint for each repo. Store result.
+          const releasePromise = Promise.all(reposStarred.map(repo => {
+            return getRepoReleases(repo.owner, repo.repo, userToken)
+          }));
+          // call issuePromise to resolve data from API
+          issuePromise
+            .then((dataOne) => {
+              // call notificationPromise to resolve data from API
+              notificationPromise
+                .then(dataTwo => {
+                  // call releasePromise to resolve data from API
+                  releasePromise
+                    .then(dataThree => {
+                      // store results in a variable
+                      var tempResult = [...dataOne, ...dataTwo, ...dataThree];
+                      var results = [];
+                      // iterate over tempResult and push the "data" key into results
+                      for (var i = 0; i < tempResult.length; i++) {
+                        if (tempResult[i].data && tempResult[i].data.length > 0) {
+                          results.push(tempResult[i].data)
+                        }
+                      }
+                      return results;
+                    })
+                    // call the result in a .then to ensure headers aren't sent multiple times
+                    .then(result => res.send(result))
+                    .catch(err => res.send(err));
+                })
+                .catch(err => res.send(err));
+            })
+            .catch(err => res.send(err));
         })
-        .then(d => console.log('DATA', d))
-        .catch(e => console.error('err in promise', e))
-        // .catch(err => res.send(err));
+        .catch(err => res.send(err));
     }
   },
 
@@ -194,7 +220,6 @@ module.exports = {
       const { userToken } = req.query;
       getUserNotifications(userToken)
         .then(({ data }) => {
-          // res.setHeader('link', data.headers.link)
           res.send(data);
         })
         .catch(err => res.send(err));
