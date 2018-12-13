@@ -9,7 +9,7 @@ const app = express();
 app.use(
   cookieSession({
     name: 'session',
-    secret: process.env.COOKIE_SECRET,
+    secret: 'wil398hyvy2popkdna97',
     saveUninitialized: true,
     maxAge: 24 * 60 * 60 * 1000 // 24 hours
   })
