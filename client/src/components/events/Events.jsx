@@ -10,47 +10,38 @@ import PullRequest from './PullRequest.jsx';
 import AssociatedEvent from './AssociatedEvent.jsx';
 import Releases from '../tabComponents/Releases.jsx';
 
-const Events = ({ events, notifications, pulls, associated, watching, starred }) => {
-  let combined = events.concat(notifications).concat(pulls);
-  combined = combined.sort(
-    (a, b) =>
-      new Date(b.created_at || b.updated_at) -
-      new Date(a.created_at || a.updated_at)
-  );
-  return (
-    <div>
-      <h3 style={{ paddingLeft: '40%' }}>Check Out The Latest Info:</h3>
-      {console.log('starred', starred)}
-      <Grid>
-        <Row>
-          <Col xs={12} md={8} xsOffset={2}>
-            <ListGroup>
-              {starred.length > 0 && starred.map(repoArr => {
-                // console.log('XXXX', repoArr)
-                return (
-                  repoArr.map(repo => (
-                    repo.pull_request 
-                    ? 
-                    <PullRequest pull={repo} key={repo.id} />
-                    :
-                    repo.state
-                    ?
-                    <IssuesEvent event={repo} key={repo.id} />
-                    :
-                    repo.draft 
-                    ?
-                    <Releases releases={repo} key={repo.id} />
-                    :
-                    ''
-                  ))
-                ) 
-              })}
-            </ListGroup>
-          </Col>
-        </Row>
-      </Grid>
-    </div>
-  );
-};
+const Events = ({ events, notifications, pulls, associated, watching, starred }) => (
+  <div>
+    <h3 style={{ paddingLeft: '40%' }}>Check Out The Latest Info:</h3>
+    {console.log('starred', starred)}
+    <Grid>
+      <Row>
+        <Col xs={12} md={8} xsOffset={2}>
+          <ListGroup>
+            {starred.length > 0 && starred.map(repoArr => {
+              return (
+                repoArr.map(repo => (
+                  repo.pull_request 
+                  ? 
+                  <PullRequest pull={repo} key={repo.id} />
+                  :
+                  repo.state
+                  ?
+                  <IssuesEvent event={repo} key={repo.id} />
+                  :
+                  repo.draft 
+                  ?
+                  <Releases releases={repo} key={repo.id} />
+                  :
+                  ''
+                ))
+              ) 
+            })}
+          </ListGroup>
+        </Col>
+      </Row>
+    </Grid>
+  </div>
+);
 
 export default Events;

@@ -1,6 +1,6 @@
 import React from 'react';
 import moment from 'moment';
-import { ListGroupItem } from 'react-bootstrap';
+import { ListGroupItem, Panel } from 'react-bootstrap';
 
 const PullRequest = ({ pull }) => (
   <ListGroupItem key={pull.id} className="events">
@@ -14,10 +14,11 @@ const PullRequest = ({ pull }) => (
       <span className="content-break">|</span>
       {pull.pull_request ? 'Pull Request' : 'Issue Event'}
       {/* <div><b>Repo Name: </b>{pull.repository.name}</div> */}
-      <div><b>Repo Owner: </b></div>
+      <div><b>Repo Owner: {pull.html_url.slice(19, '/')}</b></div>
       <div><b>Title: </b>{pull.title}</div>
-      {pull.body ? <div><b>Body: </b>{pull.body}</div> : ''}
-      <div><b>Pushed At: </b>{moment(pull.pushed_at).startOf('day').fromNow()}</div>
+      <Panel.Body collapsible>
+          {pull.body}
+        </Panel.Body>
       {pull.pull_request 
       ? 
       <div><b>Pull Request Link: </b><a href={pull.pull_request.html_url}>{pull.pull_request.html_url}</a></div>

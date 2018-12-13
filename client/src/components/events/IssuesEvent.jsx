@@ -23,7 +23,6 @@ const IssuesEvent = ({ event }) => (
           {event.body}
         </Panel.Body>
       </Panel>
-      {/* <div><b>Issue Message:</b> {event.payload.issue.body}</div> */}
     </span>
   </ListGroupItem>
 );
