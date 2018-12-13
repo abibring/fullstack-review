@@ -156,10 +156,7 @@ module.exports = {
         .catch(err => res.send(err));
     }
   },
-  // AFTER YOU GET STARRED REPOS, NEED TO CALL 
-  // => /repos/:owner/:repo/issues 
-  // => /repos/:owner/:repo/notifications 
-  // => /repos/:owner/:repo/releases
+
   starred: {
     get: function(req, res) {
       const { userToken } = req.query;

@@ -14,7 +14,7 @@ const PullRequest = ({ pull }) => (
       <span className="content-break">|</span>
       {pull.pull_request ? 'Pull Request' : 'Issue Event'}
       <div><b>Repo Name: </b>{pull.html_url.slice(19).split('/')[0]}</div>
-      <div><b>Repo Owner: {pull.html_url.slice(19).split('/')[1]}</b></div>
+      <div><b>Repo Owner: </b>{pull.html_url.slice(19).split('/')[1]}</div>
       <div><b>Title: </b>{pull.title}</div>
       <Panel eventKey="1" className="message-ext">
         <Panel.Title toggle>View Issue Message</Panel.Title>

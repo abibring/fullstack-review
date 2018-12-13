@@ -4,7 +4,6 @@ import { ListGroup, ListGroupItem } from 'react-bootstrap';
 const Following = ({ following }) => (
   <div>
     <h3>New repos by people you're following</h3>
-    {/* {console.log('following', following)} */}
     <ListGroup>
       {following.map(follow => (
         <ListGroupItem key={follow.id}>

@@ -5,7 +5,6 @@ import { ListGroup, ListGroupItem } from 'react-bootstrap';
 const ClosedIssues = ({ closedIssues }) => (
   <div>
     <h3>When an issue you are watching or commented on is closed</h3>
-    {/* {console.log('closedIssues', closedIssues)} */}
     <ListGroup>
       {closedIssues.map(closedIssue => (
         <ListGroupItem key={closedIssue.id}>

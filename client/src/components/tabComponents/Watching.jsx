@@ -5,7 +5,6 @@ import { ListGroup, ListGroupItem } from 'react-bootstrap';
 const Watching = ({ watching }) => (
   <div>
     <h3>Comments on issues you have commented on or are watching</h3>
-    {/* {console.log('watching', watching)} */}
     <ListGroup>
     {watching.map(watch => (
       <ListGroupItem key={watch.id}>
