@@ -2,7 +2,7 @@ import React from 'react';
 import { ListGroup, Col, Row, Grid } from 'react-bootstrap';
 import PullRequest from './PullRequest.jsx';
 import IssuesEvent from './IssuesEvent.jsx';
-// import Releases from './Releases.jsx';
+import ReleaseEvent from './ReleaseEvent.jsx';
 // import IssueCommentEvent from './IssueCommentEvent.jsx';
 // import PullRequestEvent from './PullRequestEvent.jsx';
 // import PullRequestReviewCommentEvent from './PullRequestReviewCommentEvent.jsx';
@@ -30,8 +30,7 @@ const Events = ({ events, notifications, pulls, associated, watching, starred })
                   :
                   repo.draft 
                   ?
-                  // <Releases release={repo} key={repo.id} />
-                  <div></div>
+                  <ReleaseEvent release={repo} key={repo.id} />
                   :
                   ''
                 ))
