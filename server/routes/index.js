@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { login, logout, events, watching, starred, notifications, issues, repos, wildcard, associated, signup, feed } = require('../controllers/index.js');
+const { login, logout, events, watching, starred, notifications, issues, repos, wildcard, associated, feed } = require('../controllers/index.js');
 
 router.get('/user/signin/callback', login.get);
 router.get('/logout', logout.get);
@@ -11,7 +11,6 @@ router.get('/user/associated', associated.get)
 router.get('/user/issues', issues.get);
 router.get('/repos', repos.get);
 router.get('/user/feed', feed.get);
-// router.post('/signup', signup.post);
 router.get('/*', wildcard.get);
 
 

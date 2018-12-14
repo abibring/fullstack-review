@@ -28,11 +28,15 @@ module.exports = {
       }
       getTokenForUser(code)
         .then(({ data }) => {
+          // console.log('DATA', data)
           const access_token = data.split('&')[0];
           const token = access_token.slice(13);
+          console.log('ACCESS', token);
+
           const encryptedToken = cryptr.encrypt(token);
-          authenticateUser(access_token)
+          authenticateUser(token)
             .then(({ data }) => {
+              console.log(data)
               // saving user went here!
               res.send(`
                 <html>
@@ -46,12 +50,12 @@ module.exports = {
                 </html>
               `);
             })
-            .catch(err => res.send(err));
+            .catch(err => res.redirect('/'));
         })
         .catch(err => res.send(err));
     }
   },
-  
+
   logout: {
     get: function(req, res) {
       req.session = null;

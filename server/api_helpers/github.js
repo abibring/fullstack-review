@@ -19,7 +19,6 @@ const getWatchingFromGithub = access_token => {
 };
 
 const authenticateUser = access_token => {
-  access_token = access_token.token.slice(13);
   return axios.get(`https://api.github.com/user`, { params: { access_token }});
 };
 
