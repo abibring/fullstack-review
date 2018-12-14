@@ -14,6 +14,7 @@ const {
   getRepoReleases
 } = require('../api_helpers/github.js');
 require('dotenv').config();
+const { updatedScore } = require('./priorityHelper.js');
 
 const Cryptr = require('cryptr');
 const cryptr = new Cryptr(process.env.CRYPTR_SECRET);
@@ -28,7 +29,6 @@ module.exports = {
       }
       getTokenForUser(code)
         .then(({ data }) => {
-          // console.log('DATA', data)
           const access_token = data.split('&')[0];
           const token = access_token.slice(13);
           console.log('ACCESS', token);
@@ -131,6 +131,11 @@ module.exports = {
                     .then(dataThree => {
                       // store results in a variable
                       var tempResult = [...dataOne, ...dataTwo, ...dataThree];
+                    //   function updatedScore(z,t) {
+                    //     var u = Math.max(z,rate*t);
+                    //     var v = Math.min(z,rate*t);
+                    //     return u + Math.log1p(Math.exp(v-u))
+                    // }
                       var results = [];
                       // iterate over tempResult and push the "data" key into results
                       for (var i = 0; i < tempResult.length; i++) {
@@ -141,7 +146,7 @@ module.exports = {
                           results.push(tempResult[i].data);
                         }
                       }
-                      return results;
+                      return results.flat();
                     })
                     // call the result in a .then to ensure headers aren't sent multiple times
                     .then(result => res.send(result))
