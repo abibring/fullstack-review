@@ -11,8 +11,8 @@ const saveUser = (user, cb) => {
   });
 };
 
-const getUser = (email, cb) => {
-  User.find({ email }, (err, results) => {
+const getUser = (username, cb) => {
+  User.find({ username }, (err, results) => {
     if (err) {
       console.error('err in getUser:', err);
       cb(err, null);

@@ -36,7 +36,7 @@ module.exports = {
             .then(({ data }) => {
               saveUser(data, err => {
                 if (err) {
-                  getUser(data.email, (err, results) => {
+                  getUser(data.username, (err, results) => {
                     if (err) {
                       res.send(`
                         <html>
