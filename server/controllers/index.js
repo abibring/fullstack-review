@@ -14,7 +14,7 @@ const {
   getRepoReleases
 } = require('../api_helpers/github.js');
 require('dotenv').config();
-const { updatedScore } = require('./priorityHelper.js');
+const { updatedScore, sortByDate } = require('./sortingHelpers.js');
 
 const Cryptr = require('cryptr');
 const cryptr = new Cryptr(process.env.CRYPTR_SECRET);
@@ -146,7 +146,8 @@ module.exports = {
                           results.push(tempResult[i].data);
                         }
                       }
-                      return results.flat();
+                      let sortedResults = sortByDate(results.flat());
+                      res.send(sortedResults)
                     })
                     // call the result in a .then to ensure headers aren't sent multiple times
                     .then(result => res.send(result))
