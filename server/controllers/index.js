@@ -51,49 +51,7 @@ module.exports = {
         .catch(err => res.send(err));
     }
   },
-
-  signup: {
-    post: function(req, res) {
-      const { query } = req;
-      const { code } = query;
-      if (!code) {
-        return res.send({ success: false, message: 'Error: invalid code' });
-      }
-      getTokenForUser(code)
-        .then(({ data }) => {
-          const access_token = data.split('&')[0];
-          const token = access_token.slice(13);
-          const encryptedToken = cryptr.encrypt(token);
-          authenticateUser(access_token)
-            .then(({ data }) => {
-               saveUser(data, (err, results) => {
-                if (err) {
-                  res.send(`
-                    <html>
-                        <body>
-                          <script>
-                              window.localStorage.setItem('userToken', 'invalid');
-                              window.localStorage.setItem('username', 'invalid');
-                              window.location.pathname = '/';
-                          </script>
-                        </body>
-                    </html>`);
-                } else {
-                  res.send(`
-                    <html>
-                        <body>
-                          <script>
-                              window.localStorage.setItem('userToken', '${encryptedToken}');
-                              window.localStorage.setItem('username', '${results[0].username}');
-                              window.location.pathname = '/home';
-                          </script>
-                        </body>
-                    </html>`);
-                  }
-                });
-            }).catch(err => console.error('err in savingUser', err));
-          }).catch(err => console.error('err in savingUser Outside', err));
-  },
+  
   logout: {
     get: function(req, res) {
       req.session = null;
@@ -248,5 +206,4 @@ module.exports = {
       res.redirect('/');
     }
   }
-}
 }
