@@ -11,11 +11,11 @@ const ReleaseEvent = ({ release }) => (
     <span className="content">
       <b className="content-user">@{release.author.login}</b>
       <span className="content-break">|</span>
-      <i className="content-updated">{moment(release.created_at).startOf('day').fromNow()}</i>
+      <i className="content-updated">{moment(release.published_at).startOf('day').fromNow()}</i>
       <span className="content-break">|</span>{' '}Release Notification
       <div><b>Repo Name: </b>{release.html_url.slice(19).split('/')[0]}</div>
       <div><b>Repo Owner: </b>{release.html_url.slice(19).split('/')[1]}</div>
-      <div><b>Release Name: </b>{release.name}</div>
+      <div><b>Release Version: </b>{release.tag_name}</div>
       <Panel eventKey="1" className="message-ext">
         <Panel.Title toggle>Info:</Panel.Title>
         <Panel.Body collapsible>
