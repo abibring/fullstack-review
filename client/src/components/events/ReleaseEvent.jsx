@@ -4,7 +4,7 @@ import markdown from 'remove-markdown';
 import { ListGroupItem, Panel } from 'react-bootstrap';
 
 const ReleaseEvent = ({ release }) => (
-  <ListGroupItem key={release.id} className="events">
+  <ListGroupItem className="events">
     <span className="content-img">
       <img src={release.author.avatar_url} alt='avatar of release author' className="feed-img" />
     </span>

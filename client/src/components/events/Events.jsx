@@ -20,7 +20,7 @@ const Events = ({ events, notifications, pulls, associated, watching, starred })
           <ListGroup>
             {starred.length > 0 && starred.map(repoArr => (
                 repoArr.map(repo => (
-                  repo.pull_request 
+                  repo.pull_request && !repo.published_at && !repo.state 
                   ? 
                   <PullRequest pull={repo} key={repo.id} />
                   :
@@ -28,7 +28,7 @@ const Events = ({ events, notifications, pulls, associated, watching, starred })
                   ?
                   <IssuesEvent event={repo} key={repo.id} />
                   :
-                  repo.draft 
+                  repo.published_at 
                   ?
                   <ReleaseEvent release={repo} key={repo.id} />
                   :
