@@ -21,22 +21,20 @@ const Events = ({ events, notifications, pulls, associated, watching, starred })
         <Row>
           <Col xs={12} md={8} xsOffset={2}>
             <ListGroup>
-              {starredSorted.length > 0 && starredSorted.map(repoArr => (
-                  repoArr.map(repo => (
-                    repo.pull_request && !repo.published_at && !repo.state 
-                    ? 
-                    <PullRequest pull={repo} key={repo.id} />
-                    :
-                    repo.state
-                    ?
-                    <IssuesEvent event={repo} key={repo.id} />
-                    :
-                    repo.published_at 
-                    ?
-                    <ReleaseEvent release={repo} key={repo.id} />
-                    :
-                    ''
-                  ))
+              {starredSorted.length > 0 && starredSorted.map(repo => (
+                  repo.pull_request && !repo.published_at && !repo.state 
+                  ? 
+                  <PullRequest pull={repo} key={repo.id} />
+                  :
+                  repo.state
+                  ?
+                  <IssuesEvent event={repo} key={repo.id} />
+                  :
+                  repo.published_at 
+                  ?
+                  <ReleaseEvent release={repo} key={repo.id} />
+                  :
+                  ''
                 ) 
               )}
             </ListGroup>
