@@ -6,7 +6,7 @@ import NavigationBar from '../NavigationBar.jsx';
 export default class Home extends Component {
   constructor(props) {
     super(props);
-    this.state = { starred: [], watching: [], associated: [], issues: [], events: [], notifications: [], isAuthenticated: false };
+    this.state = { starred: [], watching: [], associated: [], issues: [], events: [], notifications: [], isAuthenticated: false, isLoading: true };
     this.getIssues = this.getIssues.bind(this);
     this.getWatching = this.getWatching.bind(this);
     this.getNotifications = this.getNotifications.bind(this);
@@ -90,17 +90,17 @@ export default class Home extends Component {
   getStarred() {
     const userToken = window.localStorage.getItem('userToken');
     axios.get('/user/starred', { params: { userToken }})
-      .then(({ data }) => this.setState({ starred: data }))
+      .then(({ data }) => this.setState({ starred: data, isLoading: false }))
       .catch(err => console.error(`err in componentDidMount: ${err}`));
   }
 
   render() {
-    const { issues, watching, starred, events, notifications, associated } = this.state;
+    const { issues, watching, starred, events, notifications, associated, isLoading } = this.state;
     const { history, cookies } = this.props;
     return (
       <div className="main">
         <NavigationBar history={history} signOut={this.signOut} />
-        <HomeFeed issues={issues} watching={watching} starred={starred} events={events} notifications={notifications} associated={associated}/>
+        <HomeFeed isLoading={isLoading} issues={issues} watching={watching} starred={starred} events={events} notifications={notifications} associated={associated}/>
       </div>
     );
   }

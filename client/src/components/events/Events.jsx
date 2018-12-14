@@ -3,12 +3,6 @@ import { ListGroup, Col, Row, Grid } from 'react-bootstrap';
 import PullRequest from './PullRequest.jsx';
 import IssuesEvent from './IssuesEvent.jsx';
 import ReleaseEvent from './ReleaseEvent.jsx';
-// import IssueCommentEvent from './IssueCommentEvent.jsx';
-// import PullRequestEvent from './PullRequestEvent.jsx';
-// import PullRequestReviewCommentEvent from './PullRequestReviewCommentEvent.jsx';
-// import PushEvent from './PushEvent.jsx';
-// import Notification from './Notification.jsx';
-// import AssociatedEvent from './AssociatedEvent.jsx';
 
 const Events = ({ events, notifications, pulls, associated, watching, starred }) => {
   let starredSorted = starred.flat().sort((a,b) => new Date(b.updated_at || b.published_at) - new Date(a.updated_at || a.published_at));
@@ -26,11 +20,11 @@ const Events = ({ events, notifications, pulls, associated, watching, starred })
                   ? 
                   <PullRequest pull={repo} key={repo.id} />
                   :
-                  repo.state
+                  repo.state && !repo.published_at
                   ?
                   <IssuesEvent event={repo} key={repo.id} />
                   :
-                  repo.published_at 
+                  repo.published_at
                   ?
                   <ReleaseEvent release={repo} key={repo.id} />
                   :
