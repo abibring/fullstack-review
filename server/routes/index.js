@@ -11,7 +11,7 @@ router.get('/user/associated', associated.get)
 router.get('/user/issues', issues.get);
 router.get('/repos', repos.get);
 router.get('/user/feed', feed.get);
-router.post('/signup', signup.post);
+// router.post('/signup', signup.post);
 router.get('/*', wildcard.get);
 
 
