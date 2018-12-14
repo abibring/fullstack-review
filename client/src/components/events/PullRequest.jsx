@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from 'moment';
+import markdown from 'remove-markdown';
 import { ListGroupItem, Panel } from 'react-bootstrap';
 
 const PullRequest = ({ pull }) => (
@@ -19,7 +20,7 @@ const PullRequest = ({ pull }) => (
       <Panel eventKey="1" className="message-ext">
         <Panel.Title toggle>View Pull Request Message</Panel.Title>
         <Panel.Body collapsible>
-          {pull.body}
+          {markdown(pull.body)}
         </Panel.Body>
       </Panel>
       <div><b>Pull Request Link: </b><a href={pull.pull_request.html_url} style={{ color: 'white' }}>{pull.pull_request.html_url}</a></div>
