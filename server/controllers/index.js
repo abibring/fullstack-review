@@ -34,61 +34,19 @@ module.exports = {
           const encryptedToken = cryptr.encrypt(token);
           authenticateUser(access_token)
             .then(({ data }) => {
-          //     saveUser(data, err => {
-          //       if (err) {
-          //         getUser(data.username, (err, results) => {
-          //           if (err) {
-          //             res.send(`
-          //               <html>
-          //                   <body>
-          //                     <script>
-          //                         window.localStorage.setItem('userToken', 'invalid');
-          //                         window.localStorage.setItem('username', 'invalid');
-          //                         window.location.pathname = '/';
-          //                     </script>
-          //                   </body>
-          //               </html>`);
-          //           } else {
-          //             res.send(`
-          //             <html>
-          //                 <body>
-          //                   <script>
-          //                       window.localStorage.setItem('userToken', '${encryptedToken}');
-          //                       window.localStorage.setItem('username', '${data.login}');
-          //                       window.location.pathname = '/home';
-          //                   </script>
-          //                 </body>
-          //             </html>`);
-          //           }
-          //         })
-          //       } else {
-          //         res.send(`
-          //         <html>
-          //             <body>
-          //               <script>
-          //                   window.localStorage.setItem('userToken', '${encryptedToken}');
-          //                   window.localStorage.setItem('username', '${data.login}');
-          //                   window.location.pathname = '/home';
-          //               </script>
-          //             </body>
-          //         </html>`);
-          //       }
-          //     })
-          //   }).catch(err => res.send(err));
-          // }).catch(err => res.send(err));
-          res.send(`
-            <html>
-                <body>
-                  <script>
-                      window.localStorage.setItem('userToken', '${encryptedToken}');
-                      window.localStorage.setItem('username', '${data.login}');
-                      window.location.pathname = '/home';
-                  </script>
-                </body>
-            </html>
-          `);
-        })
-        .catch(err => res.send(err))
+              res.send(`
+                <html>
+                    <body>
+                      <script>
+                          window.localStorage.setItem('userToken', '${encryptedToken}');
+                          window.localStorage.setItem('username', '${data.login}');
+                          window.location.pathname = '/home';
+                      </script>
+                    </body>
+                </html>
+              `);
+            })
+            .catch(err => res.send(err))
       })
         .catch(err => res.send(err))
     },
@@ -281,4 +239,5 @@ module.exports = {
       res.redirect('/');
     }
   }
+}
 }
