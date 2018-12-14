@@ -11,7 +11,7 @@ import ReleaseEvent from './ReleaseEvent.jsx';
 // import AssociatedEvent from './AssociatedEvent.jsx';
 
 const Events = ({ events, notifications, pulls, associated, watching, starred }) => {
-  let starredSorted = starred.flat().sort((a,b) => new Date(b.updated_at || b.created_at) - new Date(a.updated_at || a.created_at));
+  let starredSorted = starred.flat().sort((a,b) => new Date(b.updated_at || b.published_at) - new Date(a.updated_at || a.published_at));
   // console.log('SORTED', starredSorted)
   return (
     <div>
