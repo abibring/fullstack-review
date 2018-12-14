@@ -17,13 +17,13 @@ const IssuesEvent = ({ event }) => (
       {event.org ? <div><b>Organization:</b> {event.org && event.org.login}</div> : '' }
       {/* <div><b>Repo Name:</b> {event.repo.name}</div> */}
       <div><b>Issue Title:</b> {event.title}</div>
-      <div><b>Issue URL:</b> <a href={event.html_url}>Visit Issue on Github</a></div>
       <Panel eventKey="1" className="message-ext">
         <Panel.Title toggle>View Issue Message</Panel.Title>
         <Panel.Body collapsible>
           {markdown(event.body)}
         </Panel.Body>
       </Panel>
+      <div><b>Issue URL:</b> <a href={event.html_url} style={{ color: 'white'}}>Visit Issue on Github</a></div>
     </span>
   </ListGroupItem>
 );
