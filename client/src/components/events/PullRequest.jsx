@@ -17,17 +17,12 @@ const PullRequest = ({ pull }) => (
       <div><b>Repo Owner: </b>{pull.html_url.slice(19).split('/')[1]}</div>
       <div><b>Title: </b>{pull.title}</div>
       <Panel eventKey="1" className="message-ext">
-        <Panel.Title toggle>View Issue Message</Panel.Title>
+        <Panel.Title toggle>View Pull Request Message</Panel.Title>
         <Panel.Body collapsible>
           {pull.body}
         </Panel.Body>
       </Panel>
-      {pull.pull_request 
-      ? 
-      <div><b>Pull Request Link: </b><a href={pull.pull_request.html_url}>{pull.pull_request.html_url}</a></div>
-      :
-      <div><b>Issue Link: </b><a href={pull.html_url}>{pull.html_url}</a></div>
-      }
+      <div><b>Pull Request Link: </b><a href={pull.pull_request.html_url} style={{ color: 'white' }}>{pull.pull_request.html_url}</a></div>
     </span>
   </ListGroupItem>
 );
