@@ -10,7 +10,7 @@ const Releases = ({ release }) => (
     <span className="content">
       <b className="content-user">@{release.author.login}</b>
       <span className="content-break">|</span>
-      <i className="content-updated">{moment(release.updated_at).startOf('day').fromNow()}</i>
+      <i className="content-updated">{moment(release.created_at).startOf('day').fromNow()}</i>
       <span className="content-break">|</span>{' '}Pull Request
       <div><b>Repo Name: </b>{release.html_url.slice(19).split('/')[0]}</div>
       <div><b>Repo Owner: </b>{release.html_url.slice(19).split('/')[1]}</div>

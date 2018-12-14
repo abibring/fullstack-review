@@ -2,7 +2,7 @@ import React from 'react';
 import { ListGroup, Col, Row, Grid } from 'react-bootstrap';
 import PullRequest from './PullRequest.jsx';
 import IssuesEvent from './IssuesEvent.jsx';
-import Releases from './Releases.jsx';
+// import Releases from './Releases.jsx';
 // import IssueCommentEvent from './IssueCommentEvent.jsx';
 // import PullRequestEvent from './PullRequestEvent.jsx';
 // import PullRequestReviewCommentEvent from './PullRequestReviewCommentEvent.jsx';
@@ -18,8 +18,7 @@ const Events = ({ events, notifications, pulls, associated, watching, starred })
       <Row>
         <Col xs={12} md={8} xsOffset={2}>
           <ListGroup>
-            {starred.length > 0 && starred.map(repoArr => {
-              return (
+            {starred.length > 0 && starred.map(repoArr => (
                 repoArr.map(repo => (
                   repo.pull_request 
                   ? 
@@ -31,12 +30,13 @@ const Events = ({ events, notifications, pulls, associated, watching, starred })
                   :
                   repo.draft 
                   ?
-                  <Releases release={repo} key={repo.id} />
+                  // <Releases release={repo} key={repo.id} />
+                  <div></div>
                   :
                   ''
                 ))
               ) 
-            })}
+            )}
           </ListGroup>
         </Col>
       </Row>
