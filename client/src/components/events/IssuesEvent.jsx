@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from 'moment';
+import markdown from 'remove-markdown';
 import { ListGroupItem, Panel } from 'react-bootstrap';
 
 const IssuesEvent = ({ event }) => (
@@ -20,7 +21,7 @@ const IssuesEvent = ({ event }) => (
       <Panel eventKey="1" className="message-ext">
         <Panel.Title toggle>View Issue Message</Panel.Title>
         <Panel.Body collapsible>
-          {event.body}
+          {markdown(event.body)}
         </Panel.Body>
       </Panel>
     </span>
