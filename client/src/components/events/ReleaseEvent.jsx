@@ -17,7 +17,7 @@ const ReleaseEvent = ({ release }) => (
       <div><b>Repo Owner: </b>{release.html_url.slice(19).split('/')[1]}</div>
       <div><b>Release Version: </b>{release.tag_name}</div>
       <Panel eventKey="1" className="message-ext">
-        <Panel.Title toggle>Info:</Panel.Title>
+        <Panel.Title toggle><b>Click For Release Info</b></Panel.Title>
         <Panel.Body collapsible>
           {markdown(release.body)}
         </Panel.Body>
