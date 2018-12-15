@@ -5,7 +5,7 @@ import Events from '../events/Events.jsx';
 const HomeFeed = ({ issues, watching, starred, events, notifications, isLoading }) => (
   isLoading 
     ?
-    <div class="loader"></div>
+    <div className="loader"></div>
     :
     <Events 
       events={events} 

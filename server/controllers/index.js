@@ -14,7 +14,7 @@ const {
   getRepoReleases
 } = require('../api_helpers/github.js');
 require('dotenv').config();
-const { updatedScore, sortByDate } = require('./sortingHelpers.js');
+const { addRankingToData, isolateData, updateRanking } = require('./sortingHelpers.js');
 
 const Cryptr = require('cryptr');
 const cryptr = new Cryptr(process.env.CRYPTR_SECRET);
@@ -122,35 +122,33 @@ module.exports = {
           );
           // call issuePromise to resolve data from API
           issuePromise
-            .then(dataOne => {
+            .then(issueData => {
               // call notificationPromise to resolve data from API
               notificationPromise
-                .then(dataTwo => {
+                .then(notificationData => {
                   // call releasePromise to resolve data from API
                   releasePromise
-                    .then(dataThree => {
+                    .then(releaseData => {
                       // store results in a variable
-                      var tempResult = [...dataOne, ...dataTwo, ...dataThree];
-                    //   function updatedScore(z,t) {
-                    //     var u = Math.max(z,rate*t);
-                    //     var v = Math.min(z,rate*t);
-                    //     return u + Math.log1p(Math.exp(v-u))
-                    // }
-                      var results = [];
-                      // iterate over tempResult and push the "data" key into results
-                      for (var i = 0; i < tempResult.length; i++) {
-                        if (
-                          tempResult[i].data &&
-                          tempResult[i].data.length > 0
-                        ) {
-                          results.push(tempResult[i].data);
-                        }
-                      }
-                      let sortedResults = sortByDate(results.flat());
-                      res.send(sortedResults)
+                      let releaseInfo = isolateData(releaseData);
+                      let issueInfo = isolateData(issueData);
+                      let notificationInfo = isolateData(notificationData);
+
+                      let rankedReleasedData = addRankingToData(releaseInfo, 1);
+                      let rankedIssueData = addRankingToData(issueInfo, .4);
+                      let rankedNotificationInfo = addRankingToData(notificationInfo, .6);
+                      // console.log('RANKED RELEASES', rankedReleasedData)
+                      console.log('-------------------------------------------------');
+                      // console.log('RANKED ISSUES', rankedIssueData)
+                      console.log('-------------------------------------------------');
+                      // console.log('RANKED NOTIFICATIONS', rankedNotificationInfo)
+                      console.log('-------------------------------------------------');
+                      let tempResults = [...rankedReleasedData, ...rankedIssueData, ...rankedNotificationInfo];
+                      // use updateScore function
+                      let finalResults = updateRanking(tempResults);
+                      console.log('FINAL', finalResults)
+                      res.send(finalResults)
                     })
-                    // call the result in a .then to ensure headers aren't sent multiple times
-                    .then(result => res.send(result))
                     .catch(err => res.send(err));
                 })
                 .catch(err => res.send(err));

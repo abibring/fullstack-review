@@ -90,7 +90,7 @@ export default class Home extends Component {
   getStarred() {
     const userToken = window.localStorage.getItem('userToken');
     axios.get('/user/starred', { params: { userToken }})
-      .then(({ data }) => this.setState({ starred: data, isLoading: false }))
+      .then(({ data }) => this.setState({ starred: data.flat(), isLoading: false }))
       .catch(err => console.error(`err in componentDidMount: ${err}`));
   }
 
