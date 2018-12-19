@@ -4,7 +4,7 @@ import markdown from 'remove-markdown';
 import { ListGroupItem, Panel } from 'react-bootstrap';
 
 const PullRequest = ({ pull }) => (
-  <ListGroupItem key={pull.id} className="events">
+  <ListGroupItem key={pull.id} className="pull-event">
     <span className="content-img">
       <img src={pull.user.avatar_url} alt='avatar of pull creator' className="feed-img" />
     </span>
@@ -23,6 +23,7 @@ const PullRequest = ({ pull }) => (
           {markdown(pull.body)}
         </Panel.Body>
       </Panel>
+      <b>RANKING:</b> {pull.ranking}
       <div><b>Pull Request Link: </b><a href={pull.pull_request.html_url} style={{ color: 'white' }}>{pull.pull_request.html_url}</a></div>
     </span>
   </ListGroupItem>

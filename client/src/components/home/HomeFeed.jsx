@@ -2,16 +2,12 @@ import React from 'react';
 import Events from '../events/Events.jsx';
 
 
-const HomeFeed = ({ issues, watching, starred, events, notifications, isLoading }) => (
+const HomeFeed = ({ starred, isLoading }) => (
   isLoading 
     ?
     <div className="loader"></div>
     :
     <Events 
-      events={events} 
-      notifications={notifications} 
-      pulls={issues} 
-      watching={watching} 
       starred={starred} 
     />
 );

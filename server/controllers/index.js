@@ -14,7 +14,7 @@ const {
   getRepoReleases
 } = require('../api_helpers/github.js');
 require('dotenv').config();
-const { addRankingToData, isolateData, updateRanking } = require('./sortingHelpers.js');
+const { addRankingToData, isolateData, updateRanking, createArrayOfStarredRepoNameAndOwners, getDataForStarredRepos } = require('./sortingHelpers.js');
 
 const Cryptr = require('cryptr');
 const cryptr = new Cryptr(process.env.CRYPTR_SECRET);
@@ -31,12 +31,10 @@ module.exports = {
         .then(({ data }) => {
           const access_token = data.split('&')[0];
           const token = access_token.slice(13);
-          console.log('ACCESS', token);
 
           const encryptedToken = cryptr.encrypt(token);
           authenticateUser(token)
             .then(({ data }) => {
-              console.log(data)
               // saving user went here!
               res.send(`
                 <html>
@@ -49,10 +47,8 @@ module.exports = {
                     </body>
                 </html>
               `);
-            })
-            .catch(err => res.redirect('/'));
-        })
-        .catch(err => res.send(err));
+            }).catch(err => res.redirect('/'));
+        }).catch(err => res.send(err));
     }
   },
 
@@ -67,13 +63,7 @@ module.exports = {
     get: function(req, res) {
       const { userToken, username } = req.query;
       getRepoEvents(userToken, username)
-        .then(({ data }) => {
-          // console.log('DATA FROM REPO EVENTS', data.data);
-          // let headersSplitOnToken = data.headers.link.split('?');
-          // console.log('headersSplitOnToken', headersSplitOnToken);
-          // res.setHeader('link', data.headers.link)
-          res.send(data);
-        })
+        .then(({ data }) => res.send(data))
         .catch(err => res.send(err));
     }
   },
@@ -82,11 +72,7 @@ module.exports = {
     get: function(req, res) {
       const { userToken } = req.query;
       getWatchingFromGithub(userToken)
-        .then(({ data }) => {
-          // res.setHeader('link', data.headers.link)
-          // console.log('WATCHING', data.data)
-          res.send(data);
-        })
+        .then(({ data }) => res.send(data))
         .catch(err => res.send(err));
     }
   },
@@ -96,30 +82,14 @@ module.exports = {
       const { userToken } = req.query;
       getStarredRepos(userToken)
         .then(({ data }) => {
-          const reposStarred = [];
-          // iterate over data & push repo name and owner into reposStarred array
-          for (var i = 0; i < data.length; i++) {
-            let repo = data[i];
-            reposStarred.push({ repo: repo.name, owner: repo.owner.login });
-          }
-          // iterate over reposStarred & call issue endpoint for each repo. Store result.
-          const issuePromise = Promise.all(
-            reposStarred.map(repo => {
-              return getRepoIssues(repo.owner, repo.repo, userToken);
-            })
-          );
-          // iterate over reposStarred & call notification endpoint for each repo. Store result.
-          const notificationPromise = Promise.all(
-            reposStarred.map(repo => {
-              return getRepoNotifications(repo.owner, repo.repo, userToken);
-            })
-          );
-          // iterate over reposStarred & call release endpoint for each repo. Store result.
-          const releasePromise = Promise.all(
-            reposStarred.map(repo => {
-              return getRepoReleases(repo.owner, repo.repo, userToken);
-            })
-          );
+          // using data from API, create an array of objects that contain 
+          // each repo name and owner that user has starred
+          let reposStarred = createArrayOfStarredRepoNameAndOwners(data);
+          console.log(reposStarred)
+          let issuePromise = Promise.all(getDataForStarredRepos(reposStarred, userToken, getRepoIssues));
+          let notificationPromise = Promise.all(getDataForStarredRepos(reposStarred, userToken, getRepoNotifications));
+          let releasePromise = Promise.all(getDataForStarredRepos(reposStarred, userToken, getRepoReleases))
+
           // call issuePromise to resolve data from API
           issuePromise
             .then(issueData => {
@@ -133,29 +103,25 @@ module.exports = {
                       let releaseInfo = isolateData(releaseData);
                       let issueInfo = isolateData(issueData);
                       let notificationInfo = isolateData(notificationData);
-
-                      let rankedReleasedData = addRankingToData(releaseInfo, 1);
-                      let rankedIssueData = addRankingToData(issueInfo, .4);
-                      let rankedNotificationInfo = addRankingToData(notificationInfo, .6);
+                      let rankedReleasedData = addRankingToData(releaseInfo, 90, 'release');
+                      let rankedIssueData = addRankingToData(issueInfo, 75, 'issue');
+                      let rankedNotificationInfo = addRankingToData(notificationInfo, 90, 'notification');
                       // console.log('RANKED RELEASES', rankedReleasedData)
-                      console.log('-------------------------------------------------');
+                      // console.log('-------------------------------------------------');
                       // console.log('RANKED ISSUES', rankedIssueData)
-                      console.log('-------------------------------------------------');
+                      // console.log('-------------------------------------------------');
                       // console.log('RANKED NOTIFICATIONS', rankedNotificationInfo)
-                      console.log('-------------------------------------------------');
+                      // console.log('-------------------------------------------------');
                       let tempResults = [...rankedReleasedData, ...rankedIssueData, ...rankedNotificationInfo];
                       // use updateScore function
+                      // console.log('ABCD', tempResults)
                       let finalResults = updateRanking(tempResults);
-                      console.log('FINAL', finalResults)
+                      // console.log('FINAL RESULTS FROM STARRED', finalResults)
                       res.send(finalResults)
-                    })
-                    .catch(err => res.send(err));
-                })
-                .catch(err => res.send(err));
-            })
-            .catch(err => res.send(err));
-        })
-        .catch(err => res.send(err));
+                    }).catch(err => res.send(err));
+                }).catch(err => res.send(err));
+            }).catch(err => res.send(err));
+        }).catch(err => res.send(err));
     }
   },
 

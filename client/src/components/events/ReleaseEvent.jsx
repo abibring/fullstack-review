@@ -11,7 +11,7 @@ const ReleaseEvent = ({ release }) => (
     <span className="content">
       <b className="content-user">@{release.author.login}</b>
       <span className="content-break">|</span>
-      <i className="content-updated">{moment(release.created_at).startOf('day').fromNow()}</i>
+      <i className="content-updated">{moment(release.published_at).startOf('day').fromNow()}</i>
       <span className="content-break">|</span><span style={{ color: 'yellow', fontWeight: 'bold' }}>Release Notification</span>
       <div><b>Repo Name: </b>{release.html_url.slice(19).split('/')[0]}</div>
       <div><b>Repo Owner: </b>{release.html_url.slice(19).split('/')[1]}</div>
@@ -22,6 +22,7 @@ const ReleaseEvent = ({ release }) => (
           {markdown(release.body)}
         </Panel.Body>
       </Panel>
+      <div><b>RANKING:</b> {release.ranking}</div>
       <div><b>Release Link: </b><a href={release.html_url} style={{ color: 'white' }}>{release.html_url}</a></div>
     </span>
   </ListGroupItem>

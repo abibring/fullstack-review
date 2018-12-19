@@ -23,6 +23,7 @@ const IssuesEvent = ({ event }) => (
           {markdown(event.body)}
         </Panel.Body>
       </Panel>
+      <div><b>RANKING:</b> {event.ranking}</div>
       <div><b>Issue Link:</b> <a href={event.html_url} style={{ color: 'white'}}>Visit Issue on Github</a></div>
     </span>
   </ListGroupItem>
