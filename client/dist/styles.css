@@ -28,7 +28,7 @@
   margin: 10px;
   padding-top: 10px;
   background-color: rgb(156, 146, 245);
-  border: 5px solid rgb(255, 122, 136);
+  border: 5px solid rgb(249, 183, 189);
   outline-style: solid;
   outline-color: rgb(156, 146, 245);
 }
@@ -64,7 +64,7 @@
 }
 
 .issue-event-label {
-  color: rgb(255, 122, 136);
+  color: rgb(249, 183, 189);
   font-weight: bold;
 }
 

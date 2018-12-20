@@ -17,7 +17,7 @@ const ReleaseEvent = ({ release }) => (
       <div><b>Repo Name: </b>{release.html_url.slice(19).split('/')[0]}</div>
       <div><b>Repo Owner: </b>{release.html_url.slice(19).split('/')[1]}</div>
       <div><b>Release Version: </b>{release.tag_name}</div>
-      <div><b>RANKING:</b> {release.ranking}</div>
+      <div><b>Ranking:</b> {release.ranking}</div>
       <div><b>Release Link: </b><a href={release.html_url} style={{ color: 'white' }}>{release.html_url}</a></div>
       <Panel eventKey="1" className="message-ext">
         <Panel.Title toggle><b>Click For Release Info</b></Panel.Title>
