@@ -23,7 +23,7 @@ const ReleaseEvent = ({ release }) => (
       ?
         <div><b>Info: </b>{markdown(release.body)}</div>
       :
-        <div><b>Info: </b>{markdown(release.body.slice(500))}</div>
+        <div><b>Info: </b>{markdown(release.body).slice(500)}</div>
       }
 
     </span>
