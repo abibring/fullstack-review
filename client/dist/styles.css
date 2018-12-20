@@ -35,6 +35,16 @@
   font-weight: bold;
 }
 
+.pull-event-label {
+  color: rgb(255, 210, 76);
+  font-weight: bold;
+}
+
+.issue-event-label {
+  color: rgb(255, 122, 136);
+  font-weight: bold;
+}
+
 .pull-event {
   margin: 10px;
   padding-top: 10px;
