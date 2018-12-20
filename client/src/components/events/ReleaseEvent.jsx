@@ -19,7 +19,13 @@ const ReleaseEvent = ({ release }) => (
       <div><b>Release Version: </b>{release.tag_name}</div>
       <div><b>Ranking:</b> {release.ranking}</div>
       <div><b>Release Link: </b><a href={release.html_url} style={{ color: 'white' }}>{release.html_url}</a></div>
-      <div><b>Info: </b>{markdown(release.body)}</div>
+      {markdown(release.body).length > 500
+      ?
+        <div><b>Info: </b>{markdown(release.body)}</div>
+      :
+        <div><b>Info: </b>{markdown(release.body.slice(500))}</div>
+      }
+
     </span>
   </ListGroupItem>
 );
