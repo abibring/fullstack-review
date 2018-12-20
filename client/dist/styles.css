@@ -30,6 +30,11 @@
   outline-color: rgb(156, 146, 245);
 }
 
+.release-event-label {
+  color: rgb(72, 108, 255);
+  font-weight: bold;
+}
+
 .pull-event {
   margin: 10px;
   padding-top: 10px;
