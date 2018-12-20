@@ -8,7 +8,7 @@ const Events = ({ starred }) => {
   return (
     <div>
       <h3 style={{ paddingLeft: '40%' }}>Check Out The Latest Info</h3>
-      {console.log('starred', starred)}
+      {/* {console.log('starred', starred)} */}
       <Grid>
         <Row>
           <Col xs={12} md={8} xsOffset={2}>

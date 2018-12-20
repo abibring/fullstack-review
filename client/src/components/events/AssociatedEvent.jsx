@@ -23,7 +23,6 @@ const AssociatedEvent = ({ event }) => (
           {event.payload.issue.body}
         </Panel.Body>
       </Panel>
-      {/* <div><b>Issue Message:</b> {event.payload.issue.body}</div> */}
     </span>
   </ListGroupItem>
 );
