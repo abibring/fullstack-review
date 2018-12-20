@@ -25,13 +25,13 @@
   margin: 10px;
   padding-top: 10px;
   background-color: rgb(156, 146, 245);
-  border: 5px dashed rgb(0, 200, 255);
+  border: 5px dashed rgb(132, 228, 255);
   outline-style: solid;
   outline-color: rgb(156, 146, 245);
 }
 
 .release-event-label {
-  color: rgb(0, 200, 255);
+  color: rgb(132, 228, 255);
   font-weight: bold;
 }
 
