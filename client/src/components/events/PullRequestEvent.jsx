@@ -9,9 +9,9 @@ const PullRequestEvent = ({ event }) => (
     </span>
     <span className="content">
       <b className="content-user">@{event.actor.login}</b>
-      <span className="content-break">|</span>
+      <span className="content-break"> | </span>
       <i className="content-updated">{moment(event.created_at).startOf('day').fromNow()}</i>
-      <span className="content-break">|</span>
+      <span className="content-break"> | </span>
       <span className="pull-event-label">Pull Request Event</span>
       <div><b>Author Association: </b>{event.payload.pull_request.author_association}</div>
       {event.org ? <div><b>Organization: </b>{event.org && event.org.login}</div> : '' }

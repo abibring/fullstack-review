@@ -9,9 +9,10 @@ const IssuesEvent = ({ event }) => (
       <img src={event.user.avatar_url} alt='avatar' className="feed-img" />
     </span>
     <span className="content">
-      <b className="content-user">@{event.user.login}</b><span className="content-break">|</span>
+      <b className="content-user">@{event.user.login}</b>
+      <span className="content-break"> | </span>
       <i className="content-updated">{moment(event.updated_at).startOf('day').fromNow()}</i>
-      <span className="content-break">|</span>
+      <span className="content-break"> | </span>
       <span className="issue-event-label">Issue Event</span>
       <div><b>Author Association:</b> {event.author_association}</div>
       {event.org ? <div><b>Organization:</b> {event.org && event.org.login}</div> : '' }
