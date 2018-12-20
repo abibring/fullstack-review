@@ -20,7 +20,7 @@ const ReleaseEvent = ({ release }) => (
       <div><b>Ranking:</b> {release.ranking}</div>
       <div><b>Release Link: </b><a href={release.html_url} style={{ color: 'white' }}>{release.html_url}</a></div>
       <Panel eventKey="1" className="message-ext">
-        <Panel.Title toggle><b>Click For Release Info</b></Panel.Title>
+        <Panel.Title toggle><b>View Release Information</b></Panel.Title>
         <Panel.Body collapsible>
           {markdown(release.body)}
         </Panel.Body>

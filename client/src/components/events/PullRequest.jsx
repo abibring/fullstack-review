@@ -20,7 +20,7 @@ const PullRequest = ({ pull }) => (
       <b>Ranking:</b> {pull.ranking}
       <div><b>Pull Request Link: </b><a href={pull.pull_request.html_url} style={{ color: 'white' }}>{pull.pull_request.html_url}</a></div>
       <Panel eventKey="1" className="message-ext">
-        <Panel.Title toggle>View Pull Request Message</Panel.Title>
+        <Panel.Title toggle>View Pull Request Information</Panel.Title>
         <Panel.Body collapsible>
           {markdown(pull.body)}
         </Panel.Body>

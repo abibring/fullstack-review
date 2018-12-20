@@ -20,7 +20,7 @@ const IssuesEvent = ({ event }) => (
       <div><b>Ranking:</b> {event.ranking}</div>
       <div><b>Issue Link:</b> <a href={event.html_url} style={{ color: 'white'}}>Visit Issue on Github</a></div>
       <Panel eventKey="1" className="message-ext">
-        <Panel.Title toggle>View Issue Message</Panel.Title>
+        <Panel.Title toggle>View Issue Information</Panel.Title>
         <Panel.Body collapsible>
           {markdown(event.body)}
         </Panel.Body>
