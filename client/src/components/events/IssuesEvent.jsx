@@ -4,7 +4,7 @@ import markdown from 'remove-markdown';
 import { ListGroupItem, Panel } from 'react-bootstrap';
 
 const IssuesEvent = ({ event }) => (
-  <ListGroupItem key={event.id} className="events">
+  <ListGroupItem key={event.id} className="issue-event">
     <span className="content-img">
       <img src={event.user.avatar_url} alt='avatar' className="feed-img" />
     </span>
@@ -12,7 +12,7 @@ const IssuesEvent = ({ event }) => (
       <b className="content-user">@{event.user.login}</b><span className="content-break">|</span>
       <i className="content-updated">{moment(event.updated_at).startOf('day').fromNow()}</i>
       <span className="content-break">|</span>
-      Issue Event
+      <span className="issue-event-label">Issue Event</span>
       <div><b>Author Association:</b> {event.author_association}</div>
       {event.org ? <div><b>Organization:</b> {event.org && event.org.login}</div> : '' }
       {/* <div><b>Repo Name:</b> {event.repo.name}</div> */}

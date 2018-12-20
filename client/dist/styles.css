@@ -2,6 +2,7 @@
   /* background-image: linear-gradient(to right, #8860D0, #84CEEB); */
   background-color: white;
 }
+
 .footer {
   position: relative;
   width: 100%;
@@ -21,6 +22,17 @@
   outline-color: rgb(156, 146, 245);
 }
 
+/* Event Containers */
+
+.issue-event {
+  margin: 10px;
+  padding-top: 10px;
+  background-color: rgb(156, 146, 245);
+  border: 5px solid rgb(255, 122, 136);
+  outline-style: solid;
+  outline-color: rgb(156, 146, 245);
+}
+
 .release-event {
   margin: 10px;
   padding-top: 10px;
@@ -29,6 +41,17 @@
   outline-style: solid;
   outline-color: rgb(156, 146, 245);
 }
+
+.pull-event {
+  margin: 10px;
+  padding-top: 10px;
+  background-color: rgb(156, 146, 245);
+  border: 5px solid rgb(255, 210, 76);
+  outline-style: solid;
+  outline-color: rgb(156, 146, 245);
+}
+
+/* Event Labels */
 
 .release-event-label {
   color: rgb(132, 228, 255);
@@ -45,14 +68,7 @@
   font-weight: bold;
 }
 
-.pull-event {
-  margin: 10px;
-  padding-top: 10px;
-  background-color: rgb(156, 146, 245);
-  border: 5px solid rgb(255, 210, 76);
-  outline-style: solid;
-  outline-color: rgb(156, 146, 245);
-}
+/* Shared Event Styles */
 
 .message-ext {
   background-color: rgb(156, 146, 245);
@@ -103,6 +119,8 @@
 .content-body {
   top: 50px;
 }
+
+/* Loading State */
 
 .loader {
   border: 16px solid #f3f3f3; /* Light grey */
