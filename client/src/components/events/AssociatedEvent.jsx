@@ -1,6 +1,6 @@
 import React from 'react';
 import moment from 'moment';
-import { ListGroupItem, Panel } from 'react-bootstrap';
+import { ListGroupItem } from 'react-bootstrap';
 
 const AssociatedEvent = ({ event }) => (
   <ListGroupItem key={event.id} className="events">
@@ -17,14 +17,11 @@ const AssociatedEvent = ({ event }) => (
       <div><b>Repo Name:</b> {event.repo.name}</div>
       <div><b>Issue Title:</b> {event.payload.issue.title}</div>
       <div><b>Issue URL:</b> <a href={event.payload.issue.html_url}>Visit Issue on Github</a></div>
-      <Panel eventKey="1" className="message-ext">
-        <Panel.Title toggle>View Issue Message</Panel.Title>
-        <Panel.Body collapsible>
-          {event.payload.issue.body}
-        </Panel.Body>
-      </Panel>
+      <div><b>Info:</b>{event.payload.issue.body}</div>
     </span>
   </ListGroupItem>
 );
 
 export default AssociatedEvent;
+
+

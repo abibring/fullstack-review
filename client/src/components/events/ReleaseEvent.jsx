@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import markdown from 'remove-markdown';
-import { ListGroupItem, Panel } from 'react-bootstrap';
+import { ListGroupItem } from 'react-bootstrap';
 
 const ReleaseEvent = ({ release }) => (
   <ListGroupItem className="release-event">
@@ -19,12 +19,7 @@ const ReleaseEvent = ({ release }) => (
       <div><b>Release Version: </b>{release.tag_name}</div>
       <div><b>Ranking:</b> {release.ranking}</div>
       <div><b>Release Link: </b><a href={release.html_url} style={{ color: 'white' }}>{release.html_url}</a></div>
-      <Panel eventKey="1" className="message-ext">
-        <Panel.Title toggle><b>View Release Information</b></Panel.Title>
-        <Panel.Body collapsible>
-          {markdown(release.body)}
-        </Panel.Body>
-      </Panel>
+      <div><b>Info: </b>{markdown(release.body)}</div>
     </span>
   </ListGroupItem>
 );

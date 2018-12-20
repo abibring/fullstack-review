@@ -17,7 +17,7 @@
   margin: 10px;
   padding-top: 10px;
   background-color: rgb(156, 146, 245);
-  border: 5px solid rgb(255, 122, 136);
+  border: 5px dashed rgb(255, 122, 136);
   outline-style: solid;
   outline-color: rgb(156, 146, 245);
 }
@@ -28,7 +28,7 @@
   margin: 10px;
   padding-top: 10px;
   background-color: rgb(156, 146, 245);
-  border: 5px solid rgb(249, 183, 189);
+  border: 5px dashed rgb(249, 183, 189);
   outline-style: solid;
   outline-color: rgb(156, 146, 245);
 }
@@ -46,7 +46,7 @@
   margin: 10px;
   padding-top: 10px;
   background-color: rgb(156, 146, 245);
-  border: 5px solid rgb(255, 210, 76);
+  border: 5px dashed rgb(255, 210, 76);
   outline-style: solid;
   outline-color: rgb(156, 146, 245);
 }
@@ -66,6 +66,13 @@
 .issue-event-label {
   color: rgb(249, 183, 189);
   font-weight: bold;
+}
+
+.event-time-label {
+  color: rgb(88, 104, 167);
+  font-size: 20px;
+  padding-right: 10px;
+  padding-left: 10px;
 }
 
 /* Shared Event Styles */
@@ -109,12 +116,6 @@
 .content-user {
   font-size: 20px;
   color: rgb(0, 35, 176);
-}
-
-.content-break {
-  font-size: 20px;
-  padding-right: 10px;
-  padding-left: 10px;
 }
 
 .content-body {
