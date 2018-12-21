@@ -21,7 +21,7 @@ const ReleaseEvent = ({ release }) => (
       <div><b>Release Link: </b><a href={release.html_url} className="event-link">{release.html_url}</a></div>
       <div><b>Info: </b>{markdown(release.body)}</div>
       {console.log('LENGTH', markdown(release.body).length)}
-      {console.log('TYPEOF', typeof markdown(release.body))}
+      {console.log('TYPEOF', markdown(release.body.slice(500)))}
     </span>
   </ListGroupItem>
 );
