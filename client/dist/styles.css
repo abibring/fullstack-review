@@ -122,6 +122,10 @@
   color: rgb(0, 35, 176);
 }
 
+.content-break {
+  font-weight: bold;
+}
+
 .content-body {
   top: 50px;
 }
