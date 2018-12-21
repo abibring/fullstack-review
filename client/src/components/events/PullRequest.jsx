@@ -14,12 +14,17 @@ const PullRequest = ({ pull }) => (
       <i className="content-updated">{moment(pull.updated_at).startOf('day').fromNow()}</i>
       <span className="content-break"> | </span>
       <span className="pull-event-label">{pull.pull_request ? 'Pull Request' : 'Issue Event'}</span>
-      <div><b>Repo Name: </b>{pull.html_url.slice(19).split('/')[0]}</div>
+      <span className="repo-name">{pull.html_url.slice(19).split('/')[0]}</span>
       <div><b>Repo Owner: </b>{pull.html_url.slice(19).split('/')[1]}</div>
       <div><b>Title: </b>{pull.title}</div>
       <b>Ranking:</b> {pull.ranking}
-      <div><b>Pull Request Link: </b><a href={pull.pull_request.html_url} className="event-link">{pull.pull_request.html_url}</a></div>
+      {markdown(pull.body).length > 500
+      ?
+      <div><b>Info: </b>{markdown(pull.body).slice(0, 500) + '...'}</div>
+      :
       <div><b>Info: </b>{markdown(pull.body)}</div>
+      }
+      <div><b>View Pull Request: </b><a href={pull.pull_request.html_url} className="event-link">{pull.pull_request.html_url}</a></div>
     </span>
   </ListGroupItem>
 );

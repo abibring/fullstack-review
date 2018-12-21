@@ -13,7 +13,7 @@ const IssueCommentEvent = ({ event }) => (
       <i className="content-updated">{moment(event.payload.issue.updated_at).startOf('day').fromNow()}</i>
       <span className="content-break">|</span>
       <span className="issue-event-label">Issue Comment Event</span>
-      <div><b>Repo Name: </b>{event.repo.name}</div>
+      <span className="repo-name"><b>Repo: </b>{event.repo.name}</span>
       <div><b>Author Association: </b>{event.payload.issue.author_association}</div>
       {event.org ? <div><b>Organization: </b>{event.org && event.org.login}</div> : '' }
       <div><b>Issue Comment Title: </b>{event.payload.issue.title}</div>

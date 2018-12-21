@@ -36,7 +36,7 @@
 .release-event {
   margin: 10px;
   padding-top: 10px;
-  background-color: rgb(156, 146, 245);
+  background-color: rgba(124, 112, 125, 0.729);
   border: 5px dashed rgb(132, 228, 255);
   outline-style: solid;
   outline-color: rgb(156, 146, 245);
@@ -82,6 +82,12 @@
   border-color: rgb(156, 146, 245);
 }
 
+.repo-owner {
+  font-weight: bold;
+  font-size: 16px;
+  color: white;
+}
+
 .feed-img {
   height: 100px;
   width: 100px;
@@ -99,10 +105,25 @@
 }
 
 .content {
-  padding: 0 0 0 110px;
+  padding: 0 0 0 120px;
   position: relative;
   display: block;
   margin-bottom: 10px;
+}
+
+.repo-name {
+  position:  absolute;
+  top: 5px; 
+  right: 0px;
+  color: rgb(252, 186, 63);
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.release-repo-name {
+  color: rgb(252, 186, 63);
+  font-weight: bold;
+  font-size: 16px;
 }
 
 .content-img {
@@ -118,12 +139,14 @@
 }
 
 .content-user {
-  font-size: 20px;
+  font-size: 16px;
   color: rgb(0, 35, 176);
 }
 
 .content-break {
   font-weight: bold;
+  padding-left: 3px;
+  padding-right: 3px;
 }
 
 .content-body {
