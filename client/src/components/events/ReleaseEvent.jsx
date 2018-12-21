@@ -18,10 +18,10 @@ const ReleaseEvent = ({ release }) => (
       <div><b>Repo Owner: </b>{release.html_url.slice(19).split('/')[1]}</div>
       <div><b>Release Version: </b>{release.tag_name}</div>
       <div><b>Ranking:</b> {release.ranking}</div>
-      <div><b>Release Link: </b><a href={release.html_url} style={{ color: 'white' }}>{release.html_url}</a></div>
+      <div><b>Release Link: </b><a href={release.html_url} className="event-link">{release.html_url}</a></div>
       {markdown(release.body).length < 500
       ?
-        <div><b>Info: </b>{markdown(release.body.slice(500))}</div>
+        <div><b>Info: </b>{markdown(release.body)}</div>
       :
         <div><b>Info: </b>{markdown(release.body).slice(500)}</div>
       }

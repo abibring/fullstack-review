@@ -89,6 +89,10 @@
   padding-right: 5px; 
 }
 
+.event-link {
+  color: white;
+}
+
 .reason {
   font-weight: bold;
   padding-left: 35%;

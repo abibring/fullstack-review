@@ -16,7 +16,7 @@ const AssociatedEvent = ({ event }) => (
       {event.org ? <div><b>Organization:</b> {event.org && event.org.login}</div> : '' }
       <div><b>Repo Name:</b> {event.repo.name}</div>
       <div><b>Issue Title:</b> {event.payload.issue.title}</div>
-      <div><b>Issue URL:</b> <a href={event.payload.issue.html_url}>Visit Issue on Github</a></div>
+      <div><b>Issue URL:</b> <a href={event.payload.issue.html_url} className="event-link">Visit Issue on Github</a></div>
       <div><b>Info:</b>{event.payload.issue.body}</div>
     </span>
   </ListGroupItem>

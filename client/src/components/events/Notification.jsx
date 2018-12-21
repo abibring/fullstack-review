@@ -16,7 +16,7 @@ const Notification = ({ notification }) => (
       <div><b>Notification Type: </b>{notification.subject.type}</div>
       <div><b>Repo: </b>{notification.repository.name}</div>
       <div><b>Notification Type: </b>{notification.subject.type}</div>
-      <div><a href={notification.repository.html_url}>Click To Visit Repo</a></div>
+      <div><a href={notification.repository.html_url} className="event-link">Click To Visit Repo</a></div>
     </div>
   </ListGroupItem>
 );

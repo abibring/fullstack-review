@@ -17,7 +17,7 @@ const IssueCommentEvent = ({ event }) => (
       <div><b>Author Association: </b>{event.payload.issue.author_association}</div>
       {event.org ? <div><b>Organization: </b>{event.org && event.org.login}</div> : '' }
       <div><b>Issue Comment Title: </b>{event.payload.issue.title}</div>
-      <div><b>Issue Comment URL: </b><a href={event.payload.issue.html_url}>Visit Issue on Github</a></div>
+      <div><b>Issue Comment URL: </b><a href={event.payload.issue.html_url} className="event-link">Visit Issue on Github</a></div>
       <div><b>Info: </b> {event.payload.issue.body}</div>
     </span>
   </ListGroupItem>

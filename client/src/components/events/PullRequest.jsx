@@ -18,7 +18,7 @@ const PullRequest = ({ pull }) => (
       <div><b>Repo Owner: </b>{pull.html_url.slice(19).split('/')[1]}</div>
       <div><b>Title: </b>{pull.title}</div>
       <b>Ranking:</b> {pull.ranking}
-      <div><b>Pull Request Link: </b><a href={pull.pull_request.html_url} style={{ color: 'white' }}>{pull.pull_request.html_url}</a></div>
+      <div><b>Pull Request Link: </b><a href={pull.pull_request.html_url} className="event-link">{pull.pull_request.html_url}</a></div>
       <div><b>Info: </b>{markdown(pull.body)}</div>
     </span>
   </ListGroupItem>

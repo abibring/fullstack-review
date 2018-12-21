@@ -19,7 +19,7 @@ const IssuesEvent = ({ event }) => (
       {/* <div><b>Repo Name:</b> {event.repo.name}</div> */}
       <div><b>Issue Title:</b> {event.title}</div>
       <div><b>Ranking:</b> {event.ranking}</div>
-      <div><b>Issue Link:</b> <a href={event.html_url} style={{ color: 'white'}}>Visit Issue on Github</a></div>
+      <div><b>Issue Link:</b> <a href={event.html_url} className="event-link">Visit Issue on Github</a></div>
       <div><b>Info:</b></div>{markdown(event.body)}
     </span>
   </ListGroupItem>
