@@ -1,23 +1,27 @@
 import React from 'react';
 import moment from 'moment';
 import markdown from 'remove-markdown';
-import { ListGroupItem } from 'react-bootstrap';
+import { ListGroupItem, Image } from 'react-bootstrap';
 
 const PullRequest = ({ pull }) => (
   <ListGroupItem key={pull.id} className="pull-event">
     <span className="content-img">
+      {/* {console.log('pull', pull.html_url.split('/')[3])} */}
       <img src={pull.user.avatar_url} alt='avatar of pull creator' className="feed-img" />
+      <b className="content-user">@{pull.user.login}</b>
     </span>
     <span className="content">
-      <b className="content-user">@{pull.user.login}</b>
-      <span className="content-break"> | </span>
+      <span className="pull-event-label">Pull Request</span>
+      <span className="content-break"> | </span>{'    '}
+      <Image src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c2.png?v8"  alt="folder image" style={{ height: 28, width: 24 }}/>{'    '}
+      <span className="pull-request-repo-name">{pull.html_url.split('/')[3]}</span>
+      <span className="content-break"> | </span>{'    '}
+      <Image src="https://github.githubassets.com/images/icons/emoji/unicode/1f4db.png?v8" alt="user image" style={{ height: 20, width: 24 }} />{'     '}
+      <span className="repo-owner">{pull.html_url.split('/')[4]}</span>
+      <span className="content-break"> | </span>{'    '}
       <i className="content-updated">{moment(pull.updated_at).startOf('day').fromNow()}</i>
-      <span className="content-break"> | </span>
-      <span className="pull-event-label">{pull.pull_request ? 'Pull Request' : 'Issue Event'}</span>
-      <span className="repo-name">{pull.html_url.slice(19).split('/')[0]}</span>
-      <div><b>Repo Owner: </b>{pull.html_url.slice(19).split('/')[1]}</div>
-      <div><b>Title: </b>{pull.title}</div>
-      <b>Ranking:</b> {pull.ranking}
+      <div><b>PR Title: </b>{pull.title}</div>
+      <div><b>Ranking:</b> {pull.ranking}</div>
       {markdown(pull.body).length > 500
       ?
       <div><b>Info: </b>{markdown(pull.body).slice(0, 500) + '...'}</div>

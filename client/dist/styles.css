@@ -1,6 +1,6 @@
 .main {
   /* background-image: linear-gradient(to right, #8860D0, #84CEEB); */
-  background-color: rgb(243, 223, 250);
+  /* background-color: rgb(243, 223, 250); */
 }
 
 .footer {
@@ -122,6 +122,12 @@
 
 .release-repo-name {
   color: rgb(252, 186, 63);
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.pull-request-repo-name {
+  color: rgb(255, 210, 76);
   font-weight: bold;
   font-size: 16px;
 }

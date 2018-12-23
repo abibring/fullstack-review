@@ -4,7 +4,7 @@ import { ListGroupItem } from 'react-bootstrap';
 
 const Notification = ({ notification }) => (
   <ListGroupItem key={notification.id} className="events">
-    <b className="content-user">@{notification.repository.owner.login}</b>
+    <b className="content-img">@{notification.repository.owner.login}</b>
     <span className="content-break">|</span>
     <i className="content-updated">{moment(notification.updated_at).startOf('day').fromNow()}</i>
     <span className="content-break">|</span>

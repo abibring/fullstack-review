@@ -18,45 +18,34 @@ module.exports = {
     return results;
   },
   addRankingToData: function(arr, n, type) {
-    if (Array.isArray(arr[0])) {
-      arr = arr[0];
-    }
-
+      arr = [...arr];
+      if (Array.isArray(arr[0])) {
+        arr = arr[0];
+      }
     for (let i = 0; i < arr.length; i++) {
-      let repo = arr[i];
-      let rankingBasedOnTime;
-      let secondsPast;
+      const repo = arr[i];
       const now = new Date();
+      let secondsPast;
       if (type === 'release') {
-        let publishedAt = new Date(repo.published_at);
-        secondsPast = (now.getTime() - publishedAt.getTime()) / 1000;
+        const publishedAt = new Date(repo.published_at);
+        secondsPast = (now.getTime() - publishedAt.getTime());
       } else if (type === 'issue') {
-        let updatedAt = new Date(repo.updated_at);
-        secondsPast = (now.getTime() - updatedAt.getTime()) / 1000;
+        const updatedAt = new Date(repo.updated_at);
+        secondsPast = (now.getTime() - updatedAt.getTime());
       } else if (type === 'notification') {
-        let createdAt = new Date(repo.created_at);
-        secondsPast = (now.getTime() - createdAt.getTime()) / 1000;
+        const createdAt = new Date(repo.created_at);
+        secondsPast = (now.getTime() - createdAt.getTime());
+      } else if (type === 'pull_request') {
+        const createdAtPR = new Date(repo.created_at);
+        secondsPast = (now.getTime() - createdAtPR.getTime());
       }
-      if (secondsPast < 216000) {
-        rankingBasedOnTime = 100;
-      } else if (secondsPast < 5184000) {
-        rankingBasedOnTime = 95;
-      } else if (secondsPast < 5184000 * 7) {
-        rankingBasedOnTime = 60;
-      } else if (secondsPast < 5184000 * 14) {
-        rankingBasedOnTime = 45;
-      } else if (secondsPast < 5184000 * 30) {
-        rankingBasedOnTime = 30;
-      } else if (secondsPast < 5184000 * 60) {
-        rankingBasedOnTime = 20;
-      } else {
-        rankingBasedOnTime = 10;
-      }
-      repo.ranking = n * rankingBasedOnTime/1000;
+      repo.ranking = (n * Math.pow(1 / secondsPast, 2));
     }
     return arr;
   },
   updateRanking: function(arr) {
+    console.log('ARR', arr)
+    arr = [...arr];
     return arr.sort((a, b) => {
       if (b.ranking - a.ranking === 0) {
          return b.published_at || b.created_at - a.published_at || a.created_at;
@@ -67,6 +56,19 @@ module.exports = {
   }, 
   getDataForStarredRepos: function(array, userToken, cb) {
     return array.map(repo => cb(repo.owner, repo.repo, userToken));
+  },
+  sortIssuesFromPullRequests: async function(arr) {
+    const pullRepos = [];
+    const issueRepos = [];
+    arr = [...arr];
+    arr.map(repo => {
+      if (repo.pull_request) {
+        pullRepos.push(repo);
+      } else {
+        issueRepos.push(repo);
+      }
+    });
+    return [...pullRepos, ...issueRepos];
   }
 }
 

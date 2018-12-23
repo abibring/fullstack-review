@@ -7,6 +7,7 @@ import ReleaseEvent from './ReleaseEvent.jsx';
 const Events = ({ starred }) => {
   return (
     <div>
+      {console.log(starred)}
       <h3 style={{ paddingLeft: '40%' }}>Check Out The Latest Info</h3>
       {/* {console.log('starred', starred)} */}
       <Grid>
