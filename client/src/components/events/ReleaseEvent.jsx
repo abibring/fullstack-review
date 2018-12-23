@@ -5,7 +5,6 @@ import { ListGroupItem, Image } from 'react-bootstrap';
 
 const ReleaseEvent = ({ release }) => (
   <ListGroupItem className="release-event">
-    {console.log('release', release)}
     <span className="content-img">
       <img src={release.author.avatar_url} alt='avatar of release author' className="feed-img" />
       <b className="content-user">@{release.author.login}</b>

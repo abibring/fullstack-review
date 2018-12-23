@@ -1,6 +1,5 @@
 .main {
-  /* background-image: linear-gradient(to right, #8860D0, #84CEEB); */
-  /* background-color: rgb(243, 223, 250); */
+  background-color: rgba(113, 108, 108, 0.407);
 }
 
 .footer {
@@ -16,7 +15,7 @@
 .events {
   margin: 10px;
   padding-top: 10px;
-  background-color: rgb(156, 146, 245);
+  background-color: white;
   border: 5px dashed rgb(255, 122, 136);
   outline-style: solid;
   outline-color: rgb(156, 146, 245);
@@ -27,7 +26,7 @@
 .issue-event {
   margin: 10px;
   padding-top: 10px;
-  background-color: rgb(156, 146, 245);
+  background-color: white;
   border: 5px dashed rgb(249, 183, 189);
   outline-style: solid;
   outline-color: rgb(156, 146, 245);
@@ -36,7 +35,7 @@
 .release-event {
   margin: 10px;
   padding-top: 10px;
-  background-color: rgba(124, 112, 125, 0.729);
+  background-color: white;
   border: 5px dashed rgb(132, 228, 255);
   outline-style: solid;
   outline-color: rgb(156, 146, 245);
@@ -45,7 +44,7 @@
 .pull-event {
   margin: 10px;
   padding-top: 10px;
-  background-color: rgb(156, 146, 245);
+  background-color: white;
   border: 5px dashed rgb(255, 210, 76);
   outline-style: solid;
   outline-color: rgb(156, 146, 245);
@@ -85,7 +84,7 @@
 .repo-owner {
   font-weight: bold;
   font-size: 16px;
-  color: white;
+  color: rgba(81, 78, 78, 0.407);
 }
 
 .feed-img {
@@ -96,7 +95,7 @@
 }
 
 .event-link {
-  color: white;
+  color: rgb(64, 81, 242);
 }
 
 .reason {

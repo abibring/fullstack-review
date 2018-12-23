@@ -105,17 +105,16 @@ module.exports = {
                       const sortedPullRequestsFromIssuesPromise = sortIssuesFromPullRequests(issueInfo);
                       sortedPullRequestsFromIssuesPromise
                         .then(sortedRepos => {
-                          const pullRepos = sortedRepos[0];
+                          const pullRequestRepos = sortedRepos[0];
                           const issueRepos = sortedRepos[1];
                           const rankedReleasedData = addRankingToData(releaseInfo, 10000, 'release');
-                          const rankedIssueData = addRankingToData(pullRepos, 50, 'issue');
+                          const rankedIssueData = addRankingToData(pullRequestRepos, 50, 'issue');
                           const rankedPullRequests = addRankingToData(issueRepos, 25, 'pull_request');
                           const rankedNotificationInfo = addRankingToData(notificationInfo, 500, 'notification');
                           const tempResults = [...rankedReleasedData, ...rankedIssueData, ...rankedPullRequests, ...rankedNotificationInfo];
                           const finalResults = updateRanking(tempResults);
                           res.send(finalResults);        
-                          })
-                          .catch(err => res.send(err));
+                        }).catch(err => res.send(err));
                     }).catch(err => res.send(err));
                 }).catch(err => res.send(err));
             }).catch(err => res.send(err));
@@ -127,9 +126,7 @@ module.exports = {
     get: function(req, res) {
       const { userToken } = req.query;
       getUserNotifications(userToken)
-        .then(({ data }) => {
-          res.send(data);
-        })
+        .then(({ data }) => res.send(data))
         .catch(err => res.send(err));
     }
   },
