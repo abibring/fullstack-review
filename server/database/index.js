@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 require('dotenv').config();
+
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true }); // connect to mlab for deployment
 
 const repoSchema = mongoose.Schema({
@@ -11,10 +12,6 @@ const repoSchema = mongoose.Schema({
   date: Date
 });
 
-const termSchema = mongoose.Schema({
-  term: { type: String, unique: true },
-});
-
 const userSchema = mongoose.Schema({
   token: String,
   github_id: String,
@@ -24,7 +21,6 @@ const userSchema = mongoose.Schema({
 });
 
 const User = mongoose.model('User', userSchema);
-const Term = mongoose.model('Term', termSchema);
 const Repo = mongoose.model('Repo', repoSchema);
 
-module.exports = { User, Term, Repo };
+module.exports = { User, Repo };
