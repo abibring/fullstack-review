@@ -22,7 +22,7 @@ const PullRequest = ({ pull }) => (
       <span className="repo-owner">{pull.html_url.split('/')[4]}</span>
       <span className="content-break"> | </span>{'    '}
       <i className="content-updated">{moment(pull.updated_at).startOf('day').fromNow()}</i>
-      <div><b>PR Title: </b>{pull.title}</div>
+      <div><b>{pull.title}</b></div>
       {/* <div><b>Ranking:</b> {pull.ranking}</div> */}
       {markdown(pull.body).length > 500
       ?

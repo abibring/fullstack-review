@@ -32,7 +32,7 @@ const IssuesEvent = ({ event }) => {
         {event.org ? <div><b>Organization:</b> {event.org && event.org.login}</div> : '' }
         {markdown(event.body).length > 500
         ?
-        <div><b>Info: </b>{markdown(event.body).slice(0, 500) + '...'}</div>
+        <div><b>Info: </b>{markdown(event.body).slice(0, 500) + ' ...'}</div>
         :
         <div><b>Info: </b>{markdown(event.body)}</div>
       }
