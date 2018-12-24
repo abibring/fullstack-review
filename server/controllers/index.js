@@ -87,18 +87,22 @@ module.exports = {
   starred: {
     get: function(req, res) {
       const { userToken } = req.query;
+      // console.log(getStarredRepos)
       getStarredRepos(userToken)
         .then(({ data }) => {
           // using data from API, create an array of objects that contain 
           // each repo name and owner that user has starred
+          // console.log(data)
+          console.log(JSON.stringify(getDataForStarredRepos));
           const reposStarred = createArrayOfStarredRepoNameAndOwners(data);
           const issuePromise = Promise.all(getDataForStarredRepos(reposStarred, userToken, getRepoIssues));
           const notificationPromise = Promise.all(getDataForStarredRepos(reposStarred, userToken, getRepoNotifications));
           const releasePromise = Promise.all(getDataForStarredRepos(reposStarred, userToken, getRepoReleases))
-
+          // console.log(reposStarred);
           // call promises to resolve data from API
           issuePromise
-            .then(issueData => {         
+            .then(issueData => {   
+              console.log(issueData)      
               notificationPromise
                 .then(notificationData => {
                   releasePromise
