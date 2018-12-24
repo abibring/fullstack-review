@@ -16,9 +16,6 @@
   margin: 10px;
   padding-top: 10px;
   background-color: white;
-  border: 5px dashed rgb(255, 122, 136);
-  outline-style: solid;
-  outline-color: rgb(156, 146, 245);
 }
 
 /* Event Containers */
@@ -140,7 +137,7 @@
 .dot-pull {
   height: 25px;
   width: 25px;
-  background-color: rgb(121, 198, 106);
+  background-color: #E0FFFF;
   border-radius: 50%;
   display: inline-block;
 }
@@ -148,7 +145,7 @@
 .dot-issue {
   height: 25px;
   width: 25px;
-  background-color: rgb(205, 205, 115);
+  background-color: #FFD700;
   border-radius: 50%;
   display: inline-block;
 }
