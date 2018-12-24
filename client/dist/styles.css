@@ -32,7 +32,7 @@
 .release-event {
   margin: 10px;
   padding-top: 10px;
-  background-color: #40E0D0;
+  background-color: #00CED1;
   border: 3px solid;
   outline-style: solid;
   outline-color: rgb(245, 244, 240);
@@ -130,7 +130,7 @@
   margin-top: 10px;
   height: 25px;
   width: 25px;
-  background-color: #40E0D0;
+  background-color: #00CED1;
   border-radius: 50%;
   display: inline-block;
 }
