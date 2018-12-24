@@ -10,7 +10,7 @@ const ReleaseEvent = ({ release }) => (
       <b className="content-user">@{release.author.login}</b>
     </span>
     <span className="content">
-      <span className="release-event-label">Release Notification</span>
+      <span className="event-label">Release Notification</span>
       <span className="content-break"> | </span>{'    '}
       <Image src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c2.png?v8"  alt="folder image" style={{ height: 28, width: 24 }}/>{'    '}
       <span className="repo-name">{release.html_url.split('/')[3]}</span>

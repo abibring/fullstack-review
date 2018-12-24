@@ -14,7 +14,7 @@ const IssuesEvent = ({ event }) => {
         <b className="content-user">@{event.user.login}</b>
       </span>
       <span className="content">
-        <span className="issue-event-label">Issue Event</span>
+        <span className="event-label">Issue Event</span>
         <span className="content-break"> | </span>{'    '}
         <Image src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c2.png?v8"  alt="folder image" style={{ height: 28, width: 24 }}/>{'    '}
         <span className="repo-name">{repoName}</span>

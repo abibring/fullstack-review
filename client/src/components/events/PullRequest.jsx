@@ -11,7 +11,7 @@ const PullRequest = ({ pull }) => (
       <b className="content-user">@{pull.user.login}</b>
     </span>
     <span className="content">
-      <span className="pull-event-label">Pull Request</span>
+      <span className="event-label">Pull Request</span>
       <span className="content-break"> | </span>{'    '}
       <Image src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c2.png?v8"  alt="folder image" style={{ height: 28, width: 24 }}/>{'    '}
       <span className="repo-name">{pull.html_url.split('/')[3]}</span>
