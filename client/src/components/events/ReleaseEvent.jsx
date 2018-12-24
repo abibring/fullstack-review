@@ -22,7 +22,7 @@ const ReleaseEvent = ({ release }) => (
       <span className="repo-owner">{release.html_url.split('/')[4]}</span>
       <span className="content-break"> | </span>{'   '}
       <i className="content-updated">{moment(release.published_at).startOf('day').fromNow()}</i>
-      <div><b>Release Version: </b>{release.tag_name}</div>
+      <div><b>* {release.tag_name} *</b></div>
       {/* <div><b>Ranking:</b> {release.ranking}</div> */}
       {markdown(release.body).length > 500
       ?

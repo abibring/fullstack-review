@@ -26,7 +26,7 @@ const IssuesEvent = ({ event }) => {
         <span className="repo-owner">{repoOwner}</span>
         <span className="content-break"> | </span>{'    '}
         <i className="content-updated">{moment(event.updated_at).startOf('day').fromNow()}</i>
-        <div><b>Issue Title:</b> {event.title}</div>
+        <div><b>* {event.title} *</b></div>
         <div><b>Author Association:</b> {event.author_association}</div>
         {/* <div><b>Ranking:</b> {event.ranking}</div> */}
         {event.org ? <div><b>Organization:</b> {event.org && event.org.login}</div> : '' }
