@@ -3,11 +3,13 @@ import { ListGroup, Col, Row, Grid } from 'react-bootstrap';
 import PullRequest from './PullRequest.jsx';
 import IssuesEvent from './IssuesEvent.jsx';
 import ReleaseEvent from './ReleaseEvent.jsx';
+import Key from './Key.jsx';
 
 const Events = ({ starred }) => {
   return (
     <div>
       <h3 style={{ paddingLeft: '40%' }}>Check Out The Latest Info</h3>
+      <Key />
       <Grid>
         <Row>
           <Col xs={12} md={8} xsOffset={2}>
