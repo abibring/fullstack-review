@@ -8,7 +8,7 @@ import Key from './Key.jsx';
 const Events = ({ starred }) => {
   return (
     <div>
-      <h3 style={{ paddingLeft: '40%' }}>Check Out The Latest Info</h3>
+      <h3 style={{ paddingLeft: '40%' }}>Your Github Updates</h3>
       <Key />
       <Grid>
         <Row>
