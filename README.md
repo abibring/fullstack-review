@@ -33,7 +33,7 @@ In server/database/index.js, you need to enter in the URL to connect mongoose to
 
 From within the root directory:
 
-> npm start
+> npm run server-dev
 
 > npm run react-dev
 
