@@ -20,7 +20,7 @@ const PullRequest = ({ pull }) => (
       <span className="content-break"> | </span>{'    '}
       <i className="content-updated">{moment(pull.updated_at).startOf('day').fromNow()}</i>
       <div><b>PR Title: </b>{pull.title}</div>
-      <div><b>Ranking:</b> {pull.ranking}</div>
+      {/* <div><b>Ranking:</b> {pull.ranking}</div> */}
       {markdown(pull.body).length > 500
       ?
       <div><b>Info: </b>{markdown(pull.body).slice(0, 500) + '...'}</div>

@@ -20,7 +20,7 @@ const ReleaseEvent = ({ release }) => (
       <span className="content-break"> | </span>{'   '}
       <i className="content-updated">{moment(release.published_at).startOf('day').fromNow()}</i>
       <div><b>Release Version: </b>{release.tag_name}</div>
-      <div><b>Ranking:</b> {release.ranking}</div>
+      {/* <div><b>Ranking:</b> {release.ranking}</div> */}
       {markdown(release.body).length > 500
       ?
         <div><b>Info: </b>{markdown(release.body).slice(0, 500) + '...'}</div>
