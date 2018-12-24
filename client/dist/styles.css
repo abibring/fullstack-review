@@ -32,7 +32,7 @@
 .release-event {
   margin: 10px;
   padding-top: 10px;
-  background-color: #7FFFD4;
+  background-color: #40E0D0;
   border: 3px solid;
   outline-style: solid;
   outline-color: rgb(245, 244, 240);
@@ -50,7 +50,7 @@
 /* Event Labels */
 
 .event-label {
-  color: grey;
+  color: white;
   font-size: 16px;
   font-weight: bold;
 }
@@ -130,7 +130,7 @@
   margin-top: 10px;
   height: 25px;
   width: 25px;
-  background-color: #7FFFD4;
+  background-color: #40E0D0;
   border-radius: 50%;
   display: inline-block;
 }
