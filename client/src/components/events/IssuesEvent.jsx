@@ -11,7 +11,7 @@ const IssuesEvent = ({ event }) => {
     <ListGroupItem key={event.id} className="issue-event">
       <span className="content-img">
         <img src={event.user.avatar_url} alt='avatar' className="feed-img" />
-        <b className="content-user" width="100px" >@{event.user.login}</b>
+        <b className="content-user">@{event.user.login}</b>
       </span>
       <span className="content">
         <span className="event-label">Issue Event</span>

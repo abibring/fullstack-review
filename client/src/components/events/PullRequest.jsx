@@ -6,7 +6,6 @@ import { ListGroupItem, Image } from 'react-bootstrap';
 const PullRequest = ({ pull }) => (
   <ListGroupItem key={pull.id} className="pull-event">
     <span className="content-img">
-      {/* {console.log('pull', pull.html_url.split('/')[3])} */}
       <img src={pull.user.avatar_url} alt='avatar of pull creator' className="feed-img" />
       <b className="content-user">@{pull.user.login}</b>
     </span>
