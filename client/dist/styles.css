@@ -91,7 +91,7 @@
 }
 
 .event-link {
-  color: rgb(235, 236, 245);
+  color: grey;
 }
 
 .reason {
@@ -117,7 +117,7 @@
 
 .content-updated {
   font-size: 16px;
-  color: white;
+  color: grey;
 }
 
 .content-user {
