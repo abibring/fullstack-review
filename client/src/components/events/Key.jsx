@@ -2,9 +2,9 @@ import React from 'react';
 
 const Key = () => (
   <div className="key">
-    <ul>Release Event: <span class="dot-release"></span></ul> 
-    <ul>Issue Event: <span class="dot-issue"></span></ul>
-    <ul>Pull Request: <span class="dot-pull"></span></ul>
+    <span>Release Event: <span class="dot-release"></span></span> 
+    <span>Issue Event: <span class="dot-issue"></span></span>
+    <span>Pull Request: <span class="dot-pull"></span></span>
   </div>
 );
 
