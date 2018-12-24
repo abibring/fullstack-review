@@ -1,5 +1,5 @@
 .main {
-  background-color: rgba(113, 108, 108, 0.407);
+  background-color: rgb(245, 244, 240);
 }
 
 .footer {
@@ -26,45 +26,45 @@
 .issue-event {
   margin: 10px;
   padding-top: 10px;
-  background-color: white;
-  border: 5px dashed rgb(249, 183, 189);
+  background-color: rgb(205, 205, 115);
+  border: 3px solid;
   outline-style: solid;
-  outline-color: rgb(156, 146, 245);
+  outline-color: rgb(245, 244, 240);
 }
 
 .release-event {
   margin: 10px;
   padding-top: 10px;
-  background-color: white;
-  border: 5px dashed rgb(132, 228, 255);
+  background-color: rgb(176, 164, 193);
+  border: 3px solid;
   outline-style: solid;
-  outline-color: rgb(156, 146, 245);
+  outline-color: rgb(245, 244, 240);
 }
 
 .pull-event {
   margin: 10px;
   padding-top: 10px;
-  background-color: white;
-  border: 5px dashed rgb(255, 210, 76);
+  background-color: rgb(121, 198, 106);
+  border: 3px solid;
   outline-style: solid;
-  outline-color: rgb(156, 146, 245);
+  outline-color: rgb(245, 244, 240);
 }
 
 /* Event Labels */
 
 .release-event-label {
-  color: rgb(132, 228, 255);
-  font-weight: bold;
+  color: rgb(245, 244, 240);
+  font-size: 16px;
 }
 
 .pull-event-label {
-  color: rgb(255, 210, 76);
-  font-weight: bold;
+  color: rgb(245, 244, 240);
+  font-size: 16px;
 }
 
 .issue-event-label {
-  color: rgb(249, 183, 189);
-  font-weight: bold;
+  color: rgb(245, 244, 240);
+  font-size: 16px;
 }
 
 .event-time-label {
@@ -84,7 +84,13 @@
 .repo-owner {
   font-weight: bold;
   font-size: 16px;
-  color: rgba(81, 78, 78, 0.407);
+  color: rgb(255, 3, 3);
+}
+
+.repo-name {
+  color: black;
+  font-weight: bold;
+  font-size: 16px;
 }
 
 .feed-img {
@@ -95,7 +101,7 @@
 }
 
 .event-link {
-  color: rgb(64, 81, 242);
+  color: rgb(235, 236, 245);
 }
 
 .reason {
@@ -108,27 +114,7 @@
   position: relative;
   display: block;
   margin-bottom: 10px;
-}
-
-.repo-name {
-  position:  absolute;
-  top: 5px; 
-  right: 0px;
-  color: rgb(252, 186, 63);
-  font-weight: bold;
-  font-size: 16px;
-}
-
-.release-repo-name {
-  color: rgb(252, 186, 63);
-  font-weight: bold;
-  font-size: 16px;
-}
-
-.pull-request-repo-name {
-  color: rgb(255, 210, 76);
-  font-weight: bold;
-  font-size: 16px;
+  color: black;
 }
 
 .content-img {
@@ -141,11 +127,12 @@
 
 .content-updated {
   font-size: 16px;
+  color: white;
 }
 
 .content-user {
   font-size: 16px;
-  color: rgb(0, 35, 176);
+  color: rgb(2, 53, 255);
 }
 
 .content-break {

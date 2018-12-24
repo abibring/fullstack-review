@@ -13,7 +13,7 @@ const ReleaseEvent = ({ release }) => (
       <span className="release-event-label">Release Notification</span>
       <span className="content-break"> | </span>{'    '}
       <Image src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c2.png?v8"  alt="folder image" style={{ height: 28, width: 24 }}/>{'    '}
-      <span className="release-repo-name">{release.html_url.split('/')[3]}</span>
+      <span className="repo-name">{release.html_url.split('/')[3]}</span>
       <span className="content-break"> | </span>{'   '}
       <Image src="https://github.githubassets.com/images/icons/emoji/unicode/1f4db.png?v8" style={{ height: 20, width: 24 }} />{'     '}
       <span className="repo-owner">{release.html_url.split('/')[4]}</span>
@@ -27,7 +27,10 @@ const ReleaseEvent = ({ release }) => (
       :
         <div><b>Info: </b>{markdown(release.body)}</div>
       }
-      <div><b><Image src="https://github.githubassets.com/images/icons/emoji/unicode/1f517.png?v8" style={{ height: 30, width: 24 }} />  </b><a href={release.html_url} className="event-link">{release.html_url}</a></div>
+      <div>
+        <Image src="https://github.githubassets.com/images/icons/emoji/unicode/1f517.png?v8" style={{ height: 30, width: 24 }} />{'     '}
+        <a href={release.html_url} className="event-link">Checkout Release on Github</a>
+      </div>
     </span>
   </ListGroupItem>
 );

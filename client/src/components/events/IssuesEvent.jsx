@@ -17,7 +17,7 @@ const IssuesEvent = ({ event }) => {
         <span className="issue-event-label">Issue Event</span>
         <span className="content-break"> | </span>{'    '}
         <Image src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c2.png?v8"  alt="folder image" style={{ height: 28, width: 24 }}/>{'    '}
-        <span className="release-repo-name">{repoName}</span>
+        <span className="repo-name">{repoName}</span>
         <span className="content-break"> | </span>{'    '}
         <Image src="https://github.githubassets.com/images/icons/emoji/unicode/1f4db.png?v8" alt="user image" style={{ height: 20, width: 24 }} />{'     '}
         <span className="repo-owner">{repoOwner}</span>
@@ -33,7 +33,9 @@ const IssuesEvent = ({ event }) => {
         :
         <div><b>Info: </b>{markdown(event.body)}</div>
       }
-        <div><b>View Issue:</b> <a href={event.html_url} className="event-link">Visit Issue on Github</a></div>
+        <div>
+          <Image src="https://github.githubassets.com/images/icons/emoji/unicode/1f517.png?v8" style={{ height: 30, width: 24 }} />{'     '}
+          <a href={event.html_url} className="event-link">Checkout Issue on Github</a></div>
       </span>
     </ListGroupItem>
   );

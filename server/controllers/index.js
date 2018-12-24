@@ -13,8 +13,15 @@ const {
   getRepoNotifications,
   getRepoReleases
 } = require('../api_helpers/github.js');
+const { 
+  addRankingToData, 
+  isolateData, 
+  updateRanking, 
+  createArrayOfStarredRepoNameAndOwners, 
+  getDataForStarredRepos, 
+  sortIssuesFromPullRequests 
+} = require('./sortingHelpers.js');
 require('dotenv').config();
-const { addRankingToData, isolateData, updateRanking, createArrayOfStarredRepoNameAndOwners, getDataForStarredRepos, sortIssuesFromPullRequests } = require('./sortingHelpers.js');
 
 const Cryptr = require('cryptr');
 const cryptr = new Cryptr(process.env.CRYPTR_SECRET);
@@ -47,7 +54,7 @@ module.exports = {
                     </body>
                 </html>
               `);
-            }).catch(err => res.redirect('/'));
+            }).catch(() => res.redirect('/'));
         }).catch(err => res.send(err));
     }
   },
@@ -89,13 +96,11 @@ module.exports = {
           const notificationPromise = Promise.all(getDataForStarredRepos(reposStarred, userToken, getRepoNotifications));
           const releasePromise = Promise.all(getDataForStarredRepos(reposStarred, userToken, getRepoReleases))
 
-          // call issuePromise to resolve data from API
+          // call promises to resolve data from API
           issuePromise
-            .then(issueData => {
-              // call notificationPromise to resolve data from API
+            .then(issueData => {         
               notificationPromise
                 .then(notificationData => {
-                  // call releasePromise to resolve data from API
                   releasePromise
                     .then(releaseData => {
                       // store results in a variable
@@ -107,10 +112,10 @@ module.exports = {
                         .then(sortedRepos => {
                           const pullRequestRepos = sortedRepos[0];
                           const issueRepos = sortedRepos[1];
-                          const rankedReleasedData = addRankingToData(releaseInfo, 10000, 'release');
-                          const rankedIssueData = addRankingToData(pullRequestRepos, 50, 'issue');
-                          const rankedPullRequests = addRankingToData(issueRepos, 25, 'pull_request');
-                          const rankedNotificationInfo = addRankingToData(notificationInfo, 500, 'notification');
+                          const rankedReleasedData = addRankingToData(releaseInfo, 1000, 'release');
+                          const rankedIssueData = addRankingToData(pullRequestRepos, 5, 'issue');
+                          const rankedPullRequests = addRankingToData(issueRepos, 2.5, 'pull_request');
+                          const rankedNotificationInfo = addRankingToData(notificationInfo, 50, 'notification');
                           const tempResults = [...rankedReleasedData, ...rankedIssueData, ...rankedPullRequests, ...rankedNotificationInfo];
                           const finalResults = updateRanking(tempResults);
                           res.send(finalResults);        

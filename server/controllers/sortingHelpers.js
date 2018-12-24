@@ -1,13 +1,9 @@
-const moment = require('moment');
 module.exports = {
+
   createArrayOfStarredRepoNameAndOwners: function(array) {
     return array.map(repo => ({ repo: repo.name, owner: repo.owner.login }));
   },
-  updatedScore: function(z,t) {
-    var u = Math.max(z,rate*t);
-    var v = Math.min(z,rate*t);
-    return u + Math.log1p(Math.exp(v-u));
-  },
+
   isolateData: function(arr) {
     let results = [];
     for (var i = 0; i < arr.length; i++) {
@@ -17,6 +13,7 @@ module.exports = {
     }
     return results;
   },
+
   addRankingToData: function(arr, n, type) {
       arr = [...arr];
       if (Array.isArray(arr[0])) {
@@ -43,8 +40,8 @@ module.exports = {
     }
     return arr;
   },
+
   updateRanking: function(arr) {
-    console.log('ARR', arr)
     arr = [...arr];
     return arr.sort((a, b) => {
       if (b.ranking - a.ranking === 0) {
@@ -54,9 +51,11 @@ module.exports = {
       }
     });
   }, 
+
   getDataForStarredRepos: function(array, userToken, cb) {
     return array.map(repo => cb(repo.owner, repo.repo, userToken));
   },
+
   sortIssuesFromPullRequests: async function(arr) {
     const pullRepos = [];
     const issueRepos = [];
