@@ -53,15 +53,8 @@
 /* Event Labels */
 
 .event-label {
-  color: rgb(245, 244, 240);
+  color: grey;
   font-size: 16px;
-}
-
-.event-time-label {
-  color: rgb(88, 104, 167);
-  font-size: 20px;
-  padding-right: 10px;
-  padding-left: 10px;
 }
 
 /* Shared Event Styles */
