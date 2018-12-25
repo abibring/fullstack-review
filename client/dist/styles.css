@@ -115,7 +115,18 @@
   border-radius: 50%;
 }
 
-.signout {
+
+.nav-user-info {
+  display: flex;
+  flex-flow: column;
+}
+
+.nav-username {
+  color: 'white';
+  opacity: .7;
+}
+
+.nav-signout {
   padding: 0;
   border: none;
   background: none;
