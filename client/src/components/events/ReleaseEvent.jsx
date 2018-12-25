@@ -15,10 +15,8 @@ const ReleaseEvent = ({ release }) => (
     <span className="content">
       <span className="event-label">Release Notification</span>
       <span className="content-break"> | </span>{'    '}
-      <Image src={folderIcon}  alt="folder image" style={{ height: 28, width: 24 }}/>{'    '}
       <span className="repo-name">{release.html_url.split('/')[3]}</span>
       <span className="content-break"> | </span>{'   '}
-      <Image src={userIcon} alt="user icon" style={{ height: 20, width: 24 }} />{'     '}
       <span className="repo-owner">{release.html_url.split('/')[4]}</span>
       <span className="content-break"> | </span>{'   '}
       <i className="content-updated">{moment(release.published_at).startOf('day').fromNow()}</i>
@@ -31,8 +29,7 @@ const ReleaseEvent = ({ release }) => (
         <div><b>Info: </b>{markdown(release.body)}</div>
       }
       <div>
-        <Image src={linkIcon} alt="link icon" style={{ height: 30, width: 24 }} />{'     '}
-        <a href={release.html_url} className="event-link">Checkout Release on Github</a>
+        <a href={release.html_url} className="event-link">View on Github</a>
       </div>
     </span>
   </ListGroupItem>

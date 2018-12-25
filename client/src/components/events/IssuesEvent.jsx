@@ -38,7 +38,7 @@ const IssuesEvent = ({ event }) => {
       }
         <div>
           <Image src={linkIcon} alt="link icon" style={{ height: 30, width: 24 }} />{'     '}
-          <a href={event.html_url} className="event-link">Checkout Issue on Github</a></div>
+          <a href={event.html_url} className="event-link">View on Github</a></div>
       </span>
     </ListGroupItem>
   );

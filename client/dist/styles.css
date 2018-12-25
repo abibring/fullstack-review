@@ -23,7 +23,7 @@
 .issue-event {
   margin: 10px;
   padding-top: 10px;
-  background-color: #DDA0DD;
+  background-color: white;
   border: 3px solid;
   outline-style: solid;
   outline-color: rgb(245, 244, 240);
@@ -32,7 +32,7 @@
 .release-event {
   margin: 10px;
   padding-top: 10px;
-  background-color: #00CED1;
+  background-color: white;
   border: 3px solid;
   outline-style: solid;
   outline-color: rgb(245, 244, 240);
@@ -41,7 +41,7 @@
 .pull-event {
   margin: 10px;
   padding-top: 10px;
-  background-color: #F4A460;
+  background-color: white;
   border: 3px solid;
   outline-style: solid;
   outline-color: rgb(245, 244, 240);
@@ -65,11 +65,11 @@
 .repo-owner {
   font-weight: bold;
   font-size: 16px;
-  color: rgb(255, 3, 3);
+  color: #39927A;
 }
 
 .repo-name {
-  color: black;
+  color: #39927A;
   font-weight: bold;
   font-size: 16px;
 }
