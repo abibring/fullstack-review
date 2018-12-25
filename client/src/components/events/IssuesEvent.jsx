@@ -14,22 +14,16 @@ const IssuesEvent = ({ event }) => {
     <ListGroupItem key={event.id} className="issue-event">
       <span className="content-img">
         <img src={event.user.avatar_url} alt='avatar' className="feed-img" />
-        <b className="content-user">@{event.user.login}</b>
       </span>
       <span className="content">
+        <b className="content-user">@{event.user.login} created an issue.</b>{'    '}
+        <i className="content-updated">{moment(event.updated_at).startOf('day').fromNow()}.</i><br />
         <span className="event-label">Issue Event</span>
-        <span className="content-break"> | </span>{'    '}
-        <Image src={folderIcon} alt="folder image" style={{ height: 28, width: 24 }}/>{'    '}
-        <span className="repo-name">{repoName}</span>
-        <span className="content-break"> | </span>{'    '}
-        <Image src={userIcon} alt="user image" style={{ height: 20, width: 24 }} />{'     '}
-        <span className="repo-owner">{repoOwner}</span>
-        <span className="content-break"> | </span>{'    '}
-        <i className="content-updated">{moment(event.updated_at).startOf('day').fromNow()}</i>
-        <div><b>* {event.title} *</b></div><br />
-        <div><b>Author Association:</b> {event.author_association}</div>
+        <div className="repo-name">{repoOwner} / {repoName}</div><br />
+        <div>* {event.title} *</div><br />
+        {/* <div><b>Author Association:</b> {event.author_association}</div> */}
         {/* <div><b>Ranking:</b> {event.ranking}</div> */}
-        {event.org ? <div><b>Organization:</b> {event.org && event.org.login}</div> : '' }
+        {/* {event.org ? <div><b>Organization:</b> {event.org && event.org.login}</div> : '' } */}
         {markdown(event.body).length > 500
         ?
         <div><b>Info: </b>{markdown(event.body).slice(0, 500) + ' ...'}</div>
@@ -37,8 +31,8 @@ const IssuesEvent = ({ event }) => {
         <div><b>Info: </b>{markdown(event.body)}</div>
       }
         <div>
-          <Image src={linkIcon} alt="link icon" style={{ height: 30, width: 24 }} />{'     '}
-          <a href={event.html_url} className="event-link">View on Github</a></div>
+          <a href={event.html_url} className="event-link">View on Github</a>
+        </div>
       </span>
     </ListGroupItem>
   );

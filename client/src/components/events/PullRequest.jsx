@@ -13,7 +13,7 @@ const PullRequest = ({ pull }) => (
     </span>
     <span className="content">
       <b className="content-user">@{pull.user.login} opened a pull request.</b>{'   '}
-      <i className="content-updated">{moment(pull.updated_at).startOf('day').fromNow().charAt(0) + moment(pull.updated_at).startOf('day').fromNow().slice(1)}.</i><br />
+      <i className="content-updated">{moment(pull.updated_at).startOf('day').fromNow()}.</i><br />
       <div className="repo-name">{pull.html_url.split('/')[4]} / {pull.html_url.split('/')[3]}</div><br />
       <div>*  {pull.title}  *</div><br />
       {/* <div><b>Ranking:</b> {pull.ranking}</div> */}

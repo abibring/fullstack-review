@@ -10,17 +10,12 @@ const ReleaseEvent = ({ release }) => (
   <ListGroupItem className="release-event">
     <span className="content-img">
       <img src={release.author.avatar_url} alt='avatar of release author' className="feed-img" />
-      <b className="content-user">@{release.author.login}</b>
     </span>
     <span className="content">
-      <span className="event-label">Release Notification</span>
-      <span className="content-break"> | </span>{'    '}
-      <span className="repo-name">{release.html_url.split('/')[3]}</span>
-      <span className="content-break"> | </span>{'   '}
-      <span className="repo-owner">{release.html_url.split('/')[4]}</span>
-      <span className="content-break"> | </span>{'   '}
-      <i className="content-updated">{moment(release.published_at).startOf('day').fromNow()}</i>
-      <div><b>* {release.tag_name} *</b></div><br />
+      <b className="content-user">@{release.author.login} pushed a new release.</b>{'    '}
+      <i className="content-updated">{moment(release.published_at).startOf('day').fromNow()}.</i><br />
+      <div className="repo-name">{release.html_url.split('/')[3]} / {release.html_url.split('/')[4]}</div><br />
+      <div>* {release.tag_name} *</div><br />
       {/* <div><b>Ranking:</b> {release.ranking}</div> */}
       {markdown(release.body).length > 500
       ?
