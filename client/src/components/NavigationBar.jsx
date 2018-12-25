@@ -16,7 +16,7 @@ export default class NavigationBar extends Component {
             <div style={{ color: 'white' }}>Made with &#9825; </div>
             <div style={{ color: 'white' }}>
               by {'  '}
-              <a href="https://github.com/abibring/" style={{ color: 'white' }}>
+              <a href="https://github.com/abibring/" style={{ color: 'white',  textDecoration: 'underline' }}>
                 Alon Bibring
               </a> 
               {'  '}
