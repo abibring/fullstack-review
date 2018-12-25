@@ -13,8 +13,8 @@ export default class NavigationBar extends Component {
       <Navbar className="navbar">
         <Nav>
           <NavItem eventKey={1} href="https://github.com/abibring/">
-            <div style={{ color: 'white' }}>Made with &hearts; </div>
-            <div style={{ color: 'white' }} onClick={}>
+            <div style={{ color: 'white' }}>Made with &#9825; </div>
+            <div style={{ color: 'white' }}>
               by {'  '}
               <a href="https://github.com/abibring/" style={{ color: 'white' }}>
                 Alon Bibring
