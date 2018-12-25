@@ -22,9 +22,6 @@ export default class NavigationBar extends Component {
           </NavItem>
         </Nav>
         <Nav pullRight>
-          {/* <NavItem>
-            <div style={{ color: 'white' }}>@{userName}</div>
-          </NavItem> */}
           <NavItem eventKey={1} href="#">
             <div style={{ color: 'white' }}>@{userName}</div>
             <button className="signout" onClick={signOut}>Sign Out</button>
