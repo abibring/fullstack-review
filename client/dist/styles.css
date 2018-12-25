@@ -20,6 +20,10 @@
 
 .navbar {
   background-color: #39927A;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
 
 /* Event Containers */
