@@ -11,10 +11,12 @@ export default class NavigationBar extends Component {
     const userName = window.localStorage.getItem('username');
     return (
       <Navbar className="navbar">
-        <Navbar.Header>
+        <Nav>
+          <NavItem>
             <div style={{ color: 'white' }}>Made with &hearts; </div>
             <div style={{ color: 'white' }}>by <a href="https://github.com/abibring/"><strong>Alon Bibring</strong></a> in NYC.</div>
-        </Navbar.Header>
+          </NavItem>
+        </Nav>
         <Nav>
           <NavItem >
             <div style={{ color: 'white' }}>GithubFeed</div>
