@@ -12,7 +12,8 @@ export default class NavigationBar extends Component {
       <Navbar className="navbar">
         <Navbar.Header>
           <Navbar.Brand>
-            Made with ♡ by <a href="https://github.com/abibring/"><strong>Alon Bibring</strong></a> in NYC.
+            <div style={{ color: 'white' }}>Made with &hearts; </div>
+            <div style={{ color: 'white' }}>by <a href="https://github.com/abibring/"><strong>Alon Bibring</strong></a> in NYC.</div>
           </Navbar.Brand>
         </Navbar.Header>
         <Nav pullRight>
