@@ -22,7 +22,7 @@ const PullRequest = ({ pull, leave }) => (
         <div>{markdown(pull.body)}</div>
         } <br />
         <div>
-          <a  onclick={leave} href={pull.pull_request.html_url} className="event-link">View on Github</a>
+          <a onClick={leave} href={pull.pull_request.html_url} className="event-link">View on Github</a>
         </div>
       </span>
     </ListGroupItem>
