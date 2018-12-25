@@ -5,7 +5,8 @@ const saveUser = (user, cb) => {
     github_id: user.id, 
     email: user.email, 
     name: user.name, 
-    username: user.login 
+    username: user.login,
+    avatar: user.user ? user.user.avatar_url : user.author.avatar_url 
   });
   newUser.save((err) => cb(err));
 };

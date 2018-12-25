@@ -43,19 +43,44 @@ module.exports = {
           authenticateUser(token)
             .then(({ data }) => {
               // saving user went here!
-              res.send(`
-                <html>
-                    <body>
-                      <script>
-                          window.localStorage.setItem('userToken', '${encryptedToken}');
-                          window.localStorage.setItem('username', '${data.login}');
-                          window.location.pathname = '/home';
-                      </script>
-                    </body>
-                </html>
-              `);
+
+                  getUser(data.login, (err, user) => {
+                    if (err) {
+                      saveUser(data, (err, results) => {
+                        if (err) {
+                          res.redirect('/');
+                        } else {
+                          res.send(`
+                          <html>
+                              <body>
+                                <script>
+                                    window.localStorage.setItem('userToken', '${encryptedToken}');
+                                    window.localStorage.setItem('username', '${results[0].login}');
+                                    window.localStorage.setItem('avatar', '${results[0].avatar}');
+                                    window.location.pathname = '/home';
+                                </script>
+                              </body>
+                          </html>
+                        `);
+                        }
+                      })
+                    } else {
+                      res.send(`
+                      <html>
+                          <body>
+                            <script>
+                                window.localStorage.setItem('userToken', '${encryptedToken}');
+                                window.localStorage.setItem('username', '${user[0].login}');
+                                window.localStorage.setItem('avatar', '${user[0].avatar}');
+                                window.location.pathname = '/home';
+                            </script>
+                          </body>
+                      </html>
+                    `);
+                    }
+                  }).catch(err => res.send(err));
+                })
             }).catch(() => res.redirect('/'));
-        }).catch(err => res.send(err));
     }
   },
 
