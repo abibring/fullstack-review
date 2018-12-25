@@ -25,6 +25,7 @@
   border: 1px solid grey;
   width: 510px;
   height: 362px;
+  align-self: flex-end;
 }
 
 .release-event {
@@ -44,6 +45,7 @@
   border: 1px solid grey;
   width: 510px;
   height: 362px;
+  align-self: flex-end;
 }
 
 /* Event Labels */
