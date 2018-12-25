@@ -29,6 +29,8 @@ import { ListGroupItem } from 'react-bootstrap';
 //   </div>
 // );
 
+// export default ReleaseEvent;
+
 export default class ReleaseEvent extends Component {
   constructor(props) {
     super(props);
@@ -70,5 +72,3 @@ export default class ReleaseEvent extends Component {
   }
 
 }
-
-export default ReleaseEvent;
