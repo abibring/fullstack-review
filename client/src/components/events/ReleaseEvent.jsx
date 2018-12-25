@@ -12,7 +12,7 @@ const ReleaseEvent = ({ release }) => (
       <img src={release.author.avatar_url} alt='avatar of release author' className="feed-img" />
     </span>
     <span className="content">
-      <b className="content-user">@{release.author.login} pushed a new release.</b>{'    '}
+      <span className="content-user">@{release.author.login} pushed a new release.</span>{'    '}
       <i className="content-updated">{moment(release.published_at).startOf('day').fromNow()}.</i><br />
       <div className="repo-name">{release.html_url.split('/')[3]} / {release.html_url.split('/')[4]}</div><br />
       <div>* {release.tag_name} *</div><br />
@@ -22,7 +22,7 @@ const ReleaseEvent = ({ release }) => (
         <div><b>Info: </b>{markdown(release.body).slice(0, 500) + '...'}</div>
       :
         <div><b>Info: </b>{markdown(release.body)}</div>
-      }
+      } <br />
       <div>
         <a href={release.html_url} className="event-link">View on Github</a>
       </div>

@@ -12,7 +12,7 @@ const PullRequest = ({ pull }) => (
       <img src={pull.user.avatar_url} alt='avatar of pull creator' className="feed-img" />
     </span>
     <span className="content">
-      <b className="content-user">@{pull.user.login} opened a pull request.</b>{'   '}
+      <span className="content-user">@{pull.user.login} opened a pull request.</span>{'   '}
       <i className="content-updated">{moment(pull.updated_at).startOf('day').fromNow()}.</i><br />
       <div className="repo-name">{pull.html_url.split('/')[4]} / {pull.html_url.split('/')[3]}</div><br />
       <div>*  {pull.title}  *</div><br />
@@ -22,7 +22,7 @@ const PullRequest = ({ pull }) => (
       <div><b>Info: </b>{markdown(pull.body).slice(0, 500) + '...'}</div>
       :
       <div><b>Info: </b>{markdown(pull.body)}</div>
-      }
+      } <br />
       <div>
         <a href={pull.pull_request.html_url} className="event-link">View on Github</a>
       </div>

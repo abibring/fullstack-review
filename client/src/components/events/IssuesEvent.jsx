@@ -16,7 +16,7 @@ const IssuesEvent = ({ event }) => {
         <img src={event.user.avatar_url} alt='avatar' className="feed-img" />
       </span>
       <span className="content">
-        <b className="content-user">@{event.user.login} created an issue.</b>{'    '}
+        <span className="content-user">@{event.user.login} created an issue.</span>{'    '}
         <i className="content-updated">{moment(event.updated_at).startOf('day').fromNow()}.</i><br />
         <span className="event-label">Issue Event</span>
         <div className="repo-name">{repoOwner} / {repoName}</div><br />
@@ -29,7 +29,7 @@ const IssuesEvent = ({ event }) => {
         <div><b>Info: </b>{markdown(event.body).slice(0, 500) + ' ...'}</div>
         :
         <div><b>Info: </b>{markdown(event.body)}</div>
-      }
+      } <br />
         <div>
           <a href={event.html_url} className="event-link">View on Github</a>
         </div>
