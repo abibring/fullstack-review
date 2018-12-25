@@ -12,7 +12,7 @@ export default class NavigationBar extends Component {
       <Navbar className="navbar">
         <Navbar.Header>
           <Navbar.Brand>
-            <img src={logo} style={{ width: 260, height: 80, border: '10%' }} alt="logo"/>
+            Made with ♡ by <a href="https://github.com/abibring/"><strong>Alon Bibring</strong></a> in NYC.
           </Navbar.Brand>
         </Navbar.Header>
         <Nav pullRight>
