@@ -33,7 +33,7 @@ export default class NavigationBar extends Component {
         <Nav pullRight>
           <NavItem eventKey={1} href="#">
             <div style={{ color: 'white', opacity: .7 }}>@{userName}</div>
-            <button className="signout" onClick={signOut}>Sign Out</button>
+            <button className="signout" onClick={signOut}>{'    '}Sign Out</button>
           </NavItem>
           <NavItem>
             <Image src={userAvatar} className="user-pic"/>
