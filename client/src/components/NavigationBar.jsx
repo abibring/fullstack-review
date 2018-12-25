@@ -9,7 +9,7 @@ export default class NavigationBar extends Component {
   render() {
     const { signOut } = this.props;
     return (
-      <Navbar inverse>
+      <Navbar className="navbar">
         <Navbar.Header>
           <Navbar.Brand>
             <img src={logo} style={{ width: 260, height: 80, border: '10%' }} alt="logo"/>

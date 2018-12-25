@@ -18,6 +18,10 @@
   background-color: white;
 }
 
+.navbar {
+  background-color: #39927A;
+}
+
 /* Event Containers */
 
 .issue-event {
