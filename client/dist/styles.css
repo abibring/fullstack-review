@@ -122,7 +122,7 @@
 }
 
 .nav-username {
-  align-self: flex-start;
+  align-items: flex-start;
   color: white;
   opacity: .7;
 }
@@ -134,7 +134,7 @@
   background-color: #39927A;
   color: white;
   font-size: 12px;
-  align-self: flex-end;
+  align-items: flex-end;
 }
 
 /* .content-user {
