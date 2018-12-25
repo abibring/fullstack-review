@@ -15,6 +15,7 @@ export default class Home extends Component {
     this.signOut = this.signOut.bind(this);
     this.getAssociated = this.getAssociated.bind(this);
     this.getFeed = this.getFeed.bind(this);
+    this.confirmRedirect = this.confirmRedirect.bind(this);
   }
 
   componentDidMount() {
@@ -30,7 +31,11 @@ export default class Home extends Component {
       this.getNotifications();
       this.getEvents();
       this.getAssociated();
-      // this.getFeed();
+    }
+  }
+  confirmRedirect() {
+    window.onbeforeunload = () => {
+      return 'You will be leaving githubfeed.com. Is that what you would like?'
     }
   }
 
@@ -96,11 +101,11 @@ export default class Home extends Component {
 
   render() {
     const { issues, watching, starred, events, notifications, associated, isLoading } = this.state;
-    const { history, cookies } = this.props;
+    const { history, cookies, leaving } = this.props;
     return (
       <div className="main">
         <NavigationBar history={history} signOut={this.signOut} />
-        <HomeFeed isLoading={isLoading} issues={issues} watching={watching} starred={starred} events={events} notifications={notifications} associated={associated}/>
+        <HomeFeed isLoading={isLoading} leave={this.confirmRedirect} starred={starred}/>
       </div>
     );
   }

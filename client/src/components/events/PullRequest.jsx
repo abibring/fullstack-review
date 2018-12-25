@@ -3,7 +3,7 @@ import moment from 'moment';
 import markdown from 'remove-markdown';
 import { ListGroupItem } from 'react-bootstrap';
 
-const PullRequest = ({ pull }) => (
+const PullRequest = ({ pull, leave }) => (
   <div className="outer-event">
     <span className="content-img">
       <img src={pull.user.avatar_url} alt='avatar of pull creator' className="feed-img" />
@@ -22,7 +22,7 @@ const PullRequest = ({ pull }) => (
         <div>{markdown(pull.body)}</div>
         } <br />
         <div>
-          <a href={pull.pull_request.html_url} className="event-link">View on Github</a>
+          <a  onclick={leave} href={pull.pull_request.html_url} className="event-link">View on Github</a>
         </div>
       </span>
     </ListGroupItem>
