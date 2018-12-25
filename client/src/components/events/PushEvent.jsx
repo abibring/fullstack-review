@@ -11,7 +11,7 @@ const PushEvent = ({ event }) => (
     <span className="content">
       <span className="push-event-label">Push Event</span>
       <span className="content-break">|</span>
-      <i className="content-updated">{moment(event.created_at).startOf('day').fromNow()}</i>
+      <i className="content-updated">{moment(event.created_at).startOf('hour').fromNow()}</i>
       <span className="content-break">|</span>
       <span className="repo-name">{event.repo.name.charAt(0)}</span>
       {event.org ? <div><b>Organization: </b>{event.org && event.org.login}</div> : '' }

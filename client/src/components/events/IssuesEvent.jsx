@@ -17,7 +17,7 @@ const IssuesEvent = ({ event }) => {
       </span>
       <span className="content">
         <span className="content-user">@{event.user.login} created an issue.</span>{'    '}
-        <i className="content-updated">{moment(event.updated_at).startOf('day').fromNow()}.</i><br />
+        <i className="content-updated">{moment(event.updated_at).startOf('hour').fromNow()}.</i><br />
         <div className="repo-name">{repoOwner} / {repoName}</div><br />
         <div>* {event.title} *</div><br />
         {/* <div><b>Author Association:</b> {event.author_association}</div> */}
