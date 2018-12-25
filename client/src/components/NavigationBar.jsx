@@ -14,10 +14,10 @@ export default class NavigationBar extends Component {
             <div style={{ color: 'white' }}>Made with &hearts; </div>
             <div style={{ color: 'white' }}>by <a href="https://github.com/abibring/"><strong>Alon Bibring</strong></a> in NYC.</div>
         </Navbar.Header>
-        <NavItem>
+        {/* <NavItem>
           <div style={{ color: 'white' }}>GithubFeed</div>
           <div style={{ color: 'white' }}>Github updates you care about.</div>
-        </NavItem>
+        </NavItem> */}
         <Nav pullRight>
           <NavItem eventKey={1} href="#" onClick={signOut} >
             <Button style={{ backgroundColor: '#39927A', color: 'white' }}>Sign Out</Button>
