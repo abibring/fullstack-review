@@ -27,7 +27,7 @@ export default class NavigationBar extends Component {
           </NavItem> */}
           <NavItem eventKey={1} href="#">
             <div style={{ color: 'white' }}>@{userName}</div>
-            <button style={{ backgroundColor: '#39927A', color: 'white', outline: 'none' }} onClick={signOut}>Sign Out</button>
+            <button className="signout" onClick={signOut}>Sign Out</button>
           </NavItem>
           <NavItem>
             <Image src={userAvatar} className="user-pic"/>

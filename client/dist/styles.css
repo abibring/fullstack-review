@@ -123,6 +123,14 @@
   border-radius: 50%;
 }
 
+.signout {
+  padding: 0;
+  border: none;
+  background: none;
+  background-color: #39927A;
+  color: white;
+}
+
 /* .content-user {
   font-size: 16px;
   color: black;
