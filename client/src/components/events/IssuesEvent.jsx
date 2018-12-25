@@ -15,7 +15,7 @@ const IssuesEvent = ({ event }) => {
       <ListGroupItem key={event.id} className="issue-event">
         <span className="content">
           <span className="content-user">@{event.user.login} created an issue.</span>{'    '}
-          <i className="content-updated">{moment(event.updated_at).startOf('hour').fromNow()}.</i><br />
+          <i className="content-updated">{moment(event.updated_at).startOf('hour').fromNow()}.</i><br /><br />
           <div className="repo-name">{repoOwner} / {repoName}</div><br />
           <div>* {event.title} *</div><br />
           {/* <div><b>Author Association:</b> {event.author_association}</div> */}

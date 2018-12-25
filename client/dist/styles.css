@@ -111,6 +111,7 @@
 }
 
 .content-img {
+  padding-top: 10px;
   flex-basis: 72px;
   align-self: flex-start;
 }
