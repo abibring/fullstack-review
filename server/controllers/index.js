@@ -38,15 +38,12 @@ module.exports = {
         .then(({ data }) => {
           const access_token = data.split('&')[0];
           const token = access_token.slice(13);
-
           const encryptedToken = cryptr.encrypt(token);
           authenticateUser(token)
             .then(({ data }) => {
               // saving user went here!
-              console.log('DATA', data.login);
-
               getUser(data.login, (err, user) => {
-                if (err) {
+                if (err || user.length === 0) {
                   saveUser(data, (err) => {
                     if (err) {
                       res.redirect('/');
@@ -56,7 +53,7 @@ module.exports = {
                           <body>
                             <script>
                                 window.localStorage.setItem('userToken', '${encryptedToken}');
-                                window.localStorage.setItem('username', '${data.username}');
+                                window.localStorage.setItem('username', '${data.login}');
                                 window.localStorage.setItem('avatar', '${data.avatar_url}');
                                 window.location.pathname = '/home';
                             </script>

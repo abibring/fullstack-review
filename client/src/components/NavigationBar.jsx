@@ -15,12 +15,7 @@ export default class NavigationBar extends Component {
           <NavItem eventKey={1} href="https://www.linkedin.com/in/alon-bibring-45117458/" style={{ opacity: .7 }}>
             <div style={{ color: 'white' }}>Made with &#9825; </div>
             <div style={{ color: 'white' }}>
-              by {'  '}
-              <a href="https://www.linkedin.com/in/alon-bibring-45117458/" style={{ color: 'white',  textDecoration: 'underline' }}>
-                Alon Bibring
-              </a> 
-              {'  '}
-              in NYC.
+              by <i style={{ textDecoration: 'underline' }}>Alon Bibring</i> in NYC.
             </div>
           </NavItem>
         </Nav>
