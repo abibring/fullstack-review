@@ -24,27 +24,27 @@
   margin: 10px;
   padding-top: 10px;
   background-color: white;
-  border: 3px solid;
+  border: 3px solid grey;
   outline-style: solid;
-  outline-color: rgb(245, 244, 240);
+  outline-color: grey;
 }
 
 .release-event {
   margin: 10px;
   padding-top: 10px;
   background-color: white;
-  border: 3px solid;
+  border: 3px solid grey;
   outline-style: solid;
-  outline-color: rgb(245, 244, 240);
+  outline-color: grey;
 }
 
 .pull-event {
   margin: 10px;
   padding-top: 10px;
   background-color: white;
-  border: 3px solid;
+  border: 3px solid grey;
   outline-style: solid;
-  outline-color: rgb(245, 244, 240);
+  outline-color: grey;
 }
 
 /* Event Labels */
