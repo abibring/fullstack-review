@@ -34,6 +34,7 @@
   border: 1px solid grey;
   width: 510px;
   height: 362px;
+  align-self: flex-end;
 }
 
 .pull-event {
@@ -94,20 +95,22 @@
 
 /* Content Styling For Each Event */
 
+.outer-event {
+  display: flex;
+  flex-flow: row;
+}
+
 .content {
-  padding: 0 0 0 120px;
+  /* padding: 0 0 0 120px;
   position: relative;
   display: block;
-  margin-bottom: 10px;
+  margin-bottom: 10px; */
   color: black;
 }
 
 .content-img {
-  left: 1;
-  position: absolute;
-  top: 15;
-  height: 90px;
-  width: 100px;
+  flex-basis: 72px;
+  align-self: flex-start;
 }
 
 .content-updated {
