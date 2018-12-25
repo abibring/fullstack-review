@@ -12,8 +12,8 @@ const PullRequest = ({ pull }) => (
       <img src={pull.user.avatar_url} alt='avatar of pull creator' className="feed-img" />
     </span>
     <span className="content">
-      <b className="content-user">@{pull.user.login} opened a pull request.</b>
-      <i className="content-updated">{moment(pull.updated_at).startOf('day').fromNow()}.</i>
+      <b className="content-user">@{pull.user.login} opened a pull request.</b>{'   '}
+      <i className="content-updated">{moment(pull.updated_at).startOf('day').fromNow()}.</i>{'   '}
       <div className="repo-name">{pull.html_url.split('/')[4]} / {pull.html_url.split('/')[3]}</div><br />
       <div>*  {pull.title}  *</div><br />
       {/* <div><b>Ranking:</b> {pull.ranking}</div> */}
