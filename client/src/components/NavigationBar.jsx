@@ -12,7 +12,7 @@ export default class NavigationBar extends Component {
     return (
       <Navbar className="navbar">
         <Nav>
-          <NavItem eventKey={1} href="https://github.com/abibring/">
+          <NavItem eventKey={1} href="https://github.com/abibring/" style={{ opacity: .7 }}>
             <div style={{ color: 'white' }}>Made with &#9825; </div>
             <div style={{ color: 'white' }}>
               by {'  '}
