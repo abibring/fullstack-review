@@ -19,9 +19,9 @@ const ReleaseEvent = ({ release }) => (
       {/* <div><b>Ranking:</b> {release.ranking}</div> */}
       {markdown(release.body).length > 500
       ?
-        <div><b>Info: </b>{markdown(release.body).slice(0, 500) + '...'}</div>
+        <div>{markdown(release.body).slice(0, 500) + '...'}</div>
       :
-        <div><b>Info: </b>{markdown(release.body)}</div>
+        <div>{markdown(release.body)}</div>
       } <br />
       <div>
         <a href={release.html_url} className="event-link">View on Github</a>

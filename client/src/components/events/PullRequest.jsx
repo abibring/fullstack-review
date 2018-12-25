@@ -19,9 +19,9 @@ const PullRequest = ({ pull }) => (
       {/* <div><b>Ranking:</b> {pull.ranking}</div> */}
       {markdown(pull.body).length > 500
       ?
-      <div><b>Info: </b>{markdown(pull.body).slice(0, 500) + '...'}</div>
+      <div>{markdown(pull.body).slice(0, 500) + '...'}</div>
       :
-      <div><b>Info: </b>{markdown(pull.body)}</div>
+      <div>{markdown(pull.body)}</div>
       } <br />
       <div>
         <a href={pull.pull_request.html_url} className="event-link">View on Github</a>

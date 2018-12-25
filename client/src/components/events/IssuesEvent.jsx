@@ -18,7 +18,6 @@ const IssuesEvent = ({ event }) => {
       <span className="content">
         <span className="content-user">@{event.user.login} created an issue.</span>{'    '}
         <i className="content-updated">{moment(event.updated_at).startOf('day').fromNow()}.</i><br />
-        <span className="event-label">Issue Event</span>
         <div className="repo-name">{repoOwner} / {repoName}</div><br />
         <div>* {event.title} *</div><br />
         {/* <div><b>Author Association:</b> {event.author_association}</div> */}
@@ -26,9 +25,9 @@ const IssuesEvent = ({ event }) => {
         {/* {event.org ? <div><b>Organization:</b> {event.org && event.org.login}</div> : '' } */}
         {markdown(event.body).length > 500
         ?
-        <div><b>Info: </b>{markdown(event.body).slice(0, 500) + ' ...'}</div>
+        <div>{markdown(event.body).slice(0, 500) + ' ...'}</div>
         :
-        <div><b>Info: </b>{markdown(event.body)}</div>
+        <div>{markdown(event.body)}</div>
       } <br />
         <div>
           <a href={event.html_url} className="event-link">View on Github</a>
