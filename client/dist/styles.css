@@ -59,6 +59,10 @@
   font-weight: bold;
 }
 
+.release-version {
+  color: #9400D3;
+}
+
 /* Shared Event Styles */
 
 .message-ext {
