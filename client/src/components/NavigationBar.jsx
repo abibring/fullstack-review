@@ -10,12 +10,14 @@ export default class NavigationBar extends Component {
     const { signOut } = this.props;
     return (
       <Navbar className="navbar">
-        <Navbar.Header>
+        <Navbar.Header style={{ paddingTop: 5 }}>
             <div style={{ color: 'white' }}>Made with &hearts; </div>
             <div style={{ color: 'white' }}>by <a href="https://github.com/abibring/"><strong>Alon Bibring</strong></a> in NYC.</div>
         </Navbar.Header>
-        <div style={{ color: 'white' }}>GithubFeed</div>
-        <div style={{ color: 'white' }}>Github updates you care about.</div>
+        <NavItem>
+          <div style={{ color: 'white' }}>GithubFeed</div>
+          <div style={{ color: 'white' }}>Github updates you care about.</div>
+        </NavItem>
         <Nav pullRight>
           <NavItem eventKey={1} href="#" onClick={signOut} >
             <Button style={{ backgroundColor: '#39927A', color: 'white' }}>Sign Out</Button>
