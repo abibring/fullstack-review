@@ -1,10 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import markdown from 'remove-markdown';
-import { ListGroupItem, Image } from 'react-bootstrap';
-import linkIcon from '../../../dist/img/link_icon.png';
-import userIcon from '../../../dist/img/user_icon.png';
-import folderIcon from '../../../dist/img/folder_icon.png';
+import { ListGroupItem } from 'react-bootstrap';
 
 const PullRequest = ({ pull }) => (
   <ListGroupItem key={pull.id} className="pull-event">
