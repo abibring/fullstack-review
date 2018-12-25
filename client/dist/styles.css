@@ -29,8 +29,8 @@
   padding-top: 10px;
   background-color: white;
   border: 1px solid grey;
-  outline-style: solid;
-  outline-color: grey;
+  /* outline-style: solid;
+  outline-color: grey; */
 }
 
 .release-event {
@@ -38,8 +38,6 @@
   padding-top: 10px;
   background-color: white;
   border: 1px solid grey;
-  outline-style: solid;
-  outline-color: grey;
 }
 
 .pull-event {
@@ -47,8 +45,6 @@
   padding-top: 10px;
   background-color: white;
   border: 1px solid grey;
-  outline-style: solid;
-  outline-color: grey;
 }
 
 /* Event Labels */
@@ -101,7 +97,7 @@
 /* Content Styling For Each Event */
 
 .content {
-  padding: 0 0 0 120px;
+  /* padding: 0 0 0 120px; */
   position: relative;
   display: block;
   margin-bottom: 10px;

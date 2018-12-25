@@ -11,10 +11,8 @@ export default class NavigationBar extends Component {
     return (
       <Navbar className="navbar">
         <Navbar.Header>
-          <Navbar.Brand>
             <div style={{ color: 'white' }}>Made with &hearts; </div>
             <div style={{ color: 'white' }}>by <a href="https://github.com/abibring/"><strong>Alon Bibring</strong></a> in NYC.</div>
-          </Navbar.Brand>
         </Navbar.Header>
         <Nav pullRight>
           <NavItem eventKey={1} href="#" onClick={signOut} >
