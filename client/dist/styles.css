@@ -21,7 +21,7 @@
 .issue-event {
   margin: 10px;
   padding-top: 10px;
-  margin-bottom: 10px;
+  padding-bottom: 10px;
   background-color: white;
   border: 1px solid grey;
   width: 510px;
@@ -31,7 +31,7 @@
 .release-event {
   margin: 10px;
   padding-top: 10px;
-  margin-bottom: 10px;
+  padding-bottom: 10px;
   background-color: white;
   border: 1px solid grey;
   width: 510px;
@@ -41,7 +41,7 @@
 .pull-event {
   margin: 10px;
   padding-top: 10px;
-  margin-bottom: 10px;
+  padding-bottom: 10px;
   background-color: white;
   border: 1px solid grey;
   width: 510px;
