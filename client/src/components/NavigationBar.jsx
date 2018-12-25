@@ -11,7 +11,7 @@ export default class NavigationBar extends Component {
     const userName = window.localStorage.getItem('username');
     return (
       <Navbar className="navbar">
-        <Nav>
+        <Nav bsClass="div">
           <NavItem>
             <div style={{ color: 'white' }}>Made with &hearts; </div>
             <div style={{ color: 'white' }}>
