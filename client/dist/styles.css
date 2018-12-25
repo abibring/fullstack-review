@@ -21,26 +21,27 @@
 .issue-event {
   margin: 10px;
   padding-top: 10px;
+  margin-bottom: 10px;
   background-color: white;
   border: 1px solid grey;
   width: 510px;
-  height: 362px;
   align-self: flex-end;
 }
 
 .release-event {
   margin: 10px;
   padding-top: 10px;
+  margin-bottom: 10px;
   background-color: white;
   border: 1px solid grey;
   width: 510px;
-  height: 362px;
   align-self: flex-end;
 }
 
 .pull-event {
   margin: 10px;
   padding-top: 10px;
+  margin-bottom: 10px;
   background-color: white;
   border: 1px solid grey;
   width: 510px;
