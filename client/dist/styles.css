@@ -82,7 +82,6 @@
 .feed-img {
   height: 100px;
   width: 100px;
-  padding-right: 5px; 
   border: 1px solid grey;
 }
 
@@ -111,7 +110,7 @@
 }
 
 .content-img {
-  flex-basis: 64px;
+  flex-basis: 72px;
   align-self: flex-start;
 }
 
