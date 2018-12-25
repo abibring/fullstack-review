@@ -43,46 +43,47 @@ module.exports = {
           authenticateUser(token)
             .then(({ data }) => {
               // saving user went here!
+              console.log('DATA', data.login);
 
-                  getUser(data.login, (err, user) => {
+              getUser(data.login, (err, user) => {
+                if (err) {
+                  saveUser(data, (err) => {
                     if (err) {
-                      saveUser(data, (err, results) => {
-                        if (err) {
-                          res.redirect('/');
-                        } else {
-                          res.send(`
-                          <html>
-                              <body>
-                                <script>
-                                    window.localStorage.setItem('userToken', '${encryptedToken}');
-                                    window.localStorage.setItem('username', '${results[0].login}');
-                                    window.localStorage.setItem('avatar', '${results[0].avatar}');
-                                    window.location.pathname = '/home';
-                                </script>
-                              </body>
-                          </html>
-                        `);
-                        }
-                      })
+                      res.redirect('/');
                     } else {
                       res.send(`
                       <html>
                           <body>
                             <script>
                                 window.localStorage.setItem('userToken', '${encryptedToken}');
-                                window.localStorage.setItem('username', '${user[0].login}');
-                                window.localStorage.setItem('avatar', '${user[0].avatar}');
+                                window.localStorage.setItem('username', '${data.username}');
+                                window.localStorage.setItem('avatar', '${data.avatar_url}');
                                 window.location.pathname = '/home';
                             </script>
                           </body>
                       </html>
                     `);
                     }
-                  }).catch(err => res.send(err));
-                })
+                  });
+                } else {
+                  res.send(`
+                    <html>
+                        <body>
+                          <script>
+                              window.localStorage.setItem('userToken', '${encryptedToken}');
+                              window.localStorage.setItem('username', '${user[0].username}');
+                              window.localStorage.setItem('avatar', '${user[0].avatar}');
+                              window.location.pathname = '/home';
+                          </script>
+                        </body>
+                    </html>
+                  `);
+                }
+              });
             }).catch(() => res.redirect('/'));
-    }
-  },
+          }).catch(() => res.redirect('/'));
+        }
+    },
 
   logout: {
     get: function(req, res) {

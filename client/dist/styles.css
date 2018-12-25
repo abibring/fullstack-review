@@ -117,6 +117,12 @@
   color: grey;
 }
 
+.user-pic {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+}
+
 /* .content-user {
   font-size: 16px;
   color: black;
