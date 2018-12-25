@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Navbar, NavItem, Nav, Button } from 'react-bootstrap';
-import logo from '../../dist/img/new_logo.png';
 
 export default class NavigationBar extends Component {
   constructor(props) {
