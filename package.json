@@ -1,5 +1,5 @@
 {
-  "name": "better-github-news-feed",
+  "name": "githubfeed",
   "version": "1.0.0",
   "description": "Get all the latest news about repos or users you follow, watch, or contribute to!",
   "main": "index.js",
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/abibring/better-github-news-feed.git"
+    "url": "https://github.com/abibring/githubfeed.git"
   },
   "author": "Alon Bibring",
   "license": "ISC",

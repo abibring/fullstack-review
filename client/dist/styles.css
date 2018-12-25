@@ -122,6 +122,7 @@
 }
 
 .nav-username {
+  align-self: flex-start;
   color: white;
   opacity: .7;
 }
