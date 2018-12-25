@@ -117,9 +117,9 @@ module.exports = {
                           const pullRequestRepos = sortedRepos[0];
                           const issueRepos = sortedRepos[1];
                           const rankedReleasedData = addRankingToData(releaseInfo, 1000, 'release');
-                          const rankedIssueData = addRankingToData(pullRequestRepos, 5, 'issue');
-                          const rankedPullRequests = addRankingToData(issueRepos, 2.5, 'pull_request');
-                          const rankedNotificationInfo = addRankingToData(notificationInfo, 50, 'notification');
+                          const rankedIssueData = addRankingToData(pullRequestRepos, 250, 'issue');
+                          const rankedPullRequests = addRankingToData(issueRepos, 150, 'pull_request');
+                          const rankedNotificationInfo = addRankingToData(notificationInfo, 200, 'notification');
                           const tempResults = [...rankedReleasedData, ...rankedIssueData, ...rankedPullRequests, ...rankedNotificationInfo];
                           const finalResults = updateRanking(tempResults);
                           res.send(finalResults);        
