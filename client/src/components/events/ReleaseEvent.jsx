@@ -60,7 +60,7 @@ export default class ReleaseEvent extends Component {
               <div>{markdown(release.body)}</div>
             } <br />
             <div>
-              <a onClick={() => } href={release.html_url} className="event-link">View on Github</a>
+              <a onClick={this.confirmRedirect} href={release.html_url} className="event-link">View on Github</a>
             </div>
           </span>
         </ListGroupItem>
