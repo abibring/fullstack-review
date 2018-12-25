@@ -14,7 +14,7 @@ const PullRequest = ({ pull }) => (
     <span className="content">
       <b className="content-user">@{pull.user.login} opened a pull request.</b>
       <i className="content-updated">{moment(pull.updated_at).startOf('day').fromNow()}.</i>
-      <span className="repo-name">{pull.html_url.split('/')[4]} / {pull.html_url.split('/')[3]}</span>
+      <div className="repo-name">{pull.html_url.split('/')[4]} / {pull.html_url.split('/')[3]}</div><br />
       <div>*  {pull.title}  *</div><br />
       {/* <div><b>Ranking:</b> {pull.ranking}</div> */}
       {markdown(pull.body).length > 500

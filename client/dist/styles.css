@@ -82,7 +82,7 @@
 }
 
 .event-link {
-  color: rgb(218, 217, 217);
+  color: #39927A;
 }
 
 .reason {
@@ -113,10 +113,10 @@
   color: grey;
 }
 
-.content-user {
+/* .content-user {
   font-size: 16px;
-  color: rgb(2, 53, 255);
-}
+  color: black;
+} */
 
 .content-break {
   font-weight: bold;
