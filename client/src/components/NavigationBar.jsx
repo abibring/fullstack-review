@@ -11,10 +11,10 @@ export default class NavigationBar extends Component {
     const userName = window.localStorage.getItem('username');
     return (
       <Navbar className="navbar">
-        <Nav bsClass="div">
-          <NavItem>
+        <Nav>
+          <NavItem eventKey={1} href="https://github.com/abibring/">
             <div style={{ color: 'white' }}>Made with &hearts; </div>
-            <div style={{ color: 'white' }}>
+            <div style={{ color: 'white' }} onClick={}>
               by {'  '}
               <a href="https://github.com/abibring/" style={{ color: 'white' }}>
                 Alon Bibring
@@ -31,7 +31,7 @@ export default class NavigationBar extends Component {
           </NavItem>
         </Nav>
         <Nav pullRight>
-          <NavItem eventKey={1} href="#">
+          <NavItem eventKey={2} href="#">
             <div style={{ color: 'white', opacity: .7 }}>@{userName}</div>
             <button className="signout" onClick={signOut}>{'    '}Sign Out</button>
           </NavItem>
