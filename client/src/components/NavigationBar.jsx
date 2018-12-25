@@ -15,10 +15,11 @@ export default class NavigationBar extends Component {
           <NavItem>
             <div style={{ color: 'white' }}>Made with &hearts; </div>
             <div style={{ color: 'white' }}>
-              by {' '}
+              by {'  '}
               <a href="https://github.com/abibring/" style={{ color: 'white' }}>
-                {' '} Alon Bibring {'  '}
+                Alon Bibring
               </a> 
+              {'  '}
               in NYC.
             </div>
           </NavItem>
@@ -31,7 +32,7 @@ export default class NavigationBar extends Component {
         </Nav>
         <Nav pullRight>
           <NavItem eventKey={1} href="#">
-            <div style={{ color: 'white', opacity: .5 }}>@{userName}</div>
+            <div style={{ color: 'white', opacity: .7 }}>@{userName}</div>
             <button className="signout" onClick={signOut}>Sign Out</button>
           </NavItem>
           <NavItem>
