@@ -26,8 +26,8 @@ export default class NavigationBar extends Component {
         </Nav>
         <Nav>
           <NavItem >
-            <div style={{ color: 'white' }}>GithubFeed</div>
-            <div style={{ color: 'white', fontSize: 12 }}>Github updates you care about.</div>
+            <div style={{ color: 'white', fontSize: 14 }}>GithubFeed</div>
+            <div style={{ color: 'white', fontSize: 12, opacity: .7 }}>Github updates you care about.</div>
           </NavItem>
         </Nav>
         <Nav pullRight>
