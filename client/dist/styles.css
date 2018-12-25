@@ -133,6 +133,7 @@
   background-color: #39927A;
   color: white;
   font-size: 12px;
+  align-self: flex-end;
 }
 
 /* .content-user {
