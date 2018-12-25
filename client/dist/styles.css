@@ -118,11 +118,11 @@
 
 .nav-user-info {
   display: flex;
-  flex-flow: column;
+  flex-flow: row;
 }
 
 .nav-username {
-  align-items: flex-start;
+  align-self: flex-start;
   color: white;
   opacity: .7;
 }
@@ -134,7 +134,7 @@
   background-color: #39927A;
   color: white;
   font-size: 12px;
-  align-items: flex-end;
+  align-self: flex-end;
 }
 
 /* .content-user {
