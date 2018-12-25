@@ -41,6 +41,7 @@ export default class ReleaseEvent extends Component {
   }
 
   render() {
+    const { release } = this.props;
     return (
       <div className="outer-event">
         <span className="content-img">
