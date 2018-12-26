@@ -205,8 +205,15 @@
 /* Mobile Landscape Screen Sizes */
 @media only screen and (min-width: 480px)  {
 	.release-label, .event-label, .issue-label {
-		width: 204px;
-	}
+		width: 120px;
+  }
+  
+  .jumbotron-content {
+    align-self: center;
+    flex-basis: 408px;
+    /* flex-direction: column; */
+    /* flex-wrap: nowrap; */
+  }
 
 }
 /* Desktop screen Sizes */
