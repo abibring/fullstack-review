@@ -9,14 +9,16 @@ export default class LandingPage extends Component {
   render() {
     return (
       <Jumbotron className="jumbotron">
-        <h1>The Useful Github Feed</h1>
-        <p>
-          This is a better version of the Github feed, which allows you to track the latest information
-          about repos you are watching, contributing to, or using.  Get the latest information about any updates,
-          such as pull requests, commits, issues, new repos, and more! Sign in with your Github credentials to get started!
-        </p> <br />
-        <div>
-          <Login />
+        <div className="jumbotron-content">
+          <h1>The Useful Github Feed</h1>
+          <p>
+            This is a better version of the Github feed, which allows you to track the latest information
+            about repos you are watching, contributing to, or using.  Get the latest information about any updates,
+            such as pull requests, commits, issues, new repos, and more! Sign in with your Github credentials to get started!
+          </p> <br />
+          <div>
+            <Login />
+          </div>
         </div>
       </Jumbotron>
     );
