@@ -18,6 +18,11 @@
   width: 1920px; */
 }
 
+.jumbotron-content {
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+
 .navbar {
   background-color: #39927A;
   /* overflow: hidden;
