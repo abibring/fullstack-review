@@ -33,9 +33,9 @@ module.exports = {
   plugins: [
     new Dotenv({
       path: './.env',
-      safe: true,
+      safe: false,
       systemvars: true,
-      silent: true
+      silent: false
     })
   ],
   node: {
