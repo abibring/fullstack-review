@@ -9,7 +9,7 @@ export default class LandingPage extends Component {
   }
   render() {
     return (
-      <Jumbotron style={{ right: '50%', backgroundImage: "url('https://i.pinimg.com/originals/b7/46/43/b74643cbbe7d68c54554544ec50cf999.jpg')", height: 1080, width: 1920 }}>
+      <Jumbotron style={{ position: 'center', backgroundImage: "url('https://i.pinimg.com/originals/b7/46/43/b74643cbbe7d68c54554544ec50cf999.jpg')", height: 1080, width: 1920 }}>
         <h1 style={{ paddingLeft: 12 }}>The Useful Github Feed</h1>
         <p style={{ fontSize: 25, width: 500, height: 500 }}>
           This is a better version of the Github feed, which allows you to track the latest information
