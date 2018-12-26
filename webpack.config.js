@@ -27,6 +27,25 @@ module.exports = {
             loader: 'url-loader'
           }
         ]
+      },
+      {
+        test: /\.css$/,
+        include: [
+          join('your', 'static', 'css', 'files'),
+          /node_modules/
+        ],
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                importLoaders: true,
+                minimize: __PROD__
+              }
+            }
+          ]
+        })
       }
     ]
   },
@@ -36,7 +55,8 @@ module.exports = {
       safe: false,
       systemvars: true,
       silent: false
-    })
+    }),
+    ExtractTextPlugin('style.css')
   ],
   node: {
     fs: 'empty'
