@@ -8,6 +8,16 @@
   background-color: white;
 }
 
+.jumbotron {
+  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+  min-height: 100vh; /* These two lines are counted as one :-)       */
+  display: flex;
+  align-items: center;
+  background-image: url('https://i.pinimg.com/originals/b7/46/43/b74643cbbe7d68c54554544ec50cf999.jpg');
+  /* height: 1080px;
+  width: 1920px; */
+}
+
 .navbar {
   background-color: #39927A;
   /* overflow: hidden;
