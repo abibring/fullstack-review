@@ -17,7 +17,12 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'babel-loader',
         query: {
-          presets: ['react', 'es2015']
+          presets: ['react', { modules: false }, 'es2015']
+        },
+        env: {
+          test: {
+            presets: ['es2015', 'react']
+          }
         }
       },
       {

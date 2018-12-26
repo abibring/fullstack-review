@@ -2,8 +2,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const router = require('./server/routes/index.js');
 const cookieSession = require('cookie-session');
+const compression = require('compression');
 const path = require('path');
-require('dotenv').config()
+require('dotenv').config();
 const app = express();
 
 app.use(
@@ -16,6 +17,10 @@ app.use(
 );
 
 app.use(express.static(path.join(__dirname, '/client/dist'), { redirect: false }));
+app.use(compression({
+  level: 2,               // set compression level from 1 to 9 (6 by default)
+  filter: shouldCompress, // set predicate to determine whether to compress
+}));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
