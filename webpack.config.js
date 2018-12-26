@@ -18,11 +18,6 @@ module.exports = {
         loader: 'babel-loader',
         query: {
           presets: ['react', 'es2015']
-        },
-        env: {
-          test: {
-            presets: ['es2015', 'react']
-          }
         }
       },
       {
