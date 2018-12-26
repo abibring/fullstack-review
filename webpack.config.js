@@ -33,7 +33,7 @@ module.exports = {
       {
         test: /\.css$/,
         include: [
-          join('your', 'static', 'css', 'files'),
+          'styles.css',
           /node_modules/
         ],
         use: ExtractTextPlugin.extract({
