@@ -17,13 +17,13 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'babel-loader',
         query: {
-          presets: ['react', ['es2015', { modules: false }]]
+          presets: ['react', 'es2015']
         },
-        env: {
-          test: {
-            presets: ['es2015', 'react']
-          }
-        }
+        // env: {
+        //   test: {
+        //     presets: ['es2015', 'react']
+        //   }
+        // }
       },
       {
         test: /\.(pdf|jpg|png|gif|svg|ico)$/,
@@ -39,7 +39,7 @@ module.exports = {
     new Dotenv({
       path: './.env',
       safe: true,
-      systemvars: true,
+      systemvars: false,
       silent: true
     })
   ],
