@@ -2,6 +2,8 @@ const path = require('path');
 const Dotenv = require('dotenv-webpack');
 const SRC_DIR = path.join(__dirname, '/client/src');
 const DIST_DIR = path.join(__dirname, '/client/dist');
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const __PROD__ = process.env.NODE_ENV === 'production'
 
 module.exports = {
   entry: `${SRC_DIR}/index.jsx`,
