@@ -1,6 +1,5 @@
 const path = require('path');
 const Dotenv = require('dotenv-webpack');
-const CompressionPlugin = require('compression-webpack-plugin');
 const SRC_DIR = path.join(__dirname, '/client/src');
 const DIST_DIR = path.join(__dirname, '/client/dist');
 
@@ -19,12 +18,12 @@ module.exports = {
         loader: 'babel-loader',
         query: {
           presets: ['react', 'es2015']
+        },
+        env: {
+          test: {
+            presets: ['es2015', 'react']
+          }
         }
-        // env: {
-        //   test: {
-        //     presets: ['es2015', 'react']
-        //   }
-        // }
       },
       {
         test: /\.(pdf|jpg|png|gif|svg|ico)$/,
@@ -42,8 +41,7 @@ module.exports = {
       safe: true,
       systemvars: true,
       silent: true
-    }),
-    [new CompressionPlugin()]
+    })
   ],
   node: {
     fs: 'empty'
