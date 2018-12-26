@@ -9,9 +9,9 @@ export default class LandingPage extends Component {
   }
   render() {
     return (
-      <Jumbotron style={{ backgroundImage: "url('https://i.pinimg.com/originals/b7/46/43/b74643cbbe7d68c54554544ec50cf999.jpg')", height: 1080, width: 1920 }}>
+      <Jumbotron style={{ right: '50%', backgroundImage: "url('https://i.pinimg.com/originals/b7/46/43/b74643cbbe7d68c54554544ec50cf999.jpg')", height: 1080, width: 1920 }}>
         <h1 style={{ paddingLeft: 12 }}>The Useful Github Feed</h1>
-        <p style={{ right: 10, fontSize: 25, width: 500, height: 500 }}>
+        <p style={{ fontSize: 25, width: 500, height: 500 }}>
           This is a better version of the Github feed, which allows you to track the latest information
           about repos you are watching, contributing to, or using.  Get the latest information about any updates,
           such as pull requests, commits, issues, new repos, and more! Sign in with your Github credentials to get started!
