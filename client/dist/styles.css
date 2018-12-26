@@ -23,6 +23,7 @@
 .jumbotron-content {
   align-self: center;
   flex-basis: 960px;
+  color: white;
   /* flex-direction: column; */
   /* flex-wrap: nowrap; */
 }
