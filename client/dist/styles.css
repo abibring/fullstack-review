@@ -22,6 +22,7 @@
 
 .jumbotron-content {
   align-self: center;
+  flex-basis: 960px;
   /* flex-direction: column; */
   /* flex-wrap: nowrap; */
 }
