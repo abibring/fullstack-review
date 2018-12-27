@@ -7,7 +7,7 @@
     "start": "node index.js",
     "react-dev": "webpack -d --watch",
     "server-dev": "nodemon index.js",
-    "heroku-postbuild": "webpack -p --config webpack.config.js"
+    "heroku-postbuild": "webpack -p"
   },
   "repository": {
     "type": "git",
