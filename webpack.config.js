@@ -1,5 +1,6 @@
 const path = require('path');
 const Dotenv = require('dotenv-webpack');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const SRC_DIR = path.join(__dirname, '/client/src');
 const DIST_DIR = path.join(__dirname, '/client/dist');
 
@@ -17,7 +18,7 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'babel-loader',
         query: {
-          presets: ['react', 'es2015']
+          "presets": ['react', 'es2015']
         }
       },
       {
@@ -40,5 +41,8 @@ module.exports = {
   ],
   node: {
     fs: 'empty'
-  }
+  },
+  optimization: {
+    minimizer: [new UglifyJsPlugin()],
+  },
 };
