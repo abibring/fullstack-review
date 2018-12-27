@@ -19,7 +19,7 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'babel-loader',
         query: {
-          "presets": ['react', 'es2015']
+          presets: ['react', 'es2015']
         }
       },
       {
@@ -39,14 +39,14 @@ module.exports = {
       systemvars: true,
       silent: true
     }),
-    new webpack.LoaderOptionsPlugin({
-      minimizer: [new UglifyJsPlugin()]
-    }),
-    // new webpack.optimize.UglifyJsPlugin({
-    //   compress: { warnings: false },
-    //   comments: false,
-    //   minimize: false
-    // })
+    // new webpack.LoaderOptionsPlugin({
+    //   minimizer: [new UglifyJsPlugin()]
+    // }),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: { warnings: false },
+      comments: false,
+      minimize: true
+    })
   ],
   node: {
     fs: 'empty'
