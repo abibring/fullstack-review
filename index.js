@@ -2,10 +2,11 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const router = require('./server/routes/index.js');
 const cookieSession = require('cookie-session');
+const compression = require('compression');
 const path = require('path');
 require('dotenv').config();
 const app = express();
-
+app.use(compression());
 app.use(
   cookieSession({
     name: 'session',
