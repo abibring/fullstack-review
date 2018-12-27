@@ -37,12 +37,12 @@ module.exports = {
       safe: true,
       systemvars: true,
       silent: true
+    }),
+    new webpack.LoaderOptionsPlugin({
+      minimizer: [new UglifyJsPlugin()]
     })
   ],
   node: {
     fs: 'empty'
-  },
-  optimization: {
-    minimizer: [new UglifyJsPlugin()],
-  },
+  }
 };
