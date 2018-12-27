@@ -6,7 +6,7 @@ const compression = require('compression');
 const path = require('path');
 require('dotenv').config();
 const app = express();
-app.use(compression());
+app.use(compression({filter: shouldCompress}));
 app.use(
   cookieSession({
     name: 'session',
