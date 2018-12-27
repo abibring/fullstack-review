@@ -7,14 +7,12 @@ const path = require('path');
 require('dotenv').config();
 const app = express();
 app.use(compression());
-app.use(
-  cookieSession({
-    name: 'session',
-    secret: 'splurgiesauce1',
-    saveUninitialized: true,
-    maxAge: 24 * 60 * 60 * 1000 // 24 hours
-  })
-);
+app.use(cookieSession({
+  name: 'session',
+  secret: 'splurgiesauce1',
+  saveUninitialized: true,
+  maxAge: 24 * 60 * 60 * 1000 // 24 hours
+}));
   
 app.use(express.static(path.join(__dirname, '/client/dist'), { redirect: false }));
 app.use(bodyParser.urlencoded({ extended: true }));
