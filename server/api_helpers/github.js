@@ -23,11 +23,13 @@ const getStarredRepos = access_token => {
 };
 
 const getRepoIssues = (owner, repo, access_token) => {
+  console.log(owner, repo)
   access_token = cryptr.decrypt(access_token);
   return axios.get(`https://api.github.com/repos/${owner}/${repo}/issues`, {
     params: { access_token, state: 'open', direction: 'desc' }
   });
 };
+
 const getRepoNotifications = (owner, repo, access_token) => {
   access_token = cryptr.decrypt(access_token);
   return axios.get(

@@ -7,8 +7,20 @@ module.exports = {
   isolateData: function(arr) {
     let results = [];
     for (var i = 0; i < arr.length; i++) {
-      if (arr[i].data && arr[i].data.length > 0) {
-        results.push(arr[i].data);
+      let repo = arr[i];
+      if (repo.data && repo.data.length > 0) {
+        results.push(repo.data);
+      }
+    }
+    return results[0];
+  },
+
+  isolateData2: function(arr) {
+    let results = [];
+    for (let i = 0; i < arr.length; i++) {
+      let repo = arr[i];
+      if (repo.data.length > 0 && (repo.data !== undefined ||  repo.data !== 'undefined')) {
+        results.push(repo.data);
       }
     }
     return results;
@@ -60,10 +72,9 @@ module.exports = {
     return array.map(repo => cb(repo.owner.login, repo.name, userToken));
   },
 
-  sortIssuesFromPullRequests: async function(arr) {
+  sortIssuesFromPullRequests: function(arr) {
     const pullRepos = [];
     const issueRepos = [];
-    arr = [...arr];
     arr.map(repo => {
       if (repo.pull_request) {
         pullRepos.push(repo);
@@ -71,7 +82,7 @@ module.exports = {
         issueRepos.push(repo);
       }
     });
-    return [...pullRepos, ...issueRepos];
+    return [pullRepos, issueRepos];
   }
 }
 

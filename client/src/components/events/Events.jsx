@@ -4,12 +4,12 @@ import PullRequest from './PullRequest.jsx';
 import IssuesEvent from './IssuesEvent.jsx';
 import ReleaseEvent from './ReleaseEvent.jsx';
 
-const Events = ({ starred, leave }) => (
+const Events = ({ repos, leave }) => (
   <Grid>
     <Row>
       <Col xs={12} md={8} xsOffset={2}>
         <ListGroup>
-          {starred.length > 0 && starred.map(repo =>
+          {repos.length > 0 && repos.map(repo =>
             repo.pull_request && !repo.published_at
             ? 
               <PullRequest pull={repo} key={repo.id} leave={leave} />

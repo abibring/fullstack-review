@@ -6,19 +6,25 @@ import NavigationBar from '../NavigationBar.jsx';
 export default class Home extends Component {
   constructor(props) {
     super(props);
-    this.state = { starred: [], isAuthenticated: false, isLoading: true };
+    this.state = { repos: [], isAuthenticated: false, isLoading: true };
+    this.userToken = window.localStorage.getItem('userToken')
     this.signOut = this.signOut.bind(this);
     this.getStarred = this.getStarred.bind(this);
     this.confirmRedirect = this.confirmRedirect.bind(this);
+    this.getReposCollab = this.getReposCollab.bind(this);
+    this.getReposOrg = this.getReposOrg.bind(this);
   }
 
   componentDidMount() {
     const { history } = this.props;
-    const userToken = window.localStorage.getItem('userToken');
-    if (!userToken || userToken === 'invalid') {
+    if (!this.userToken || this.userToken === 'invalid') {
       history.push('/');
     } else {
-      this.setState({ isAuthenticated: true }, () => this.getStarred());
+      this.setState({ isAuthenticated: true }, () => {
+        this.getStarred();
+        // this.getReposCollab();
+        // this.getReposOrg();
+      });
     }
   }
   
@@ -40,19 +46,35 @@ export default class Home extends Component {
     }
     
     getStarred() {
-      const userToken = window.localStorage.getItem('userToken');
-      axios.get('/user/starred', { params: { userToken }})
-        .then(({ data }) => this.setState({ starred: data, isLoading: false }))
+      axios.get('/user/starred', { params: { userToken: this.userToken }})
+        .then(({ data }) => this.setState({ repos: data, isLoading: false }))
         .catch(err => console.error(`err in componentDidMount: ${err}`));
     }
 
+    getReposCollab() {
+      const { repos } = this.state;
+      axios.get('/user/collab', { params: { userToken: this.userToken }})
+        .then(({ data }) => {
+          // console.log('collab', data)
+          this.setState({ repos: [...data, ...repos]})
+        })
+        .catch(err => console.error('error with owned repos', err));
+    }
+
+    getReposOrg() {
+      axios.get('/user/org', { params: { userToken: this.userToken }})
+        .then(({ data }) => console.log('ORG', data))
+        .catch(err => console.error('ORG ERR', err));
+    }
+
   render() {
-    const { starred, isLoading } = this.state;
+    const { repos, isLoading } = this.state;
     const { history } = this.props;
     return (
       <div className="main">
+      {console.log('REPOS', repos)}
         <NavigationBar history={history} signOut={this.signOut} />
-        <HomeFeed isLoading={isLoading} leave={this.confirmRedirect} starred={starred}/>
+        <HomeFeed isLoading={isLoading} leave={this.confirmRedirect} repos={repos} />
       </div>
     );
   }

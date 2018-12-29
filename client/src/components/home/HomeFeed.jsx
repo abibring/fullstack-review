@@ -2,12 +2,12 @@ import React from 'react';
 import Events from '../events/Events.jsx';
 
 
-const HomeFeed = ({ starred, isLoading, leave }) => (
+const HomeFeed = ({ repos, isLoading, leave }) => (
   isLoading 
   ?
   <div className="loader"></div>
   :
-  <Events starred={starred} leave={leave} />
+  <Events repos={repos} leave={leave} />
 );
 
 export default HomeFeed;
