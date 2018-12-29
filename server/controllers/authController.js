@@ -1,6 +1,6 @@
 
 const { saveUser, getUser } = require('../models/index.js');
-const { authenticateUser,getTokenForUser } = require('../api_helpers/github.js');
+const { authenticateUser,getTokenForUser } = require('../helper-functions/github.js');
 require('dotenv').config();
 const Cryptr = require('cryptr');
 const cryptr = new Cryptr(process.env.CRYPTR_SECRET);

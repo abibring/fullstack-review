@@ -6,7 +6,7 @@ const {
   getReposOwned,
   getReposCollab,
   getReposOrg
-} = require('../api_helpers/github.js');
+} = require('../helper-functions/github.js');
 const { 
   addRankingToData, 
   isolateData, 
@@ -16,7 +16,7 @@ const {
   sortIssuesFromPullRequests,
   getDataForOwnedRepos,
   isolateData2 
-} = require('./sortingHelpers.js');
+} = require('../helper-functions/sortingHelpers.js');
 require('dotenv').config();
 
 
