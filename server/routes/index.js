@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const { login, logout, starred, wildcard, collab, org } = require('../controllers/index.js');
-
+const { starred, wildcard, collab, org } = require('../controllers/index.js');
+const { login, logout } = require('../controllers/authController.js');
 router.get('/user/signin/callback', login.get);
 router.get('/logout', logout.get);
 router.get('/user/starred', starred.get);
