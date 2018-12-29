@@ -54,10 +54,7 @@ export default class Home extends Component {
     getReposCollab() {
       const { repos } = this.state;
       axios.get('/user/collab', { params: { userToken: this.userToken }})
-        .then(({ data }) => {
-          // console.log('collab', data)
-          this.setState({ repos: [...data, ...repos]})
-        })
+        .then(({ data }) => this.setState({ repos: [...data, ...repos]}))
         .catch(err => console.error('error with owned repos', err));
     }
 
@@ -72,7 +69,7 @@ export default class Home extends Component {
     const { history } = this.props;
     return (
       <div className="main">
-      {console.log('REPOS', repos)}
+        {/* {console.log('REPOS', repos)} */}
         <NavigationBar history={history} signOut={this.signOut} />
         <HomeFeed isLoading={isLoading} leave={this.confirmRedirect} repos={repos} />
       </div>
