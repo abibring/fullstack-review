@@ -1,17 +1,14 @@
-const { getInfo, saveUser, getUser } = require('../models/index.js');
+const { saveUser, getUser } = require('../models/index.js');
 const {
-  getIssuesFromGithub,
-  getWatchingFromGithub,
   authenticateUser,
   getTokenForUser,
-  getUserNotifications,
   getStarredRepos,
-  getRepoEvents,
-  associatedToIssue,
-  getFeedForUser,
   getRepoIssues,
   getRepoNotifications,
-  getRepoReleases
+  getRepoReleases,
+  getReposOwned,
+  getReposCollab,
+  getReposOrg
 } = require('../api_helpers/github.js');
 const { 
   addRankingToData, 
@@ -19,7 +16,8 @@ const {
   updateRanking, 
   createArrayOfStarredRepoNameAndOwners, 
   getDataForStarredRepos, 
-  sortIssuesFromPullRequests 
+  sortIssuesFromPullRequests,
+  getDataForOwnedRepos 
 } = require('./sortingHelpers.js');
 require('dotenv').config();
 
@@ -89,23 +87,23 @@ module.exports = {
     }
   },
 
-  events: {
-    get: function(req, res) {
-      const { userToken, username } = req.query;
-      getRepoEvents(userToken, username)
-        .then(({ data }) => res.send(data))
-        .catch(err => res.send(err));
-    }
-  },
+  // events: {
+  //   get: function(req, res) {
+  //     const { userToken, username } = req.query;
+  //     getRepoEvents(userToken, username)
+  //       .then(({ data }) => res.send(data))
+  //       .catch(err => res.send(err));
+  //   }
+  // },
 
-  watching: {
-    get: function(req, res) {
-      const { userToken } = req.query;
-      getWatchingFromGithub(userToken)
-        .then(({ data }) => res.send(data))
-        .catch(err => res.send(err));
-    }
-  },
+  // watching: {
+  //   get: function(req, res) {
+  //     const { userToken } = req.query;
+  //     getWatchingFromGithub(userToken)
+  //       .then(({ data }) => res.send(data))
+  //       .catch(err => res.send(err));
+  //   }
+  // },
 
   starred: {
     get: function(req, res) {
@@ -116,16 +114,17 @@ module.exports = {
           // using data from API, create an array of objects that contain 
           // each repo name and owner that user has starred
           // console.log(data)
-          console.log(JSON.stringify(getDataForStarredRepos));
           const reposStarred = createArrayOfStarredRepoNameAndOwners(data);
           const issuePromise = Promise.all(getDataForStarredRepos(reposStarred, userToken, getRepoIssues));
           const notificationPromise = Promise.all(getDataForStarredRepos(reposStarred, userToken, getRepoNotifications));
           const releasePromise = Promise.all(getDataForStarredRepos(reposStarred, userToken, getRepoReleases))
-          // console.log(reposStarred);
+          // const ownedRepos = Promise.all(getDataForOwnedRepos(data, userToken, getReposOwned));
+          // ownedRepos.then(d => console.log('XXX', d))
+          
           // call promises to resolve data from API
           issuePromise
             .then(issueData => {   
-              console.log(issueData)      
+              // console.log(issueData)      
               notificationPromise
                 .then(notificationData => {
                   releasePromise
@@ -154,53 +153,53 @@ module.exports = {
     }
   },
 
-  notifications: {
-    get: function(req, res) {
-      const { userToken } = req.query;
-      getUserNotifications(userToken)
-        .then(({ data }) => res.send(data))
-        .catch(err => res.send(err));
-    }
-  },
-  associated: {
-    get: function(req, res) {
-      const { userToken } = req.query;
-      associatedToIssue(userToken)
-        .then(({ data }) => res.send(data))
-        .catch(err => res.send(err));
-    }
-  },
-  issues: {
-    get: function(req, res) {
-      const { userToken } = req.query;
-      getIssuesFromGithub(userToken)
-        .then(({ data }) => {
-          // res.setHeader('link', data.headers.link)
-          res.send(data);
-        })
-        .catch(err => res.send(err));
-    }
-  },
-  feed: {
-    get: function(req, res) {
-      const { userToken } = req.query;
-      getFeedForUser(userToken)
-        .then(({ data }) => res.send(data))
-        .catch(err => res.send(err));
-    }
-  },
-  repos: {
-    get: function(req, res) {
-      getInfo((err, data) => {
-        if (err) {
-          res.send(err);
-        } else {
-          res.setHeader('link', data.headers.link);
-          res.send(data);
-        }
-      });
-    }
-  },
+  // notifications: {
+  //   get: function(req, res) {
+  //     const { userToken } = req.query;
+  //     getUserNotifications(userToken)
+  //       .then(({ data }) => res.send(data))
+  //       .catch(err => res.send(err));
+  //   }
+  // },
+  // associated: {
+  //   get: function(req, res) {
+  //     const { userToken } = req.query;
+  //     associatedToIssue(userToken)
+  //       .then(({ data }) => res.send(data))
+  //       .catch(err => res.send(err));
+  //   }
+  // },
+  // issues: {
+  //   get: function(req, res) {
+  //     const { userToken } = req.query;
+  //     getIssuesFromGithub(userToken)
+  //       .then(({ data }) => {
+  //         // res.setHeader('link', data.headers.link)
+  //         res.send(data);
+  //       })
+  //       .catch(err => res.send(err));
+  //   }
+  // },
+  // feed: {
+  //   get: function(req, res) {
+  //     const { userToken } = req.query;
+  //     getFeedForUser(userToken)
+  //       .then(({ data }) => res.send(data))
+  //       .catch(err => res.send(err));
+  //   }
+  // },
+  // repos: {
+  //   get: function(req, res) {
+  //     getInfo((err, data) => {
+  //       if (err) {
+  //         res.send(err);
+  //       } else {
+  //         res.setHeader('link', data.headers.link);
+  //         res.send(data);
+  //       }
+  //     });
+  //   }
+  // },
 
   wildcard: {
     get: function(req, res) {

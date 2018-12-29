@@ -18,15 +18,16 @@ const IssuesEvent = ({ event, leave }) => {
           <i className="content-updated">{moment(event.updated_at).startOf('hour').fromNow()}.</i><br /><br />
           <div className="repo-name">{repoOwner} / {repoName}</div><br />
           <div>{event.title}</div><br />
-          {/* <div><b>Author Association:</b> {event.author_association}</div> */}
           {/* <div><b>Ranking:</b> {event.ranking}</div> */}
-          {/* {event.org ? <div><b>Organization:</b> {event.org && event.org.login}</div> : '' } */}
+
           {markdown(event.body).length > 500
           ?
           <div>{markdown(event.body).slice(0, 500) + ' ...'}</div>
           :
           <div>{markdown(event.body)}</div>
-        } <br />
+          } 
+          <br />
+          
           <div>
             <a onClick={leave} href={event.html_url} className="event-link">View on Github</a>
           </div>

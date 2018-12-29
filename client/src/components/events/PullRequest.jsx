@@ -15,12 +15,15 @@ const PullRequest = ({ pull, leave }) => (
         <div className="repo-name">{pull.html_url.split('/')[4]} / {pull.html_url.split('/')[3]}</div><br />
         <div>{pull.title}</div><br />
         {/* <div><b>Ranking:</b> {pull.ranking}</div> */}
+
         {markdown(pull.body).length > 500
         ?
         <div>{markdown(pull.body).slice(0, 500) + '...'}</div>
         :
         <div>{markdown(pull.body)}</div>
-        } <br />
+        } 
+        <br />
+        
         <div>
           <a onClick={leave} href={pull.pull_request.html_url} className="event-link">View on Github</a>
         </div>

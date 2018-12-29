@@ -15,12 +15,15 @@ const ReleaseEvent = ({ release, leave }) => (
         <div className="repo-name">{release.html_url.split('/')[4]} / {release.html_url.split('/')[3]}</div><br />
         <div className="release-version">{release.tag_name}</div><br />
         {/* <div><b>Ranking:</b> {release.ranking}</div> */}
+
         {markdown(release.body).length > 500
         ?
           <div>{markdown(release.body).slice(0, 500) + '...'}</div>
         :
           <div>{markdown(release.body)}</div>
-        } <br />
+        } 
+        <br />
+        
         <div>
           <a onClick={leave} href={release.html_url} className="event-link">View on Github</a>
         </div>

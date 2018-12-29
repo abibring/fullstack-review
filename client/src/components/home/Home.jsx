@@ -6,15 +6,9 @@ import NavigationBar from '../NavigationBar.jsx';
 export default class Home extends Component {
   constructor(props) {
     super(props);
-    this.state = { starred: [], watching: [], associated: [], issues: [], events: [], notifications: [], isAuthenticated: false, isLoading: true };
-    this.getIssues = this.getIssues.bind(this);
-    this.getWatching = this.getWatching.bind(this);
-    this.getNotifications = this.getNotifications.bind(this);
-    this.getStarred = this.getStarred.bind(this);
-    this.getEvents = this.getEvents.bind(this);
+    this.state = { starred: [], isAuthenticated: false, isLoading: true };
     this.signOut = this.signOut.bind(this);
-    this.getAssociated = this.getAssociated.bind(this);
-    this.getFeed = this.getFeed.bind(this);
+    this.getStarred = this.getStarred.bind(this);
     this.confirmRedirect = this.confirmRedirect.bind(this);
   }
 
@@ -24,15 +18,10 @@ export default class Home extends Component {
     if (!userToken || userToken === 'invalid') {
       history.push('/');
     } else {
-      this.setState({ isAuthenticated: true });
-      this.getIssues();
-      this.getWatching();
-      this.getStarred();
-      this.getNotifications();
-      this.getEvents();
-      this.getAssociated();
+      this.setState({ isAuthenticated: true }, () => this.getStarred());
     }
   }
+  
   confirmRedirect() {
     window.onbeforeunload = () => {
       return 'You will be leaving githubfeed.com. Is that what you would like?'
@@ -48,60 +37,18 @@ export default class Home extends Component {
         history.push('/');
       })
       .catch(() => history.push('/'));
-  }
-
-  getFeed() {
-    const userToken = window.localStorage.getItem('userToken');
-    axios.get('/user/feed', { params: { userToken } })
-      .then(({ data }) => console.log('FEED DATA', data))
-      .catch(err => console.error('err in associated data', err));
-  }
-  getAssociated() {
-    const userToken = window.localStorage.getItem('userToken');
-    axios.get('/user/associated', { params: { userToken } })
-      .then(({ data }) => this.setState({ associated: data }))
-      .catch(err => console.error('err in associated data', err));
-  }
-
-  getEvents() {
-    const userToken = window.localStorage.getItem('userToken');
-    const username = window.localStorage.getItem('username');
-    axios.get('/user/events', { params: { userToken, username }})
-      .then(({ data }) => this.setState({ events: data }))
-      .catch(err => console.error('err in get notifications', err));
-  }
-
-  getNotifications() {
-    const userToken = window.localStorage.getItem('userToken');
-    axios.get('/user/notifications', { params: { userToken }})
-      .then(({ data }) => this.setState({ notifications: data })) 
-      .catch(err => console.error('err in get notifications', err));
-  }
-
-  getWatching() {
-    const userToken = window.localStorage.getItem('userToken');
-    axios.get('/user/watching', { params: { userToken } })
-      .then(({ data }) => this.setState({ watching: data }))
-      .catch(err => console.error('err in getIssues:', err));
-  }
-
-  getIssues() {
-    const userToken = window.localStorage.getItem('userToken');
-    axios.get('/user/issues', { params: { userToken }})
-      .then(({ data }) => this.setState({ issues: data }))
-      .catch(err => console.error(`err in componentDidMount: ${err}`));
-  }
-
-  getStarred() {
-    const userToken = window.localStorage.getItem('userToken');
-    axios.get('/user/starred', { params: { userToken }})
-      .then(({ data }) => this.setState({ starred: data, isLoading: false }))
-      .catch(err => console.error(`err in componentDidMount: ${err}`));
-  }
+    }
+    
+    getStarred() {
+      const userToken = window.localStorage.getItem('userToken');
+      axios.get('/user/starred', { params: { userToken }})
+        .then(({ data }) => this.setState({ starred: data, isLoading: false }))
+        .catch(err => console.error(`err in componentDidMount: ${err}`));
+    }
 
   render() {
-    const { issues, watching, starred, events, notifications, associated, isLoading } = this.state;
-    const { history, cookies, leaving } = this.props;
+    const { starred, isLoading } = this.state;
+    const { history } = this.props;
     return (
       <div className="main">
         <NavigationBar history={history} signOut={this.signOut} />

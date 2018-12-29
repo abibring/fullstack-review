@@ -56,6 +56,10 @@ module.exports = {
     return array.map(repo => cb(repo.owner, repo.repo, userToken));
   },
 
+  getDataForOwnedRepos: function(array, userToken, cb) {
+    return array.map(repo => cb(repo.owner.login, repo.name, userToken));
+  },
+
   sortIssuesFromPullRequests: async function(arr) {
     const pullRepos = [];
     const issueRepos = [];

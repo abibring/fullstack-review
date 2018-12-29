@@ -3,36 +3,8 @@ const Cryptr = require('cryptr');
 require('dotenv').config();
 const cryptr = new Cryptr(process.env.CRYPTR_SECRET);
 
-const getFeedForUser = access_token => {
-  access_token = cryptr.decrypt(access_token);
-  return axios.get(`https://api.github.com/feeds`, {
-    params: { access_token }
-  });
-};
-
-const getIssuesFromGithub = access_token => {
-  access_token = cryptr.decrypt(access_token);
-  return axios.get(`https://api.github.com/issues`, {
-    params: { access_token, filter: 'all', sort: 'updated', direction: 'desc' }
-  });
-};
-
-const getWatchingFromGithub = access_token => {
-  access_token = cryptr.decrypt(access_token);
-  return axios.get(`https://api.github.com/user/subscriptions`, {
-    params: { access_token, direction: 'desc' }
-  });
-};
-
 const authenticateUser = access_token => {
   return axios.get(`https://api.github.com/user`, { params: { access_token } });
-};
-
-const associatedToIssue = access_token => {
-  access_token = cryptr.decrypt(access_token);
-  return axios.get(`https://api.github.com/notifications`, {
-    params: { access_token, participating: true }
-  });
 };
 
 const getTokenForUser = code => {
@@ -43,24 +15,10 @@ const getTokenForUser = code => {
   });
 };
 
-const getUserNotifications = access_token => {
-  access_token = cryptr.decrypt(access_token);
-  return axios.get(`https://api.github.com/notifications`, {
-    params: { access_token }
-  });
-};
-
 const getStarredRepos = access_token => {
   access_token = cryptr.decrypt(access_token);
   return axios.get(`https://api.github.com/user/starred`, {
     params: { access_token, sort: 'updated', direction: 'desc' }
-  });
-};
-
-const getRepoEvents = (access_token, username) => {
-  access_token = cryptr.decrypt(access_token);
-  return axios.get(`https://api.github.com/users/${username}/received_events`, {
-    params: { access_token }
   });
 };
 
@@ -85,17 +43,50 @@ const getRepoReleases = (owner, repo, access_token) => {
   });
 };
 
-module.exports = {
-  getIssuesFromGithub,
-  getWatchingFromGithub,
-  authenticateUser,
-  getTokenForUser,
-  getUserNotifications,
-  getStarredRepos,
-  getRepoEvents,
-  associatedToIssue,
-  getFeedForUser,
-  getRepoIssues,
-  getRepoNotifications,
-  getRepoReleases
+const getReposOwned = access_token => {
+  access_token = cryptr.decrypt(access_token);
+  return axios.get(`https://api.github.com/user/repos`, {
+    params: {
+      access_token,
+      affiliation: 'owner',
+      sort: 'updated',
+      direction: 'desc'
+    }
+  });
 };
+
+const getReposCollab = access_token => {
+  access_token = cryptr.decrypt(access_token);
+  return axios.get(`https://api.github.com/user/repos`, {
+    params: {
+      access_token,
+      affiliation: 'collaborator',
+      sort: 'updated',
+      direction: 'desc'
+    }
+  });
+};
+
+const getReposOrg = access_token => {
+  access_token = cryptr.decrypt(access_token);
+  return axios.get(`https://api.github.com/user/repos`, {
+    params: {
+      access_token,
+      affiliation: 'organization_member',
+      sort: 'updated',
+      direction: 'desc'
+    }
+  });
+};
+
+module.exports = { 
+  authenticateUser, 
+  getTokenForUser, 
+  getStarredRepos, 
+  getRepoIssues, 
+  getRepoNotifications, 
+  getRepoReleases,
+  getReposOwned,
+  getReposCollab,
+  getReposOrg 
+}
