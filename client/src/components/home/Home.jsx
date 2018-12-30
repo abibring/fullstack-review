@@ -65,11 +65,7 @@ export default class Home extends Component {
     getStarred() {
       this.setState({ isLoading: true})
       axios.get('/user/starred', { params: { userToken: this.userToken }})
-        .then(({ data }) => {
-          console.log('DATA FLATTEN', data)
-          
-          this.setState({ repos: data, isLoading: false })
-        })
+        .then(({ data }) => this.setState({ repos: data, isLoading: false }))
         .catch(err => console.error(`err in componentDidMount: ${err}`));
     }
 
