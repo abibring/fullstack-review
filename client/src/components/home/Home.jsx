@@ -42,7 +42,7 @@ export default class Home extends Component {
         results.push(repo);
       }
     });
-    this.setState({ repos: results });
+    this.setState({ repos: results, filterBy: '' });
   }
   
   confirmRedirect() {
