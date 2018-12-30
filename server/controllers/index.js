@@ -119,45 +119,90 @@ module.exports = {
     get: function(req, res) {
       const { userToken } = req.query;
       getStarredRepos(userToken)
-        .then(({ data }) => {
+      .then(({ data }) => {
+          hash = {};
           // using data from API, create an array of objects that contain each repo name and owner that user has starred
           const reposStarred = createArrayOfStarredRepoNameAndOwners(data);
-          const issuePromise = Promise.all(getDataForStarredRepos(reposStarred, userToken, getRepoIssues));
-          const notificationPromise = Promise.all(getDataForStarredRepos(reposStarred, userToken, getRepoNotifications));
-          const releasePromise = Promise.all(getDataForStarredRepos(reposStarred, userToken, getRepoReleases))
-
-          // call promises to resolve data from API
-          issuePromise
-            .then(issueData => {   
-              notificationPromise
-                .then(notificationData => {
-                  releasePromise
-                    .then(releaseData => {
-                      // store results in a variable
-                      const releaseInfo = isolateData(releaseData);
-                      const issueInfo = isolateData(issueData);
-                      const notificationInfo = isolateData(notificationData);
-                      const sortedPullRequestsFromIssuesPromise = Promise.all(sortIssuesFromPullRequests(issueInfo));
-                      sortedPullRequestsFromIssuesPromise
-                        .then(sortedRepos => {
-                          const pullRequestRepos = sortedRepos[0];
-                          const issueRepos = sortedRepos[1];
-                          const rankedReleasedData = addRankingToData(releaseInfo, 1000, 'release');
-                          const rankedIssueData = addRankingToData(pullRequestRepos, 250, 'pull_request');
-                          const rankedPullRequests = addRankingToData(issueRepos, 150, 'issue');
-                          if (notificationInfo !== undefined) {
-                            var rankedNotificationInfo = addRankingToData(notificationInfo, 200, 'notification');
-                            var tempResults = [...rankedReleasedData, ...rankedIssueData, ...rankedPullRequests, ...rankedNotificationInfo];
-                            const finalResults = updateRanking(tempResults);
-                            res.send(finalResults);        
-                          } else {
-                            var tempResults = [...rankedReleasedData, ...rankedIssueData, ...rankedPullRequests];   
-                            res.send(updateRanking(tempResults))              }
-                        }).catch(err => res.send(err));
-                    }).catch(err => res.send(err));
-                }).catch(err => res.send(err));
-            }).catch(err => res.send(err));
-        }).catch(err => res.send(err));
+          let promise = Promise.all(reposStarred.map(repo => {
+            return getRepoIssues(repo.owner, repo.repo, userToken)
+              .then(({ data })=> {
+                 hash[`issues-${repo.owner}`] = data;
+                return getRepoNotifications(repo.owner, repo.repo, userToken) 
+                  .then(({ data }) => {
+                    hash[`notifications-${repo.owner}`] = data;
+                    return getRepoReleases(repo.owner, repo.repo, userToken)
+                      .then(({ data }) => {
+                        hash[`releases-${repo.owner}`] = data;
+                        // console.log(hash)
+                        return hash;
+                      })
+                    })
+                  })
+                }))
+                 promise.then((hash) => {
+                    var issues = [];
+                    var releases = [];
+                    var notifications = [];
+                    let issueKey = Object.keys(hash).filter(k => k.indexOf("issues") === 0);
+                    console.log(issueKey)
+                    let notificationKey = Object.keys(hash).filter(k => k.indexOf("notifications") === 0);
+                    let releaseKey = Object.keys(hash).filter(k => k.indexOf("releases") === 0);
+                    for (let i = 0; i < issueKey.length; i++) {
+                      let issue = issueKey[i];
+                      issues.push(hash[issue]);
+                    }
+                    for (let i = 0; i < notificationKey.length; i++) {
+                      let notification = notificationKey[i];
+                      notifications.push(hash[notification]);
+                    }
+                    for (let i = 0; i < releaseKey.length; i++) {
+                      let release = releaseKey[i];
+                      releases.push(hash[release]);
+                    }
+                   
+                    const results = [];
+                    hash.map(h => {
+                      for (let key in h) {
+                        // console.log(hash[key])
+                        if (Array.isArray(h[key]) && h[key].length > 0) {
+                          // console.log(hash[key])
+                          results.push(h[key])
+                        }
+                      }
+                    })
+                    res.send([...results]);
+                    var sepIssues = [];
+                    // console.log('TESTICLES', issues)
+                    // res.send(issues);
+                    let sortPullFromIssues = sortIssuesFromPullRequests(issues);
+                    const pullInfo = sortPullFromIssues[0];
+                    const issueInfo = sortPullFromIssues[1];
+                    // console.log(issues)
+                    // console.log('TESTICLES 0', sortPullFromIssues[0])
+                    // console.log('TESTICLES 1', sortPullFromIssues[1][1])
+                    
+                    // for (let i = 0; i < sortPullFromIssues[1].length; i++) {
+                    //   let t = sortPullFromIssues[1][i];
+                    //   console.log('ALAN', t);
+                    //   sepIssues.push(t);
+                    // }
+                    // console.log('TESTICLES', sepIssues[1]);
+                    // const rankedReleases = addRankingToData(releases, 1000, 'release');
+                    // const rankedPulls = addRankingToData(pullInfo, 250, 'pull_request');
+                    // const rankedIssues = addRankingToData(issueInfo, 150, 'issue');
+                    // var finalResults;
+                    // var tempResults;
+                    // if (notificationKey.length > 0 || notificationKey !== undefined) {
+                    //   let rankedNotifications = addRankingToData(notifications, 200, 'notification');
+                    //   tempResults = [...rankedPulls, ...rankedIssues, ...rankedReleases, ...rankedNotifications ];
+                    //   finalResults = Promise.all(updateRanking(tempResults))
+                    // } else {
+                    //   tempResults = [...rankedPulls, ...rankedIssues, ...rankedReleases ];
+                    //   finalResults = Promise.all(updateRanking(tempResults));
+                    // }
+                    // return finalResults;
+                  }).catch(e => console.error('err in getRepoReleases', e))
+                    }).catch(e => console.error('err in getRepoNotifications', e))
     }
   },
 

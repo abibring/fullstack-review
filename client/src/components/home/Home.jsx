@@ -61,7 +61,20 @@ export default class Home extends Component {
     
     getStarred() {
       axios.get('/user/starred', { params: { userToken: this.userToken }})
-        .then(({ data }) => this.setState({ repos: data, isLoading: false }))
+        .then(({ data }) => {
+          console.log(data.flat());
+          data = data.flat();
+          let hash = {};
+          let repos = [];
+          for (let i = 0; i < data.length; i++) {
+            if (!hash[data[i].url]) {
+              hash[data[i].url] = true;
+              repos.push(data[i]);
+            }
+          }
+          
+          this.setState({ repos, isLoading: false })
+        })
         .catch(err => console.error(`err in componentDidMount: ${err}`));
     }
 
@@ -83,9 +96,9 @@ export default class Home extends Component {
     const { history } = this.props;
     return (
       <div className="main">
-        {console.log('filterBy', filterBy)}
+        {/* {console.log('repos', repos)} */}
         <NavigationBar history={history} signOut={this.signOut} />
-        <Filter repos={repos} onSelect={this.onSelect} />
+        {/* <Filter repos={repos} onSelect={this.onSelect} /> */}
         <HomeFeed isLoading={isLoading} leave={this.confirmRedirect} repos={repos} />
       </div>
     );

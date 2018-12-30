@@ -27,10 +27,6 @@ module.exports = {
   },
 
   addRankingToData: function(arr, n, type) {
-      arr = [...arr];
-      if (Array.isArray(arr[0])) {
-        arr = arr[0];
-      }
     for (let i = 0; i < arr.length; i++) {
       const repo = arr[i];
       const now = new Date();
@@ -54,7 +50,6 @@ module.exports = {
   },
 
   updateRanking: function(arr) {
-    arr = [...arr];
     return arr.sort((a, b) => {
       if (b.ranking - a.ranking === 0) {
          return b.published_at || b.created_at - a.published_at || a.created_at;
