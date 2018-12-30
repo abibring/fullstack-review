@@ -40,7 +40,8 @@ module.exports = {
       silent: true
     }),
     new webpack.LoaderOptionsPlugin({
-      minimizer: [new UglifyJsPlugin()]
+      minimize: true,
+      debug: false
     }),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
