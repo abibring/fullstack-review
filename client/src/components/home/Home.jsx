@@ -46,9 +46,7 @@ export default class Home extends Component {
   }
   
   confirmRedirect() {
-    window.onbeforeunload = () => {
-      return;
-    }
+    window.onbeforeunload = () => { return; };
   }
 
   signOut() {
