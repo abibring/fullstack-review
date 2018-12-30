@@ -63,34 +63,12 @@ export default class Home extends Component {
     }
     
     getStarred() {
+      this.setState({ isLoading: true})
       axios.get('/user/starred', { params: { userToken: this.userToken }})
         .then(({ data }) => {
-          console.log(data.flat());
-          data = data.flat();
-          let hash = {};
-          let repos = [];
-          for (let i = 0; i < data.length; i++) {
-            if (!hash[data[i].url]) {
-              hash[data[i].url] = true;
-              repos.push(data[i]);
-            }
-          }
-          const repoSorted = repos.sort((a, b) => {
-            let aa, bb;
-            if (a.updated_at === undefined) {
-              aa = new Date(a.created_at);
-            } else {
-              aa = new Date(a.updated_at);
-            }
-            if (b.updated_at === undefined) {
-              bb = new Date(b.created_at);
-            } else {
-              bb = new Date(b.updated_at);
-            }
-            return bb.getTime() - aa.getTime();
-        });
+          console.log('DATA FLATTEN', data)
           
-          this.setState({ repos: repoSorted, isLoading: false })
+          this.setState({ repos: data, isLoading: false })
         })
         .catch(err => console.error(`err in componentDidMount: ${err}`));
     }
