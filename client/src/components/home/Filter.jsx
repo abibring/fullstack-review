@@ -12,12 +12,10 @@ export default class Filter extends Component {
   }
   filterReposByName() {
     const { repos } = this.props;
-    const repoNames = [];
-    for (let i = 0; i < repos.length; i++) {
-      let repo = repos[i];
-      repoNames.push(repo.html_url.split('/')[3]);
-    }
-    this.setState({ repos: repoNames });
+    let repoNames = Promise.all(repos.map(repo => repo.html_url.split('/')[3]));
+    repoNames
+      .then(repos => this.setState({ repos }))
+      .catch(e => console.error('err in filterRepoNames', e));
   }
   render() {
     const { repos } = this.state;
@@ -26,7 +24,7 @@ export default class Filter extends Component {
         {console.log('PROPS', this.props.repos)}
         {console.log('STATE', repos)}
         <ButtonToolbar>
-          <DropdownButton title="Default button" id="dropdown-size-medium">
+          <DropdownButton title="Sort by repo" id="dropdown-size-medium">
             {repos.map((repo, i) => (
               <MenuItem eventKey={i+1} key={i}>{repo}</MenuItem>
             ))}
