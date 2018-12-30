@@ -31,8 +31,11 @@ export default class Home extends Component {
   }
 
   onSelect(e) {
-    console.log(e);
-    const { repos } = this.state;
+    const { repos, filterBy } = this.state;
+    if (filterBy.length > 0 && e !== filterBy) {
+      this.getStarred();
+    }
+    this.setState({ filterBy: e });
     let results = [];
     repos.map(repo => {
       if (repo.html_url.split('/')[3] === e) {
@@ -72,8 +75,22 @@ export default class Home extends Component {
               repos.push(data[i]);
             }
           }
+          const repoSorted = repos.sort((a, b) => {
+            let aa, bb;
+            if (a.updated_at === undefined) {
+              aa = new Date(a.created_at);
+            } else {
+              aa = new Date(a.updated_at);
+            }
+            if (b.updated_at === undefined) {
+              bb = new Date(b.created_at);
+            } else {
+              bb = new Date(b.updated_at);
+            }
+            return bb.getTime() - aa.getTime();
+        });
           
-          this.setState({ repos, isLoading: false })
+          this.setState({ repos: repoSorted, isLoading: false })
         })
         .catch(err => console.error(`err in componentDidMount: ${err}`));
     }
@@ -92,13 +109,12 @@ export default class Home extends Component {
     }
 
   render() {
-    const { repos, isLoading, filterBy } = this.state;
+    const { repos, isLoading } = this.state;
     const { history } = this.props;
     return (
       <div className="main">
-        {/* {console.log('repos', repos)} */}
         <NavigationBar history={history} signOut={this.signOut} />
-        {/* <Filter repos={repos} onSelect={this.onSelect} /> */}
+        <Filter repos={repos} onSelect={this.onSelect} />
         <HomeFeed isLoading={isLoading} leave={this.confirmRedirect} repos={repos} />
       </div>
     );

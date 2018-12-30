@@ -144,7 +144,6 @@ module.exports = {
                     var releases = [];
                     var notifications = [];
                     let issueKey = Object.keys(hash).filter(k => k.indexOf("issues") === 0);
-                    console.log(issueKey)
                     let notificationKey = Object.keys(hash).filter(k => k.indexOf("notifications") === 0);
                     let releaseKey = Object.keys(hash).filter(k => k.indexOf("releases") === 0);
                     for (let i = 0; i < issueKey.length; i++) {
@@ -171,12 +170,12 @@ module.exports = {
                       }
                     })
                     res.send([...results]);
-                    var sepIssues = [];
+                    // var sepIssues = [];
                     // console.log('TESTICLES', issues)
                     // res.send(issues);
-                    let sortPullFromIssues = sortIssuesFromPullRequests(issues);
-                    const pullInfo = sortPullFromIssues[0];
-                    const issueInfo = sortPullFromIssues[1];
+                    // let sortPullFromIssues = sortIssuesFromPullRequests(issues);
+                    // const pullInfo = sortPullFromIssues[0];
+                    // const issueInfo = sortPullFromIssues[1];
                     // console.log(issues)
                     // console.log('TESTICLES 0', sortPullFromIssues[0])
                     // console.log('TESTICLES 1', sortPullFromIssues[1][1])
