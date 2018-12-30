@@ -7,9 +7,9 @@ const LandingPage = () => (
     <div className="jumbotron-content">
       <h1>The Useful Github Feed</h1>
       <p>
-        This is a better version of the Github feed, which allows you to track the latest information
-        about repos you are watching, contributing to, or using.  Get the latest information about any updates,
-        such as pull requests, commits, issues, new repos, and more! Sign in with your Github credentials to get started!
+        This is a useful feed for Github.  Find out the latest updates about repos you
+        are watching, have starred, or are affiliated with.  Get the latest information about your repos, such as
+        pull requests, issues, new releases, and more! Sign in with your Github credentials to get started.
       </p> <br />
       <div>
         <Login />
