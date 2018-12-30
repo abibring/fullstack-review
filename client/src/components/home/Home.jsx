@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import HomeFeed from './HomeFeed.jsx';
-import NavigationBar from '../NavigationBar.jsx';
+import NavigationBar from '../app/NavigationBar.jsx';
 import Filter from './Filter.jsx';
 
 export default class Home extends Component {
   constructor(props) {
     super(props);
     this.state = { repos: [], isAuthenticated: false, isLoading: true, filterBy: '' };
-    this.userToken = window.localStorage.getItem('userToken')
+    this.userToken = window.localStorage.getItem('userToken');
+
     this.signOut = this.signOut.bind(this);
     this.getStarred = this.getStarred.bind(this);
     this.confirmRedirect = this.confirmRedirect.bind(this);

@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { withCookies } from 'react-cookie';
-import Home from './home/Home.jsx';
+import Home from '../home/Home.jsx';
 import LandingPage from './LandingPage.jsx';
-require('dotenv').config();
 
-class App extends Component {
+export default class App extends Component {
   constructor(props) {
     super(props);
     this.userToken = window.localStorage.getItem('userToken') || 'invalid';
@@ -22,10 +20,9 @@ class App extends Component {
       <div>
         <Switch>
           <Route path="/" exact component={LandingPage} />
-          <Route path="/home" render={(props) => <Home {...props} cookies={cookies} />} />
+          <Route path="/home" render={(props) => <Home {...props} />} />
         </Switch>
       </div>
     );
   }
-}
-export default withCookies(App);
+};

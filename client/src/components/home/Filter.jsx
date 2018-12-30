@@ -16,14 +16,14 @@ export default class Filter extends Component {
     const { repos } = this.props;
     let repoNames = repos.map(repo => repo.html_url.split('/')[3]);
     let hash = {};
-    let repoNamesRemoveDuplicates = [];
+    let reposMinusDuplicates = [];
     repoNames.map(repo => {
       if (!hash[repo]) {
         hash[repo] = true;
-        repoNamesRemoveDuplicates.push(repo);
+        reposMinusDuplicates.push(repo);
       }
     });
-    this.setState({ repos: repoNamesRemoveDuplicates });
+    this.setState({ repos: reposMinusDuplicates });
   }
   render() {
     const { repos, name } = this.state;

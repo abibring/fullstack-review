@@ -135,6 +135,7 @@ module.exports = {
           let arrayOfData = flattenDeep(results);
           sortEventsAndGiveRanking(arrayOfData);
           let finalSortedResults = updateRanking(arrayOfData);
+          
           res.send(finalSortedResults);
           }).catch(e => res.send(e));
         }).catch(e => res.send(e));
