@@ -7,13 +7,14 @@ import Filter from './Filter.jsx';
 export default class Home extends Component {
   constructor(props) {
     super(props);
-    this.state = { repos: [], isAuthenticated: false, isLoading: true };
+    this.state = { repos: [], isAuthenticated: false, isLoading: true, filterBy: '' };
     this.userToken = window.localStorage.getItem('userToken')
     this.signOut = this.signOut.bind(this);
     this.getStarred = this.getStarred.bind(this);
     this.confirmRedirect = this.confirmRedirect.bind(this);
     this.getReposCollab = this.getReposCollab.bind(this);
     this.getReposOrg = this.getReposOrg.bind(this);
+    this.onSelect = this.onSelect.bind(this);
   }
 
   componentDidMount() {
@@ -27,6 +28,18 @@ export default class Home extends Component {
         // this.getReposOrg();
       });
     }
+  }
+
+  onSelect(e) {
+    console.log(e);
+    const { repos } = this.state;
+    let results = [];
+    repos.map(repo => {
+      if (repo.html_url.split('/')[3] === e) {
+        results.push(repo);
+      }
+    });
+    this.setState({ repos: results });
   }
   
   confirmRedirect() {
@@ -66,13 +79,13 @@ export default class Home extends Component {
     }
 
   render() {
-    const { repos, isLoading } = this.state;
+    const { repos, isLoading, filterBy } = this.state;
     const { history } = this.props;
     return (
       <div className="main">
-        {/* {console.log('REPOS', repos)} */}
+        {console.log('filterBy', filterBy)}
         <NavigationBar history={history} signOut={this.signOut} />
-        <Filter repos={repos} />
+        <Filter repos={repos} onSelect={this.onSelect} />
         <HomeFeed isLoading={isLoading} leave={this.confirmRedirect} repos={repos} />
       </div>
     );
