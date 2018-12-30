@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router } from 'react-router-dom';
 import { CookiesProvider } from 'react-cookie';
-import App from './components/App.jsx';
-import history from './components/history.js';
+import App from './components/app/App.jsx';
+import history from './components/app/history.js';
 
 ReactDOM.render(
     <CookiesProvider>
