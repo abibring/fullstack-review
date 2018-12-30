@@ -26,7 +26,7 @@ const getRepoIssues = (owner, repo, access_token) => {
   console.log('REPO NAME', repo)
   access_token = cryptr.decrypt(access_token);
   return axios.get(`https://api.github.com/repos/${owner}/${repo}/issues`, {
-    params: { access_token, state: 'open', direction: 'desc' }
+    params: { access_token, state: 'open', direction: 'desc', sort: 'updated' }
   });
 };
 
@@ -34,14 +34,14 @@ const getRepoNotifications = (owner, repo, access_token) => {
   access_token = cryptr.decrypt(access_token);
   return axios.get(
     `https://api.github.com/repos/${owner}/${repo}/notifications`,
-    { params: { access_token } }
+    { params: { access_token, sort: 'updated', direction: 'desc' } }
   );
 };
 
 const getRepoReleases = (owner, repo, access_token) => {
   access_token = cryptr.decrypt(access_token);
   return axios.get(`https://api.github.com/repos/${owner}/${repo}/releases`, {
-    params: { access_token }
+    params: { access_token, direction: 'desc', sort: 'published' }
   });
 };
 
