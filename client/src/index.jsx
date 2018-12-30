@@ -1,15 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router } from 'react-router-dom';
-import { CookiesProvider } from 'react-cookie';
 import App from './components/app/App.jsx';
 import history from './components/app/history.js';
 
 ReactDOM.render(
-    <CookiesProvider>
       <Router history={history}>
         <App history={history} />
-      </Router>
-    </CookiesProvider>,
+      </Router>,
   document.getElementById('app')
 );
