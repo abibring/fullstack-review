@@ -8,11 +8,11 @@ require('dotenv').config();
 class App extends Component {
   constructor(props) {
     super(props);
+    this.userToken = window.localStorage.getItem('userToken') || 'invalid';
   }
   componentDidMount() {
     const { history } = this.props;
-    let token = window.localStorage.getItem('userToken') ? window.localStorage.getItem('userToken') : 'invalid';
-    if (token && token !== 'invalid') {
+    if (this.userToken && this.userToken !== 'invalid') {
       history.push('/home');
     }
   }

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import HomeFeed from './HomeFeed.jsx';
 import NavigationBar from '../NavigationBar.jsx';
+import Filter from './Filter.jsx';
 
 export default class Home extends Component {
   constructor(props) {
@@ -30,7 +31,7 @@ export default class Home extends Component {
   
   confirmRedirect() {
     window.onbeforeunload = () => {
-      return 'You will be leaving githubfeed.com. Is that what you would like?'
+      return;
     }
   }
 
@@ -71,6 +72,7 @@ export default class Home extends Component {
       <div className="main">
         {/* {console.log('REPOS', repos)} */}
         <NavigationBar history={history} signOut={this.signOut} />
+        <Filter repos={repos} />
         <HomeFeed isLoading={isLoading} leave={this.confirmRedirect} repos={repos} />
       </div>
     );
