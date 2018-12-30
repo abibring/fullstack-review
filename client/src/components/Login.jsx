@@ -5,6 +5,7 @@ const Login = () => (
   <Button
     href={`https://github.com/login/oauth/authorize?client_id=fd744291ef509a6a54cc&scope=user%20repo%20notifications`}
     bsStyle="primary"
+    style={{ backgroundColor: '#39927A' }}
   >
     Sign In With Github
   </Button>
