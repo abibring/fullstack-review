@@ -42,6 +42,15 @@ module.exports = {
     new webpack.LoaderOptionsPlugin({
       minimizer: [new UglifyJsPlugin()]
     }),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: true
+      },
+      output: {
+        comments: false
+      },
+      sourceMap: false
+    })
   ],
   node: {
     fs: 'empty'
