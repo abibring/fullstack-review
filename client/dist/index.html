@@ -34,7 +34,7 @@
       defer
     />
     <!-- <link rel="stylesheet" href="styles.css" /> -->
-    <style amp-boilerplate>
+    <!-- <style amp-boilerplate>
       body {
         -webkit-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
         -moz-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
@@ -91,7 +91,7 @@
           animation: none;
         }
       </style>
-    </noscript>
+    </noscript> -->
     <title>Better Github NewsFeed</title>
   </head>
   <body>
@@ -100,18 +100,19 @@
         <link rel="stylesheet" type="tet/css" href="styles.css" />
       </noscript> -->
       <script>
-        /* First CSS File */
         var giftofspeed = document.createElement('link');
         giftofspeed.rel = 'stylesheet';
         giftofspeed.href = './styless.css';
         giftofspeed.type = 'text/css';
         var godefer = document.getElementsByTagName('link')[0];
+        console.log('GODEGER', godefer)
         godefer.parentNode.insertBefore(giftofspeed, godefer);
 
         var giftofspeed2 = document.createElement('link');
         giftofspeed2.rel = 'stylesheet';
         giftofspeed2.href = 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css';
         var godefer2 = document.getElementsByTagName('link')[0];
+        console.log('GODEGER2', godefer2)
         godefer2.parentNode.insertBefore(giftofspeed2, godefer2);
         // var loadDeferredStyles = function() {
         //   var addStylesNode = document.getElementById("deferred-styles");
