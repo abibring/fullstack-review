@@ -53,17 +53,10 @@ export default class Home extends Component {
     .then(({ data }) => {
       let allRepoData = [...repos, ...data];
       allRepoData = allRepoData.sort((a,b) => b.ranking - a.ranking);
-      let repoNames = allRepoData.filter(repo => repo.html_url.split('/')[3])
-      console.log('repoNames', repoNames);
-      let hash = {};
-      let reposMinusDuplicates = [];
-      repoNames.map(repo => {
-        if (!hash[repo]) {
-          hash[repo] = true;
-          reposMinusDuplicates.push(repo);
-        }
-      });
-      this.setState({ repos: allRepoData })
+      let repoNames = [];
+      allRepoData.map(repo => repoNames.push(repo.html_url.split('/')[3]))
+      let uniqueNames = [...new Set(repoNames)];
+      this.setState({ repos: allRepoData, repoNames: uniqueNames })
     })
     .catch(err => console.error('error with owned repos', err));
   }

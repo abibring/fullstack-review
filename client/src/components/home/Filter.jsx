@@ -21,7 +21,7 @@ export default class Filter extends Component {
               }}>{repo}</MenuItem>
             ))}
             <MenuItem divider />
-            <MenuItem eventKey={''} onSelect={() => {
+            <MenuItem eventKey={''} onSelect={(e) => {
               onSelect(e)
               this.setState({ name: e })
             }}>View All</MenuItem>
