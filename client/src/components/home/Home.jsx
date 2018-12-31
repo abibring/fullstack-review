@@ -70,14 +70,11 @@ export default class Home extends Component {
     console.log('e', e);
     const { repos } = this.state;
     this.setState({ filterBy: e }, () => {
-      let results = [];
-      repos.map(repo => {
-        if (repo.html_url.split('/')[3] === e) {
-          results.push(repo);
-        }
-      });
-      this.setState({ filteredRepos: results });
-    });
+      let promise = Promise.all(repos.filter(repo => repo.html_url.split('/')[3] === e))
+      promise
+        .then((results) => this.setState({ filteredRepos: results }))
+        .catch(e => console.error('err in handleRepoFilter Promise', e));
+    })
   }
   
   render() {
