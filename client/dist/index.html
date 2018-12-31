@@ -4,6 +4,11 @@
     <meta charset="utf-8" />
     <noscript>
       <link rel="stylesheet" type="text/css" href="./styles.css" />
+      <link 
+        rel="stylesheet"  
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      />
     </noscript>
     <script async src="https://cdn.ampproject.org/v0.js"></script>
     <meta
@@ -15,13 +20,12 @@
       content="Kdjy0Y3Y-BqSgTr17dWfDxnRewaWSJZLBSwQ5Odd3CQ"
     />
     <link rel="canonical" href="./regular-html.html" />
-    <link
+    <!-- <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
       integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
       crossorigin="anonymous"
-      defer
-    />
+    /> -->
     <link
       rel="icon"
       type="image/png"
@@ -103,6 +107,12 @@
         giftofspeed.type = 'text/css';
         var godefer = document.getElementsByTagName('link')[0];
         godefer.parentNode.insertBefore(giftofspeed, godefer);
+
+        var giftofspeed2 = document.createElement('link');
+        giftofspeed2.rel = 'stylesheet';
+        giftofspeed2.href = 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css';
+        var godefer2 = document.getElementsByTagName('link')[0];
+        godefer2.parentNode.insertBefore(giftofspeed2, godefer2);
         // var loadDeferredStyles = function() {
         //   var addStylesNode = document.getElementById("deferred-styles");
         //   var replacement = document.createElement("div");
