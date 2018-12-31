@@ -29,20 +29,7 @@ module.exports = {
             loader: 'url-loader'
           }
         ]
-      }, {
-        // For all .css files except from node_modules
-        test: /\.css$/,
-        exclude: /node_modules/,
-        use: [
-          'style-loader',
-          { loader: 'css-loader', options: { modules: true } }
-        ]
-      }, {
-        // For all .css files in node_modules
-        test: /\.css$/,
-        include: /node_modules/,
-        use: ['style-loader', 'css-loader']
-      }
+      }, 
     ]
   },
   plugins: [
