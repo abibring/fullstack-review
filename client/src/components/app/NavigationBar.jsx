@@ -9,7 +9,7 @@ const NavigationBar = ({ signOut }) => {
   return (
     <Navbar className="navbar">
       <Navbar.Brand>
-        <Image src={logo} alt="logo" />
+        <Image src={logo} alt="logo" className="logo" />
       </Navbar.Brand>
       <Nav>
         <NavItem eventKey={1} href="https://www.linkedin.com/in/alon-bibring-45117458/" style={{ opacity: .7 }}>
