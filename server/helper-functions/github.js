@@ -61,7 +61,6 @@ const getReposCollab = access_token => {
   return axios.get(`https://api.github.com/user/repos`, {
     params: {
       access_token,
-      affiliation: 'collaborator',
       sort: 'updated',
       direction: 'desc'
     }
