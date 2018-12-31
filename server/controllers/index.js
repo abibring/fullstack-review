@@ -1,5 +1,5 @@
-const { getStarredRepos, getRepoIssues, getRepoNotifications, getRepoReleases, getReposAssociatedWith } = require('../helper-functions/github.js');
-const { updateRanking, arrayOfRepoNameAndOwner, sortEventsAndGiveRanking } = require('../helper-functions/sortingHelpers.js');
+const { getReposStarred, getRepoIssues, getRepoNotifications, getRepoReleases, getReposAssociatedWith } = require('../helper-functions/github.js');
+const { removeDuplicatesAndSortByRanking, arrayOfRepoNameAndOwner, addRankingToRepos } = require('../helper-functions/sortingHelpers.js');
 require('dotenv').config();
 
 module.exports = {
@@ -7,9 +7,10 @@ module.exports = {
   associated: {
     get: function(req, res) {
       const { userToken } = req.query;
+      
       getReposAssociatedWith(userToken)
       .then(({ data }) => {
-        var hash = {};
+        const hash = {};
         const reposStarred = arrayOfRepoNameAndOwner(data);
         let promise = Promise.all(reposStarred.map(repo => {
           return getRepoIssues(repo.owner, repo.repo, userToken)
@@ -22,10 +23,11 @@ module.exports = {
               .then(({ data }) => {
                 hash[`releases-${repo.owner}`] = data;
                 return hash;
-              })
-            })
-          }).catch(e => console.error('err in getRepoNotifications', e));
+              }).catch(e => console.error('err in getRepoRelease', e));
+            }).catch(e => console.error('err in getRepoNotifications', e));
+          }).catch(e => console.error('err in getRepoIssues', e));
         }));
+
         promise.then((hash) => {       
           const results = [];
           for (let i = 0; i < hash.length; i++) {
@@ -36,13 +38,15 @@ module.exports = {
               }
             }
           }
+
           function flattenDeep(arr) {
             return arr.reduce((acc, val) => Array.isArray(val) ? acc.concat(flattenDeep(val)) : acc.concat(val), []);
-          }        
+          }
+
           let arrayOfData = flattenDeep(results);
-          sortEventsAndGiveRanking(arrayOfData);
-          let finalSortedResults = updateRanking(arrayOfData);
-          
+          addRankingToRepos(arrayOfData);
+          let finalSortedResults = removeDuplicatesAndSortByRanking(arrayOfData);
+
           res.send(finalSortedResults);
           }).catch(e => res.send(e));
         }).catch(e => res.send(e));
@@ -52,9 +56,10 @@ module.exports = {
   starred: {
     get: function(req, res) {
       const { userToken } = req.query;
-      getStarredRepos(userToken)
+      
+      getReposStarred(userToken)
       .then(({ data }) => {
-        var hash = {};
+        const hash = {};
         const reposStarred = arrayOfRepoNameAndOwner(data);
         let promise = Promise.all(reposStarred.map(repo => {
           return getRepoIssues(repo.owner, repo.repo, userToken)
@@ -85,8 +90,8 @@ module.exports = {
             return arr.reduce((acc, val) => Array.isArray(val) ? acc.concat(flattenDeep(val)) : acc.concat(val), []);
           }        
           let arrayOfData = flattenDeep(results);
-          sortEventsAndGiveRanking(arrayOfData);
-          let finalSortedResults = updateRanking(arrayOfData);
+          addRankingToRepos(arrayOfData);
+          let finalSortedResults = removeDuplicatesAndSortByRanking(arrayOfData);
           
           res.send(finalSortedResults);
           }).catch(e => res.send(e));

@@ -15,7 +15,7 @@ const getTokenForUser = code => {
   });
 };
 
-const getStarredRepos = access_token => {
+const getReposStarred = access_token => {
   access_token = cryptr.decrypt(access_token);
   return axios.get(`https://api.github.com/user/starred`, {
     params: { access_token, sort: 'updated', direction: 'desc' }
@@ -58,7 +58,7 @@ const getReposAssociatedWith = access_token => {
 module.exports = { 
   authenticateUser, 
   getTokenForUser, 
-  getStarredRepos, 
+  getReposStarred, 
   getRepoIssues, 
   getRepoNotifications, 
   getRepoReleases,
