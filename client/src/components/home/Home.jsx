@@ -59,17 +59,26 @@ export default class Home extends Component {
   
   onSelect(e) {
     const { repos, filterBy } = this.state;
+    let promise;
     if (filterBy.length > 0 && e !== filterBy) {
-      this.getStarred();
+      promise = new Promise((reject, resolve) => {
+        resolve(this.getStarred)
+      });
     }
-    this.setState({ filterBy: e });
-    let results = [];
-    repos.map(repo => {
-      if (repo.html_url.split('/')[3] === e) {
-        results.push(repo);
-      }
-    });
-    this.setState({ repos: results });
+    if (promise) {
+      promise
+        .then(() => {
+          this.setState({ filterBy: e });
+          let results = [];
+          repos.map(repo => {
+            if (repo.html_url.split('/')[3] === e) {
+              results.push(repo);
+            }
+          });
+          this.setState({ repos: results });
+        })
+        .catch(() => this.getStarred());
+    }
   }
   
   render() {
