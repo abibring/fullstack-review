@@ -89,6 +89,7 @@ export default class Home extends Component {
     const { history } = this.props;
     return (
       <div className="main">
+      {console.log('repos', repos)}
         <NavigationBar history={history} signOut={this.signOut} />
         <Filter repos={repos} onSelect={this.onSelect} />
         <HomeFeed isLoading={isLoading} leave={this.confirmRedirect} repos={repos} />
