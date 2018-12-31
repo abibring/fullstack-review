@@ -7,7 +7,7 @@ import NavigationBar from '../app/NavigationBar.jsx';
 export default class Home extends Component {
   constructor(props) {
     super(props);
-    this.state = { repos: [], isAuthenticated: false, isLoading: true, filterBy: '', filteredRepos: [] };
+    this.state = {  isAuthenticated: false, repos: [], isLoading: true, filterBy: '', filteredRepos: [] };
     this.userToken = this.props.userToken;
     this.signOut = this.signOut.bind(this);
     this.getStarred = this.getStarred.bind(this);
@@ -70,10 +70,8 @@ export default class Home extends Component {
     console.log('e', e);
     const { repos } = this.state;
     this.setState({ filterBy: e }, () => {
-      let promise = Promise.all(repos.filter(repo => repo.html_url.split('/')[3] === e))
-      promise
-        .then((results) => this.setState({ filteredRepos: results }))
-        .catch(e => console.error('err in handleRepoFilter Promise', e));
+      let filtered = repos.filter(repo => repo.html_url.split('/')[3] === filterBy);
+      this.setState({ filteredRepos: filtered });
     })
   }
   
