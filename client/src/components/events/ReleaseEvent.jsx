@@ -18,9 +18,9 @@ const ReleaseEvent = ({ release, leave }) => (
 
         {markdown(release.body).length > 500
         ?
-          <div>{markdown(release.body).slice(0, 500) + '...'}</div>
+          <div className="event-body">{markdown(release.body).slice(0, 500) + '...'}</div>
         :
-          <div>{markdown(release.body)}</div>
+          <div className="event-body">{markdown(release.body)}</div>
         } 
         <br />
         

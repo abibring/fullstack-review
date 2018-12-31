@@ -153,6 +153,10 @@
   flex-flow: row;
 }
 
+.event-body {
+  align-self: auto;
+}
+
 .content {
   /* padding: 0 0 0 120px;
   position: relative;

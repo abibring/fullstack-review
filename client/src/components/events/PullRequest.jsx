@@ -18,9 +18,9 @@ const PullRequest = ({ pull, leave }) => (
 
         {markdown(pull.body).length > 500
         ?
-        <div>{markdown(pull.body).slice(0, 500) + '...'}</div>
+        <div className="event-body">{markdown(pull.body).slice(0, 500) + '...'}</div>
         :
-        <div>{markdown(pull.body)}</div>
+        <div className="event-body">{markdown(pull.body)}</div>
         } 
         <br />
         
