@@ -34,16 +34,15 @@ export default class Home extends Component {
     axios.get('/logout')
     .then(() => {
       window.localStorage.clear();
-      this.setState({ isAuthenticated: false });
-      history.push('/');
+      this.setState({ isAuthenticated: false }, () => history.push('/'));
     })
     .catch(() => history.push('/'));
   }
   
   getStarred() {
-    this.setState({ isLoading: true})
+    this.setState({ isLoading: true })
     axios.get('/user/starred', { params: { userToken: this.userToken }})
-    .then(({ data }) => this.setState({ repos: data, isLoading: false }, () => this.getReposCollab()))
+    .then(({ data }) => this.setState({ repos: data, isLoading: false }, () => this.getReposCollab() ))
     .catch(err => console.error(`err in componentDidMount: ${err}`));
   }
   
@@ -51,9 +50,9 @@ export default class Home extends Component {
     const { repos } = this.state;
     axios.get('/user/collab', { params: { userToken: this.userToken }})
     .then(({ data }) => {
-      let reposFinal = [...repos, ...data];
-      reposFinal = reposFinal.sort((a,b) => b.ranking - a.ranking);
-      this.setState({ repos: reposFinal })
+      let allRepoData = [...repos, ...data];
+      allRepoData = allRepoData.sort((a,b) => b.ranking - a.ranking);
+      this.setState({ repos: allRepoData })
     })
     .catch(err => console.error('error with owned repos', err));
   }
