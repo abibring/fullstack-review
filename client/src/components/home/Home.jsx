@@ -62,12 +62,7 @@ export default class Home extends Component {
     let promise;
     if (filterBy.length > 0 && e !== filterBy) {
       promise = new Promise((reject, resolve) => {
-        resolve(this.getStarred)
-      });
-    }
-    if (promise) {
-      promise
-        .then(() => {
+        resolve(() => {
           this.setState({ filterBy: e });
           let results = [];
           repos.map(repo => {
@@ -77,7 +72,13 @@ export default class Home extends Component {
           });
           this.setState({ repos: results });
         })
-        .catch(() => this.getStarred());
+      });
+    }
+    if (promise) {
+      this.getStarred();
+      promise
+        .then(() => console.log('promise successful'))
+        .catch(e => console.error('err in promise', e));
     } else {
       this.setState({ filterBy: e });
       let results = [];
