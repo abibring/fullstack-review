@@ -5,24 +5,23 @@ import { Navbar, NavItem, Nav, Image } from 'react-bootstrap';
 const NavigationBar = ({ signOut }) => {
   const userAvatar = window.localStorage.getItem('avatar');
   const username = window.localStorage.getItem('username');
-  const whiteFont = { color: 'white' };
   return (
     <Navbar className="navbar">
       <Nav>
         {/* <NavItem key={1} href="#">
           <Image src={logo} alt="logo" className="logo" />
         </NavItem> */}
-        <NavItem eventKey={2} href="https://www.linkedin.com/in/alon-bibring-45117458/" style={{ opacity: .7 }}>
-          <div style={whiteFont}>Made with &#9825; </div>
-          <div style={whiteFont}>
-            by <i style={{ textDecoration: 'underline' }}>Alon Bibring</i> in NYC.
+        <NavItem eventKey={2} href="https://www.linkedin.com/in/alon-bibring-45117458/" className="brand-navbar">
+          <div className="white-text" className="white-text">Made with &#9825; </div>
+          <div className="white-text">
+            by <i className="name-navbar">Alon Bibring</i> in NYC.
           </div>
         </NavItem>
       </Nav>
       <Nav>
         <NavItem >
-          <div style={{ color: 'white', fontSize: 14 }}>GithubFeed</div>
-          <div style={{ color: 'white', fontSize: 12, opacity: .7 }}>Github updates you care about.</div>
+          <div className="github-navbar">GithubFeed</div>
+          <div className="slogan-navbar">Github updates you care about.</div>
         </NavItem>
       </Nav>
       <Nav pullRight>

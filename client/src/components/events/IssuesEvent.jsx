@@ -18,7 +18,6 @@ const IssuesEvent = ({ event, leave }) => {
           <i className="content-updated">{moment(event.updated_at).startOf('hour').fromNow()}.</i><br /><br />
           <div className="repo-name">{repoOwner} / {repoName}</div><br />
           <div>{event.title}</div><br />
-          {/* <div><b>Ranking:</b> {event.ranking}</div> */}
 
           {markdown(event.body).length > 500
           ?
