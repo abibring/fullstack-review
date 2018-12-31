@@ -15,7 +15,6 @@ export default class App extends Component {
     }
   }
   render() {
-    const { cookies } = this.props;
     return (
       <div>
         <Switch>

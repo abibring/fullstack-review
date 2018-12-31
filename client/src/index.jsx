@@ -5,8 +5,8 @@ import App from './components/app/App.jsx';
 import history from './components/app/history.js';
 
 ReactDOM.render(
-      <Router history={history}>
-        <App history={history} />
-      </Router>,
+  <Router history={history}>
+    <App history={history} />
+  </Router>,
   document.getElementById('app')
 );
