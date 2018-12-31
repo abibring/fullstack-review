@@ -68,9 +68,9 @@ export default class Home extends Component {
 
   handleRepoFilter(e) {
     console.log('e', e);
-    const { repos, filterBy } = this.state;
+    const { repos } = this.state;
     this.setState({ filterBy: e }, () => {
-      let filtered = repos.filter(repo => repo.html_url.split('/')[3] === filterBy);
+      let filtered = repos.filter(repo => repo.html_url.split('/')[3] === e);
       this.setState({ filteredRepos: filtered });
     })
   }
