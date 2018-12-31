@@ -17,9 +17,9 @@ export default class Home extends Component {
     };
     this.userToken = this.props.userToken;
     this.signOut = this.signOut.bind(this);
-    this.getStarred = this.getStarred.bind(this);
+    this.getStarredRepos = this.getStarredRepos.bind(this);
     this.confirmRedirect = this.confirmRedirect.bind(this);
-    this.getReposAssociated = this.getReposAssociated.bind(this);
+    this.getAssociatedRepos = this.getAssociatedRepos.bind(this);
     this.onSelect = this.onSelect.bind(this);
     this.handleRepoFilter = this.handleRepoFilter.bind(this);
   }
@@ -29,12 +29,14 @@ export default class Home extends Component {
     if (!this.userToken) {
       history.push('/');
     } else {
-      this.setState({ isAuthenticated: true }, () => this.getStarred());
+      this.setState({ isAuthenticated: true }, () => this.getStarredRepos());
     }
   }
   
   confirmRedirect() {
-    window.onbeforeunload = () => { return; };
+    window.onbeforeunload = () => { 
+      return 'Sure?'; 
+    };
   }
   
   signOut() {
@@ -47,14 +49,14 @@ export default class Home extends Component {
     .catch(() => history.push('/'));
   }
   
-  getStarred() {
+  getStarredRepos() {
     this.setState({ isLoading: true })
     axios.get('/user/starred', { params: { userToken: this.userToken }})
-    .then(({ data }) => this.setState({ repos: data, isLoading: false }, () => this.getReposAssociated() ))
+    .then(({ data }) => this.setState({ repos: data, isLoading: false }, () => this.getAssociatedRepos() ))
     .catch(err => console.error(`err in componentDidMount: ${err}`));
   }
   
-  getReposAssociated() {
+  getAssociatedRepos() {
     const { repos } = this.state;
     axios.get('/user/associated', { params: { userToken: this.userToken }})
     .then(({ data }) => {
@@ -77,7 +79,6 @@ export default class Home extends Component {
   }
 
   handleRepoFilter(e) {
-    console.log('e', e);
     const { repos } = this.state;
     this.setState({ filterBy: e }, () => {
       let filtered = repos.filter(repo => repo.html_url.split('/')[3] === e);
