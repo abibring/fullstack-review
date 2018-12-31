@@ -5,7 +5,7 @@ import landingPage from '../../../dist/img/landingPage.jpg';
 
 const LandingPage = () => (
   <Jumbotron className="jumbotron">
-    <div className="jumbotron-content" style={{ backgroundImage: landingPage }}>
+    <div className="jumbotron-content">
       <h1 style={{ color: '#39927A' }}>The Useful Github Feed</h1>
       <p>
         This is a useful news feed for Github.  Find out the latest updates about repos you
