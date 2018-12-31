@@ -8,10 +8,10 @@ const NavigationBar = ({ signOut }) => {
   const whiteFont = { color: 'white' };
   return (
     <Navbar className="navbar">
-      <Navbar.Brand>
-        <Image src={logo} alt="logo" className="logo" />
-      </Navbar.Brand>
+      {/* <Navbar.Brand>
+      </Navbar.Brand> */}
       <Nav>
+        <Image src={logo} alt="logo" className="logo" />
         <NavItem eventKey={1} href="https://www.linkedin.com/in/alon-bibring-45117458/" style={{ opacity: .7 }}>
           <div style={whiteFont}>Made with &#9825; </div>
           <div style={whiteFont}>
