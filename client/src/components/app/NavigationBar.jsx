@@ -1,6 +1,6 @@
 import React from 'react';
 import { Navbar, NavItem, Nav, Image } from 'react-bootstrap';
-import Logo from '../../../dist/img/githubfeed_logo.png';
+import logo from '../../../dist/img/githubfeed_logo.png';
 
 const NavigationBar = ({ signOut }) => {
   const userAvatar = window.localStorage.getItem('avatar');
