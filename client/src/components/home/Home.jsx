@@ -72,8 +72,8 @@ export default class Home extends Component {
       axios.get('/user/collab', { params: { userToken: this.userToken }})
         .then(({ data }) => {
           let reposFinal = [...repos, ...data];
-          reposFinal = data.sort((a,b) => b.ranking - a.ranking);
-          this.setState({ repos: reposFinal})
+          reposFinal = reposFinal.sort((a,b) => b.ranking - a.ranking);
+          this.setState({ repos: reposFinal })
         })
         .catch(err => console.error('error with owned repos', err));
     }
