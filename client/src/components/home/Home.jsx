@@ -7,7 +7,7 @@ import NavigationBar from '../app/NavigationBar.jsx';
 export default class Home extends Component {
   constructor(props) {
     super(props);
-    this.state = {  isAuthenticated: false, repos: [], isLoading: true, filterBy: '', filteredRepos: [], repoNames: [] };
+    this.state = {  isAuthenticated: false, repos: [], isLoading: true, filterBy: '', filteredRepos: [], repoNames: ['Mongoose', 'Prisma'] };
     this.userToken = this.props.userToken;
     this.signOut = this.signOut.bind(this);
     this.getStarred = this.getStarred.bind(this);
@@ -54,6 +54,7 @@ export default class Home extends Component {
       let allRepoData = [...repos, ...data];
       allRepoData = allRepoData.sort((a,b) => b.ranking - a.ranking);
       let repoNames = allRepoData.filter(repo => repo.html_url.split('/')[3])
+      console.log('repoNames', repoNames);
       let hash = {};
       let reposMinusDuplicates = [];
       repoNames.map(repo => {
@@ -62,7 +63,7 @@ export default class Home extends Component {
           reposMinusDuplicates.push(repo);
         }
       });
-      this.setState({ repos: allRepoData, repoNames: reposMinusDuplicates })
+      this.setState({ repos: allRepoData })
     })
     .catch(err => console.error('error with owned repos', err));
   }
