@@ -19,7 +19,7 @@ app.use((req, res, next) => {
   res.set('Cache-Control', 'no-cache');
   next();
 }); 
-app.use(express.static(path.join(__dirname, '/client/dist'), { redirect: false, maxAge: 86400 }));
+app.use(express.static(path.join(__dirname, '/client/dist'), { redirect: false, maxAge: '86400' }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
