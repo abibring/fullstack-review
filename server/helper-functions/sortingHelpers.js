@@ -32,7 +32,7 @@ module.exports = {
       } else if (typeOfEvent === 'releases') {
         const publishedAt = new Date(repo.published_at);
         secondsPast = (now.getTime() - publishedAt.getTime());
-        repo.ranking = (500 * Math.pow(1 / secondsPast, 2));
+        repo.ranking = (350 * Math.pow(1 / secondsPast, 2));
       }
     });
   }
