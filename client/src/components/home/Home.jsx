@@ -7,7 +7,7 @@ import NavigationBar from '../app/NavigationBar.jsx';
 export default class Home extends Component {
   constructor(props) {
     super(props);
-    this.state = {  isAuthenticated: false, repos: [], isLoading: true, filterBy: '', filteredRepos: [] };
+    this.state = {  isAuthenticated: false, repos: [], isLoading: true, filterBy: '', filteredRepos: [], repoNames: [] };
     this.userToken = this.props.userToken;
     this.signOut = this.signOut.bind(this);
     this.getStarred = this.getStarred.bind(this);
@@ -53,7 +53,16 @@ export default class Home extends Component {
     .then(({ data }) => {
       let allRepoData = [...repos, ...data];
       allRepoData = allRepoData.sort((a,b) => b.ranking - a.ranking);
-      this.setState({ repos: allRepoData })
+      let repoNames = allRepoData.filter(repo => repo.html_url.split('/')[3])
+      let hash = {};
+      let reposMinusDuplicates = [];
+      repoNames.map(repo => {
+        if (!hash[repo]) {
+          hash[repo] = true;
+          reposMinusDuplicates.push(repo);
+        }
+      });
+      this.setState({ repos: allRepoData, repoNames: reposMinusDuplicates })
     })
     .catch(err => console.error('error with owned repos', err));
   }
@@ -76,11 +85,11 @@ export default class Home extends Component {
   }
   
   render() {
-    const { repos, isLoading, filteredRepos, filterBy } = this.state;
+    const { repos, isLoading, filteredRepos, filterBy, repoNames } = this.state;
     return (
       <div className="main">
         <NavigationBar signOut={this.signOut} />
-        <Filter repos={repos} onSelect={this.onSelect} filtered={filteredRepos}/>
+        <Filter repos={repos} names={repoNames} onSelect={this.onSelect} filtered={filteredRepos}/>
         <HomeFeed isLoading={isLoading} leave={this.confirmRedirect} repos={filterBy !== '' ? filteredRepos : repos} />
       </div>
     );
