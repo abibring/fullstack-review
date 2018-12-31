@@ -19,7 +19,7 @@ export default class Home extends Component {
     this.signOut = this.signOut.bind(this);
     this.getStarred = this.getStarred.bind(this);
     this.confirmRedirect = this.confirmRedirect.bind(this);
-    this.getReposCollab = this.getReposCollab.bind(this);
+    this.getReposAssociated = this.getReposAssociated.bind(this);
     this.onSelect = this.onSelect.bind(this);
     this.handleRepoFilter = this.handleRepoFilter.bind(this);
   }
@@ -50,13 +50,13 @@ export default class Home extends Component {
   getStarred() {
     this.setState({ isLoading: true })
     axios.get('/user/starred', { params: { userToken: this.userToken }})
-    .then(({ data }) => this.setState({ repos: data, isLoading: false }, () => this.getReposCollab() ))
+    .then(({ data }) => this.setState({ repos: data, isLoading: false }, () => this.getReposAssociated() ))
     .catch(err => console.error(`err in componentDidMount: ${err}`));
   }
   
-  getReposCollab() {
+  getReposAssociated() {
     const { repos } = this.state;
-    axios.get('/user/collab', { params: { userToken: this.userToken }})
+    axios.get('/user/associated', { params: { userToken: this.userToken }})
     .then(({ data }) => {
       let allRepoData = [...repos, ...data];
       allRepoData = allRepoData.sort((a,b) => b.ranking - a.ranking);

@@ -44,7 +44,7 @@ const getRepoReleases = (owner, repo, access_token) => {
   });
 };
 
-const getReposCollab = access_token => {
+const getReposAssociatedWith = access_token => {
   access_token = cryptr.decrypt(access_token);
   return axios.get(`https://api.github.com/user/repos`, {
     params: {
@@ -62,5 +62,5 @@ module.exports = {
   getRepoIssues, 
   getRepoNotifications, 
   getRepoReleases,
-  getReposCollab
+  getReposAssociatedWith
 }

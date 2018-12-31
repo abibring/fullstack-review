@@ -24,15 +24,15 @@ module.exports = {
       if (typeOfEvent === 'pull') {
         const createdAtPR = new Date(repo.created_at);
         secondsPast = (now.getTime() - createdAtPR.getTime());
-        repo.ranking = (100 * Math.pow(1 / secondsPast, 2));
+        repo.ranking = (200 * Math.pow(1 / secondsPast, 2));
       } else if (typeOfEvent === 'issues') {
         const updatedAt = new Date(repo.updated_at);
         secondsPast = (now.getTime() - updatedAt.getTime());
-        repo.ranking = (150 * Math.pow(1 / secondsPast, 2));
+        repo.ranking = (225 * Math.pow(1 / secondsPast, 2));
       } else if (typeOfEvent === 'releases') {
         const publishedAt = new Date(repo.published_at);
         secondsPast = (now.getTime() - publishedAt.getTime());
-        repo.ranking = (350 * Math.pow(1 / secondsPast, 2));
+        repo.ranking = (300 * Math.pow(1 / secondsPast, 2));
       }
     });
   }

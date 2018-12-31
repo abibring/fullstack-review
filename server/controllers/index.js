@@ -1,13 +1,13 @@
-const { getStarredRepos, getRepoIssues, getRepoNotifications, getRepoReleases, getReposCollab } = require('../helper-functions/github.js');
+const { getStarredRepos, getRepoIssues, getRepoNotifications, getRepoReleases, getReposAssociatedWith } = require('../helper-functions/github.js');
 const { updateRanking, arrayOfRepoNameAndOwner, sortEventsAndGiveRanking } = require('../helper-functions/sortingHelpers.js');
 require('dotenv').config();
 
 module.exports = {
 
-  collab: {
+  associated: {
     get: function(req, res) {
       const { userToken } = req.query;
-      getReposCollab(userToken)
+      getReposAssociatedWith(userToken)
       .then(({ data }) => {
         var hash = {};
         const reposStarred = arrayOfRepoNameAndOwner(data);
