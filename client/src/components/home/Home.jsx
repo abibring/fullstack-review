@@ -63,7 +63,7 @@ export default class Home extends Component {
     let promise;
     if (filterBy.length > 0 && e !== filterBy) {
       promise = new Promise((reject, resolve) => {
-        resolve(() => this.handleRepoFilter(e))
+        resolve(this.handleRepoFilter(e))
       });
     }
     if (promise) {
