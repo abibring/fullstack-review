@@ -14,6 +14,7 @@ export default class Home extends Component {
     this.confirmRedirect = this.confirmRedirect.bind(this);
     this.getReposCollab = this.getReposCollab.bind(this);
     this.onSelect = this.onSelect.bind(this);
+    this.handleRepoFilter = this.handleRepoFilter.bind(this);
   }
 
   componentDidMount() {
@@ -62,16 +63,7 @@ export default class Home extends Component {
     let promise;
     if (filterBy.length > 0 && e !== filterBy) {
       promise = new Promise((reject, resolve) => {
-        resolve(() => {
-          this.setState({ filterBy: e });
-          let results = [];
-          repos.map(repo => {
-            if (repo.html_url.split('/')[3] === e) {
-              results.push(repo);
-            }
-          });
-          this.setState({ repos: results });
-        })
+        resolve(() => this.handleRepoFilter(e))
       });
     }
     if (promise) {
@@ -80,15 +72,19 @@ export default class Home extends Component {
         .then(() => console.log('promise successful'))
         .catch(e => console.error('err in promise', e));
     } else {
-      this.setState({ filterBy: e });
-      let results = [];
-      repos.map(repo => {
-        if (repo.html_url.split('/')[3] === e) {
-          results.push(repo);
-        }
-      });
-      this.setState({ repos: results });
+      this.handleRepoFilter(e);
     }
+  }
+
+  handleRepoFilter(e) {
+    this.setState({ filterBy: e });
+    let results = [];
+    repos.map(repo => {
+      if (repo.html_url.split('/')[3] === e) {
+        results.push(repo);
+      }
+    });
+    this.setState({ repos: results });
   }
   
   render() {
