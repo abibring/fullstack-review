@@ -1,7 +1,7 @@
 import React from 'react';
 import { Jumbotron } from 'react-bootstrap';
 import Login from './Login.jsx';
-import landingPage from '../../../dist/img/landing_page_photo.jp2';
+import landingPage from '../../../dist/img/landing_page_photo.jpeg';
 
 const LandingPage = () => (
   <Jumbotron className="jumbotron">
