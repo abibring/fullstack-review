@@ -1,10 +1,11 @@
 import React from 'react';
 import { Jumbotron } from 'react-bootstrap';
 import Login from './Login.jsx';
+import landingPage from '../../../dist/img/landing_page_photo.jp2';
 
 const LandingPage = () => (
   <Jumbotron className="jumbotron">
-    <div className="jumbotron-content">
+    <div className="jumbotron-content" style={{ backgroundImage: landingPage }}>
       <h1 style={{ color: '#39927A' }}>The Useful Github Feed</h1>
       <p>
         This is a useful news feed for Github.  Find out the latest updates about repos you
