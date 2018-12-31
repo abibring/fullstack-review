@@ -16,7 +16,7 @@ app.use(cookieSession({
 }));
 
   
-app.use(express.static(path.join(__dirname, '/client/dist'), { redirect: false, maxAge: '3 days' }));
+app.use(express.static(path.join(__dirname, '/client/dist'), { redirect: false, maxAge: 86400 }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use((req, res, next) => {
