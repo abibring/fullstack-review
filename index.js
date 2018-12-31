@@ -14,14 +14,15 @@ app.use(cookieSession({
   saveUninitialized: true,
   maxAge: 24 * 60 * 60 * 1000 // 24 hours
 }));
+
   
-app.use(express.static(path.join(__dirname, '/client/dist'), { redirect: false }));
+app.use(express.static(path.join(__dirname, '/client/dist'), { redirect: false, maxAge: '3 days' }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use((req, res, next) => {
   res.set('Cache-Control', 'no-cache');
   next();
-})
+});
 app.use('/', router);
 app.use('/*', (req, res) => res.redirect('/'));
 let port = process.env.PORT || 3000;
