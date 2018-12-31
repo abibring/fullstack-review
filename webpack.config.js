@@ -23,13 +23,18 @@ module.exports = {
         }
       },
       {
-        test: /\.(pdf|jpg|png|gif|svg|ico)$/,
+        test: /\.(gif|png|jpe?g|svg)$/i,
         use: [
+          'file-loader',
           {
-            loader: 'url-loader'
-          }
-        ]
-      }, 
+            loader: 'image-webpack-loader',
+            options: {
+              bypassOnDebug: true, // webpack@1.x
+              disable: true, // webpack@2.x and newer
+            },
+          },
+        ],
+      },
       // {
       //   // For all .css files except from node_modules
       //   test: /\.css$/,
