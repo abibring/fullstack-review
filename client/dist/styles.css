@@ -68,6 +68,12 @@
   opacity: .7;
 }
 
+/* Filter Component */
+
+.filter {
+  padding-right: 10px;
+}
+
 /* Event Containers */
 
 .issue-event {
