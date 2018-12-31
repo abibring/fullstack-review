@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "react-dev": "webpack --config webpack.prod.js -d --watch",
+    "react-dev": "webpack --config webpack.development.js -d --watch",
     "server-dev": "nodemon index.js",
-    "heroku-postbuild": "webpack --config webpack.config.js"
+    "heroku-postbuild": "webpack --config webpack.production.js"
   },
   "repository": {
     "type": "git",

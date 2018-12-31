@@ -4,7 +4,7 @@ import { ButtonToolbar, DropdownButton, MenuItem } from 'react-bootstrap';
 export default class Filter extends Component {
   constructor(props) {
     super(props);
-    this.state = { repos: [], name: 'Filter By Repo Name' };
+    this.state = { repos: [], name: 'Filter by repo' };
     this.filterReposByName = this.filterReposByName.bind(this);
   }
 
