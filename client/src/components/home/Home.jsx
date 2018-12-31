@@ -62,7 +62,7 @@ export default class Home extends Component {
     const { repos, filterBy } = this.state;
     let promise;
     if (filterBy.length > 0 && e !== filterBy) {
-      promise = new Promise((reject, resolve) => {
+      promise = new Promise(function(reject, resolve) {
         resolve(this.handleRepoFilter(e))
       });
     }
