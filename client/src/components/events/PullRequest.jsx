@@ -11,7 +11,8 @@ const PullRequest = ({ pull, leave }) => (
     <ListGroupItem key={pull.id} className="pull-event">
       <span className="content">
         <span className="content-user">@{pull.user.login} opened a pull request.</span>{'   '}
-        <i className="content-updated">{moment(pull.updated_at).startOf('hour').fromNow()}.</i><br /><br />
+        <i className="content-updated">{moment(pull.updated_at).startOf('hour').fromNow()}.</i>
+        <br /><br />
         <div className="repo-name">{pull.html_url.split('/')[4]} / {pull.html_url.split('/')[3]}</div><br />
         <div>{pull.title}</div><br />
 

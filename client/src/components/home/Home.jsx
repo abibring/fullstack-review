@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import HomeFeed from './HomeFeed.jsx';
-import NavigationBar from '../app/NavigationBar.jsx';
 import Filter from './Filter.jsx';
+import NavigationBar from '../app/NavigationBar.jsx';
 
 export default class Home extends Component {
   constructor(props) {
     super(props);
     this.state = { repos: [], isAuthenticated: false, isLoading: true, filterBy: '' };
-    this.userToken = window.localStorage.getItem('userToken');
-
+    this.userToken = this.props.userToken;
     this.signOut = this.signOut.bind(this);
     this.getStarred = this.getStarred.bind(this);
     this.confirmRedirect = this.confirmRedirect.bind(this);
@@ -19,7 +18,7 @@ export default class Home extends Component {
 
   componentDidMount() {
     const { history } = this.props;
-    if (!this.userToken || this.userToken === 'invalid') {
+    if (!this.userToken) {
       history.push('/');
     } else {
       this.setState({ isAuthenticated: true }, () => this.getStarred());
@@ -76,10 +75,9 @@ export default class Home extends Component {
   
   render() {
     const { repos, isLoading } = this.state;
-    const { history } = this.props;
     return (
       <div className="main">
-        <NavigationBar history={history} signOut={this.signOut} />
+        <NavigationBar signOut={this.signOut} />
         <Filter repos={repos} onSelect={this.onSelect} />
         <HomeFeed isLoading={isLoading} leave={this.confirmRedirect} repos={repos} />
       </div>
