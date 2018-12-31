@@ -39,7 +39,10 @@ export default class Filter extends Component {
               }}>{repo}</MenuItem>
             ))}
             <MenuItem divider />
-            <MenuItem eventKey={''} onSelect={onSelect}>View All</MenuItem>
+            <MenuItem eventKey={''} onSelect={() => {
+              onSelect(e)
+              this.setState({ name: e })
+            }}>View All</MenuItem>
           </DropdownButton>
         </ButtonToolbar>
       </div>
