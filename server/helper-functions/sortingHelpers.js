@@ -4,7 +4,7 @@ module.exports = {
     return array.map(repo => ({ repo: repo.name, owner: repo.owner.login }));
   },
 
-  updateRanking: function(arr) {
+  removeDuplicatesAndSortByRanking: function(arr) {
     let hash = {};
     let repos = [];
     arr.map(repo => {
@@ -16,7 +16,7 @@ module.exports = {
     return repos.sort((a, b) =>  b.ranking - a.ranking);
   }, 
 
-  sortEventsAndGiveRanking: function(arr) {
+  addRankingToRepos: function(arr) {
     arr.map(repo => {
       const now = new Date();
       const typeOfEvent = repo.html_url.split('/')[5].toString();
