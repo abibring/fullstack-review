@@ -54,7 +54,7 @@ module.exports = {
   collab: {
     get: function(req, res) {
       const { userToken } = req.query;
-      getReposCollab(userToken)
+      getReposOwned(userToken)
       .then(({ data }) => {
         var hash = {};
         const reposStarred = arrayOfRepoNameAndOwner(data);
