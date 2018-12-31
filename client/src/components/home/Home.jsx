@@ -14,7 +14,6 @@ export default class Home extends Component {
     this.getStarred = this.getStarred.bind(this);
     this.confirmRedirect = this.confirmRedirect.bind(this);
     this.getReposCollab = this.getReposCollab.bind(this);
-    this.getReposOrg = this.getReposOrg.bind(this);
     this.onSelect = this.onSelect.bind(this);
   }
 
@@ -23,13 +22,43 @@ export default class Home extends Component {
     if (!this.userToken || this.userToken === 'invalid') {
       history.push('/');
     } else {
-      this.setState({ isAuthenticated: true }, () => {
-        this.getStarred();
-        // this.getReposOrg();
-      });
+      this.setState({ isAuthenticated: true }, () => this.getStarred());
     }
   }
-
+  
+  confirmRedirect() {
+    window.onbeforeunload = () => { return; };
+  }
+  
+  signOut() {
+    const { history } = this.props;
+    axios.get('/logout')
+    .then(() => {
+      window.localStorage.clear();
+      this.setState({ isAuthenticated: false });
+      history.push('/');
+    })
+    .catch(() => history.push('/'));
+  }
+  
+  getStarred() {
+    this.setState({ isLoading: true})
+    axios.get('/user/starred', { params: { userToken: this.userToken }})
+    .then(({ data }) => this.setState({ repos: data, isLoading: false }, () => this.getReposCollab()))
+    .catch(err => console.error(`err in componentDidMount: ${err}`));
+  }
+  
+  getReposCollab() {
+    const { repos } = this.state;
+    axios.get('/user/collab', { params: { userToken: this.userToken }})
+    .then(({ data }) => {
+      let reposFinal = [...repos, ...data];
+      reposFinal = reposFinal.sort((a,b) => b.ranking - a.ranking);
+      this.setState({ repos: reposFinal })
+    })
+    .catch(err => console.error('error with owned repos', err));
+  }
+  
   onSelect(e) {
     const { repos, filterBy } = this.state;
     if (filterBy.length > 0 && e !== filterBy) {
@@ -45,51 +74,11 @@ export default class Home extends Component {
     this.setState({ repos: results });
   }
   
-  confirmRedirect() {
-    window.onbeforeunload = () => { return; };
-  }
-
-  signOut() {
-    const { history } = this.props;
-    axios.get('/logout')
-      .then(() => {
-        window.localStorage.clear();
-        this.setState({ isAuthenticated: false });
-        history.push('/');
-      })
-      .catch(() => history.push('/'));
-    }
-    
-    getStarred() {
-      this.setState({ isLoading: true})
-      axios.get('/user/starred', { params: { userToken: this.userToken }})
-        .then(({ data }) => this.setState({ repos: data, isLoading: false }, () => this.getReposCollab()))
-        .catch(err => console.error(`err in componentDidMount: ${err}`));
-    }
-
-    getReposCollab() {
-      const { repos } = this.state;
-      axios.get('/user/collab', { params: { userToken: this.userToken }})
-        .then(({ data }) => {
-          let reposFinal = [...repos, ...data];
-          reposFinal = reposFinal.sort((a,b) => b.ranking - a.ranking);
-          this.setState({ repos: reposFinal })
-        })
-        .catch(err => console.error('error with owned repos', err));
-    }
-
-    getReposOrg() {
-      axios.get('/user/org', { params: { userToken: this.userToken }})
-        .then(({ data }) => console.log('ORG', data))
-        .catch(err => console.error('ORG ERR', err));
-    }
-
   render() {
     const { repos, isLoading } = this.state;
     const { history } = this.props;
     return (
       <div className="main">
-      {console.log('repos', repos)}
         <NavigationBar history={history} signOut={this.signOut} />
         <Filter repos={repos} onSelect={this.onSelect} />
         <HomeFeed isLoading={isLoading} leave={this.confirmRedirect} repos={repos} />
