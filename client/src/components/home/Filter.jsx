@@ -15,7 +15,6 @@ export default class Filter extends Component {
   filterReposByName() {
     const { repos } = this.props;
     let repoNames = repos.map(repo => repo.html_url.split('/')[3]);
-    let hash = {};
     let reposMinusDuplicates = [];
     repoNames.map(repo => {
       if (!hash[repo]) {

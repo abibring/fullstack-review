@@ -25,7 +25,6 @@ export default class Home extends Component {
     } else {
       this.setState({ isAuthenticated: true }, () => {
         this.getStarred();
-        // this.getReposCollab();
         // this.getReposOrg();
       });
     }
@@ -64,14 +63,18 @@ export default class Home extends Component {
     getStarred() {
       this.setState({ isLoading: true})
       axios.get('/user/starred', { params: { userToken: this.userToken }})
-        .then(({ data }) => this.setState({ repos: data, isLoading: false }))
+        .then(({ data }) => this.setState({ repos: data, isLoading: false }, () => this.getReposCollab()))
         .catch(err => console.error(`err in componentDidMount: ${err}`));
     }
 
     getReposCollab() {
       const { repos } = this.state;
       axios.get('/user/collab', { params: { userToken: this.userToken }})
-        .then(({ data }) => this.setState({ repos: [...data, ...repos]}))
+        .then(({ data }) => {
+          let reposFinal = [...repos, ...data];
+          reposFinal = data.sort((a,b) => b.ranking - a.ranking);
+          this.setState({ repos: reposFinal})
+        })
         .catch(err => console.error('error with owned repos', err));
     }
 

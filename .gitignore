@@ -3,5 +3,6 @@
 /config.js
 /config
 /*.env
+/package-lock.json
 .DS_Store
 npm-debug.log
