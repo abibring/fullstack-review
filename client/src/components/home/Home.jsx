@@ -80,8 +80,8 @@ export default class Home extends Component {
     return (
       <div className="main">
         <NavigationBar signOut={this.signOut} />
-        <Filter repos={filterBy !== '' ? filteredRepos : repos} filterBy={filterBy} onSelect={this.onSelect} filtered={filteredRepos}/>
-        <HomeFeed isLoading={isLoading} leave={this.confirmRedirect} repos={repos} />
+        <Filter repos={repos} filterBy={filterBy} onSelect={this.onSelect} filtered={filteredRepos}/>
+        <HomeFeed isLoading={isLoading} leave={this.confirmRedirect} repos={filterBy !== '' ? filteredRepos : repos} />
       </div>
     );
   }
