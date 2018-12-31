@@ -29,9 +29,11 @@ module.exports = {
             loader: 'url-loader'
           }
         ]
-      }, {
-        test: /\.less$/,
-        loader: 'style-loader!css-loader!less-loader'
+      },
+      {
+        test: /\.css$/,
+        include: /node_modules/,
+        use: ['style-loader', 'css-loader']
       }
     ]
   },
