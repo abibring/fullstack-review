@@ -9,10 +9,7 @@ export default class Filter extends Component {
   }
 
   componentDidMount() {
-    if (this.props.repos) {
-      this.filterReposByName();
-    }
-    // setTimeout(this.filterReposByName, 2000);
+    setTimeout(this.filterReposByName, 2000);
   }
 
   filterReposByName() {
