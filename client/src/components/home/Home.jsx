@@ -69,7 +69,7 @@ export default class Home extends Component {
     if (promise) {
       this.getStarred();
       promise
-        .then(() => console.log('promise successful'))
+        .then((d) => console.log('promise successful', d))
         .catch(e => console.error('err in promise', e));
     } else {
       this.handleRepoFilter(e);
@@ -77,6 +77,7 @@ export default class Home extends Component {
   }
 
   handleRepoFilter(e) {
+    const { repos } = this.state;
     this.setState({ filterBy: e });
     let results = [];
     repos.map(repo => {
