@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Home from '../home/Home.jsx';
 import LandingPage from './LandingPage.jsx';
+import 'bootstrap/dist/css/bootstrap.css'
 
 export default class App extends Component {
   constructor(props) {

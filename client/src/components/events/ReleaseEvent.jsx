@@ -2,6 +2,7 @@ import React from 'react';
 import moment from 'moment';
 import markdown from 'remove-markdown';
 import { ListGroupItem } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.css'
 
 const ReleaseEvent = ({ release, leave }) => (
   <div className="outer-event">

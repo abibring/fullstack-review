@@ -1,5 +1,7 @@
 import React from 'react';
 import moment from 'moment';
+import 'bootstrap/dist/css/bootstrap.css'
+
 import { ListGroupItem } from 'react-bootstrap';
 
 const PushEvent = ({ event }) => (
