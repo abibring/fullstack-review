@@ -211,7 +211,7 @@
 /* Mobile Landscape Screen Sizes */
 @media only screen and (min-width: 480px)  {
 	.release-label, .event-label, .issue-label {
-		width: 120px;
+		width: 50%;
   }
   
   .jumbotron-content {
@@ -225,7 +225,7 @@
 /* Desktop screen Sizes */
 @media only screen and (min-width: 768px) {
 	.release-label, .event-label, .issue-label {
-		width: 510px;
+		width: 40%;
 	}
 }
   

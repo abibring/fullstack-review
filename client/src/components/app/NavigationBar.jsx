@@ -8,11 +8,11 @@ const NavigationBar = ({ signOut }) => {
   const whiteFont = { color: 'white' };
   return (
     <Navbar className="navbar">
-      {/* <Navbar.Brand>
-      </Navbar.Brand> */}
       <Nav>
-        <Image src={logo} alt="logo" className="logo" />
-        <NavItem eventKey={1} href="https://www.linkedin.com/in/alon-bibring-45117458/" style={{ opacity: .7 }}>
+        <NavItem key={1} href="#">
+          <Image src={logo} alt="logo" className="logo" />
+        </NavItem>
+        <NavItem eventKey={2} href="https://www.linkedin.com/in/alon-bibring-45117458/" style={{ opacity: .7 }}>
           <div style={whiteFont}>Made with &#9825; </div>
           <div style={whiteFont}>
             by <i style={{ textDecoration: 'underline' }}>Alon Bibring</i> in NYC.
@@ -26,7 +26,7 @@ const NavigationBar = ({ signOut }) => {
         </NavItem>
       </Nav>
       <Nav pullRight>
-        <NavItem eventKey={2} href="#" className="nav-user-info">
+        <NavItem eventKey={3} href="#" className="nav-user-info">
           <div className="nav-username">@{username}</div>
           <button className="nav-signout" onClick={signOut}>{'    '}Sign Out</button>
         </NavItem>
