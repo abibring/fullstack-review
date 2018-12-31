@@ -44,35 +44,11 @@ const getRepoReleases = (owner, repo, access_token) => {
   });
 };
 
-const getReposOwned = access_token => {
-  access_token = cryptr.decrypt(access_token);
-  return axios.get(`https://api.github.com/user/repos`, {
-    params: {
-      access_token,
-      affiliation: 'owner',
-      sort: 'updated',
-      direction: 'desc'
-    }
-  });
-};
-
 const getReposCollab = access_token => {
   access_token = cryptr.decrypt(access_token);
   return axios.get(`https://api.github.com/user/repos`, {
     params: {
       access_token,
-      sort: 'updated',
-      direction: 'desc'
-    }
-  });
-};
-
-const getReposOrg = access_token => {
-  access_token = cryptr.decrypt(access_token);
-  return axios.get(`https://api.github.com/user/repos`, {
-    params: {
-      access_token,
-      affiliation: 'organization_member',
       sort: 'updated',
       direction: 'desc'
     }
@@ -86,7 +62,5 @@ module.exports = {
   getRepoIssues, 
   getRepoNotifications, 
   getRepoReleases,
-  getReposOwned,
-  getReposCollab,
-  getReposOrg 
+  getReposCollab
 }
