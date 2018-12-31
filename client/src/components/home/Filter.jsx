@@ -39,7 +39,7 @@ export default class Filter extends Component {
               }}>{repo}</MenuItem>
             ))}
             <MenuItem divider />
-            <MenuItem eventKey={'null'} onSelect={onSelect}>View All</MenuItem>
+            <MenuItem eventKey={''} onSelect={onSelect}>View All</MenuItem>
           </DropdownButton>
         </ButtonToolbar>
       </div>

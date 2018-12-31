@@ -67,6 +67,7 @@ export default class Home extends Component {
   }
 
   handleRepoFilter(e) {
+    console.log('e', e);
     const { repos } = this.state;
     this.setState({ filterBy: e }, () => {
       let results = [];
@@ -84,7 +85,7 @@ export default class Home extends Component {
     return (
       <div className="main">
         <NavigationBar signOut={this.signOut} />
-        <Filter repos={filterBy.length > 1 ? filteredRepos : repos} filterBy={filterBy} onSelect={this.onSelect} filtered={filteredRepos}/>
+        <Filter repos={filterBy !== '' ? filteredRepos : repos} filterBy={filterBy} onSelect={this.onSelect} filtered={filteredRepos}/>
         <HomeFeed isLoading={isLoading} leave={this.confirmRedirect} repos={repos} />
       </div>
     );
