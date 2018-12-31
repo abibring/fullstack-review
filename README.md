@@ -1,5 +1,5 @@
 # Github Feed
-Welcome to The Better Github News Feed!  This is a web app where users can view the latest news relevant to you on Github.  Check out the latest updates regarding repos you watch or follow or users that you follow.  Get the latest information on new releases, pull requests, issues, and more!
+Welcome to The GithubFeed! This is a web app where users can view the latest news that you actually care about on Github.  Check out the latest updates regarding repos you are watching, have starred, or are affiliated with.  Get the latest information, including, releases, pull requests, issues, and more!
 
 Check out the app at www.githubfeed.com
 
