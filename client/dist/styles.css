@@ -145,6 +145,14 @@
 }
 
 
+.logo {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  left: 0;
+}
+
+
 .nav-user-info {
   display: flex;
   flex-flow: row;
