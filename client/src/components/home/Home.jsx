@@ -7,7 +7,7 @@ import NavigationBar from '../app/NavigationBar.jsx';
 export default class Home extends Component {
   constructor(props) {
     super(props);
-    this.state = { repos: [], isAuthenticated: false, isLoading: true, filterBy: '' };
+    this.state = { repos: [], isAuthenticated: false, isLoading: true, filterBy: '', filteredRepos: [] };
     this.userToken = this.props.userToken;
     this.signOut = this.signOut.bind(this);
     this.getStarred = this.getStarred.bind(this);
@@ -59,18 +59,8 @@ export default class Home extends Component {
   }
   
   onSelect(e) {
-    const { repos, filterBy } = this.state;
-    let promise;
-    if (filterBy.length > 0 && e !== filterBy) {
-      promise = new Promise(function(reject, resolve) {
-        resolve(this.handleRepoFilter(e))
-      });
-    }
-    if (promise) {
-      this.getStarred();
-      promise
-        .then((d) => console.log('promise successful', d))
-        .catch(e => console.error('err in promise', e));
+    if (e === 'null') {
+      this.setState({ filterBy: '' });
     } else {
       this.handleRepoFilter(e);
     }
@@ -78,22 +68,23 @@ export default class Home extends Component {
 
   handleRepoFilter(e) {
     const { repos } = this.state;
-    this.setState({ filterBy: e });
-    let results = [];
-    repos.map(repo => {
-      if (repo.html_url.split('/')[3] === e) {
-        results.push(repo);
-      }
+    this.setState({ filterBy: e }, () => {
+      let results = [];
+      repos.map(repo => {
+        if (repo.html_url.split('/')[3] === e) {
+          results.push(repo);
+        }
+      });
+      this.setState({ filteredRepos: results });
     });
-    this.setState({ repos: results });
   }
   
   render() {
-    const { repos, isLoading } = this.state;
+    const { repos, isLoading, filteredRepos, filterBy } = this.state;
     return (
       <div className="main">
         <NavigationBar signOut={this.signOut} />
-        <Filter repos={repos} onSelect={this.onSelect} />
+        <Filter repos={filterBy.length > 1 ? filteredRepos : repos} filterBy={filterBy} onSelect={this.onSelect} filtered={filteredRepos}/>
         <HomeFeed isLoading={isLoading} leave={this.confirmRedirect} repos={repos} />
       </div>
     );

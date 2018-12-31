@@ -9,6 +9,7 @@ module.exports = {
     filename: 'bundle.js',
     path: DIST_DIR
   },
+  // devtool: 'cheap-eval-source-map',
   module: {
     rules: [
       {

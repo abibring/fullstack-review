@@ -4,7 +4,7 @@ import { ButtonToolbar, DropdownButton, MenuItem } from 'react-bootstrap';
 export default class Filter extends Component {
   constructor(props) {
     super(props);
-    this.state = { repos: [], name: 'Filter by repo' };
+    this.state = { repos: [], filteredRepos: [], name: 'Filter by repo' };
     this.filterReposByName = this.filterReposByName.bind(this);
   }
 
@@ -23,21 +23,23 @@ export default class Filter extends Component {
         reposMinusDuplicates.push(repo);
       }
     });
-    this.setState({ repos: reposMinusDuplicates });
+    this.setState({ filteredRepos: reposMinusDuplicates });
   }
   render() {
-    const { repos, name } = this.state;
+    const { filteredRepos, name } = this.state;
     const { onSelect } = this.props;
     return (
       <div>
         <ButtonToolbar>
           <DropdownButton title={name} id="dropdown-size-medium">
-            {repos.map((repo, i) => (
+            {filteredRepos.map((repo, i) => (
               <MenuItem eventKey={repo} key={i} onSelect={(e) => {
                 onSelect(e)
                 this.setState({ name: e })
               }}>{repo}</MenuItem>
             ))}
+            <MenuItem divider />
+            <MenuItem eventKey={'null'} onSelect={onSelect}>View All</MenuItem>
           </DropdownButton>
         </ButtonToolbar>
       </div>

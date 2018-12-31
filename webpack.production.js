@@ -11,6 +11,7 @@ module.exports = {
     filename: 'bundle.js',
     path: DIST_DIR
   },
+  // devtool: 'cheap-eval-source-map',
   module: {
     rules: [
       {
@@ -30,20 +31,6 @@ module.exports = {
           }
         ]
       }, 
-      // {
-      //   // For all .css files except from node_modules
-      //   test: /\.css$/,
-      //   exclude: /node_modules/,
-      //   use: [
-      //     'style-loader',
-      //     { loader: 'css-loader', options: { modules: true } }
-      //   ]
-      // }, {
-      //   // For all .css files in node_modules
-      //   test: /\.css$/,
-      //   include: /node_modules/,
-      //   use: ['style-loader', 'css-loader']
-      // }
     ]
   },
   plugins: [
@@ -72,3 +59,19 @@ module.exports = {
     fs: 'empty'
   }
 };
+
+// go inside rules arrau - for loading files/images:
+// {
+//   // For all .css files except from node_modules
+//   test: /\.css$/,
+//   exclude: /node_modules/,
+//   use: [
+//     'style-loader',
+//     { loader: 'css-loader', options: { modules: true } }
+//   ]
+// }, {
+//   // For all .css files in node_modules
+//   test: /\.css$/,
+//   include: /node_modules/,
+//   use: ['style-loader', 'css-loader']
+// }
