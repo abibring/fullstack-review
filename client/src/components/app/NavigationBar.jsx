@@ -10,9 +10,9 @@ const NavigationBar = ({ signOut }) => {
     <Navbar className="navbar">
       <Nav>
         {/* <NavItem key={1} href="#">
+          <Image src={logo} alt="logo" className="logo" />
         </NavItem> */}
         <NavItem eventKey={2} href="https://www.linkedin.com/in/alon-bibring-45117458/" style={{ opacity: .7 }}>
-          <Image src={logo} alt="logo" className="logo" />
           <div style={whiteFont}>Made with &#9825; </div>
           <div style={whiteFont}>
             by <i style={{ textDecoration: 'underline' }}>Alon Bibring</i> in NYC.
