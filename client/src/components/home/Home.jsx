@@ -62,7 +62,7 @@ export default class Home extends Component {
   }
   
   onSelect(e) {
-    if (e === '') {
+    if (e === 'show all') {
       this.setState({ filterBy: '' });
     } else {
       this.handleRepoFilter(e);
