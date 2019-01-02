@@ -115,6 +115,7 @@ export default class Home extends Component {
         .catch(e => console.error('err in getSearchedRepos', e));
     })
   }
+
   resetRepos(e) {
     e.preventDefault();
     this.setState({ isLoading: true, reset: true, filterBy: '' })
@@ -130,7 +131,7 @@ export default class Home extends Component {
         <NavigationBar signOut={this.signOut} />
         <Filter repos={repos} names={repoNames} onSelect={this.onSelect} filtered={filteredRepos}/>
         <Search handleSubmit={this.handleRepoSearch} repos={repoSearchNames} getSearchedRepo={this.getSearchedRepo} resetRepos={this.resetRepos} />
-        <HomeFeed isLoading={isLoading} leave={this.confirmRedirect} repos={filterBy !== '' && filteredRepos.length > 0 && searchedRepo.length > 0 ? filteredRepos : searchedRepo.length > 1 && reset === false ? searchedRepo : repos} />
+        <HomeFeed isLoading={isLoading} leave={this.confirmRedirect} repos={filterBy !== '' && filteredRepos.length > 0 && searchedRepo.length === 0 ? filteredRepos : searchedRepo.length > 1 && reset === false ? searchedRepo : repos} />
       </div>
     );
   }

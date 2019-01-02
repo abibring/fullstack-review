@@ -53,7 +53,7 @@ module.exports = {
       },
       sourceMap: false
     }),
-    new BabiliPlugin()
+    new BabiliPlugin(),
   ],
   node: {
     fs: 'empty'

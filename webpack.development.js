@@ -2,6 +2,7 @@ const Dotenv = require('dotenv-webpack');
 const path = require('path');
 const SRC_DIR = path.join(__dirname, '/client/src');
 const DIST_DIR = path.join(__dirname, '/client/dist');
+const webpack = require('webpack');
 
 module.exports = {
   entry: `${SRC_DIR}/index.jsx`,
@@ -37,7 +38,7 @@ module.exports = {
       safe: true,
       systemvars: true,
       silent: true
-    })
+    }),
   ],
   node: {
     fs: 'empty'
