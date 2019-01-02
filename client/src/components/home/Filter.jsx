@@ -9,8 +9,10 @@ export default class Filter extends Component {
 
   render() {
     const { name } = this.state;
-    const { onSelect, names } = this.props;
+    const { onSelect, names, searched } = this.props;
     return (
+      searched.length === 0
+      ?
       <div className="filter">
         <ButtonToolbar>
           <DropdownButton title={name} id="dropdown-size-medium">
@@ -28,6 +30,8 @@ export default class Filter extends Component {
           </DropdownButton>
         </ButtonToolbar>
       </div>
+      :
+      <div />
     );
   }
 }

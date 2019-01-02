@@ -129,7 +129,7 @@ export default class Home extends Component {
     return (
       <div className="main">
         <NavigationBar signOut={this.signOut} />
-        <Filter repos={repos} names={repoNames} onSelect={this.onSelect} filtered={filteredRepos}/>
+        <Filter repos={repos} names={repoNames} onSelect={this.onSelect} filtered={filteredRepos} searched={searchedRepo} />
         <Search handleSubmit={this.handleRepoSearch} repos={repoSearchNames} getSearchedRepo={this.getSearchedRepo} resetRepos={this.resetRepos} />
         <HomeFeed isLoading={isLoading} leave={this.confirmRedirect} repos={filterBy !== '' && filteredRepos.length > 0 && searchedRepo.length === 0 ? filteredRepos : searchedRepo.length > 1 && reset === false ? searchedRepo : repos} />
       </div>
