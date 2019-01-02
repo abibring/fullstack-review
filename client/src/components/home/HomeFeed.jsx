@@ -7,7 +7,7 @@ const HomeFeed = ({ repos, isLoading, leave }) => (
   ?
   <div className="loader"></div>
   :
-  <Events repos={repos} leave={leave} />
+  <Events style={{ alignSelf: 'flex-start' }}repos={repos} leave={leave} />
 );
 
 

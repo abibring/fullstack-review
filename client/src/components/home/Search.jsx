@@ -9,11 +9,12 @@ export default class Search extends Component {
 
   render() {
     const { input } = this.state;
-    const { handleSubmit, repos, getSearchedRepo } = this.props;
+    const { handleSubmit, repos, getSearchedRepo, resetRepos } = this.props;
     return (
       <React.Fragment>
         <input type="text" onChange={(e) => this.setState({ input: e.target.value })} />
         <Button onClick={(e) => handleSubmit(e, input)}>Get Repo News</Button>
+        {repos.length > 0 ? <Button onClick={resetRepos}>Reset Feed</Button> : ''}
         <br />
         <span>
           {repos.map(repo => (

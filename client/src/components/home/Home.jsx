@@ -16,7 +16,8 @@ export default class Home extends Component {
       filteredRepos: [], 
       repoNames: [],
       repoSearchNames: [],
-      searchedRepo: [] 
+      searchedRepo: [],
+      reset: false 
     };
     this.userToken = this.props.userToken;
     this.signOut = this.signOut.bind(this);
@@ -27,6 +28,7 @@ export default class Home extends Component {
     this.handleRepoFilter = this.handleRepoFilter.bind(this);
     this.handleRepoSearch = this.handleRepoSearch.bind(this);
     this.getSearchedRepo = this.getSearchedRepo.bind(this);
+    this.resetRepos = this.resetRepos.bind(this);
   }
 
   componentDidMount() {
@@ -85,7 +87,7 @@ export default class Home extends Component {
 
   handleRepoFilter(e) {
     const { repos } = this.state;
-    this.setState({ filterBy: e }, () => {
+    this.setState({ filterBy: e, reset: false }, () => {
       let filtered = repos.filter(repo => repo.html_url.split('/')[3] === e);
       this.setState({ filteredRepos: filtered });
     })
@@ -95,7 +97,7 @@ export default class Home extends Component {
     this.setState({ isLoading: true}, () => {
       axios.post('/user/search', { repo, userToken: this.userToken } )
         .then(({ data }) => {
-          this.setState({ isLoading: false, repoSearchNames: data.items });
+          this.setState({ isLoading: false, repoSearchNames: data.items, reset: false });
         })
         .catch(e => console.error('err in handleRepoSearch', e));
     })
@@ -105,23 +107,30 @@ export default class Home extends Component {
     e.preventDefault();
     let owner = repoInfo.split('/')[0];
     let repo = repoInfo.split('/')[1];
-    this.setState({ isLoading: true}, () => {
-      axios.get('user/search/repo', { params: {owner, repo, userToken: this.userToken}})
+    this.setState({ isLoading: true, reset: false }, () => {
+      axios.get('user/search/repo', { params: { owner, repo, userToken: this.userToken }})
         .then(({ data }) => {
           this.setState({ searchedRepo: data, isLoading: false })
         })
         .catch(e => console.error('err in getSearchedRepos', e));
     })
   }
+  resetRepos(e) {
+    e.preventDefault();
+    this.setState({ isLoading: true, reset: true, filterBy: '' })
+    axios.get('/user/starred', { params: { userToken: this.userToken }})
+    .then(({ data }) => this.setState({ repos: data, isLoading: false, searchedRepo: [], repoSearchNames: [], repoNames: [], filteredRepos: [] }, () => this.getAssociatedRepos() ))
+    .catch(err => console.error(`err in componentDidMount: ${err}`));
+  }
   
   render() {
-    const { repos, isLoading, filteredRepos, filterBy, repoNames, repoSearchNames, searchedRepo } = this.state;
+    const { repos, isLoading, filteredRepos, filterBy, repoNames, repoSearchNames, searchedRepo, reset } = this.state;
     return (
       <div className="main">
         <NavigationBar signOut={this.signOut} />
         <Filter repos={repos} names={repoNames} onSelect={this.onSelect} filtered={filteredRepos}/>
-        <Search handleSubmit={this.handleRepoSearch} repos={repoSearchNames} getSearchedRepo={this.getSearchedRepo}/>
-        <HomeFeed isLoading={isLoading} leave={this.confirmRedirect} repos={filterBy !== '' && searchedRepo.length === 0 ? filteredRepos : searchedRepo.length > 1 ? searchedRepo : repos} />
+        <Search handleSubmit={this.handleRepoSearch} repos={repoSearchNames} getSearchedRepo={this.getSearchedRepo} resetRepos={this.resetRepos} />
+        <HomeFeed isLoading={isLoading} leave={this.confirmRedirect} repos={filterBy !== '' && filteredRepos.length > 0 && searchedRepo.length > 0 ? filteredRepos : searchedRepo.length > 1 && reset === false ? searchedRepo : repos} />
       </div>
     );
   }
