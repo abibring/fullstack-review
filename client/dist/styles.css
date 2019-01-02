@@ -1,8 +1,6 @@
 .main {
   background-color: #F5F5F5;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
+
 }
 
 .events {
