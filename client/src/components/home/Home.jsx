@@ -3,6 +3,7 @@ import axios from 'axios';
 import HomeFeed from './HomeFeed.jsx';
 import Filter from './Filter.jsx';
 import NavigationBar from '../app/NavigationBar.jsx';
+import Search from './Search.jsx';
 
 export default class Home extends Component {
   constructor(props) {
@@ -13,7 +14,9 @@ export default class Home extends Component {
       isLoading: true, 
       filterBy: '', 
       filteredRepos: [], 
-      repoNames: [] 
+      repoNames: [],
+      repoSearchNames: [],
+      searchedRepo: [] 
     };
     this.userToken = this.props.userToken;
     this.signOut = this.signOut.bind(this);
@@ -22,6 +25,8 @@ export default class Home extends Component {
     this.getAssociatedRepos = this.getAssociatedRepos.bind(this);
     this.onSelect = this.onSelect.bind(this);
     this.handleRepoFilter = this.handleRepoFilter.bind(this);
+    this.handleRepoSearch = this.handleRepoSearch.bind(this);
+    this.getSearchedRepo = this.getSearchedRepo.bind(this);
   }
 
   componentDidMount() {
@@ -85,14 +90,38 @@ export default class Home extends Component {
       this.setState({ filteredRepos: filtered });
     })
   }
+
+  handleRepoSearch(e, repo) {
+    this.setState({ isLoading: true}, () => {
+      axios.post('/user/search', { repo, userToken: this.userToken } )
+        .then(({ data }) => {
+          this.setState({ isLoading: false, repoSearchNames: data.items });
+        })
+        .catch(e => console.error('err in handleRepoSearch', e));
+    })
+  }
+
+  getSearchedRepo(e, repoInfo) {
+    e.preventDefault();
+    let owner = repoInfo.split('/')[0];
+    let repo = repoInfo.split('/')[1];
+    this.setState({ isLoading: true}, () => {
+      axios.get('user/search/repo', { params: {owner, repo, userToken: this.userToken}})
+        .then(({ data }) => {
+          this.setState({ searchedRepo: data, isLoading: false })
+        })
+        .catch(e => console.error('err in getSearchedRepos', e));
+    })
+  }
   
   render() {
-    const { repos, isLoading, filteredRepos, filterBy, repoNames } = this.state;
+    const { repos, isLoading, filteredRepos, filterBy, repoNames, repoSearchNames, searchedRepo } = this.state;
     return (
       <div className="main">
         <NavigationBar signOut={this.signOut} />
         <Filter repos={repos} names={repoNames} onSelect={this.onSelect} filtered={filteredRepos}/>
-        <HomeFeed isLoading={isLoading} leave={this.confirmRedirect} repos={filterBy !== '' ? filteredRepos : repos} />
+        <Search handleSubmit={this.handleRepoSearch} repos={repoSearchNames} getSearchedRepo={this.getSearchedRepo}/>
+        <HomeFeed isLoading={isLoading} leave={this.confirmRedirect} repos={filterBy !== '' && searchedRepo.length === 0 ? filteredRepos : searchedRepo.length > 1 ? searchedRepo : repos} />
       </div>
     );
   }

@@ -55,6 +55,16 @@ const getReposAssociatedWith = access_token => {
   });
 };
 
+const searchForRepo = (repo, access_token) => {
+  access_token = cryptr.decrypt(access_token);
+  return axios.get(`https://api.github.com/search/repositories?q=${repo}`, {
+    params: {
+      access_token,
+      order: 'desc'
+    }
+  });
+}
+
 module.exports = { 
   authenticateUser, 
   getTokenForUser, 
@@ -62,5 +72,6 @@ module.exports = {
   getRepoIssues, 
   getRepoNotifications, 
   getRepoReleases,
-  getReposAssociatedWith
+  getReposAssociatedWith,
+  searchForRepo
 }

@@ -1,4 +1,4 @@
-const { getReposStarred, getRepoIssues, getRepoNotifications, getRepoReleases, getReposAssociatedWith } = require('../helper-functions/github.js');
+const { getReposStarred, getRepoIssues, getRepoNotifications, getRepoReleases, getReposAssociatedWith, searchForRepo } = require('../helper-functions/github.js');
 const { removeDuplicatesAndSortByRanking, arrayOfRepoNameAndOwner, addRankingToRepos } = require('../helper-functions/sortingHelpers.js');
 require('dotenv').config();
 
@@ -96,6 +96,47 @@ module.exports = {
           res.send(finalSortedResults);
           }).catch(e => res.send(e));
         }).catch(e => res.send(e));
+      }
+    },
+
+    search: {
+      post: function(req, res) {
+        const { repo, userToken } = req.body;
+        searchForRepo(repo, userToken)
+          .then(({ data }) => res.send(data))
+          .catch(err => res.send(err));
+      }
+    },
+
+    repoBySearch: {
+      get: function(req, res) {
+        const { repo, owner, userToken } = req.query;
+        var hash = {};
+        getRepoIssues(owner, repo, userToken)
+          .then(({ data }) => {
+            hash['issues'] = data;
+            // return hash;
+          }).then(() => {
+            getRepoNotifications(owner, repo, userToken)
+            .then(({ data }) => {
+              hash['notifications'] = data;
+              // return hash;
+            })
+          }).then(() => {
+            getRepoReleases(owner, repo, userToken)
+              .then(({ data }) => {
+                hash['releases'] = data;
+                // return hash;
+              })
+          })
+          .then(() => {
+            let results = Object.values(hash);
+            function flattenDeep(arr) {
+              return arr.reduce((acc, val) => Array.isArray(val) ? acc.concat(flattenDeep(val)) : acc.concat(val), []);
+            } 
+            let r = flattenDeep(results);
+            res.send(r);
+          }).catch(e => res.send(e));
       }
     },
 
