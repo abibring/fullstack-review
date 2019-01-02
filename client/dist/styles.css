@@ -1,6 +1,6 @@
 .main {
   background-color: #F5F5F5;
-  display: inline-flex;
+  display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
 }

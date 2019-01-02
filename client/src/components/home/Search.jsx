@@ -19,7 +19,10 @@ export default class Search extends Component {
         <span>
           {repos.map(repo => (
             <div key={repo.id}>
-              <a href="#" onClick={(e) => getSearchedRepo(e, repo.full_name)}>{repo.full_name}</a>
+              <a href="#" onClick={(e) => {
+                getSearchedRepo(e, repo.full_name)
+                this.setState({ input: '' })
+                }}>{repo.full_name}</a>
             </div>
           ))}
         </span>
