@@ -72,7 +72,7 @@ export default class Home extends Component {
       let allRepoData = [...repos, ...data];
       allRepoData = allRepoData.sort((a,b) => b.ranking - a.ranking);
       let repoNamesWithDups = [];
-      allRepoData.map(repo => repoNamesWithDups.push(repo.html_url.split('/')[3]))
+      allRepoData.map(repo => repoNamesWithDups.push(repo.html_url.split('/')[4]))
       let repoNamesUnique = [...new Set(repoNamesWithDups)];
       this.setState({ repos: allRepoData, repoNames: repoNamesUnique })
     })
