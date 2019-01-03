@@ -14,7 +14,6 @@ const ReleaseEvent = ({ release, leave }) => (
         <i className="content-updated">{moment(release.published_at).startOf('hour').fromNow()}.</i>
         <div className="repo-name">{release.html_url.split('/')[3]} <span className="divider">/</span> {release.html_url.split('/')[4]}</div>
         <div className="release-version">{release.tag_name}</div>
-
         {markdown(release.body).length > 500
         ?
           <div className="event-body">{markdown(release.body).slice(0, 500) + '...'}</div>

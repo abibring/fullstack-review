@@ -84,8 +84,7 @@
 
 .issue-event {
   margin: 10px;
-  padding: 20px;
-  padding-bottom: 32px;
+  padding: 0 0 32px 0;
   background-color: white;
   border: 1px solid grey;
   width: 510px;
@@ -94,8 +93,7 @@
 
 .release-event {
   margin: 10px;
-  padding: 20px;
-  padding-bottom: 32px;
+  padding: 0 0 32px 0;
   background-color: white;
   border: 1px solid grey;
   width: 510px;
@@ -104,8 +102,7 @@
 
 .pull-event {
   margin: 10px;
-  padding: 20px;
-  padding-bottom: 32px;
+  padding: 0 0 32px 0;
   background-color: white;
   border: 1px solid grey;
   width: 510px;
