@@ -139,14 +139,14 @@ export default class Home extends Component {
           filtered={filteredRepos} 
           searched={searchedRepo} 
         />
-        <Search 
+        {/* <Search 
           handleSubmit={this.handleRepoSearch} 
           repos={repoSearchNames} 
           getSearchedRepo={this.getSearchedRepo} 
           resetRepos={this.resetRepos} 
           repoInfo={repoInfo}
           getStarredRepos={this.getStarredRepos}
-        />
+        /> */}
         <HomeFeed 
           isLoading={isLoading} 
           leave={this.confirmRedirect} 
