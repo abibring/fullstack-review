@@ -79,8 +79,8 @@
 
 .issue-event {
   margin: 10px;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding: 20px;
+  padding-bottom: 32px;
   background-color: white;
   border: 1px solid grey;
   width: 510px;
@@ -89,8 +89,8 @@
 
 .release-event {
   margin: 10px;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding: 20px;
+  padding-bottom: 32px;
   background-color: white;
   border: 1px solid grey;
   width: 510px;
@@ -99,8 +99,8 @@
 
 .pull-event {
   margin: 10px;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding: 20px;
+  padding-bottom: 32px;
   background-color: white;
   border: 1px solid grey;
   width: 510px;
@@ -127,7 +127,7 @@
 }
 
 .repo-owner {
-  font-weight: bold;
+  font-weight: 500px;
   font-size: 16px;
   color: #39927A;
 }
@@ -146,6 +146,7 @@
 
 .event-link {
   color: #39927A;
+  font-size: 13px;
 }
 
 .reason {
@@ -162,6 +163,7 @@
 
 .event-body {
   align-self: auto;
+  line-height: 22px;
 }
 
 .content {
@@ -180,7 +182,7 @@
 
 .content-updated {
   font-size: 14px;
-  color: grey;
+  color: #989898;
 }
 
 .user-pic {
