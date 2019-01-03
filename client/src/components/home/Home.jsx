@@ -20,7 +20,7 @@ export default class Home extends Component {
       reset: false,
       repoInfo: '' 
     };
-    this.userToken = this.props.userToken;
+    // this.userToken = this.props.userToken;
     this.signOut = this.signOut.bind(this);
     this.getStarredRepos = this.getStarredRepos.bind(this);
     this.confirmRedirect = this.confirmRedirect.bind(this);
@@ -30,6 +30,7 @@ export default class Home extends Component {
     this.handleRepoSearch = this.handleRepoSearch.bind(this);
     this.getSearchedRepo = this.getSearchedRepo.bind(this);
     this.resetRepos = this.resetRepos.bind(this);
+    this.userToken = window.localStorage.getItem('userToken');
   }
 
   componentDidMount() {

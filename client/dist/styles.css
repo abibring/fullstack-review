@@ -254,45 +254,15 @@
 /* media queries */
 
 /* Mobile Landscape Screen Sizes */
-@media only screen and (min-width: 600px)  {
+@media only screen and (min-width: 480px)  {
 	.release-label, .event-label, .issue-label {
-		width: 50%;
+		width: 300px;
   }
-  .issue-event {
-    margin: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    background-color: white;
-    border: 1px solid grey;
-    width: 300px;
-    align-self: flex-end;
-  }
-  
-  .release-event {
-    margin: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    background-color: white;
-    border: 1px solid grey;
-    width: 300px;
-    align-self: flex-end;
-  }
-  
-  .pull-event {
-    margin: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    background-color: white;
-    border: 1px solid grey;
-    width: 300px;
-    align-self: flex-end;
-  }
-
 }
 /* Desktop screen Sizes */
 @media only screen and (min-width: 768px) {
 	.release-label, .event-label, .issue-label {
-		width: 40%;
+		width: 300px;
 	}
 }
   
