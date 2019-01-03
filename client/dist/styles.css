@@ -69,10 +69,6 @@
   opacity: .7;
 }
 
-.title {
-  font-weight: 700;
-  padding-bottom: 12px;
-}
 
 /* Filter Component */
 
@@ -84,7 +80,7 @@
 
 .issue-event {
   margin: 10px;
-  padding: 0 0 32px 0;
+  padding: 20 20 32px 20;
   background-color: white;
   border: 1px solid grey;
   width: 510px;
@@ -93,7 +89,7 @@
 
 .release-event {
   margin: 10px;
-  padding: 0 0 32px 0;
+  padding: 20 20 32px 20;
   background-color: white;
   border: 1px solid grey;
   width: 510px;
@@ -102,7 +98,7 @@
 
 .pull-event {
   margin: 10px;
-  padding: 0 0 32px 0;
+  padding: 20 20 32px 20;
   background-color: white;
   border: 1px solid grey;
   width: 510px;
@@ -122,6 +118,11 @@
 }
 
 /* Shared Event Styles */
+
+.title {
+  font-weight: 700;
+  padding-bottom: 12px;
+}
 
 .message-ext {
   background-color: rgb(156, 146, 245);
