@@ -2,7 +2,6 @@ import React from 'react';
 import moment from 'moment';
 import markdown from 'remove-markdown';
 // import { markdown } from 'markdown';
-
 import { ListGroupItem } from 'react-bootstrap';
 
 const IssuesEvent = ({ event, leave }) => {
