@@ -72,6 +72,8 @@ export default class Home extends Component {
       let allRepoData = [...repos, ...data];
       allRepoData = allRepoData.sort((a,b) => b.ranking - a.ranking);
       let repoNamesWithDups = [];
+      // console.log('REPO AT 3', repos[0].html_url.split('/')[3])
+      console.log('REPO AT 4', repos[0].html_url.split('/')[4])
       allRepoData.map(repo => repoNamesWithDups.push(repo.html_url.split('/')[4]))
       let repoNamesUnique = [...new Set(repoNamesWithDups)];
       this.setState({ repos: allRepoData, repoNames: repoNamesUnique })
@@ -90,7 +92,7 @@ export default class Home extends Component {
   handleRepoFilter(e) {
     const { repos } = this.state;
     this.setState({ filterBy: e, reset: false }, () => {
-      let filtered = repos.filter(repo => repo.html_url.split('/')[3] === e);
+      let filtered = repos.filter(repo => repo.html_url.split('/')[4] === e);
       this.setState({ filteredRepos: filtered });
     })
   }
