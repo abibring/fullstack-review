@@ -23,7 +23,7 @@ const IssuesEvent = ({ event, leave }) => {
           <div className="repo-name">{repoName} / {repoOwner}</div><br />
           <div>{event.title}</div><br />
 
-          {markdown(event.body.length) > 500 && (event.body !== null && event.body !== 'null')
+          {markdown(event.body).length > 500
           ?
           <div className="event-body">{markdown(event.body).slice(0, 500) + ' ...'}</div>
           :
