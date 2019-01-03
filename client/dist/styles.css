@@ -256,13 +256,13 @@
 /* Mobile Landscape Screen Sizes */
 @media only screen and (max-width: 480px)  {
 	.release-label, .event-label, .issue-label {
-		width: 300px;
+		width: 120px;
   }
 }
 /* Desktop screen Sizes */
 @media only screen and (max-width: 768px) {
 	.release-label, .event-label, .issue-label {
-		width: 300px;
+		width: 200px;
 	}
 }
   
