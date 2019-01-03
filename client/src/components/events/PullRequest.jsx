@@ -12,17 +12,15 @@ const PullRequest = ({ pull, leave }) => (
       <span className="content">
         <span className="content-user">@{pull.user.login} opened a pull request.</span>{'   '}
         <i className="content-updated">{moment(pull.updated_at).startOf('hour').fromNow()}.</i>
-        <br /><br />
-        <div className="repo-name">{pull.html_url.split('/')[3]} <span className="divider">/</span> {pull.html_url.split('/')[4]}</div><br />
-        <div className="title">{pull.title}</div><br />
+        <div className="repo-name">{pull.html_url.split('/')[3]} <span className="divider">/</span> {pull.html_url.split('/')[4]}</div>
+        <div className="title">{pull.title}</div>
 
         {markdown(pull.body).length > 500
         ?
         <div className="event-body">{markdown(pull.body).slice(0, 500) + '...'}</div>
         :
         <div className="event-body">{markdown(pull.body)}</div>
-        } 
-        <br />
+        }
         
         <div>
           <a onClick={leave} href={pull.pull_request.html_url} className="event-link">View on Github</a>

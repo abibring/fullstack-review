@@ -12,9 +12,8 @@ const ReleaseEvent = ({ release, leave }) => (
       <span className="content">
         <span className="content-user">@{release.author.login} pushed a new release.</span>{'    '}
         <i className="content-updated">{moment(release.published_at).startOf('hour').fromNow()}.</i>
-        <br /><br/>
-        <div className="repo-name">{release.html_url.split('/')[3]} <span className="divider">/</span> {release.html_url.split('/')[4]}</div><br />
-        <div className="release-version">{release.tag_name}</div><br />
+        <div className="repo-name">{release.html_url.split('/')[3]} <span className="divider">/</span> {release.html_url.split('/')[4]}</div>
+        <div className="release-version">{release.tag_name}</div>
 
         {markdown(release.body).length > 500
         ?
@@ -22,8 +21,6 @@ const ReleaseEvent = ({ release, leave }) => (
         :
           <div className="event-body">{markdown(release.body)}</div>
         } 
-        <br />
-        
         <div>
           <a onClick={leave} href={release.html_url} className="event-link">View on Github</a>
         </div>
