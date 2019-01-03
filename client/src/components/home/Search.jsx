@@ -5,7 +5,7 @@ export default class Search extends Component {
   constructor(props) {
     super(props);
     this.state = { input: '', repo: '' };
-    this.userToken = localStorage.getItem('userToken');
+    this.userToken = window.localStorage.getItem('userToken');
     this.handleStarringRepo = this.handleStarringRepo.bind(this);
 
   }
