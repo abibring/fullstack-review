@@ -254,16 +254,38 @@
 /* media queries */
 
 /* Mobile Landscape Screen Sizes */
-@media only screen and (min-width: 480px)  {
+@media only screen and (min-width: 600px)  {
 	.release-label, .event-label, .issue-label {
 		width: 50%;
   }
+  .issue-event {
+    margin: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: white;
+    border: 1px solid grey;
+    width: 300px;
+    align-self: flex-end;
+  }
   
-  .jumbotron-content {
-    align-self: center;
-    flex-basis: 408px;
-    /* flex-direction: column; */
-    /* flex-wrap: nowrap; */
+  .release-event {
+    margin: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: white;
+    border: 1px solid grey;
+    width: 300px;
+    align-self: flex-end;
+  }
+  
+  .pull-event {
+    margin: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: white;
+    border: 1px solid grey;
+    width: 300px;
+    align-self: flex-end;
   }
 
 }
