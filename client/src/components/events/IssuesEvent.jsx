@@ -24,7 +24,7 @@ const IssuesEvent = ({ event, leave }) => {
           <div className="repo-name">{repoOwner} / {repoName}</div><br />
           <div>{event.title}</div><br />
 
-          {event.body.length > 500
+          {event.body.length > 500 && event.body !== null
           ?
           <div className="event-body">{event.body.slice(0, 500) + ' ...'}</div>
           :
