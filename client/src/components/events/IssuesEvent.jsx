@@ -1,6 +1,8 @@
 import React from 'react';
 import moment from 'moment';
-import markdown from 'remove-markdown';
+// import markdown from 'remove-markdown';
+import { markdown } from 'markdown';
+
 import { ListGroupItem } from 'react-bootstrap';
 
 const IssuesEvent = ({ event, leave }) => {
@@ -13,7 +15,8 @@ const IssuesEvent = ({ event, leave }) => {
         <img src={event.user.avatar_url} alt='avatar' className="feed-img" />
       </span>
       <ListGroupItem key={event.id} className="issue-event">
-      {console.log('THIS IS TEXT UNMARKED', event.body.replace(/<a\b[^>]*>(.*?)<\/a>/i,""))}
+      {console.log('THIS IS TEXT UNMARKED', markdown(event.body))}
+      {console.log()}
         <span className="content">
           <span className="content-user">@{event.user.login} created an issue.</span>{'    '}
           <i className="content-updated">{moment(event.updated_at).startOf('hour').fromNow()}.</i>
