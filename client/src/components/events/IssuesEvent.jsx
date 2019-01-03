@@ -20,7 +20,7 @@ const IssuesEvent = ({ event, leave }) => {
           <span className="content-user">@{event.user.login} created an issue.</span>{'    '}
           <i className="content-updated">{moment(event.updated_at).startOf('hour').fromNow()}.</i>
           <br /><br />
-          <div className="repo-name">{repoName} / {repoOwner}</div><br />
+          <div className="repo-name">{repoName} <span className="divider">/</span> {repoOwner}</div><br />
           <div className="title">{event.title}</div><br />
 
           {markdown(event.body).length > 500

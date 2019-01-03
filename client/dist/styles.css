@@ -229,6 +229,10 @@
   color: black;
 }
 
+.divider {
+  color: #353535;
+}
+
 .content-break {
   font-weight: bold;
   padding-left: 3px;
