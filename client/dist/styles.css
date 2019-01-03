@@ -262,7 +262,7 @@
     background-color: white;
     border: 1px solid grey;
     width: 200px;
-    align-self: flex-end;
+    align-self: center;
   }
   
   .release-event {
@@ -272,7 +272,7 @@
     background-color: white;
     border: 1px solid grey;
     width: 200px;
-    align-self: flex-end;
+    align-self: center;
   }
   
   .pull-event {
@@ -282,7 +282,7 @@
     background-color: white;
     border: 1px solid grey;
     width: 200px;
-    align-self: flex-end;
+    align-self: center;
   }
 }
 /* Desktop screen Sizes */
