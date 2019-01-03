@@ -23,9 +23,9 @@ const IssuesEvent = ({ event, leave }) => {
 
           {markdown(event.body).length > 500
           ?
-          <div className="event-body">{markdown(event.body).slice(0, 500) + ' ...'}</div>
+          <div className="event-body">{event.body.slice(0, 500) + ' ...'}</div>
           :
-          <div className="event-body">{markdown(event.body)}</div>
+          <div className="event-body">{event.body}</div>
           } 
           <br />
           
