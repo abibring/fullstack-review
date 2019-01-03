@@ -3,7 +3,7 @@ import axios from 'axios';
 import HomeFeed from './HomeFeed.jsx';
 import Filter from './Filter.jsx';
 import NavigationBar from '../app/NavigationBar.jsx';
-// import Search from './Search.jsx';
+import Search from './Search.jsx';
 
 export default class Home extends Component {
   constructor(props) {
@@ -139,14 +139,14 @@ export default class Home extends Component {
           filtered={filteredRepos} 
           searched={searchedRepo} 
         />
-        {/* <Search 
+        <Search 
           handleSubmit={this.handleRepoSearch} 
           repos={repoSearchNames} 
           getSearchedRepo={this.getSearchedRepo} 
           resetRepos={this.resetRepos} 
           repoInfo={repoInfo}
           getStarredRepos={this.getStarredRepos}
-        /> */}
+        />
         <HomeFeed 
           isLoading={isLoading} 
           leave={this.confirmRedirect} 

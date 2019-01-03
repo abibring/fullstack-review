@@ -13,6 +13,7 @@ const IssuesEvent = ({ event, leave }) => {
         <img src={event.user.avatar_url} alt='avatar' className="feed-img" />
       </span>
       <ListGroupItem key={event.id} className="issue-event">
+      {console.log('THIS IS TEXT UNMARKED', event.body)}
         <span className="content">
           <span className="content-user">@{event.user.login} created an issue.</span>{'    '}
           <i className="content-updated">{moment(event.updated_at).startOf('hour').fromNow()}.</i>
@@ -22,7 +23,7 @@ const IssuesEvent = ({ event, leave }) => {
 
           {markdown(event.body).length > 500
           ?
-          <div className="event-body">{markdown(event.body.replace(/<a\b[^>]*>(.*?)<\/a>/i,"")).slice(0, 500) + ' ...'}</div>
+          <div className="event-body">{markdown(event.body).slice(0, 500) + ' ...'}</div>
           :
           <div className="event-body">{markdown(event.body)}</div>
           } 
