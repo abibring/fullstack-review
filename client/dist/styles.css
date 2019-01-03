@@ -224,10 +224,10 @@
   align-self: flex-end;
 }
 
-/* .content-user {
-  font-size: 16px;
+.content-user {
+  font-weight: 500;
   color: black;
-} */
+}
 
 .content-break {
   font-weight: bold;
