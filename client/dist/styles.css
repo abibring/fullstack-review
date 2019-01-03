@@ -254,9 +254,35 @@
 /* media queries */
 
 /* Mobile Landscape Screen Sizes */
-@media only screen and (max-width: 400px)  {
-	.release-label, .event-label, .issue-label {
-		width: 120px;
+@media only screen and (max-width: 600px)  {
+  .issue-event {
+    margin: 2px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    background-color: white;
+    border: 1px solid grey;
+    width: 120px;
+    align-self: flex-end;
+  }
+  
+  .release-event {
+    margin: 2px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    background-color: white;
+    border: 1px solid grey;
+    width: 120px;
+    align-self: flex-end;
+  }
+  
+  .pull-event {
+    margin: 2px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    background-color: white;
+    border: 1px solid grey;
+    width: 120px;
+    align-self: flex-end;
   }
 }
 /* Desktop screen Sizes */
