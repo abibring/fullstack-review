@@ -15,7 +15,7 @@ const IssuesEvent = ({ event, leave }) => {
         <img src={event.user.avatar_url} alt='avatar' className="feed-img" />
       </span>
       <ListGroupItem key={event.id} className="issue-event">
-      {console.log('THIS IS TEXT UNMARKED', markdown.toHTML(event.body))}
+      {/* {console.log('THIS IS TEsXT UNMARKED', markdown.toHTML(event.body))} */}
       {console.log()}
         <span className="content">
           <span className="content-user">@{event.user.login} created an issue.</span>{'    '}
