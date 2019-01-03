@@ -3,7 +3,7 @@ import axios from 'axios';
 import HomeFeed from './HomeFeed.jsx';
 import Filter from './Filter.jsx';
 import NavigationBar from '../app/NavigationBar.jsx';
-import Search from './Search.jsx';
+// import Search from './Search.jsx';
 
 export default class Home extends Component {
   constructor(props) {
@@ -17,7 +17,8 @@ export default class Home extends Component {
       repoNames: [],
       repoSearchNames: [],
       searchedRepo: [],
-      reset: false 
+      reset: false,
+      repoInfo: '' 
     };
     this.userToken = this.props.userToken;
     this.signOut = this.signOut.bind(this);
@@ -95,7 +96,7 @@ export default class Home extends Component {
 
   handleRepoSearch(e, repo) {
     this.setState({ isLoading: true}, () => {
-      axios.post('/user/search', { repo, userToken: this.userToken } )
+      axios.post('/user/search', { repo, userToken: this.userToken })
         .then(({ data }) => {
           this.setState({ isLoading: false, repoSearchNames: data.items, reset: false });
         })
@@ -105,9 +106,10 @@ export default class Home extends Component {
 
   getSearchedRepo(e, repoInfo) {
     e.preventDefault();
+    console.log(typeof repoInfo)
     let owner = repoInfo.split('/')[0];
     let repo = repoInfo.split('/')[1];
-    this.setState({ isLoading: true, reset: false }, () => {
+    this.setState({ isLoading: true, reset: false, repoInfo }, () => {
       axios.get('user/search/repo', { params: { owner, repo, userToken: this.userToken }})
         .then(({ data }) => {
           this.setState({ searchedRepo: data, isLoading: false })
@@ -125,13 +127,30 @@ export default class Home extends Component {
   }
   
   render() {
-    const { repos, isLoading, filteredRepos, filterBy, repoNames, repoSearchNames, searchedRepo, reset } = this.state;
+    const { repos, isLoading, filteredRepos, filterBy, repoNames, repoSearchNames, searchedRepo, reset, repoInfo } = this.state;
     return (
       <div className="main">
         <NavigationBar signOut={this.signOut} />
-        <Filter repos={repos} names={repoNames} onSelect={this.onSelect} filtered={filteredRepos} searched={searchedRepo} />
-        <Search handleSubmit={this.handleRepoSearch} repos={repoSearchNames} getSearchedRepo={this.getSearchedRepo} resetRepos={this.resetRepos} />
-        <HomeFeed isLoading={isLoading} leave={this.confirmRedirect} repos={filterBy !== '' && filteredRepos.length > 0 && searchedRepo.length === 0 ? filteredRepos : searchedRepo.length > 1 && reset === false ? searchedRepo : repos} />
+        <Filter 
+          repos={repos} 
+          names={repoNames} 
+          onSelect={this.onSelect} 
+          filtered={filteredRepos} 
+          searched={searchedRepo} 
+        />
+        {/* <Search 
+          handleSubmit={this.handleRepoSearch} 
+          repos={repoSearchNames} 
+          getSearchedRepo={this.getSearchedRepo} 
+          resetRepos={this.resetRepos} 
+          repoInfo={repoInfo}
+          getStarredRepos={this.getStarredRepos}
+        /> */}
+        <HomeFeed 
+          isLoading={isLoading} 
+          leave={this.confirmRedirect} 
+          repos={filterBy !== '' && filteredRepos.length > 0 && searchedRepo.length === 0 ? filteredRepos : searchedRepo.length > 1 && reset === false ? searchedRepo : repos} 
+        />
       </div>
     );
   }

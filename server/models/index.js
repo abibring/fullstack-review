@@ -8,6 +8,7 @@ const saveUser = (user, cb) => {
     username: user.login,
     avatar: user.avatar_url
   });
+
   newUser.save((err) => cb(err));
 };
 
@@ -17,7 +18,6 @@ const getUser = (username, cb) => {
       console.error('err in User.find:', err);
       cb(err, null);
     } else {
-      // console.log('results in getUser:', results);
       cb(null, results);
     }
   });

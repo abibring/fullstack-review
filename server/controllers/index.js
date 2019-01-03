@@ -1,4 +1,12 @@
-const { getReposStarred, getRepoIssues, getRepoNotifications, getRepoReleases, getReposAssociatedWith, searchForRepo } = require('../helper-functions/github.js');
+const { 
+  getReposStarred, 
+  getRepoIssues, 
+  getRepoNotifications, 
+  getRepoReleases, 
+  getReposAssociatedWith, 
+  searchForRepo ,
+  starRepo
+} = require('../helper-functions/github.js');
 const { removeDuplicatesAndSortByRanking, arrayOfRepoNameAndOwner, addRankingToRepos } = require('../helper-functions/sortingHelpers.js');
 require('dotenv').config();
 
@@ -139,6 +147,21 @@ module.exports = {
           }).catch(e => res.send(e));
       }
     },
+
+    addRepo: {
+      put: function(req, res) {
+        const { repoInfo, userToken } = req.body;
+        starRepo(repoInfo, userToken)
+          .then((data) => {
+            console.log('DATA', data)
+            res.send(data)
+          })
+          .catch(e => {
+            console.error('errrr', e);
+          });
+      }
+    },
+
 
   wildcard: {
     get: function(req, res) {

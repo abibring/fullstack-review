@@ -65,6 +65,14 @@ const searchForRepo = (repo, access_token) => {
   });
 }
 
+const starRepo = (repoInfo, access_token) => {
+  access_token = cryptr.decrypt(access_token);
+  return axios.put(`https://api.github.com/user/starred/${repoInfo}`, {
+    headers: { 'Content-Length': '0' },
+    params: { access_token },
+  });
+}
+
 module.exports = { 
   authenticateUser, 
   getTokenForUser, 
@@ -73,5 +81,6 @@ module.exports = {
   getRepoNotifications, 
   getRepoReleases,
   getReposAssociatedWith,
-  searchForRepo
+  searchForRepo,
+  starRepo
 }
