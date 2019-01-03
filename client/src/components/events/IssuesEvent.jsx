@@ -15,7 +15,7 @@ const IssuesEvent = ({ event, leave }) => {
         <img src={event.user.avatar_url} alt='avatar' className="feed-img" />
       </span>
       <ListGroupItem key={event.id} className="issue-event">
-      {console.log('THIS IS TEXT UNMARKED', markdown(event.body))}
+      {console.log('THIS IS TEXT UNMARKED', markdown.toHTML(event.body))}
       {console.log()}
         <span className="content">
           <span className="content-user">@{event.user.login} created an issue.</span>{'    '}
@@ -24,7 +24,7 @@ const IssuesEvent = ({ event, leave }) => {
           <div className="repo-name">{repoOwner} / {repoName}</div><br />
           <div>{event.title}</div><br />
 
-          {markdown(event.body).length > 500
+          {event.body.length > 500
           ?
           <div className="event-body">{event.body.slice(0, 500) + ' ...'}</div>
           :
