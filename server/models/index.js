@@ -8,7 +8,6 @@ const saveUser = (user, cb) => {
     username: user.login,
     avatar: user.avatar_url
   });
-
   newUser.save((err) => cb(err));
 };
 
