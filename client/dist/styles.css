@@ -69,6 +69,10 @@
   opacity: .7;
 }
 
+.title {
+  font-weight: 700;
+}
+
 /* Filter Component */
 
 .filter {
@@ -127,7 +131,7 @@
 }
 
 .repo-owner {
-  font-weight: 500px;
+  font-weight: 500;
   font-size: 16px;
   color: #39927A;
 }

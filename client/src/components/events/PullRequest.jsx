@@ -14,7 +14,7 @@ const PullRequest = ({ pull, leave }) => (
         <i className="content-updated">{moment(pull.updated_at).startOf('hour').fromNow()}.</i>
         <br /><br />
         <div className="repo-name">{pull.html_url.split('/')[3]} / {pull.html_url.split('/')[4]}</div><br />
-        <div>{pull.title}</div><br />
+        <div className="title">{pull.title}</div><br />
 
         {markdown(pull.body).length > 500
         ?
