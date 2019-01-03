@@ -128,7 +128,7 @@ export default class Home extends Component {
   }
   
   render() {
-    const { repos, isLoading, filteredRepos, filterBy, repoNames, repoSearchNames, searchedRepo, reset, repoInfo } = this.state;
+    const { repos, isLoading, filteredRepos, filterBy, repoNames, repoSearchNames, repoInfo, searchedRepo, reset } = this.state;
     return (
       <div className="main">
         <NavigationBar signOut={this.signOut} />
