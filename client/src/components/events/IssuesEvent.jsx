@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
-// import markdown from 'remove-markdown';
-import { markdown } from 'markdown';
+import markdown from 'remove-markdown';
+// import { markdown } from 'markdown';
 
 import { ListGroupItem } from 'react-bootstrap';
 
@@ -21,12 +21,12 @@ const IssuesEvent = ({ event, leave }) => {
           <span className="content-user">@{event.user.login} created an issue.</span>{'    '}
           <i className="content-updated">{moment(event.updated_at).startOf('hour').fromNow()}.</i>
           <br /><br />
-          <div className="repo-name">{repoOwner} / {repoName}</div><br />
+          <div className="repo-name">{repoName} / {repoOwner}</div><br />
           <div>{event.title}</div><br />
 
-          {event.body.length > 500 && event.body !== null
+          {markdown(event.body.length) > 500 && (event.body !== null && event.body !== 'null')
           ?
-          <div className="event-body">{event.body.slice(0, 500) + ' ...'}</div>
+          <div className="event-body">{markdown(event.body).slice(0, 500) + ' ...'}</div>
           :
           <div className="event-body">{event.body}</div>
           } 
