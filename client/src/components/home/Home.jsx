@@ -4,6 +4,7 @@ import HomeFeed from './HomeFeed.jsx';
 import Filter from './Filter.jsx';
 import NavigationBar from '../app/NavigationBar.jsx';
 import Search from './Search.jsx';
+import SearchedRepos from './SearchedRepos.jsx';
 
 export default class Home extends Component {
   constructor(props) {
@@ -18,7 +19,8 @@ export default class Home extends Component {
       repoSearchNames: [],
       searchedRepo: [],
       reset: false,
-      repoInfo: '' 
+      repoInfo: '',
+      options: [] 
     };
     // this.userToken = this.props.userToken;
     this.signOut = this.signOut.bind(this);
@@ -72,10 +74,16 @@ export default class Home extends Component {
       let allRepoData = [...repos, ...data];
       allRepoData = allRepoData.sort((a,b) => b.ranking - a.ranking);
       let repoNamesWithDups = [];
-      // console.log('REPO AT 3', repos[0].html_url.split('/')[3])
-      console.log('REPO AT 4', repos[0].html_url.split('/')[4])
       allRepoData.map(repo => repoNamesWithDups.push(repo.html_url.split('/')[4]))
       let repoNamesUnique = [...new Set(repoNamesWithDups)];
+      // let filtered = repos.filter(repo => repo.html_url.split('/')[4] === e);
+      let promise = Promise.all(repoNamesUnique.map(repo => { 
+        return { value: repo, label: repo }
+      }));
+      promise.then(options => {
+        console.log('OPTA', options)
+        this.setState({ options })
+      })
       this.setState({ repos: allRepoData, repoNames: repoNamesUnique })
     })
     .catch(err => console.error('error with owned repos', err));
@@ -101,6 +109,9 @@ export default class Home extends Component {
     this.setState({ isLoading: true}, () => {
       axios.post('/user/search', { repo, userToken: this.userToken })
         .then(({ data }) => {
+          // let options = data.items.map(repo => {
+          //   return { value: repo.full_name, label: repo.full_name.split('/')[1] }
+          // })
           this.setState({ isLoading: false, repoSearchNames: data.items, reset: false });
         })
         .catch(e => console.error('err in handleRepoSearch', e));
@@ -109,7 +120,6 @@ export default class Home extends Component {
 
   getSearchedRepo(e, repoInfo) {
     e.preventDefault();
-    console.log(typeof repoInfo)
     let owner = repoInfo.split('/')[0];
     let repo = repoInfo.split('/')[1];
     this.setState({ isLoading: true, reset: false, repoInfo }, () => {
@@ -130,7 +140,18 @@ export default class Home extends Component {
   }
   
   render() {
-    const { repos, isLoading, filteredRepos, filterBy, repoNames, repoSearchNames, repoInfo, searchedRepo, reset } = this.state;
+    const { 
+      options, 
+      repos, 
+      isLoading, 
+      filteredRepos, 
+      filterBy, 
+      repoNames, 
+      repoSearchNames, 
+      repoInfo, 
+      searchedRepo, 
+      reset 
+    } = this.state;
     return (
       <div className="main">
         <NavigationBar signOut={this.signOut} />
@@ -140,20 +161,32 @@ export default class Home extends Component {
           onSelect={this.onSelect} 
           filtered={filteredRepos} 
           searched={searchedRepo} 
+          options={options}
         />
-        {/* <Search 
+        <Search 
           handleSubmit={this.handleRepoSearch} 
           repos={repoSearchNames} 
           getSearchedRepo={this.getSearchedRepo} 
           resetRepos={this.resetRepos} 
           repoInfo={repoInfo}
           getStarredRepos={this.getStarredRepos}
-        /> */}
-        <HomeFeed 
-          isLoading={isLoading} 
-          leave={this.confirmRedirect} 
-          repos={filterBy !== '' && filteredRepos.length > 0 && searchedRepo.length === 0 ? filteredRepos : searchedRepo.length > 1 && reset === false ? searchedRepo : repos} 
         />
+        <div className="main-inner">
+          <SearchedRepos repos={repoSearchNames} />
+          <HomeFeed 
+            isLoading={isLoading} 
+            leave={this.confirmRedirect}
+            repos={
+              filterBy !== '' &&
+              filteredRepos.length > 0 &&
+              searchedRepo.length === 0
+              ? filteredRepos
+              : searchedRepo.length > 1 && reset === false
+              ? searchedRepo
+              : repos
+            } 
+            />
+        </div>
       </div>
     );
   }

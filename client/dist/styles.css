@@ -1,6 +1,13 @@
 .main {
-  background-color: #F5F5F5;
+  background-color: #f5f5f5;
+}
 
+.main-inner {
+  background-color: #f5f5f5;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-items: flex-start;
 }
 
 .events {
@@ -9,13 +16,17 @@
   background-color: white;
 }
 
+.searched-repo-list {
+  color: blue;
+}
+
 /* Landing Page */
 
 .jumbotron {
   min-height: 100%;
   min-height: 100vh;
   display: flex;
-  align-items: center; 
+  align-items: center;
   background-image: url('./img/landingPage.jpg');
   justify-content: center;
   flex-direction: column;
@@ -30,17 +41,17 @@
 }
 
 .jumbo-title {
-  color: #39927A;
+  color: #39927a;
 }
 
 .login-button {
-  background-color: #39927A;
+  background-color: #39927a;
 }
 
 /* NavBar */
 
 .navibar {
-  background-color: #39927A;
+  background-color: #39927a;
   /* overflow: hidden;
   position: fixed;
   top: 20;
@@ -48,7 +59,7 @@
 }
 
 .brand-navbar {
-  opacity: .7;
+  opacity: 0.7;
 }
 
 .name-navbar {
@@ -66,9 +77,8 @@
 .slogan-navbar {
   color: white;
   font-size: 12px;
-  opacity: .7;
+  opacity: 0.7;
 }
-
 
 /* Filter Component */
 
@@ -80,7 +90,7 @@
 
 .issue-event {
   margin: 10px;
-  padding: 20 20 32px 20;
+  padding: 12px 12px 24px 12px;
   background-color: white;
   border: 1px solid grey;
   width: 510px;
@@ -89,7 +99,7 @@
 
 .release-event {
   margin: 10px;
-  padding: 20 20 32px 20;
+  padding: 12px 12px 16px 12px;
   background-color: white;
   border: 1px solid grey;
   width: 510px;
@@ -98,7 +108,7 @@
 
 .pull-event {
   margin: 10px;
-  padding: 20 20 32px 20;
+  padding: 12px 12px 24px 12px;
   background-color: white;
   border: 1px solid grey;
   width: 510px;
@@ -114,7 +124,8 @@
 }
 
 .release-version {
-  color: #9400D3;
+  color: #9400d3;
+  padding: 0px 0 12px 0;
 }
 
 /* Shared Event Styles */
@@ -132,14 +143,14 @@
 .repo-owner {
   font-weight: 500;
   font-size: 16px;
-  color: #39927A;
+  color: #39927a;
 }
 
 .repo-name {
-  color: #39927A;
+  color: #39927a;
   font-weight: bold;
   font-size: 16px;
-  padding: 24px 0 24px 0;
+  padding: 16px 0 16px 0;
 }
 
 .feed-img {
@@ -149,7 +160,7 @@
 }
 
 .event-link {
-  color: #39927A;
+  color: #39927a;
   font-size: 13px;
 }
 
@@ -162,7 +173,8 @@
 
 .outer-event {
   display: flex;
-  flex-flow: row;
+  /* flex-flow: row; */
+  text-overflow: ellipsis;
 }
 
 .event-body {
@@ -180,7 +192,7 @@
 }
 
 .content-img {
-  padding-top: 12px;
+  padding-top: 8px;
   flex-basis: 72px;
   align-self: flex-start;
 }
@@ -197,13 +209,11 @@
   border-radius: 50%;
 }
 
-
 .logo {
   height: 120px;
   width: 136px;
   left: 0;
 }
-
 
 .nav-user-info {
   display: flex;
@@ -213,14 +223,14 @@
 .nav-username {
   align-self: flex-start;
   color: white;
-  opacity: .7;
+  opacity: 0.7;
 }
 
 .nav-signout {
   padding: 0;
   border: none;
   background: none;
-  background-color: #39927A;
+  background-color: #39927a;
   color: white;
   font-size: 12px;
   align-self: flex-end;
@@ -237,8 +247,7 @@
 
 .content-break {
   font-weight: bold;
-  padding-left: 3px;
-  padding-right: 3px;
+  padding: 0 3px 0 3px;
 }
 
 .content-body {
@@ -259,14 +268,18 @@
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* media queries */
 
 /* Mobile Landscape Screen Sizes */
-@media only screen and (max-width: 600px)  {
+@media only screen and (max-width: 600px) {
   .issue-event {
     margin: 2px;
     padding-top: 2px;
@@ -276,7 +289,7 @@
     width: 200px;
     align-self: center;
   }
-  
+
   .release-event {
     margin: 2px;
     padding-top: 2px;
@@ -286,7 +299,7 @@
     width: 200px;
     align-self: center;
   }
-  
+
   .pull-event {
     margin: 2px;
     padding-top: 2px;
@@ -303,4 +316,3 @@
 		width: 200px;
 	}
 } */
-  

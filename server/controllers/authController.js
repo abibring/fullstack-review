@@ -14,84 +14,26 @@ module.exports = {
       }
       getTokenForUser(code)
         .then(({ data }) => {
+          console.log('DATA', data)
           const access_token = data.split('&')[0];
           const token = access_token.slice(13);
           const encryptedToken = cryptr.encrypt(token);
           authenticateUser(token)
             .then(({ data }) => {
-              saveUser(data, (err) => {
-                if (err) {
-                  getUser(data.email, (errGetUser, results) => {
-                    if (errGetUser) {
-                      res.redirect('/')
-                    } else {
-                      res.send(`
-                      <html>
-                          <body>
-                            <script>
-                              window.localStorage.setItem('userToken', '${encryptedToken}');
-                              window.localStorage.setItem('username', '${data.login}');
-                              window.localStorage.setItem('avatar', '${data.avatar_url}');
-                              window.location.pathname = '/home';
-                            </script>
-                          </body>
-                      </html>
-                    `);
-                    }
-                  }) 
-                } else {
-                  res.send(`
-                  <html>
-                      <body>
-                        <script>
-                          window.localStorage.setItem('userToken', '${encryptedToken}');
-                          window.localStorage.setItem('username', '${results[0].username}');
-                          window.localStorage.setItem('avatar', '${results[0].avatar_url}');
-                          window.location.pathname = '/home';
-                        </script>
-                      </body>
-                  </html>
-                `);
-                }
+              res.send(`
+                <html>
+                    <body>
+                      <script>
+                        window.localStorage.setItem('userToken', '${encryptedToken}');
+                        window.localStorage.setItem('username', '${data.login}');
+                        window.localStorage.setItem('avatar', '${data.avatar_url}');
+                        window.location.pathname = '/home';
+                      </script>
+                    </body>
+                </html>
+              `);
               })
-              // saving user went here!
-              // getUser(data.login, (err, user) => {
-              //   if (err || user.length === 0) {
-              //     saveUser(data, (err2) => {
-              //       if (err2) {
-              //         res.redirect('/');
-              //       } else {
-              //         res.send(`
-              //         <html>
-              //             <body>
-              //               <script>
-              //                   window.localStorage.setItem('userToken', '${encryptedToken}');
-              //                   window.localStorage.setItem('username', '${data.login}');
-              //                   window.localStorage.setItem('avatar', '${data.avatar_url}');
-              //                   window.location.pathname = '/home';
-              //               </script>
-              //             </body>
-              //         </html>
-              //       `);
-              //       }
-              //     });
-              //   } else {
-              //     res.send(`
-              //       <html>
-              //           <body>
-              //             <script>
-              //                 window.localStorage.setItem('userToken', '${encryptedToken}');
-              //                 window.localStorage.setItem('username', '${user[0].username}');
-              //                 window.localStorage.setItem('avatar', '${user[0].avatar}');
-              //                 window.location.pathname = '/home';
-              //             </script>
-              //           </body>
-              //       </html>
-              //     `);
-              //   }
-              // });
             }).catch(() => res.redirect('/'));
-          }).catch(() => res.redirect('/'));
         }
     },
 

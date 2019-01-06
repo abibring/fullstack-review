@@ -1,5 +1,5 @@
 const Dotenv = require('dotenv-webpack');
-const BabiliPlugin = require("babili-webpack-plugin");
+const BabiliPlugin = require('babili-webpack-plugin');
 const webpack = require('webpack');
 const path = require('path');
 const SRC_DIR = path.join(__dirname, '/client/src');

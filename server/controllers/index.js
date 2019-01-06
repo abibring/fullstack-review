@@ -102,8 +102,8 @@ module.exports = {
           let finalSortedResults = removeDuplicatesAndSortByRanking(arrayOfData);
           
           res.send(finalSortedResults);
-          }).catch(e => res.send(e));
-        }).catch(e => res.send(e));
+          }).catch(e => res.send());
+        }).catch(e => res.send());
       }
     },
 
