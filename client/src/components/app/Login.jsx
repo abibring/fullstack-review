@@ -15,7 +15,3 @@ const Login = () => {
 }
 
 export default Login;
-
-
-// fd744291ef509a6a54cc
-// c1b01256656b3ebf6d23

@@ -6,7 +6,7 @@ export default class SearchedRepos extends Component {
     this.state = {};
   }
   render() {
-    const { repos } = this.props;
+    const { repos, getSearchedRepo } = this.props;
     return (
       <span>
         {repos.length > 1 

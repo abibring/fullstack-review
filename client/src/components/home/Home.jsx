@@ -171,7 +171,7 @@ export default class Home extends Component {
           getStarredRepos={this.getStarredRepos}
         />
         <div className="main-inner">
-          <SearchedRepos repos={repoSearchNames} />
+          <SearchedRepos repos={repoSearchNames} getSearchedRepo={this.getSearchedRepo} />
           <HomeFeed 
             isLoading={isLoading} 
             leave={this.confirmRedirect}
