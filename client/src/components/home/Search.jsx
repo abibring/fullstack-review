@@ -15,7 +15,7 @@ export default class Search extends Component {
     const { repoInfo, getStarredRepos } = this.props;
     axios.put('/user/add/starred',  { repoInfo: repoInfo, userToken: this.userToken })
       .then(({ data }) => {
-        console.log('AFTER SUCCESSFUL PUT', data)
+        // console.log('AFTER SUCCESSFUL PUT', data)
         getStarredRepos();
       })
       .catch(e => console.error('err in put', e));

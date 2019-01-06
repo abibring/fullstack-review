@@ -152,13 +152,8 @@ module.exports = {
       put: function(req, res) {
         const { repoInfo, userToken } = req.body;
         starRepo(repoInfo, userToken)
-          .then((data) => {
-            console.log('DATA', data)
-            res.send(data)
-          })
-          .catch(e => {
-            console.error('errrr', e);
-          });
+          .then((data) => res.send(data))
+          .catch(e => console.error('errrr', e));
       }
     },
 

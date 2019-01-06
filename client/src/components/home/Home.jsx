@@ -81,7 +81,6 @@ export default class Home extends Component {
         return { value: repo, label: repo }
       }));
       promise.then(options => {
-        console.log('OPTA', options)
         this.setState({ options })
       })
       this.setState({ repos: allRepoData, repoNames: repoNamesUnique })

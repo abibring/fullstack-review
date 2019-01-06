@@ -14,7 +14,6 @@ module.exports = {
       }
       getTokenForUser(code)
         .then(({ data }) => {
-          console.log('DATA', data)
           const access_token = data.split('&')[0];
           const token = access_token.slice(13);
           const encryptedToken = cryptr.encrypt(token);
