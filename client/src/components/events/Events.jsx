@@ -3,6 +3,7 @@ import { ListGroup, Col, Row, Grid } from 'react-bootstrap';
 import PullRequest from './PullRequest.jsx';
 import IssuesEvent from './IssuesEvent.jsx';
 import ReleaseEvent from './ReleaseEvent.jsx';
+import ScrollUpButton from "react-scroll-up-button"; 
 
 const Events = ({ repos, leave }) => (
   <Grid>
@@ -24,6 +25,8 @@ const Events = ({ repos, leave }) => (
             : 
               ''
           )}
+          <ScrollUpButton />
+
         </ListGroup>
       </Col>
     </Row>

@@ -6,7 +6,7 @@ const NavigationBar = ({ signOut }) => {
   const userAvatar = window.localStorage.getItem('avatar');
   const username = window.localStorage.getItem('username');
   return (
-    <Navbar className="navibar">
+    <Navbar className="navibar" fixedTop={true}>
       <Nav>
         {/* <NavItem key={1} href="#">
           <Image src={logo} alt="logo" className="logo" />

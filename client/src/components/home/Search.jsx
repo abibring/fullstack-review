@@ -25,7 +25,7 @@ export default class Search extends Component {
     const { input } = this.state;
     const { handleSubmit, repos, getSearchedRepo, resetRepos } = this.props;
     return (
-      <React.Fragment>
+      <div className="search-box">
         <input type="text" onChange={(e) => this.setState({ input: e.target.value })} />
         <Button onClick={(e) => handleSubmit(e, input)}>Get Repo News</Button>
         {repos.length > 0 ? <Button onClick={resetRepos}>Reset Feed</Button> : ''}
@@ -41,7 +41,7 @@ export default class Search extends Component {
             </div>
           ))}
         </span>
-      </React.Fragment>
+      </div>
     )
   }
 }

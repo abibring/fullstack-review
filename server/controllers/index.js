@@ -18,7 +18,7 @@ module.exports = {
       
       getReposAssociatedWith(userToken)
       .then(({ data }) => {
-        const hash = {};
+        let hash = {};
         const reposStarred = arrayOfRepoNameAndOwner(data);
         let promise = Promise.all(reposStarred.map(repo => {
           return getRepoIssues(repo.owner, repo.repo, userToken)
@@ -64,10 +64,9 @@ module.exports = {
   starred: {
     get: function(req, res) {
       const { userToken } = req.query;
-      
       getReposStarred(userToken)
       .then(({ data }) => {
-        const hash = {};
+        let hash = {};
         const reposStarred = arrayOfRepoNameAndOwner(data);
         let promise = Promise.all(reposStarred.map(repo => {
           return getRepoIssues(repo.owner, repo.repo, userToken)
@@ -102,8 +101,14 @@ module.exports = {
           let finalSortedResults = removeDuplicatesAndSortByRanking(arrayOfData);
           
           res.send(finalSortedResults);
-          }).catch(e => res.send());
-        }).catch(e => res.send());
+          }).catch(e => {
+            console.error('error in promise of associated starred', e);
+            res.send();
+          });
+        }).catch(e => {
+          console.error('Error in getReposStarred controller', e);
+          res.send();
+        });;
       }
     },
 

@@ -9,30 +9,51 @@ module.exports = {
     get: function(req, res) {
       const { query } = req;
       const { code } = query;
-      console.log('CODEE', code)
       if (!code) {
         return res.send({ success: false, message: 'Error: invalid code' });
       }
+      console.log('CODE', code);
       getTokenForUser(code)
         .then(({ data }) => {
-          console.log("DATA", data)
           const access_token = data.split('&')[0];
           const token = access_token.slice(13);
           const encryptedToken = cryptr.encrypt(token);
+          console.log('TOKEN', token)
           authenticateUser(token)
             .then(({ data }) => {
-              res.send(`
-                <html>
-                    <body>
-                      <script>
-                        window.localStorage.setItem('userToken', '${encryptedToken}');
-                        window.localStorage.setItem('username', '${data.login}');
-                        window.localStorage.setItem('avatar', '${data.avatar_url}');
-                        window.location.pathname = '/home';
-                      </script>
-                    </body>
-                </html>
-              `);
+              console.log('DATA', data)
+              saveUser(data, (err, results) => {
+                if (err) {
+                  res.send(`
+                    <html>
+                      <body>
+                        <script>
+                          window.localStorage.setItem('userToken', '${encryptedToken}');
+                          window.localStorage.setItem('username', '${data.login}');
+                          window.localStorage.setItem('avatar', '${data.avatar_url}');
+                          window.location.pathname = '/home';
+                        </script>
+                      </body>
+                    </html>
+                  `);
+                } else {
+                  res.send(`
+                    <html>
+                      <body>
+                        <script>
+                          window.localStorage.setItem('userToken', '${encryptedToken}');
+                          window.localStorage.setItem('username', '${data.login}');
+                          window.localStorage.setItem('avatar', '${data.avatar_url}');
+                          window.location.pathname = '/home';
+                        </script>
+                      </body>
+                    </html>
+                  `);
+                }
+              });
+              }).catch(err => {
+                console.error("Error in login controller", err);
+                res.send()
               })
             }).catch(() => res.redirect('/'));
         }

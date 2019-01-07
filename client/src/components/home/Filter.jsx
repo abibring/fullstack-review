@@ -11,6 +11,7 @@ export default class Filter extends Component {
 
 
   handleChange(e) {
+    e.preventDefault();
     this.setState({ input: e.value });
   }
 
@@ -23,9 +24,7 @@ export default class Filter extends Component {
       <div className="filter">
         <ButtonToolbar>
           <DropdownButton title={name} id="dropdown-size-medium">
-            {/* <MenuItem eventKey={input} > */}
-              <Select value={input} onChange={(e) => onSelect(e.value)} options={options} />
-            {/* </MenuItem> */}
+            <Select value={input} onChange={(e) => onSelect(e.value)} options={options} />
 
             {names.map((repo, i) => (
               <MenuItem eventKey={repo} key={i} onSelect={(e) => {
@@ -33,11 +32,14 @@ export default class Filter extends Component {
                 this.setState({ name: e })
               }}>{repo}</MenuItem>
             ))}
+
             <MenuItem divider />
+
             <MenuItem eventKey={'Show all'} onSelect={(e) => {
               onSelect(e)
               this.setState({ name: 'Showing All' })
             }}>View All</MenuItem>
+            
           </DropdownButton>
         </ButtonToolbar>
       </div>

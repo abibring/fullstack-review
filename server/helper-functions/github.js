@@ -8,6 +8,7 @@ const authenticateUser = access_token => {
 };
 
 const getTokenForUser = code => {
+  console.log('SECRET', process.env.GITHUB_CLIENT_SECRET)
   return axios.post(`https://github.com/login/oauth/access_token`, {
     client_id: process.env.GITHUB_CLIENT_ID,
     client_secret: process.env.GITHUB_CLIENT_SECRET,

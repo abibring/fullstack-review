@@ -105,6 +105,7 @@ export default class Home extends Component {
   }
 
   handleRepoSearch(e, repo) {
+    e.preventDefault();
     this.setState({ isLoading: true}, () => {
       axios.post('/user/search', { repo, userToken: this.userToken })
         .then(({ data }) => {
@@ -119,12 +120,16 @@ export default class Home extends Component {
 
   getSearchedRepo(e, repoInfo) {
     e.preventDefault();
+    e.stopPropagation();
     let owner = repoInfo.split('/')[0];
     let repo = repoInfo.split('/')[1];
+    console.log('typeof repoInfo', typeof repoInfo);
+    console.log('repoInfo', repoInfo);
     this.setState({ isLoading: true, reset: false, repoInfo }, () => {
       axios.get('user/search/repo', { params: { owner, repo, userToken: this.userToken }})
         .then(({ data }) => {
-          this.setState({ searchedRepo: data, isLoading: false })
+          this.setState({ searchedRepo: data, isLoading: false });
+          console.log('XXX');
         })
         .catch(e => console.error('err in getSearchedRepos', e));
     })
@@ -134,8 +139,19 @@ export default class Home extends Component {
     e.preventDefault();
     this.setState({ isLoading: true, reset: true, filterBy: '' })
     axios.get('/user/starred', { params: { userToken: this.userToken }})
-    .then(({ data }) => this.setState({ repos: data, isLoading: false, searchedRepo: [], repoSearchNames: [], repoNames: [], filteredRepos: [] }, () => this.getAssociatedRepos() ))
-    .catch(err => console.error(`err in componentDidMount: ${err}`));
+        .then(({ data }) =>
+          this.setState({
+            repos: data,
+            isLoading: false,
+            searchedRepo: [],
+            repoSearchNames: [],
+            repoNames: [],
+            filteredRepos: []
+          },
+          () => this.getAssociatedRepos()
+        )
+      )
+      .catch(err => console.error(`err in componentDidMount: ${err}`));
   }
   
   render() {
