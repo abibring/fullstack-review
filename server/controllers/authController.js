@@ -9,11 +9,13 @@ module.exports = {
     get: function(req, res) {
       const { query } = req;
       const { code } = query;
+      console.log('CODEE', code)
       if (!code) {
         return res.send({ success: false, message: 'Error: invalid code' });
       }
       getTokenForUser(code)
         .then(({ data }) => {
+          console.log("DATA", data)
           const access_token = data.split('&')[0];
           const token = access_token.slice(13);
           const encryptedToken = cryptr.encrypt(token);
