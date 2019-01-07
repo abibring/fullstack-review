@@ -91,29 +91,31 @@
   </head>
   <body>
     <div id="app"></div>
+    <script>
+      var giftofspeed = document.createElement('link');
+      giftofspeed.rel = 'stylesheet';
+      giftofspeed.href = './styles.css';
+      giftofspeed.type = 'text/css';
+      var godefer = document.getElementsByTagName('link')[0];
+      godefer.parentNode.insertBefore(giftofspeed, godefer);
+
+      var giftofspeed2 = document.createElement('link');
+      giftofspeed2.rel = 'stylesheet';
+      giftofspeed2.href = 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css';
+      var godefer2 = document.getElementsByTagName('link')[0];
+      godefer2.parentNode.insertBefore(giftofspeed2, godefer2);
+    </script>
+    <script async defer type="text/javascript" src="bundle.js" async></script>
+    <footer>
       <script>
         var giftofspeed = document.createElement('link');
         giftofspeed.rel = 'stylesheet';
         giftofspeed.href = './styles.css';
         giftofspeed.type = 'text/css';
         var godefer = document.getElementsByTagName('link')[0];
-        godefer.parentNode.insertBefore(giftofspeed, godefer);
-        var giftofspeed2 = document.createElement('link');
-        giftofspeed2.rel = 'stylesheet';
-        giftofspeed2.href = 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css';
-        var godefer2 = document.getElementsByTagName('link')[0];
-        godefer2.parentNode.insertBefore(giftofspeed2, godefer2);
-      </script>
-    <script type="text/javascript" src="bundle.js" async></script>
-    <footer>
-      <script>
-        var giftofspeed = document.createElement('link');
-        giftofspeed.rel = 'stylesheet';
-        giftofspeed.href = 'styles.css';
-        giftofspeed.type = 'text/css';
-        var godefer = document.getElementsByTagName('link')[0];
         godefer.parentNode.insertBefore(giftofspeed, godefer);  
       </script>
     </footer>
+    
   </body>
 </html>
