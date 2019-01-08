@@ -1,17 +1,17 @@
 const axios = require('axios');
 const Cryptr = require('cryptr');
 require('dotenv').config();
-const cryptr = new Cryptr(process.env.CRYPTR_SECRET);
+const { GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET, CRYPTR_SECRET } = process.env;
+const cryptr = new Cryptr(CRYPTR_SECRET);
 
 const authenticateUser = access_token => {
   return axios.get(`https://api.github.com/user`, { params: { access_token } });
 };
 
 const getTokenForUser = code => {
-  console.log('SECRET', process.env.GITHUB_CLIENT_SECRET)
   return axios.post(`https://github.com/login/oauth/access_token`, {
-    client_id: process.env.GITHUB_CLIENT_ID,
-    client_secret: process.env.GITHUB_CLIENT_SECRET,
+    client_id: GITHUB_CLIENT_ID,
+    client_secret: GITHUB_CLIENT_SECRET,
     code
   });
 };
@@ -48,21 +48,14 @@ const getRepoReleases = (owner, repo, access_token) => {
 const getReposAssociatedWith = access_token => {
   access_token = cryptr.decrypt(access_token);
   return axios.get(`https://api.github.com/user/repos`, {
-    params: {
-      access_token,
-      sort: 'updated',
-      direction: 'desc'
-    }
+    params: { access_token, sort: 'updated', direction: 'desc' }
   });
 };
 
 const searchForRepo = (repo, access_token) => {
   access_token = cryptr.decrypt(access_token);
   return axios.get(`https://api.github.com/search/repositories?q=${repo}`, {
-    params: {
-      access_token,
-      order: 'desc'
-    }
+    params: { access_token, order: 'desc' }
   });
 }
 

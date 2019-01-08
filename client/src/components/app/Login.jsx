@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
 import dotenv from 'dotenv';
-dotenv.config();
+// dotenv.config();
 
 const Login = () => {
   let clientId = process.env.GITHUB_CLIENT_ID || 'fd744291ef509a6a54cc';
@@ -11,10 +11,9 @@ const Login = () => {
       bsStyle="primary"
       className="login-button"
     >
-    {console.log('CLIENT ID', process.env.GITHUB_CLIENT_ID)}
       Sign In With Github
     </Button>
   );
-}
+};
 
 export default Login;

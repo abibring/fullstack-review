@@ -23,15 +23,18 @@ export default class Search extends Component {
 
   render() {
     const { input } = this.state;
-    const { handleSubmit, repos, getSearchedRepo, resetRepos } = this.props;
+    const { handleSubmit, repos, getSearchedRepo, resetRepos, reposSearched } = this.props;
     return (
+      !reposSearched
+      ?
       <div className="search-box">
-        <input type="text" onChange={(e) => this.setState({ input: e.target.value })} />
-        <Button onClick={(e) => handleSubmit(e, input)}>Get Repo News</Button>
+      {/* {console.log('searchRepo', reposSearched)} */}
+        <input className="search-input" type="text" onChange={(e) => this.setState({ input: e.target.value })} />
+        <Button className="search-btn" onClick={(e) => handleSubmit(e, input)}>Get Repo News</Button>
         {repos.length > 0 ? <Button onClick={resetRepos}>Reset Feed</Button> : ''}
         {/* {repos.length > 0 ? <Button onClick={this.handleStarringRepo}>Star Repo</Button>: ''} */}
         <br />
-        <span>
+        <div>
           {repos.map(repo => (
             <div key={repo.id}>
               <a href="#" onClick={(e) => {
@@ -40,8 +43,11 @@ export default class Search extends Component {
                 }}>{repo.full_name}</a>
             </div>
           ))}
-        </span>
+        </div>
       </div>
+      :
+      <div />
+      
     )
   }
 }

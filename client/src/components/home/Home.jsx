@@ -20,7 +20,8 @@ export default class Home extends Component {
       searchedRepo: [],
       reset: false,
       repoInfo: '',
-      options: [] 
+      options: [],
+      reposSearched: false
     };
     // this.userToken = this.props.userToken;
     this.signOut = this.signOut.bind(this);
@@ -33,6 +34,7 @@ export default class Home extends Component {
     this.getSearchedRepo = this.getSearchedRepo.bind(this);
     this.resetRepos = this.resetRepos.bind(this);
     this.userToken = window.localStorage.getItem('userToken');
+    this.handleResetFeed = this.handleResetFeed.bind(this);
   }
 
   componentDidMount() {
@@ -109,9 +111,6 @@ export default class Home extends Component {
     this.setState({ isLoading: true}, () => {
       axios.post('/user/search', { repo, userToken: this.userToken })
         .then(({ data }) => {
-          // let options = data.items.map(repo => {
-          //   return { value: repo.full_name, label: repo.full_name.split('/')[1] }
-          // })
           this.setState({ isLoading: false, repoSearchNames: data.items, reset: false });
         })
         .catch(e => console.error('err in handleRepoSearch', e));
@@ -123,14 +122,9 @@ export default class Home extends Component {
     e.stopPropagation();
     let owner = repoInfo.split('/')[0];
     let repo = repoInfo.split('/')[1];
-    console.log('typeof repoInfo', typeof repoInfo);
-    console.log('repoInfo', repoInfo);
     this.setState({ isLoading: true, reset: false, repoInfo }, () => {
       axios.get('user/search/repo', { params: { owner, repo, userToken: this.userToken }})
-        .then(({ data }) => {
-          this.setState({ searchedRepo: data, isLoading: false });
-          console.log('XXX');
-        })
+        .then(({ data }) => this.setState({ searchedRepo: data, isLoading: false, reposSearched: true }))
         .catch(e => console.error('err in getSearchedRepos', e));
     })
   }
@@ -153,6 +147,12 @@ export default class Home extends Component {
       )
       .catch(err => console.error(`err in componentDidMount: ${err}`));
   }
+
+  handleResetFeed(e) {
+    e.preventDefault();
+    this.getStarredRepos();
+    this.setState({ reposSearched: true });
+  }
   
   render() {
     const { 
@@ -165,7 +165,8 @@ export default class Home extends Component {
       repoSearchNames, 
       repoInfo, 
       searchedRepo, 
-      reset 
+      reset,
+      reposSearched
     } = this.state;
     return (
       <div className="main">
@@ -185,9 +186,10 @@ export default class Home extends Component {
           resetRepos={this.resetRepos} 
           repoInfo={repoInfo}
           getStarredRepos={this.getStarredRepos}
+          reposSearched={reposSearched}
         />
         <div className="main-inner">
-          <SearchedRepos repos={repoSearchNames} getSearchedRepo={this.getSearchedRepo} />
+          <SearchedRepos repos={repoSearchNames} getSearchedRepo={this.getSearchedRepo} reposSearched={reposSearched} resetFeed={this.handleResetFeed} />
           <HomeFeed 
             isLoading={isLoading} 
             leave={this.confirmRedirect}
@@ -200,6 +202,7 @@ export default class Home extends Component {
               ? searchedRepo
               : repos
             } 
+            reposSearched={reposSearched}
             />
         </div>
       </div>

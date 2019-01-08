@@ -12,16 +12,13 @@ module.exports = {
       if (!code) {
         return res.send({ success: false, message: 'Error: invalid code' });
       }
-      console.log('CODE', code);
       getTokenForUser(code)
         .then(({ data }) => {
           const access_token = data.split('&')[0];
           const token = access_token.slice(13);
           const encryptedToken = cryptr.encrypt(token);
-          console.log('TOKEN', token)
           authenticateUser(token)
             .then(({ data }) => {
-              console.log('DATA', data)
               saveUser(data, (err, results) => {
                 if (err) {
                   res.send(`

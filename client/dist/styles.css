@@ -10,11 +10,20 @@ body {
   padding-top: 0px;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .search-box {
   width: 20%;
-  align-self: flex-end;
+  padding: 12px 0 0 12px;;
+  align-self: flex-start;
+}
+
+.search-btn {
+  display: inline-block;
+}
+.search-input {
+  display: inline-block;
 }
 
 .events {
@@ -24,8 +33,7 @@ body {
 }
 
 .searched-repo-list {
-  padding-top: 120px;
-  color: blue;
+  align-self: baseline;
 }
 
 /* Landing Page */
@@ -44,8 +52,7 @@ body {
   align-self: center;
   flex-basis: 960px;
   color: white;
-  /* flex-direction: column; */
-  /* flex-wrap: nowrap; */
+
 }
 
 .jumbo-title {
@@ -89,7 +96,7 @@ body {
 /* Filter Component */
 
 .filter {
-  padding: 100px 10px 0 0;
+  padding: 100px 10px 0 12px;
   width: 20%;
   align-self: flex-start;
 }
