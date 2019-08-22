@@ -1,10 +1,9 @@
 import React from 'react';
 import moment from 'moment';
 import markdown from 'remove-markdown';
-// import { markdown } from 'markdown';
 import { ListGroupItem } from 'react-bootstrap';
 
-const IssuesEvent = ({ event, leave }) => {
+const IssuesEvent = ({ event }) => {
   const repoUrlSplit = event.repository_url.split('/');
   const repoOwner = repoUrlSplit[repoUrlSplit.length - 2];
   const repoName = repoUrlSplit[repoUrlSplit.length - 1];
@@ -19,7 +18,7 @@ const IssuesEvent = ({ event, leave }) => {
             @{event.user.login} created an issue.
           </span>
           {'    '}
-          <i className="content-updated">
+          <i leav="content-updated">
             {moment(event.updated_at)
               .startOf('hour')
               .fromNow()}
@@ -37,7 +36,7 @@ const IssuesEvent = ({ event, leave }) => {
             <div className="event-body">{event.body}</div>
           )}
           <div>
-            <a onClick={leave} href={event.html_url} className="event-link">
+            <a href={event.html_url} className="event-link">
               View on Github
             </a>
           </div>

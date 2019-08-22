@@ -3,7 +3,7 @@ import moment from 'moment';
 import markdown from 'remove-markdown';
 import { ListGroupItem } from 'react-bootstrap';
 
-const PullRequest = ({ pull, leave }) => {
+const PullRequest = ({ pull }) => {
   const repoUrlSplit = pull.repository_url.split('/');
   const repoOwner = repoUrlSplit[repoUrlSplit.length - 2];
   const repoName = repoUrlSplit[repoUrlSplit.length - 1];
@@ -41,11 +41,7 @@ const PullRequest = ({ pull, leave }) => {
             <div className="event-body">{markdown(pull.body)}</div>
           )}
           <div>
-            <a
-              onClick={leave}
-              href={pull.pull_request.html_url}
-              className="event-link"
-            >
+            <a href={pull.pull_request.html_url} className="event-link" >
               View on Github
             </a>
           </div>

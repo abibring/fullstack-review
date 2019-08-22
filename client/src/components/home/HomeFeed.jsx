@@ -2,12 +2,12 @@ import React from 'react';
 import Events from '../events/Events.jsx';
 
 
-const HomeFeed = ({ repos, isLoading, leave, reposSearched }) => (
-  isLoading || !reposSearched
+const HomeFeed = ({ repos, isLoading, reposSearched }) => (
+  isLoading
   ?
   <div className="loader"></div>
   :
-  <Events repos={repos} leave={leave} />
+  <Events repos={repos} reposSearched={reposSearched} />
 );
 
 

@@ -5,10 +5,10 @@ export default class SearchedRepos extends Component {
   render() {
     const { repos, getSearchedRepo, reposSearched, resetFeed } = this.props;
     return !reposSearched ? (
-      <span>
+      <div>
         {repos.length > 1 ? (
           <div className="searched-repo-list">
-            <span>
+            <div>
               {repos.map(repo => (
                 <div key={repo.id}>
                   <a
@@ -22,14 +22,14 @@ export default class SearchedRepos extends Component {
                   </a>
                 </div>
               ))}
-            </span>
+            </div>
           </div>
         ) : (
           ''
         )}
-      </span>
+      </div>
     ) : (
-      <Button style={{ display: !reposSearched ? 'none' : 'block'}} onClick={resetFeed}>Reset Feed</Button>
+      <Button  onClick={resetFeed}>Reset Feed</Button>
     );
   }
 }

@@ -21,7 +21,8 @@ export default class Home extends Component {
       reset: false,
       repoInfo: '',
       options: [],
-      reposSearched: false
+      reposSearched: false,
+      hideFeed: false
     };
     // this.userToken = this.props.userToken;
     this.signOut = this.signOut.bind(this);
@@ -65,7 +66,9 @@ export default class Home extends Component {
   getStarredRepos() {
     this.setState({ isLoading: true })
     axios.get('/user/starred', { params: { userToken: this.userToken }})
-    .then(({ data }) => this.setState({ repos: data, isLoading: false }, () => this.getAssociatedRepos() ))
+    .then(({ data }) => {
+      this.setState({ repos: data }, () => this.getAssociatedRepos() )
+    })
     .catch(err => console.error(`err in componentDidMount: ${err}`));
   }
   
@@ -73,19 +76,22 @@ export default class Home extends Component {
     const { repos } = this.state;
     axios.get('/user/associated', { params: { userToken: this.userToken }})
     .then(({ data }) => {
-      let allRepoData = [...repos, ...data];
-      allRepoData = allRepoData.sort((a,b) => b.ranking - a.ranking);
-      let repoNamesWithDups = [];
-      allRepoData.map(repo => repoNamesWithDups.push(repo.html_url.split('/')[4]))
-      let repoNamesUnique = [...new Set(repoNamesWithDups)];
-      // let filtered = repos.filter(repo => repo.html_url.split('/')[4] === e);
-      let promise = Promise.all(repoNamesUnique.map(repo => { 
-        return { value: repo, label: repo }
-      }));
-      promise.then(options => {
-        this.setState({ options })
-      })
-      this.setState({ repos: allRepoData, repoNames: repoNamesUnique })
+      let allRepoData;
+      if (data.length > 1) {
+        allRepoData = [...repos, ...data];
+      } else {
+        allRepoData = repos.sort((a,b) => b.ranking - a.ranking);
+      }
+        let repoNamesWithDups = [];
+        allRepoData.map(repo => repoNamesWithDups.push(repo.html_url.split('/')[4]))
+        let repoNamesUnique = [...new Set(repoNamesWithDups)];
+        let promise = Promise.all(repoNamesUnique.map(repo => { 
+          return { value: repo, label: repo }
+        }));
+        promise.then(options => {
+          this.setState({ options })
+        })
+        this.setState({ repos: allRepoData, repoNames: repoNamesUnique, isLoading: false })
     })
     .catch(err => console.error('error with owned repos', err));
   }
@@ -131,7 +137,7 @@ export default class Home extends Component {
 
   resetRepos(e) {
     e.preventDefault();
-    this.setState({ isLoading: true, reset: true, filterBy: '' })
+    this.setState({ isLoading: true, reset: true, filterBy: '', hideFeed: false })
     axios.get('/user/starred', { params: { userToken: this.userToken }})
         .then(({ data }) =>
           this.setState({
@@ -151,7 +157,7 @@ export default class Home extends Component {
   handleResetFeed(e) {
     e.preventDefault();
     this.getStarredRepos();
-    this.setState({ reposSearched: true });
+    this.setState({ reposSearched: true, hideFeed: false });
   }
   
   render() {
@@ -166,7 +172,8 @@ export default class Home extends Component {
       repoInfo, 
       searchedRepo, 
       reset,
-      reposSearched
+      reposSearched,
+      hideFeed
     } = this.state;
     return (
       <div className="main">
@@ -184,15 +191,23 @@ export default class Home extends Component {
           repos={repoSearchNames} 
           getSearchedRepo={this.getSearchedRepo} 
           resetRepos={this.resetRepos} 
+          clearFeed={this.handleResetFeed}
           repoInfo={repoInfo}
           getStarredRepos={this.getStarredRepos}
-          reposSearched={reposSearched}
+          hideSearch={reposSearched}
         />
+        <div className="searched-repo-div">
+          <SearchedRepos
+            repos={repoSearchNames} 
+            getSearchedRepo={this.getSearchedRepo} 
+            reposSearched={reposSearched} 
+            resetFeed={this.handleResetFeed} 
+          />
+        </div>
         <div className="main-inner">
-          <SearchedRepos repos={repoSearchNames} getSearchedRepo={this.getSearchedRepo} reposSearched={reposSearched} resetFeed={this.handleResetFeed} />
           <HomeFeed 
             isLoading={isLoading} 
-            leave={this.confirmRedirect}
+            reposSearched={reposSearched}
             repos={
               filterBy !== '' &&
               filteredRepos.length > 0 &&
@@ -201,9 +216,8 @@ export default class Home extends Component {
               : searchedRepo.length > 1 && reset === false
               ? searchedRepo
               : repos
-            } 
-            reposSearched={reposSearched}
-            />
+            }
+          />
         </div>
       </div>
     );

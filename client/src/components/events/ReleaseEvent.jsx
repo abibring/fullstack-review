@@ -3,7 +3,7 @@ import moment from 'moment';
 import markdown from 'remove-markdown';
 import { ListGroupItem } from 'react-bootstrap';
 
-const ReleaseEvent = ({ release, leave }) => {
+const ReleaseEvent = ({ release }) => {
   const repoUrlSplit = release.url.split('/');
   const repoOwner = repoUrlSplit[4];
   const repoName = repoUrlSplit[5];
@@ -41,7 +41,7 @@ const ReleaseEvent = ({ release, leave }) => {
             <div className="event-body">{markdown(release.body)}</div>
           )}
           <div>
-            <a onClick={leave} href={release.html_url} className="event-link">
+            <a href={release.html_url} className="event-link">
               View on Github
             </a>
           </div>

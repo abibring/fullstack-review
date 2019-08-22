@@ -3,7 +3,7 @@ body {
 }
 
 .main-inner {
-  padding-top: 100px;
+  padding-top: 80px;
 }
 
 .main {
@@ -19,11 +19,20 @@ body {
   align-self: flex-start;
 }
 
+
 .search-btn {
-  display: inline-block;
+  display: block;
 }
 .search-input {
   display: inline-block;
+}
+
+.searched-repo-div {
+  padding: 24px 0px 0px 12px;
+  align-self: flex-start;
+}
+.searched-repo-list {
+  /* padding-top: 60px; */
 }
 
 .events {
@@ -32,9 +41,6 @@ body {
   background-color: white;
 }
 
-.searched-repo-list {
-  align-self: baseline;
-}
 
 /* Landing Page */
 
@@ -68,7 +74,7 @@ body {
 .navibar {
   background-color: #39927a;
   width: 100%;
-  padding-bottom: 10px;
+  padding-bottom: 12px;
 }
 
 .brand-navbar {
@@ -206,7 +212,7 @@ body {
 }
 
 .content-img {
-  padding-top: 8px;
+  padding-top: 10px;
   flex-basis: 72px;
   align-self: flex-start;
 }
