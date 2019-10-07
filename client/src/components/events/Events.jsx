@@ -10,6 +10,7 @@ const Events = ({ repos, leave, reposSearched }) => (
     <Row>
       <Col xs={12} md={8} xsOffset={2}>
         <ListGroup>
+          {console.log('REPOS REPOS REPOS', repos)}
           {repos.length > 0 && repos.map(repo =>
             repo.pull_request && !repo.published_at
             ? 

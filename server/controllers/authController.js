@@ -6,7 +6,7 @@ const cryptr = new Cryptr(process.env.CRYPTR_SECRET);
 
 module.exports = {
   login: {
-    get: async function(req, res) {
+    get: async (req, res) => {
       const { query } = req;
       const { code } = query;
       if (!code) {
@@ -117,7 +117,7 @@ module.exports = {
     },
 
   logout: {
-    get: function(req, res) {
+    get: (req, res) => {
       req.session = null;
       res.send();
     }

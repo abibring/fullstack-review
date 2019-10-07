@@ -1,14 +1,18 @@
 const router = require('express').Router();
-const { starred, associated, repoBySearch, search, addRepo,  wildcard } = require('../controllers/index.js');
+const wildcardController = require('../controllers/wildcardController.js');
+const associatedController = require('../controllers/associatedController.js');
+const starredController = require('../controllers/starredController.js');
+const repoController = require('../controllers/repoController.js');
+const searchController = require('../controllers/searchController.js');
 const { login, logout } = require('../controllers/authController.js');
 
 router.get('/user/signin/callback', login.get);
 router.get('/logout', logout.get);
-router.get('/user/starred', starred.get);
-router.get('/user/associated', associated.get);
-router.get('/user/search/repo', repoBySearch.get);
-router.post('/user/search', search.post);
-router.put('/user/add/starred', addRepo.put);
-router.get('/*', wildcard.get);
+router.get('/user/starred', starredController.get);
+router.get('/user/associated', associatedController.get);
+router.get('/user/search/repo', repoController.getRepoBySearch);
+router.put('/user/add/starred', repoController.addRepo);
+router.post('/user/search', searchController.post);
+router.get('/*', wildcardController.get);
 
 module.exports = router;

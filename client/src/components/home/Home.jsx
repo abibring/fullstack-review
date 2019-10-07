@@ -22,7 +22,7 @@ export default class Home extends Component {
       repoInfo: '',
       options: [],
       reposSearched: false,
-      hideFeed: false
+      hideFeed: false,
     };
     // this.userToken = this.props.userToken;
     this.signOut = this.signOut.bind(this);
@@ -72,28 +72,33 @@ export default class Home extends Component {
     .catch(err => console.error(`err in componentDidMount: ${err}`));
   }
   
-  getAssociatedRepos() {
+  async getAssociatedRepos() {
     const { repos } = this.state;
-    axios.get('/user/associated', { params: { userToken: this.userToken }})
-    .then(({ data }) => {
-      let allRepoData;
-      if (data.length > 1) {
-        allRepoData = [...repos, ...data];
-      } else {
-        allRepoData = repos.sort((a,b) => b.ranking - a.ranking);
-      }
-        let repoNamesWithDups = [];
-        allRepoData.map(repo => repoNamesWithDups.push(repo.html_url.split('/')[4]))
-        let repoNamesUnique = [...new Set(repoNamesWithDups)];
-        let promise = Promise.all(repoNamesUnique.map(repo => { 
-          return { value: repo, label: repo }
-        }));
-        promise.then(options => {
-          this.setState({ options })
-        })
-        this.setState({ repos: allRepoData, repoNames: repoNamesUnique, isLoading: false })
-    })
-    .catch(err => console.error('error with owned repos', err));
+    console.log('THIS IS USER TOKEN', this.userToken)
+   const associatedUsers = await axios.get('/user/associated', { params: { userToken: this.userToken }})
+   console.log('\n associatedUsers', associatedUsers, '\n')
+    // .then(({ data }) => {
+    //   let allRepoData;
+    //   console.log('DATA DATA', data)
+    //   if (!data) {
+    //     this.setState({ isLoading: false, repos: [] })
+    //   } else if (data.length > 1) {
+    //     allRepoData = [...repos, ...data];
+    //   } else {
+    //     allRepoData = repos.sort((a,b) => b.ranking - a.ranking);
+    //   }
+    //     const repoNamesWithDups = [];
+    //     allRepoData.map(repo => repoNamesWithDups.push(repo.html_url && repo.html_url.split('/')[4]))
+    //     const repoNamesUnique = [...new Set(repoNamesWithDups)];
+    //     const promise = Promise.all(repoNamesUnique.map(repo => { 
+    //       return { value: repo, label: repo }
+    //     }));
+    //     promise.then(options => {
+    //       this.setState({ options })
+    //     })
+    //     this.setState({ repos: allRepoData, repoNames: repoNamesUnique, isLoading: false })
+    // })
+    // .catch(err => console.error('error with owned repos', err));
   }
   
   onSelect(e) {
@@ -177,6 +182,7 @@ export default class Home extends Component {
     } = this.state;
     return (
       <div className="main">
+        {console.log('REPOS IN HOME', repos)}
         <NavigationBar signOut={this.signOut} />
         <Filter 
           repos={repos} 

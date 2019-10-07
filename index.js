@@ -15,10 +15,10 @@ app.use(cookieSession({
   maxAge: 24 * 60 * 60 * 1000 // 24 hours
 }));
 
-// app.use((req, res, next) => {
-//   res.set('Cache-Control', 'no-cache');
-//   next();
-// }); 
+app.use((req, res, next) => {
+  res.set('Cache-Control', 'no-cache');
+  next();
+}); 
 app.use(express.static(path.join(__dirname, '/client/dist'), { redirect: false }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());

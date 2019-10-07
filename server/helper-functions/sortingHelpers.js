@@ -1,23 +1,25 @@
 module.exports = {
 
-  arrayOfRepoNameAndOwner: function(array) {
+  arrayOfRepoNameAndOwner: (array) => {
     return array.map(repo => ({ repo: repo.name, owner: repo.owner.login }));
   },
 
-  removeDuplicatesAndSortByRanking: function(arr) {
+  removeDuplicatesAndSortByRanking: async (arr) => {
     let hash = {};
     let repos = [];
-    arr.map(repo => {
+    await arr.map(repo => {
       if (!hash[repo.url]) {
         hash[repo.url] = true;
         repos.push(repo);
       }
     });
+    console.log('\n\n this is repos', repos)
     return repos.sort((a, b) =>  b.ranking - a.ranking);
   }, 
 
-  addRankingToRepos: function(arr) {
+  addRankingToRepos: (arr) => {
     arr.map(repo => {
+      console.log('THIS IS REPO AD RANKING', repo)
       const now = new Date();
       const typeOfEvent = repo.html_url.split('/')[5].toString();
       let secondsPast;
